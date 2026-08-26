@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="{{ site.subtituloHome }}">
+  <title>{{ title or site.nome }}</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a href="/" class="logo"><img src="/assets/logo-piemonte.png" alt="{{ site.nome }}"></a>
+    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">☰</button>
+    <nav id="menu">
+      <a href="/#portfolio">Imóveis</a>
+      <a href="/#areas">Áreas</a>
+      <a href="/#sobre">Sobre</a>
+      <a href="/#anuncie">Anuncie conosco</a>
+      <a href="/#parcerias">Parcerias</a>
+      <a href="/#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>{{ content | safe }}</main>
+
+<footer>
+  <div class="container footer">
+    <img src="/assets/logo-piemonte.png" alt="{{ site.nome }}">
+    <div>
+      <a href="/#portfolio">Imóveis</a>
+      <a href="/#areas">Áreas</a>
+      <a href="/#anuncie">Anuncie conosco</a>
+      <a href="/#parcerias">Parcerias</a>
+    </div>
+    <div>
+      {% if site.whatsapp %}<a href="https://wa.me/{{ site.whatsapp }}">WhatsApp</a>{% endif %}
+      {% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}
+      {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+      <span>{{ site.cidadeBase }}</span>
+    </div>
+  </div>
+  <div class="container copyright">© 2026 {{ site.nome }}. Todos os direitos reservados.</div>
+</footer>
+<script src="/assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+---
+layout: base.njk
+permalink: "/portfolio/{{ slug }}/index.html"
+eleventyComputed:
+  title: "{{ titulo }} | {{ site.nome }}"
+---
+<section class="detail-hero">
+  <img src="{{ imagemCapa }}" alt="{{ titulo }}">
+</section>
+<section class="section">
+  <div class="container detail-grid">
+    <div>
+      <p class="eyebrow dark">{{ "ÁREA" if tipoConteudo == "area" else "IMÓVEL" }} • {{ status }}</p>
+      <h1 class="detail-title">{{ titulo }}</h1>
+      <p class="detail-location">{{ cidade }}{% if regiao %} • {{ regiao }}{% endif %}</p>
+      <div class="specs">
+        {% if suites %}<span>{{ suites }} suítes</span>{% endif %}
+        {% if quartos and not suites %}<span>{{ quartos }} dormitórios</span>{% endif %}
+        {% if banheiros %}<span>{{ banheiros }} banheiros</span>{% endif %}
+        {% if vagas %}<span>{{ vagas }} vagas</span>{% endif %}
+        {% if areaConstruida %}<span>{{ areaConstruida }} m² construídos</span>{% endif %}
+        {% if areaTerreno %}<span>{{ areaTerreno }} m² de área</span>{% endif %}
+      </div>
+      <div class="body-copy">{{ content | safe }}</div>
+    </div>
+    <aside class="interest-box">
+      <p class="eyebrow dark">{{ negocio }}</p>
+      <strong class="price big">{{ precoTexto or "Consulte" }}</strong>
+      <p>Fale com a Piemonte para receber detalhes, disponibilidade e agendar uma apresentação.</p>
+      <a class="btn gold wide" href="/#contato">Tenho interesse</a>
+    </aside>
+  </div>
+</section>
+{% if galeria and galeria.length %}
+<section class="section warm">
+  <div class="container">
+    <p class="eyebrow dark">GALERIA</p>
+    <h2>Mais imagens</h2>
+    <div class="gallery">
+      {% for imagem in galeria %}<img src="{{ imagem }}" alt="{{ titulo }}">{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

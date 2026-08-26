@@ -1,0 +1,8 @@
+const btn=document.getElementById("menuBtn"),menu=document.getElementById("menu");if(btn&&menu)btn.addEventListener("click",()=>menu.classList.toggle("open"));
+const cards=[...document.querySelectorAll(".card")],form=document.getElementById("filtros");
+if(form){
+ const categoria=document.getElementById("fCategoria"),negocio=document.getElementById("fNegocio"),cidade=document.getElementById("fCidade"),tipo=document.getElementById("fTipo"),preco=document.getElementById("fPreco"),contador=document.getElementById("contador"),vazio=document.getElementById("vazio");
+ [...new Set(cards.map(c=>c.dataset.tipo).filter(Boolean))].sort().forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;tipo.appendChild(o)});
+ function filtrar(){let n=0;cards.forEach(c=>{const ok=(!categoria.value||c.dataset.categoria===categoria.value)&&(!negocio.value||c.dataset.negocio===negocio.value)&&(!cidade.value.trim()||c.dataset.cidade.toLowerCase().includes(cidade.value.trim().toLowerCase()))&&(!tipo.value||c.dataset.tipo===tipo.value)&&(!preco.value||Number(c.dataset.preco||0)<=Number(preco.value));c.style.display=ok?"":"none";if(ok)n++});contador.textContent=`${n} ${n===1?"oportunidade":"oportunidades"}`;vazio.hidden=n!==0}
+ form.addEventListener("submit",e=>{e.preventDefault();filtrar();document.getElementById("portfolio").scrollIntoView({behavior:"smooth"})});[categoria,negocio,tipo,preco].forEach(x=>x.addEventListener("change",filtrar));filtrar();
+}

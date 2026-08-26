@@ -1,0 +1,99 @@
+PIEMONTE BROKERS — SITE COM PAINEL ADMINISTRATIVO
+
+O QUE ESTA VERSÃO TEM
+- Site de alto padrão responsivo.
+- Home com a foto escolhida.
+- Imóveis e áreas com páginas individuais.
+- Busca/filtros.
+- Formulário "Anuncie conosco".
+- Formulário de parcerias.
+- Painel administrativo Decap CMS em /admin/.
+- Upload de fotos pelo painel.
+- Cadastro, edição e exclusão de imóveis e áreas pelo painel.
+- Edição de textos, contatos e foto principal da Home pelo painel.
+
+IMPORTANTE
+Esta versão NÃO deve ser publicada por simples "arrastar pasta" no Netlify.
+Para o painel conseguir salvar alterações, o projeto precisa ficar conectado a um repositório Git (recomendado: GitHub) e o Netlify precisa publicar a partir desse repositório.
+
+PASSO A PASSO — PRIMEIRA PUBLICAÇÃO
+
+1. Crie uma conta no GitHub, se ainda não tiver.
+2. Crie um repositório chamado, por exemplo:
+   piemonte-brokers-site
+3. Envie TODOS os arquivos desta pasta para a raiz do repositório.
+4. No Netlify:
+   - Add new project
+   - Import an existing project
+   - GitHub
+   - escolha o repositório
+   - o Netlify deve detectar netlify.toml
+   - Build command: npm run build
+   - Publish directory: _site
+5. Faça o primeiro deploy.
+
+ATIVAR O PAINEL ADMINISTRATIVO
+
+6. No projeto do Netlify, ative o Netlify Identity.
+7. Em Registration preferences, prefira "Invite only".
+8. Ative Git Gateway.
+9. Convide seu próprio e-mail como usuário.
+10. Aceite o convite e crie a senha.
+11. Abra:
+    https://SEU-SITE.netlify.app/admin/
+
+USANDO O PAINEL
+
+CONFIGURAÇÕES DO SITE
+- alterar título e subtítulo da Home;
+- trocar foto principal;
+- cadastrar WhatsApp;
+- cadastrar e-mail;
+- Instagram;
+- texto "Sobre";
+- CRECI.
+
+IMÓVEIS
+- Novo Imóvel;
+- título;
+- status;
+- venda/locação;
+- tipo;
+- cidade;
+- condomínio/bairro;
+- preço;
+- dormitórios/suítes;
+- banheiros;
+- vagas;
+- metragem;
+- foto de capa;
+- galeria;
+- descrição;
+- publicar.
+
+ÁREAS E OPORTUNIDADES
+- mesmo processo, com campos específicos para áreas.
+
+AO CLICAR EM PUBLICAR
+O painel grava a alteração no repositório Git.
+O Netlify detecta a mudança e publica automaticamente a nova versão do site.
+
+FOTOS
+As fotos enviadas pelo painel ficam em:
+public/uploads/
+
+FORMULÁRIOS
+"Anuncie conosco" e "Parcerias" usam Netlify Forms.
+Depois do deploy, abra a área Forms do projeto no Netlify para acompanhar os contatos.
+
+SEGURANÇA
+- Use cadastro por convite.
+- Não compartilhe sua senha.
+- Convide apenas pessoas que realmente devem editar o site.
+
+ARQUIVOS PRINCIPAIS
+src/_data/site.json -> configurações gerais
+src/imoveis/ -> imóveis
+src/areas/ -> áreas
+src/admin/config.yml -> campos do painel
+public/assets/ -> logo, foto principal, CSS e JavaScript
