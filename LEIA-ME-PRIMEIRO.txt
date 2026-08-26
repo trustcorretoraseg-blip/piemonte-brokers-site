@@ -1,99 +1,66 @@
-PIEMONTE BROKERS — SITE COM PAINEL ADMINISTRATIVO
+PIEMONTE BROKERS — VERSÃO ADMINISTRATIVA SEM BUILD
 
-O QUE ESTA VERSÃO TEM
-- Site de alto padrão responsivo.
-- Home com a foto escolhida.
-- Imóveis e áreas com páginas individuais.
-- Busca/filtros.
-- Formulário "Anuncie conosco".
-- Formulário de parcerias.
-- Painel administrativo Decap CMS em /admin/.
-- Upload de fotos pelo painel.
-- Cadastro, edição e exclusão de imóveis e áreas pelo painel.
-- Edição de textos, contatos e foto principal da Home pelo painel.
+POR QUE ESTA VERSÃO É MAIS SIMPLES
+Esta versão não usa Eleventy, npm, package.json ou processo de build.
+O Netlify publica os arquivos diretamente.
+Assim eliminamos o erro que estava acontecendo na etapa Building.
 
-IMPORTANTE
-Esta versão NÃO deve ser publicada por simples "arrastar pasta" no Netlify.
-Para o painel conseguir salvar alterações, o projeto precisa ficar conectado a um repositório Git (recomendado: GitHub) e o Netlify precisa publicar a partir desse repositório.
+ESTRUTURA
+index.html
+assets/
+data/
+admin/
+uploads/
+netlify.toml
 
-PASSO A PASSO — PRIMEIRA PUBLICAÇÃO
+PAINEL
+Depois de ativar Netlify Identity + Git Gateway, acesse:
+https://SEU-SITE.netlify.app/admin/
 
-1. Crie uma conta no GitHub, se ainda não tiver.
-2. Crie um repositório chamado, por exemplo:
-   piemonte-brokers-site
-3. Envie TODOS os arquivos desta pasta para a raiz do repositório.
-4. No Netlify:
-   - Add new project
-   - Import an existing project
-   - GitHub
-   - escolha o repositório
-   - o Netlify deve detectar netlify.toml
-   - Build command: npm run build
-   - Publish directory: _site
-5. Faça o primeiro deploy.
+NO PAINEL VOCÊ CONSEGUE
+- trocar foto principal da Home;
+- editar título e subtítulo;
+- editar texto Sobre;
+- editar WhatsApp, e-mail e Instagram;
+- adicionar, editar e remover imóveis;
+- adicionar, editar e remover áreas;
+- subir foto de capa;
+- subir galeria de fotos;
+- alterar status, preço, metragem e descrição.
 
-ATIVAR O PAINEL ADMINISTRATIVO
+PUBLICAÇÃO
+O painel salva a alteração no GitHub.
+Como o Netlify está conectado ao GitHub, ele publica automaticamente.
+Como não há build, o deploy é muito mais simples.
 
-6. No projeto do Netlify, ative o Netlify Identity.
-7. Em Registration preferences, prefira "Invite only".
-8. Ative Git Gateway.
-9. Convide seu próprio e-mail como usuário.
-10. Aceite o convite e crie a senha.
-11. Abra:
-    https://SEU-SITE.netlify.app/admin/
+COMO SUBSTITUIR O PROJETO ATUAL NO GITHUB DESKTOP
+1. Abra a pasta local do repositório pelo GitHub Desktop > Show in Explorer.
+2. Faça uma cópia de segurança da pasta atual se quiser.
+3. Apague da pasta local os arquivos antigos do site.
+4. Extraia este ZIP.
+5. Copie TODO o conteúdo extraído para dentro da pasta local do repositório.
+6. Volte ao GitHub Desktop.
+7. Escreva no Summary: Versão sem build
+8. Commit to main.
+9. Push origin.
+10. Volte ao Netlify > Deploys.
+11. O deploy deve iniciar automaticamente.
 
-USANDO O PAINEL
+CONFIGURAÇÃO DO NETLIFY
+Como este projeto tem netlify.toml com publish=".", você não precisa de:
+Build command
+npm run build
+_site
 
-CONFIGURAÇÕES DO SITE
-- alterar título e subtítulo da Home;
-- trocar foto principal;
-- cadastrar WhatsApp;
-- cadastrar e-mail;
-- Instagram;
-- texto "Sobre";
-- CRECI.
+Se o Netlify ainda mostrar um Build command antigo nas configurações do projeto, remova-o/deixe em branco.
+Publish directory deve ficar como:
+.
 
-IMÓVEIS
-- Novo Imóvel;
-- título;
-- status;
-- venda/locação;
-- tipo;
-- cidade;
-- condomínio/bairro;
-- preço;
-- dormitórios/suítes;
-- banheiros;
-- vagas;
-- metragem;
-- foto de capa;
-- galeria;
-- descrição;
-- publicar.
-
-ÁREAS E OPORTUNIDADES
-- mesmo processo, com campos específicos para áreas.
-
-AO CLICAR EM PUBLICAR
-O painel grava a alteração no repositório Git.
-O Netlify detecta a mudança e publica automaticamente a nova versão do site.
-
-FOTOS
-As fotos enviadas pelo painel ficam em:
-public/uploads/
-
-FORMULÁRIOS
-"Anuncie conosco" e "Parcerias" usam Netlify Forms.
-Depois do deploy, abra a área Forms do projeto no Netlify para acompanhar os contatos.
-
-SEGURANÇA
-- Use cadastro por convite.
-- Não compartilhe sua senha.
-- Convide apenas pessoas que realmente devem editar o site.
-
-ARQUIVOS PRINCIPAIS
-src/_data/site.json -> configurações gerais
-src/imoveis/ -> imóveis
-src/areas/ -> áreas
-src/admin/config.yml -> campos do painel
-public/assets/ -> logo, foto principal, CSS e JavaScript
+ATIVAR O ADMIN
+No Netlify:
+1. Identity: Enable Identity.
+2. Registration: Invite only.
+3. Services: Enable Git Gateway.
+4. Convide seu e-mail.
+5. Aceite o convite.
+6. Acesse /admin/.

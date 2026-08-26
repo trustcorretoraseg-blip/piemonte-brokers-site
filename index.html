@@ -1,12 +1,163 @@
 <!doctype html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Painel Piemonte Brokers</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta name="description" content="Piemonte Brokers">
+  <title>Piemonte Brokers</title>
+  <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<header class="header">
+  <div class="container nav">
+    <a href="#inicio" class="logo"><img src="/assets/logo-piemonte.png" alt="Piemonte Brokers"></a>
+    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">☰</button>
+    <nav id="menu">
+      <a href="#portfolio">Imóveis</a>
+      <a href="#areas">Áreas</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#anuncie">Anuncie conosco</a>
+      <a href="#parcerias">Parcerias</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="eyebrow">PIEMONTE BROKERS • CURADORIA IMOBILIÁRIA</p>
+    <h1 id="tituloHome">Imóveis, áreas e oportunidades com visão estratégica.</h1>
+    <p id="subtituloHome">Curadoria imobiliária de alto padrão.</p>
+    <div class="hero-actions">
+      <a class="btn gold" href="#portfolio">Explorar portfólio</a>
+      <a class="btn ghost" href="#anuncie">Quero anunciar</a>
+    </div>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="container">
+    <form id="filtros" class="search-box">
+      <select id="fCategoria"><option value="">Imóveis e áreas</option><option>Imóvel</option><option>Área</option></select>
+      <select id="fNegocio"><option value="">Comprar ou alugar</option><option>Venda</option><option>Locação</option><option>Parceria</option></select>
+      <input id="fCidade" placeholder="Cidade ou região">
+      <select id="fTipo"><option value="">Todos os tipos</option></select>
+      <select id="fPreco">
+        <option value="">Qualquer valor</option>
+        <option value="1000000">Até R$ 1 mi</option>
+        <option value="3000000">Até R$ 3 mi</option>
+        <option value="5000000">Até R$ 5 mi</option>
+        <option value="10000000">Até R$ 10 mi</option>
+        <option value="50000000">Até R$ 50 mi</option>
+      </select>
+      <button class="btn gold" type="submit">Buscar</button>
+    </form>
+  </div>
+</section>
+
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div><p class="eyebrow dark">PORTFÓLIO</p><h2>Oportunidades selecionadas</h2></div>
+      <span id="contador" class="counter"></span>
+    </div>
+    <div id="cards" class="cards"></div>
+    <p id="vazio" class="empty" hidden>Nenhuma oportunidade encontrada.</p>
+  </div>
+</section>
+
+<section id="areas" class="section dark-section">
+  <div class="container split">
+    <div><p class="eyebrow">ÁREAS & NEGÓCIOS</p><h2>Ativos para investidores e desenvolvedores.</h2></div>
+    <div><p>Áreas para incorporação, loteamentos, ativos comerciais, propriedades rurais e oportunidades off-market.</p><a href="#parcerias" class="text-link light">Apresentar uma oportunidade →</a></div>
+  </div>
+</section>
+
+<section id="sobre" class="section">
+  <div class="container split">
+    <div><p class="eyebrow dark">SOBRE A PIEMONTE</p><h2>Relacionamento, curadoria e apresentação profissional.</h2></div>
+    <div class="prose"><p id="textoSobre"></p></div>
+  </div>
+</section>
+
+<section id="anuncie" class="section warm">
+  <div class="container form-layout">
+    <div>
+      <p class="eyebrow dark">ANUNCIE CONOSCO</p>
+      <h2>Quer vender ou disponibilizar seu imóvel?</h2>
+      <p>Envie as informações iniciais. Nossa equipe entrará em contato para avaliar o ativo e conversar sobre estratégia comercial e apresentação.</p>
+    </div>
+    <form name="anuncie-conosco" method="POST" data-netlify="true" class="lead-form">
+      <input type="hidden" name="form-name" value="anuncie-conosco">
+      <input name="nome" placeholder="Nome" required>
+      <input name="whatsapp" placeholder="WhatsApp" required>
+      <input name="email" type="email" placeholder="E-mail">
+      <select name="tipo"><option>Tipo do ativo</option><option>Casa</option><option>Apartamento</option><option>Terreno</option><option>Área</option><option>Fazenda / Sítio</option><option>Comercial</option><option>Outro</option></select>
+      <input name="cidade" placeholder="Cidade / região">
+      <input name="valor" placeholder="Valor pretendido">
+      <textarea name="descricao" placeholder="Conte um pouco sobre o imóvel ou área"></textarea>
+      <button class="btn dark-btn" type="submit">Solicitar contato</button>
+    </form>
+  </div>
+</section>
+
+<section id="parcerias" class="section">
+  <div class="container form-layout">
+    <div>
+      <p class="eyebrow dark">PARCERIAS</p>
+      <h2>Corretores, incorporadoras e parceiros de negócios.</h2>
+      <p>Tem uma oportunidade, cliente comprador, área, empreendimento ou ativo que faça sentido para a Piemonte? Fale conosco.</p>
+    </div>
+    <form name="parcerias" method="POST" data-netlify="true" class="lead-form bordered">
+      <input type="hidden" name="form-name" value="parcerias">
+      <input name="nome" placeholder="Nome / empresa" required>
+      <input name="whatsapp" placeholder="WhatsApp" required>
+      <input name="email" type="email" placeholder="E-mail">
+      <select name="perfil"><option>Perfil da parceria</option><option>Corretor / imobiliária</option><option>Incorporadora / loteadora</option><option>Investidor</option><option>Proprietário</option><option>Outro</option></select>
+      <textarea name="mensagem" placeholder="Descreva a oportunidade ou parceria"></textarea>
+      <button class="btn dark-btn" type="submit">Falar sobre parceria</button>
+    </form>
+  </div>
+</section>
+
+<section id="contato" class="section contact">
+  <div class="container split">
+    <div><p class="eyebrow">CONTATO</p><h2>Vamos conversar?</h2></div>
+    <div>
+      <p>Atendimento personalizado para compra, venda, captação e parcerias imobiliárias.</p>
+      <div id="contatoLinks"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+    <div><a href="#portfolio">Imóveis</a><a href="#areas">Áreas</a><a href="#anuncie">Anuncie conosco</a><a href="#parcerias">Parcerias</a></div>
+    <div id="footerContato"></div>
+  </div>
+  <div class="container copyright">© 2026 Piemonte Brokers. Todos os direitos reservados.</div>
+</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-card">
+    <button id="fecharModal" class="close" aria-label="Fechar">×</button>
+    <img id="modalImg" alt="">
+    <div class="modal-body">
+      <p id="modalMeta" class="eyebrow dark"></p>
+      <h2 id="modalTitulo"></h2>
+      <p id="modalDesc"></p>
+      <div id="modalSpecs" class="specs"></div>
+      <div id="modalGaleria" class="mini-gallery"></div>
+      <strong id="modalPreco" class="price big"></strong>
+      <a class="btn gold wide" href="#contato" id="modalCta">Tenho interesse</a>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/script.js"></script>
 </body>
 </html>
