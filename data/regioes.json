@@ -1,0 +1,52 @@
+{
+  "itens": [
+    {
+      "id": "itu",
+      "nome": "Itu",
+      "descricao": "Casas de alto padrão, condomínios exclusivos, terrenos e áreas estratégicas.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "Itu",
+      "destaque": true
+    },
+    {
+      "id": "porto-feliz",
+      "nome": "Porto Feliz",
+      "descricao": "Condomínios de luxo, propriedades diferenciadas e oportunidades exclusivas.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "Porto Feliz",
+      "destaque": true
+    },
+    {
+      "id": "indaiatuba",
+      "nome": "Indaiatuba",
+      "descricao": "Residências contemporâneas, condomínios consolidados e imóveis selecionados.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "Indaiatuba",
+      "destaque": true
+    },
+    {
+      "id": "alphaville",
+      "nome": "Alphaville",
+      "descricao": "Imóveis de alto padrão, oportunidades residenciais e ativos exclusivos.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "Alphaville",
+      "destaque": true
+    },
+    {
+      "id": "granja-viana",
+      "nome": "Granja Viana",
+      "descricao": "Casas, terrenos e propriedades em condomínios de referência.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "Granja Viana",
+      "destaque": true
+    },
+    {
+      "id": "oportunidades-especiais",
+      "nome": "Oportunidades especiais",
+      "descricao": "Ativos selecionados em outras cidades, áreas rurais e oportunidades off-market.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "",
+      "destaque": true
+    }
+  ]
+}
