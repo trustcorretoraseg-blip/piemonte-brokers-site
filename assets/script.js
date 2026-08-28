@@ -61,13 +61,11 @@ function paginaAtual() {
 
 async function carregar() {
   try {
-
     const [
       siteResp,
       portfolioResp,
       regioesResp
     ] = await Promise.all([
-
       fetch("/data/site.json", {
         cache: "no-store"
       }),
@@ -79,14 +77,11 @@ async function carregar() {
       fetch("/data/regioes.json", {
         cache: "no-store"
       })
-
     ]);
-
 
     if (siteResp.ok) {
       SITE = await siteResp.json();
     }
-
 
     if (portfolioResp.ok) {
       const dados =
@@ -98,7 +93,6 @@ async function carregar() {
           : [];
     }
 
-
     if (regioesResp.ok) {
       const dadosRegioes =
         await regioesResp.json();
@@ -109,35 +103,25 @@ async function carregar() {
           : [];
     }
 
-
     aplicarSite();
-
     prepararFiltros();
-
     aplicarFiltroDaURL();
-
     renderInicial();
-
     renderRegioes();
 
-
   } catch (erro) {
-
     console.error(
       "Erro ao carregar o site:",
       erro
     );
 
-
     const contador =
       $("#contador");
-
 
     if (contador) {
       contador.textContent =
         "Não foi possível carregar o portfólio.";
     }
-
   }
 }
 
@@ -147,62 +131,44 @@ async function carregar() {
 ========================================================= */
 
 function aplicarSite() {
-
   const tituloHome =
     $("#tituloHome");
 
-
   if (tituloHome) {
-
     tituloHome.textContent =
       SITE.tituloHome ||
       "Imóveis, áreas e oportunidades com visão estratégica.";
-
   }
-
 
   const subtituloHome =
     $("#subtituloHome");
 
-
   if (subtituloHome) {
-
     subtituloHome.textContent =
       SITE.subtituloHome ||
       "Curadoria imobiliária de alto padrão.";
-
   }
-
 
   const textoSobre =
     $("#textoSobre");
 
-
   if (textoSobre) {
-
     textoSobre.textContent =
       SITE.textoSobre || "";
-
   }
-
 
   const hero =
     $(".hero");
-
 
   if (
     hero &&
     SITE.imagemHome
   ) {
-
     hero.style.backgroundImage =
       `url("${SITE.imagemHome}")`;
-
   }
 
-
   montarContato();
-
 }
 
 
@@ -211,22 +177,16 @@ function aplicarSite() {
 ========================================================= */
 
 function montarContato() {
-
   const contatoLinks =
     $("#contatoLinks");
 
-
   if (contatoLinks) {
-
     const links = [];
 
-
     if (SITE.whatsapp) {
-
       const numero =
         String(SITE.whatsapp)
           .replace(/\D/g, "");
-
 
       links.push(`
         <a
@@ -238,12 +198,9 @@ function montarContato() {
           WhatsApp
         </a>
       `);
-
     }
 
-
     if (SITE.email) {
-
       links.push(`
         <a
           class="text-link"
@@ -252,28 +209,20 @@ function montarContato() {
           ${esc(SITE.email)}
         </a>
       `);
-
     }
-
 
     contatoLinks.innerHTML =
       links.join(" ");
-
   }
-
 
   $$("#footerContato")
     .forEach(footer => {
-
       const itens = [];
 
-
       if (SITE.whatsapp) {
-
         const numero =
           String(SITE.whatsapp)
             .replace(/\D/g, "");
-
 
         itens.push(`
           <a
@@ -284,23 +233,19 @@ function montarContato() {
             WhatsApp
           </a>
         `);
-
       }
 
-
       if (SITE.email) {
-
         itens.push(`
-          <a href="mailto:${esc(SITE.email)}">
+          <a
+            href="mailto:${esc(SITE.email)}"
+          >
             ${esc(SITE.email)}
           </a>
         `);
-
       }
 
-
       if (SITE.instagram) {
-
         itens.push(`
           <a
             href="${esc(SITE.instagram)}"
@@ -310,26 +255,19 @@ function montarContato() {
             Instagram
           </a>
         `);
-
       }
 
-
       if (SITE.cidadeBase) {
-
         itens.push(`
           <span>
             ${esc(SITE.cidadeBase)}
           </span>
         `);
-
       }
-
 
       footer.innerHTML =
         itens.join("");
-
     });
-
 }
 
 
@@ -338,15 +276,12 @@ function montarContato() {
 ========================================================= */
 
 function renderRegioes() {
-
   const box =
     $("#regioesCards");
-
 
   if (!box) {
     return;
   }
-
 
   const lista =
     REGIOES.filter(
@@ -354,50 +289,37 @@ function renderRegioes() {
         item.destaque !== false
     );
 
-
   box.innerHTML = "";
 
-
   lista.forEach(item => {
-
     const link =
       document.createElement("a");
 
-
     const cidadeFiltro =
       item.cidadeFiltro || "";
-
 
     link.href =
       cidadeFiltro
         ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
         : "/regioes.html";
 
-
     link.className =
       "regiao-home-card";
-
 
     const imagem =
       item.imagem ||
       "/assets/home-principal.jpeg";
 
-
     link.innerHTML = `
-
       <div class="regiao-home-img">
-
         <img
           src="${esc(imagem)}"
           alt="${esc(item.nome)}"
           loading="lazy"
         >
-
       </div>
 
-
       <div class="regiao-home-body">
-
         <h3>
           ${esc(item.nome)}
         </h3>
@@ -405,16 +327,11 @@ function renderRegioes() {
         <p>
           ${esc(item.descricao || "")}
         </p>
-
       </div>
-
     `;
 
-
     box.appendChild(link);
-
   });
-
 }
 
 
@@ -423,15 +340,12 @@ function renderRegioes() {
 ========================================================= */
 
 function formatarNumero(valor) {
-
   const numero =
     Number(valor);
-
 
   if (Number.isNaN(numero)) {
     return valor;
   }
-
 
   return numero.toLocaleString(
     "pt-BR",
@@ -439,7 +353,6 @@ function formatarNumero(valor) {
       maximumFractionDigits: 2
     }
   );
-
 }
 
 
@@ -448,12 +361,9 @@ function formatarNumero(valor) {
 ========================================================= */
 
 function specs(item) {
-
   const dados = [];
 
-
   if (item.suites) {
-
     dados.push(
       `${item.suites} ${
         Number(item.suites) === 1
@@ -461,9 +371,7 @@ function specs(item) {
           : "suítes"
       }`
     );
-
   } else if (item.quartos) {
-
     dados.push(
       `${item.quartos} ${
         Number(item.quartos) === 1
@@ -471,56 +379,51 @@ function specs(item) {
           : "dormitórios"
       }`
     );
-
   }
 
-
   if (item.areaConstruida) {
-
     dados.push(
       `${formatarNumero(
         item.areaConstruida
       )} m² construídos`
     );
-
   }
 
-
   if (item.areaTerreno) {
-
     dados.push(
       `${formatarNumero(
         item.areaTerreno
       )} m² de terreno`
     );
-
   }
 
-
   return dados.join(" • ");
-
 }
 
 
 /* =========================================================
-   ADICIONAR OPÇÃO NOS SELECTS
+   LOCAL / REGIÃO DO ITEM
+========================================================= */
+
+function textoLocalItem(item) {
+  return [
+    item.regiaoPrincipal,
+    item.cidade,
+    item.regiao
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+
+/* =========================================================
+   ADICIONAR OPÇÃO
 ========================================================= */
 
 function adicionarOpcao(
   campo,
   valor
 ) {
-
-  /*
-    CORREÇÃO IMPORTANTE:
-
-    Só podemos adicionar options
-    quando o elemento realmente
-    for um SELECT.
-
-    Na Home, fCidade é INPUT.
-  */
-
   if (
     !campo ||
     campo.tagName !== "SELECT" ||
@@ -529,7 +432,6 @@ function adicionarOpcao(
     return;
   }
 
-
   const existe =
     [...campo.options]
       .some(
@@ -537,26 +439,20 @@ function adicionarOpcao(
           opcao.value === valor
       );
 
-
   if (existe) {
     return;
   }
 
-
   const option =
     document.createElement("option");
-
 
   option.value =
     valor;
 
-
   option.textContent =
     valor;
 
-
   campo.appendChild(option);
-
 }
 
 
@@ -565,56 +461,41 @@ function adicionarOpcao(
 ========================================================= */
 
 function prepararFiltros() {
-
   let lista =
     [...PORTFOLIO];
-
 
   const pagina =
     paginaAtual();
 
-
   if (
     pagina === "imoveis"
   ) {
-
     lista =
       lista.filter(
         item =>
           item.categoria === "Imóvel"
       );
-
   }
-
 
   if (
     pagina === "areas"
   ) {
-
     lista =
       lista.filter(
         item =>
           item.categoria === "Área"
       );
-
   }
-
 
   const categoria =
     $("#fCategoria");
 
-
   const tipo =
     $("#fTipo");
-
 
   const cidade =
     $("#fCidade");
 
-
-  /*
-    CATEGORIAS
-  */
 
   [
     ...new Set(
@@ -632,10 +513,6 @@ function prepararFiltros() {
         )
     );
 
-
-  /*
-    TIPOS
-  */
 
   [
     ...new Set(
@@ -655,37 +532,36 @@ function prepararFiltros() {
 
 
   /*
-    CIDADES
-
-    Só preenche automaticamente
-    se fCidade for SELECT.
-
-    Na Home ele é INPUT.
+    Aqui priorizamos Região Principal.
+    Se não existir, usamos Cidade.
   */
 
   if (
     cidade &&
     cidade.tagName === "SELECT"
   ) {
+    const locais =
+      [
+        ...new Set(
+          lista
+            .map(
+              item =>
+                item.regiaoPrincipal ||
+                item.cidade
+            )
+            .filter(Boolean)
+        )
+      ]
+        .sort();
 
-    [
-      ...new Set(
-        lista
-          .map(item => item.cidade)
-          .filter(Boolean)
-      )
-    ]
-      .sort()
-      .forEach(
-        valor =>
-          adicionarOpcao(
-            cidade,
-            valor
-          )
-      );
-
+    locais.forEach(
+      valor =>
+        adicionarOpcao(
+          cidade,
+          valor
+        )
+    );
   }
-
 }
 
 
@@ -694,55 +570,37 @@ function prepararFiltros() {
 ========================================================= */
 
 function aplicarFiltroDaURL() {
-
   const params =
     new URLSearchParams(
       window.location.search
     );
 
-
   const cidade =
     params.get("cidade");
-
 
   if (!cidade) {
     return;
   }
 
-
   const campo =
     $("#fCidade");
-
 
   if (!campo) {
     return;
   }
 
-
-  /*
-    HOME: input
-  */
-
   if (
     campo.tagName === "INPUT"
   ) {
-
     campo.value =
       cidade;
 
     return;
-
   }
-
-
-  /*
-    IMÓVEIS / ÁREAS: select
-  */
 
   if (
     campo.tagName === "SELECT"
   ) {
-
     const opcao =
       [...campo.options]
         .find(
@@ -751,16 +609,11 @@ function aplicarFiltroDaURL() {
             cidade.toLowerCase()
         );
 
-
     if (opcao) {
-
       campo.value =
         opcao.value;
-
     }
-
   }
-
 }
 
 
@@ -769,67 +622,52 @@ function aplicarFiltroDaURL() {
 ========================================================= */
 
 function renderInicial() {
-
   if (!$("#cards")) {
     return;
   }
 
-
   let lista =
     [...PORTFOLIO];
-
 
   const pagina =
     paginaAtual();
 
-
   if (
     pagina === "imoveis"
   ) {
-
     lista =
       lista.filter(
         item =>
           item.categoria === "Imóvel"
       );
-
   }
-
 
   if (
     pagina === "areas"
   ) {
-
     lista =
       lista.filter(
         item =>
           item.categoria === "Área"
       );
-
   }
-
 
   if (
     pagina === "home"
   ) {
-
     const destaques =
       lista.filter(
         item =>
           item.destaque === true
       );
 
-
     lista =
       destaques.length
         ? destaques.slice(0, 6)
         : lista.slice(0, 6);
-
   }
 
-
   render(lista);
-
 }
 
 
@@ -838,42 +676,43 @@ function renderInicial() {
 ========================================================= */
 
 function render(lista) {
-
   const box =
     $("#cards");
-
 
   if (!box) {
     return;
   }
 
-
   box.innerHTML = "";
 
-
   lista.forEach(item => {
-
     const card =
       document.createElement(
         "article"
       );
 
-
     card.className =
       "card";
 
-
     card.tabIndex =
       0;
-
 
     const imagem =
       item.imagemCapa ||
       "/assets/logo-piemonte.png";
 
+    const localCard =
+      [
+        item.regiaoPrincipal,
+        item.cidade,
+        item.regiao
+      ]
+        .filter(Boolean);
+
+    const localUnico =
+      [...new Set(localCard)];
 
     card.innerHTML = `
-
       <div class="card-img">
 
         <img
@@ -897,24 +736,13 @@ function render(lista) {
 
       </div>
 
-
       <div class="card-body">
 
         <div class="meta">
-
           ${esc(
-            item.cidade || ""
+            localUnico.join(" • ")
           )}
-
-          ${
-            item.regiao
-              ? " • " +
-                esc(item.regiao)
-              : ""
-          }
-
         </div>
-
 
         <h3>
           ${esc(
@@ -922,7 +750,6 @@ function render(lista) {
             "Oportunidade Piemonte"
           )}
         </h3>
-
 
         <p>
           ${esc(
@@ -932,7 +759,6 @@ function render(lista) {
           )}
         </p>
 
-
         <strong class="price">
           ${esc(
             item.precoTexto ||
@@ -941,9 +767,7 @@ function render(lista) {
         </strong>
 
       </div>
-
     `;
-
 
     card.addEventListener(
       "click",
@@ -951,68 +775,51 @@ function render(lista) {
         abrir(item)
     );
 
-
     card.addEventListener(
       "keydown",
       evento => {
-
         if (
           evento.key === "Enter" ||
           evento.key === " "
         ) {
-
           evento.preventDefault();
-
           abrir(item);
-
         }
-
       }
     );
 
-
     box.appendChild(card);
-
   });
 
 
   const contador =
     $("#contador");
 
-
   if (contador) {
-
     contador.textContent =
       `${lista.length} ${
         lista.length === 1
           ? "oportunidade"
           : "oportunidades"
       }`;
-
   }
 
 
   const vazio =
     $("#vazio");
 
-
   if (vazio) {
-
     const semResultados =
       lista.length === 0;
 
-
     vazio.hidden =
       !semResultados;
-
 
     vazio.style.display =
       semResultados
         ? "block"
         : "none";
-
   }
-
 }
 
 
@@ -1024,100 +831,66 @@ function atendeFaixaPreco(
   item,
   faixa
 ) {
-
   if (!faixa) {
     return true;
   }
-
 
   const valor =
     Number(
       item.preco || 0
     );
 
-
   if (!valor) {
     return false;
   }
 
-
-  /*
-    Filtros numéricos da Home
-  */
-
   const limite =
     Number(faixa);
-
 
   if (
     !Number.isNaN(limite) &&
     limite > 0
   ) {
-
     return valor <= limite;
-
   }
 
-
-  /*
-    Filtros das páginas internas
-  */
-
   switch (faixa) {
-
     case "ate-1m":
-
       return valor <= 1000000;
 
-
     case "1m-3m":
-
       return (
         valor > 1000000 &&
         valor <= 3000000
       );
 
-
     case "3m-5m":
-
       return (
         valor > 3000000 &&
         valor <= 5000000
       );
 
-
     case "5m-10m":
-
       return (
         valor > 5000000 &&
         valor <= 10000000
       );
 
-
     case "10m-30m":
-
       return (
         valor > 10000000 &&
         valor <= 30000000
       );
 
-
     case "acima-10m":
-
       return valor > 10000000;
 
-
     case "acima-30m":
-
       return valor > 30000000;
 
-
     default:
-
       return true;
-
   }
-
 }
 
 
@@ -1126,50 +899,39 @@ function atendeFaixaPreco(
 ========================================================= */
 
 function filtrar() {
-
   let lista =
     [...PORTFOLIO];
-
 
   const pagina =
     paginaAtual();
 
-
   if (
     pagina === "imoveis"
   ) {
-
     lista =
       lista.filter(
         item =>
           item.categoria === "Imóvel"
       );
-
   }
-
 
   if (
     pagina === "areas"
   ) {
-
     lista =
       lista.filter(
         item =>
           item.categoria === "Área"
       );
-
   }
-
 
   const categoria =
     $("#fCategoria")
       ?.value || "";
 
-
   const negocio =
     $("#fNegocio")
       ?.value || "";
-
 
   const cidade =
     $("#fCidade")
@@ -1177,11 +939,9 @@ function filtrar() {
       ?.trim()
       ?.toLowerCase() || "";
 
-
   const tipo =
     $("#fTipo")
       ?.value || "";
-
 
   const preco =
     $("#fPreco")
@@ -1193,16 +953,11 @@ function filtrar() {
       item => {
 
         const local =
-          `${
-            item.cidade || ""
-          } ${
-            item.regiao || ""
-          }`
+          textoLocalItem(item)
             .toLowerCase();
 
 
         return (
-
           (
             !categoria ||
             item.categoria === categoria
@@ -1236,7 +991,6 @@ function filtrar() {
             item,
             preco
           )
-
         );
 
       }
@@ -1244,7 +998,6 @@ function filtrar() {
 
 
   render(lista);
-
 }
 
 
@@ -1253,37 +1006,24 @@ function filtrar() {
 ========================================================= */
 
 function ativarFiltros() {
-
   const filtros =
     $("#filtros");
-
 
   if (!filtros) {
     return;
   }
 
-
-  /*
-    Botão buscar da Home
-  */
-
   if (
     filtros.tagName === "FORM"
   ) {
-
     filtros.addEventListener(
       "submit",
       evento => {
-
         evento.preventDefault();
-
         filtrar();
-
       }
     );
-
   }
-
 
   [
     "#fCategoria",
@@ -1293,48 +1033,30 @@ function ativarFiltros() {
   ]
     .forEach(
       seletor => {
-
         const elemento =
           $(seletor);
 
-
         if (elemento) {
-
           elemento.addEventListener(
             "change",
             filtrar
           );
-
         }
-
       }
     );
 
-
-  /*
-    Nas páginas internas fCidade
-    é SELECT.
-
-    Na Home ele é INPUT e será
-    usado ao clicar em Buscar.
-  */
-
   const cidade =
     $("#fCidade");
-
 
   if (
     cidade &&
     cidade.tagName === "SELECT"
   ) {
-
     cidade.addEventListener(
       "change",
       filtrar
     );
-
   }
-
 }
 
 
@@ -1343,293 +1065,226 @@ function ativarFiltros() {
 ========================================================= */
 
 function abrir(item) {
-
   const modal =
     $("#modal");
-
 
   if (!modal) {
     return;
   }
 
-
   const imagem =
     $("#modalImg");
 
-
   if (imagem) {
-
     imagem.src =
       item.imagemCapa || "";
 
-
     imagem.alt =
       item.titulo || "";
-
   }
-
 
   const categoria =
     $("#modalCategoria");
 
-
   if (categoria) {
-
     categoria.textContent =
       item.categoria || "";
-
   }
-
 
   const meta =
     $("#modalMeta");
 
-
   if (meta) {
-
     meta.textContent =
       [
         item.categoria,
+        item.regiaoPrincipal,
         item.cidade,
         item.negocio
       ]
         .filter(Boolean)
+        .filter(
+          (valor, indice, arr) =>
+            arr.indexOf(valor) === indice
+        )
         .join(" • ");
-
   }
-
 
   const titulo =
     $("#modalTitulo");
 
-
   if (titulo) {
-
     titulo.textContent =
       item.titulo || "";
-
   }
-
 
   const local =
     $("#modalLocal");
 
-
   if (local) {
-
     local.textContent =
       [
+        item.regiaoPrincipal,
         item.cidade,
         item.regiao
       ]
         .filter(Boolean)
+        .filter(
+          (valor, indice, arr) =>
+            arr.indexOf(valor) === indice
+        )
         .join(" • ");
-
   }
-
 
   const descricao =
     $("#modalDescricao");
 
-
   if (descricao) {
-
     descricao.textContent =
       item.descricao || "";
-
   }
-
 
   const descricaoAntiga =
     $("#modalDesc");
 
-
   if (descricaoAntiga) {
-
     descricaoAntiga.textContent =
       item.descricao || "";
-
   }
-
 
   const preco =
     $("#modalPreco");
 
-
   if (preco) {
-
     preco.textContent =
       item.precoTexto ||
       "Consulte";
-
   }
-
 
   const specsBox =
     $("#modalSpecs");
 
-
   if (specsBox) {
-
     specsBox.innerHTML = "";
-
 
     const valores = [];
 
-
     if (item.suites) {
-
       valores.push(
         `${item.suites} suítes`
       );
-
     }
-
 
     if (
       item.quartos &&
       !item.suites
     ) {
-
       valores.push(
         `${item.quartos} dormitórios`
       );
-
     }
 
-
     if (item.banheiros) {
-
       valores.push(
         `${item.banheiros} banheiros`
       );
-
     }
 
-
     if (item.vagas) {
-
       valores.push(
         `${item.vagas} vagas`
       );
-
     }
 
-
     if (item.areaConstruida) {
-
       valores.push(
         `${formatarNumero(
           item.areaConstruida
         )} m² construídos`
       );
-
     }
 
-
     if (item.areaTerreno) {
-
       valores.push(
         `${formatarNumero(
           item.areaTerreno
         )} m² de terreno`
       );
-
     }
-
 
     valores.forEach(
       valor => {
-
         const span =
           document.createElement(
             "span"
           );
 
-
         span.textContent =
           valor;
-
 
         specsBox.appendChild(
           span
         );
-
       }
     );
-
   }
 
 
   const galeria =
     $("#modalGaleria");
 
-
   if (galeria) {
-
     galeria.innerHTML = "";
-
 
     const fotos =
       Array.isArray(item.galeria)
         ? item.galeria
         : [];
 
-
     fotos.forEach(src => {
-
       const wrapper =
         document.createElement(
           "div"
         );
 
-
       wrapper.className =
         "piemonte-foto";
-
 
       const img =
         document.createElement(
           "img"
         );
 
-
       img.src =
         src;
-
 
       img.alt =
         item.titulo ||
         "Piemonte Brokers";
 
+      wrapper.appendChild(
+        img
+      );
 
-      wrapper.appendChild(img);
-
-
-      galeria.appendChild(wrapper);
-
+      galeria.appendChild(
+        wrapper
+      );
     });
-
   }
-
 
   modal.hidden =
     false;
-
 
   modal.setAttribute(
     "aria-hidden",
     "false"
   );
 
-
   modal.style.display =
     "block";
 
-
   document.body.style.overflow =
     "hidden";
-
 }
 
 
@@ -1638,99 +1293,74 @@ function abrir(item) {
 ========================================================= */
 
 function fechar() {
-
   const modal =
     $("#modal");
-
 
   if (!modal) {
     return;
   }
 
-
   modal.hidden =
     true;
-
 
   modal.setAttribute(
     "aria-hidden",
     "true"
   );
 
-
   modal.style.display =
     "none";
 
-
   document.body.style.overflow =
     "";
-
 }
 
 
 /* =========================================================
-   EVENTOS MODAL
+   EVENTOS DO MODAL
 ========================================================= */
 
 function ativarModal() {
-
   const botaoNovo =
     $("#modalClose");
-
 
   const botaoAntigo =
     $("#fecharModal");
 
-
   if (botaoNovo) {
-
     botaoNovo.addEventListener(
       "click",
       fechar
     );
-
   }
 
-
   if (botaoAntigo) {
-
     botaoAntigo.addEventListener(
       "click",
       fechar
     );
-
   }
-
 
   const overlay =
     $(".modal-overlay");
 
-
   if (overlay) {
-
     overlay.addEventListener(
       "click",
       fechar
     );
-
   }
-
 
   document.addEventListener(
     "keydown",
     evento => {
-
       if (
         evento.key === "Escape"
       ) {
-
         fechar();
-
       }
-
     }
   );
-
 }
 
 
@@ -1739,56 +1369,42 @@ function ativarModal() {
 ========================================================= */
 
 function ativarMenu() {
-
   const menuBtn =
     $("#menuBtn");
 
-
   const menu =
     $("#menu");
-
 
   if (
     !menuBtn ||
     !menu
   ) {
-
     return;
-
   }
-
 
   menuBtn.addEventListener(
     "click",
     () => {
-
       menu.classList.toggle(
         "open"
       );
-
     }
   );
-
 
   menu
     .querySelectorAll("a")
     .forEach(
       link => {
-
         link.addEventListener(
           "click",
           () => {
-
             menu.classList.remove(
               "open"
             );
-
           }
         );
-
       }
     );
-
 }
 
 
@@ -1799,14 +1415,9 @@ function ativarMenu() {
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-
     ativarMenu();
-
     ativarFiltros();
-
     ativarModal();
-
     carregar();
-
   }
 );
