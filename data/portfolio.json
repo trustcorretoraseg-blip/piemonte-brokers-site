@@ -18,8 +18,10 @@
       "areaConstruida": 710,
       "areaTerreno": 0,
       "destaque": true,
-      "imagemCapa": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85",
-      "galeria": [],
+      "imagemCapa": "/uploads/casa-de-luxo-7-1-1024x576.jpg",
+      "galeria": [
+        "/uploads/WhatsApp Image 2026-08-11 at 14.12.16 (2).jpeg"
+      ],
       "descricao": "Residência de alto padrão com arquitetura contemporânea, ambientes integrados e área de lazer completa."
     },
     {
