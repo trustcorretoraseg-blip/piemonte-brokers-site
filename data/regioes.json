@@ -3,7 +3,7 @@
     {
       "nome": "Itu & Região",
       "descricao": "Casas, condomínios, terrenos, áreas para desenvolvimento.",
-      "imagem": "/uploads/WhatsApp Image 2026-05-20 at 17.37.58 (1).jpeg",
+      "imagem": "",
       "cidadeFiltro": "Itu",
       "destaque": true,
       "id": "itu"
@@ -11,7 +11,7 @@
     {
       "nome": "São Paulo & Alphaville",
       "descricao": "Imóveis de alto padrão, residências exclusivas e oportunidades selecionadas.",
-      "imagem": "/assets/home-principal.jpeg",
+      "imagem": "/uploads/WhatsApp Image 2026-08-28 at 20.11.39.jpeg",
       "cidadeFiltro": "São Paulo",
       "destaque": true,
       "id": "porto-feliz"
