@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+
   <meta charset="utf-8">
 
   <meta
@@ -11,15 +12,18 @@
 
   <meta
     name="description"
-    content="Piemonte Brokers - Imóveis de alto padrão, áreas e oportunidades imobiliárias."
+    content="Piemonte Brokers. Imóveis, áreas e oportunidades selecionadas com visão estratégica."
   >
 
-  <title>Piemonte Brokers</title>
+  <title>
+    Piemonte Brokers
+  </title>
 
   <link
     rel="stylesheet"
     href="/assets/style.css"
   >
+
 </head>
 
 
@@ -105,18 +109,16 @@
      HERO
 ===================================================== -->
 
-<section
-  id="inicio"
-  class="hero"
->
+<section class="hero">
 
-  <div class="hero-overlay"></div>
+  <div class="hero-overlay">
+  </div>
 
 
   <div class="container hero-content">
 
     <p class="eyebrow">
-      PIEMONTE BROKERS • CURADORIA IMOBILIÁRIA
+      PIEMONTE BROKERS
     </p>
 
 
@@ -126,26 +128,26 @@
 
 
     <p id="subtituloHome">
-      Curadoria imobiliária de alto padrão,
-      ativos selecionados e oportunidades exclusivas.
+      Curadoria imobiliária de alto padrão para compradores,
+      proprietários, investidores e parceiros.
     </p>
 
 
     <div class="hero-actions">
 
       <a
-        class="btn gold"
         href="/imoveis.html"
+        class="btn gold"
       >
-        Explorar imóveis
+        Quero comprar
       </a>
 
 
       <a
-        class="btn ghost"
         href="/anuncie.html"
+        class="btn ghost"
       >
-        Quero anunciar
+        Quero vender
       </a>
 
     </div>
@@ -173,25 +175,16 @@
       <select id="fCategoria">
 
         <option value="">
-          Imóveis e áreas
-        </option>
-
-        <option value="Imóvel">
-          Imóvel
-        </option>
-
-        <option value="Área">
-          Área
+          Categoria
         </option>
 
       </select>
 
 
-
       <select id="fNegocio">
 
         <option value="">
-          Comprar ou alugar
+          Finalidade
         </option>
 
         <option value="Venda">
@@ -202,67 +195,63 @@
           Locação
         </option>
 
-        <option value="Parceria">
-          Parceria
-        </option>
-
       </select>
 
 
+      <select id="fCidade">
 
-      <input
-        id="fCidade"
-        placeholder="Cidade ou região"
-      >
+        <option value="">
+          Região
+        </option>
 
+      </select>
 
 
       <select id="fTipo">
 
         <option value="">
-          Todos os tipos
+          Tipo
         </option>
 
       </select>
-
 
 
       <select id="fPreco">
 
         <option value="">
-          Qualquer valor
+          Faixa de preço
         </option>
 
-        <option value="1000000">
-          Até R$ 1 mi
+        <option value="ate-1m">
+          Até R$ 1 milhão
         </option>
 
-        <option value="3000000">
-          Até R$ 3 mi
+        <option value="1m-3m">
+          R$ 1 a 3 milhões
         </option>
 
-        <option value="5000000">
-          Até R$ 5 mi
+        <option value="3m-5m">
+          R$ 3 a 5 milhões
         </option>
 
-        <option value="10000000">
-          Até R$ 10 mi
+        <option value="5m-10m">
+          R$ 5 a 10 milhões
         </option>
 
-        <option value="50000000">
-          Até R$ 50 mi
+        <option value="acima-10m">
+          Acima de R$ 10 milhões
         </option>
 
       </select>
 
 
-
       <button
-        class="btn gold"
         type="submit"
+        class="btn dark-btn"
       >
         Buscar
       </button>
+
 
     </form>
 
@@ -273,24 +262,30 @@
 
 
 <!-- =====================================================
-     DESTAQUES
+     SELEÇÃO PIEMONTE
 ===================================================== -->
 
 <section class="section">
 
   <div class="container">
 
+
     <div class="section-head">
 
       <div>
 
         <p class="eyebrow dark">
-          DESTAQUES
+          CURADORIA
         </p>
 
         <h2>
-          Oportunidades selecionadas.
+          Seleção Piemonte
         </h2>
+
+        <p style="max-width:720px; margin-top:16px; color:#70756f; line-height:1.7;">
+          Imóveis, áreas e oportunidades escolhidos por seu potencial,
+          localização e exclusividade.
+        </p>
 
       </div>
 
@@ -299,7 +294,7 @@
         href="/imoveis.html"
         class="text-link"
       >
-        Ver imóveis →
+        Ver imóveis
       </a>
 
     </div>
@@ -312,13 +307,22 @@
     </div>
 
 
-    <p
+    <div
       id="vazio"
-      class="empty"
-      hidden
+      class="vazio"
+      style="display:none;"
     >
-      Nenhuma oportunidade encontrada.
-    </p>
+
+      <h3>
+        Nenhuma oportunidade encontrada
+      </h3>
+
+      <p>
+        Altere os filtros para visualizar outras opções.
+      </p>
+
+    </div>
+
 
   </div>
 
@@ -330,41 +334,48 @@
      ÁREAS
 ===================================================== -->
 
-<section class="section dark-section">
+<section class="section warm">
 
   <div class="container split">
 
 
     <div>
 
-      <p class="eyebrow">
-        ÁREAS & NEGÓCIOS
+      <p class="eyebrow dark">
+        ÁREAS & OPORTUNIDADES
       </p>
 
       <h2>
-        Ativos para investidores e desenvolvedores.
+        Terrenos, glebas e ativos estratégicos.
       </h2>
 
     </div>
 
 
-    <div>
+    <div class="prose">
 
       <p>
-        Áreas para incorporação, loteamentos,
-        ativos comerciais, propriedades rurais
-        e oportunidades selecionadas.
+        Selecionamos áreas para desenvolvimento residencial,
+        comercial, industrial, logístico e oportunidades
+        imobiliárias de diferentes perfis.
       </p>
+
+
+      <p>
+        Cada ativo é apresentado de forma objetiva,
+        respeitando as particularidades da negociação
+        e o perfil do investidor.
+      </p>
+
 
       <a
         href="/areas.html"
-        class="text-link light"
+        class="text-link"
       >
-        Conhecer nossas áreas →
+        Conheça as áreas
       </a>
 
     </div>
-
 
   </div>
 
@@ -390,10 +401,18 @@
         </p>
 
         <h2>
-          Atuação nos principais mercados.
+          Onde atuamos.
         </h2>
 
       </div>
+
+
+      <a
+        href="/regioes.html"
+        class="text-link"
+      >
+        Todas as regiões
+      </a>
 
     </div>
 
@@ -402,18 +421,6 @@
       id="regioesCards"
       class="regioes-home-grid"
     >
-    </div>
-
-
-    <div style="margin-top:35px">
-
-      <a
-        class="btn dark-btn"
-        href="/regioes.html"
-      >
-        Ver todas as regiões
-      </a>
-
     </div>
 
 
@@ -427,49 +434,42 @@
      SOBRE
 ===================================================== -->
 
-<section class="section warm">
+<section class="section dark-section">
 
   <div class="container split">
 
 
     <div>
 
-      <p class="eyebrow dark">
-        SOBRE A PIEMONTE
+      <p class="eyebrow">
+        PIEMONTE BROKERS
       </p>
 
       <h2>
-        Relacionamento, estratégia e curadoria imobiliária.
+        Relações imobiliárias construídas com estratégia.
       </h2>
 
     </div>
 
 
-    <div class="prose">
+    <div>
 
-      <p>
-        A Piemonte Brokers atua na intermediação de imóveis,
-        áreas e oportunidades imobiliárias selecionadas,
-        oferecendo atendimento personalizado para proprietários,
-        compradores, investidores e parceiros.
-      </p>
-
-      <p>
-        Nosso trabalho combina conhecimento de mercado,
-        relacionamento, apresentação profissional dos ativos
-        e uma atuação direcionada para oportunidades de alto valor.
+      <p id="textoSobre">
+        A Piemonte Brokers conecta proprietários,
+        compradores, investidores e parceiros estratégicos
+        com atendimento próximo, apresentação profissional
+        e seleção criteriosa de oportunidades.
       </p>
 
 
       <a
         href="/sobre.html"
-        class="text-link"
+        class="text-link light"
       >
-        Conheça a Piemonte →
+        Conheça a Piemonte
       </a>
 
     </div>
-
 
   </div>
 
@@ -478,7 +478,7 @@
 
 
 <!-- =====================================================
-     ANUNCIE CONOSCO
+     ANUNCIE
 ===================================================== -->
 
 <section class="section">
@@ -489,11 +489,11 @@
     <div>
 
       <p class="eyebrow dark">
-        ANUNCIE CONOSCO
+        PROPRIETÁRIOS
       </p>
 
       <h2>
-        Seu imóvel merece uma apresentação diferenciada.
+        Seu imóvel merece uma apresentação à altura.
       </h2>
 
     </div>
@@ -502,21 +502,27 @@
     <div class="prose">
 
       <p>
-        Se você deseja vender, disponibilizar ou apresentar
-        uma propriedade ao mercado, nossa equipe pode avaliar
-        a oportunidade e definir a melhor estratégia comercial.
+        Trabalhamos com captação, posicionamento,
+        apresentação e divulgação de imóveis,
+        terrenos e áreas selecionadas.
+      </p>
+
+
+      <p>
+        Nossa atuação busca conectar cada oportunidade
+        ao público adequado, com estratégia comercial
+        e atendimento personalizado.
       </p>
 
 
       <a
-        class="btn gold"
         href="/anuncie.html"
+        class="btn dark-btn"
       >
-        Quero anunciar meu imóvel
+        Quero anunciar
       </a>
 
     </div>
-
 
   </div>
 
@@ -528,42 +534,48 @@
      PARCERIAS
 ===================================================== -->
 
-<section class="section dark-section">
+<section class="section warm">
 
   <div class="container split">
 
 
     <div>
 
-      <p class="eyebrow">
+      <p class="eyebrow dark">
         PARCERIAS
       </p>
 
       <h2>
-        Conexões que geram oportunidades.
+        Conexões que ampliam oportunidades.
       </h2>
 
     </div>
 
 
-    <div>
+    <div class="prose">
 
       <p>
-        Trabalhamos com corretores, imobiliárias,
-        incorporadoras, loteadoras, investidores,
-        proprietários e parceiros estratégicos.
+        Mantemos relacionamento com corretores,
+        empresas, investidores e profissionais
+        do mercado imobiliário.
+      </p>
+
+
+      <p>
+        Acreditamos em parcerias estruturadas,
+        transparência nas negociações
+        e construção de relações de longo prazo.
       </p>
 
 
       <a
         href="/parcerias.html"
-        class="text-link light"
+        class="btn dark-btn"
       >
-        Conhecer nossa área de parcerias →
+        Conheça nossas parcerias
       </a>
 
     </div>
-
 
   </div>
 
@@ -575,7 +587,7 @@
      TRABALHE CONOSCO
 ===================================================== -->
 
-<section class="section warm">
+<section class="section">
 
   <div class="container split">
 
@@ -583,7 +595,7 @@
     <div>
 
       <p class="eyebrow dark">
-        TRABALHE CONOSCO
+        CARREIRAS
       </p>
 
       <h2>
@@ -596,21 +608,28 @@
     <div class="prose">
 
       <p>
-        Buscamos profissionais com perfil comercial,
-        excelência no atendimento e interesse em construir
-        uma trajetória no mercado imobiliário.
+        Buscamos profissionais com postura,
+        capacidade de relacionamento,
+        visão comercial e comprometimento
+        com uma experiência de alto nível.
+      </p>
+
+
+      <p>
+        Corretores, profissionais comerciais
+        e talentos de outras áreas podem
+        apresentar seu perfil para nossa equipe.
       </p>
 
 
       <a
         href="/trabalhe-conosco.html"
-        class="text-link"
+        class="btn dark-btn"
       >
-        Conhecer oportunidades →
+        Trabalhe conosco
       </a>
 
     </div>
-
 
   </div>
 
@@ -634,7 +653,7 @@
       </p>
 
       <h2>
-        Vamos conversar?
+        Fale conosco
       </h2>
 
     </div>
@@ -643,9 +662,10 @@
     <div>
 
       <p>
-        Fale diretamente com a Piemonte Brokers
-        para atendimento, apresentação de oportunidades,
-        captação ou outras informações.
+        Entre em contato com nossa equipe
+        para apresentar uma oportunidade,
+        buscar um imóvel ou conversar sobre
+        uma negociação imobiliária.
       </p>
 
 
@@ -656,13 +676,12 @@
       <a
         href="/contato.html"
         class="btn gold"
-        style="margin-top:20px"
+        style="margin-top:20px;"
       >
         Entrar em contato
       </a>
 
     </div>
-
 
   </div>
 
@@ -670,6 +689,122 @@
 
 
 </main>
+
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+  id="modal"
+  class="modal"
+  aria-hidden="true"
+  hidden
+>
+
+
+  <div class="modal-overlay">
+  </div>
+
+
+  <div class="modal-content">
+
+
+    <button
+      type="button"
+      class="modal-close"
+      id="modalClose"
+      aria-label="Fechar"
+    >
+      ×
+    </button>
+
+
+    <div class="piemonte-foto modal-foto">
+
+      <img
+        id="modalImg"
+        src=""
+        alt=""
+      >
+
+    </div>
+
+
+    <div class="modal-body">
+
+
+      <span
+        id="modalCategoria"
+        class="eyebrow dark"
+      >
+      </span>
+
+
+      <h2 id="modalTitulo">
+      </h2>
+
+
+      <p id="modalLocal">
+      </p>
+
+
+      <div
+        id="modalSpecs"
+        class="modal-specs"
+      >
+      </div>
+
+
+      <div
+        id="modalDescricao"
+        class="modal-descricao"
+      >
+      </div>
+
+
+      <div
+        id="modalGaleria"
+        class="modal-galeria"
+      >
+      </div>
+
+
+      <div class="modal-footer">
+
+
+        <div>
+
+          <small>
+            Valor
+          </small>
+
+          <strong
+            id="modalPreco"
+            class="price big"
+          >
+          </strong>
+
+        </div>
+
+
+        <a
+          href="/contato.html"
+          class="btn-primary"
+        >
+          Tenho interesse
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
 
 
 
@@ -747,116 +882,6 @@
   </div>
 
 </footer>
-
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-  id="modal"
-  class="modal"
-  aria-hidden="true"
-  hidden
->
-
-  <div class="modal-overlay">
-  </div>
-
-
-  <div class="modal-content">
-
-
-    <button
-      type="button"
-      class="modal-close"
-      id="modalClose"
-      aria-label="Fechar"
-    >
-      ×
-    </button>
-
-
-    <div class="piemonte-foto modal-foto">
-
-      <img
-        id="modalImg"
-        src=""
-        alt=""
-      >
-
-    </div>
-
-
-    <div class="modal-body">
-
-
-      <span
-        id="modalCategoria"
-        class="eyebrow dark"
-      >
-      </span>
-
-
-      <h2 id="modalTitulo">
-      </h2>
-
-
-      <p id="modalLocal">
-      </p>
-
-
-      <div
-        id="modalSpecs"
-        class="modal-specs"
-      >
-      </div>
-
-
-      <div
-        id="modalDescricao"
-        class="modal-descricao"
-      >
-      </div>
-
-
-      <div
-        id="modalGaleria"
-        class="modal-galeria"
-      >
-      </div>
-
-
-      <div class="modal-footer">
-
-        <div>
-
-          <small>
-            Valor
-          </small>
-
-          <strong id="modalPreco">
-          </strong>
-
-        </div>
-
-
-        <a
-          href="/contato.html"
-          class="btn-primary"
-        >
-          Tenho interesse
-        </a>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</div>
 
 
 
