@@ -6,7 +6,7 @@
   --ink:#171a17;
   --muted:#70756f;
   --line:#ddd8cc;
-  --white:#fff;
+  --white:#ffffff;
 }
 
 
@@ -22,25 +22,20 @@ html{
 
 body{
   margin:0;
-
   font-family:Arial,Helvetica,sans-serif;
-
   color:var(--ink);
-
   background:#fff;
 }
 
 
 a{
   text-decoration:none;
-
   color:inherit;
 }
 
 
 img{
   max-width:100%;
-
   display:block;
 }
 
@@ -55,7 +50,6 @@ textarea{
 
 .container{
   width:min(1180px,calc(100% - 40px));
-
   margin:auto;
 }
 
@@ -66,22 +60,19 @@ textarea{
 
 .header{
   position:sticky;
-
   top:0;
-
   left:0;
-
   right:0;
-
   z-index:100;
 
   background:#000;
-
   color:#fff;
 
   border-bottom:1px solid rgba(255,255,255,.10);
 
-  box-shadow:0 3px 18px rgba(0,0,0,.18);
+  box-shadow:
+    0 3px 18px
+    rgba(0,0,0,.18);
 }
 
 
@@ -90,7 +81,6 @@ textarea{
   min-height:108px;
 
   display:flex;
-
   align-items:center;
 
   position:relative;
@@ -104,9 +94,7 @@ textarea{
 .logo,
 .logo-link{
   display:flex;
-
   align-items:center;
-
   flex-shrink:0;
 }
 
@@ -115,7 +103,6 @@ textarea{
 .logo-link img,
 .header .logo{
   width:260px;
-
   max-height:86px;
 
   object-fit:contain;
@@ -140,10 +127,9 @@ textarea{
   margin-left:auto;
 
   display:flex;
-
   align-items:center;
 
-  gap:22px;
+  gap:25px;
 }
 
 
@@ -154,13 +140,13 @@ textarea{
 
   color:#fff;
 
-  font-size:12.5px;
+  font-size:14px;
 
   font-weight:500;
 
   line-height:1;
 
-  letter-spacing:.025em;
+  letter-spacing:.015em;
 
   padding:15px 0;
 
@@ -185,11 +171,9 @@ textarea{
   position:absolute;
 
   left:0;
-
   bottom:6px;
 
   width:0;
-
   height:1px;
 
   background:var(--gold);
@@ -215,11 +199,9 @@ textarea{
   margin-left:auto;
 
   width:46px;
-
   height:46px;
 
   align-items:center;
-
   justify-content:center;
 
   padding:0;
@@ -246,7 +228,6 @@ textarea{
   min-height:720px;
 
   display:flex;
-
   align-items:center;
 
   color:#fff;
@@ -261,7 +242,6 @@ textarea{
 
 .hero-overlay{
   position:absolute;
-
   inset:0;
 
   background:linear-gradient(
@@ -274,7 +254,6 @@ textarea{
 
 .hero-content{
   padding-top:45px;
-
   position:relative;
 }
 
@@ -396,7 +375,6 @@ h1{
   display:inline-flex;
 
   align-items:center;
-
   justify-content:center;
 
   border:1px solid transparent;
@@ -411,7 +389,6 @@ h1{
 
 .gold{
   background:var(--gold);
-
   color:#17130b;
 }
 
@@ -438,7 +415,6 @@ h1{
 .dark-btn,
 .btn-primary{
   background:var(--deep);
-
   color:#fff;
 }
 
@@ -539,8 +515,57 @@ h1{
 
 .counter{
   color:var(--muted);
-
   font-size:14px;
+}
+
+
+/* =====================================================
+   FUNDO VERDE
+   ÁREAS & OPORTUNIDADES / PARCERIAS
+===================================================== */
+
+.warm{
+  background:var(--deep);
+  color:#fff;
+}
+
+
+.warm h1,
+.warm h2,
+.warm h3{
+  color:#fff;
+}
+
+
+.warm .eyebrow.dark{
+  color:#ead4a7;
+}
+
+
+.warm .prose p{
+  color:rgba(255,255,255,.75);
+}
+
+
+.warm p{
+  color:rgba(255,255,255,.75);
+}
+
+
+.warm .text-link{
+  color:#ead4a7;
+}
+
+
+.warm .dark-btn{
+  background:var(--gold);
+  color:#17130b;
+}
+
+
+.warm .dark-btn:hover{
+  background:#d7b66f;
+  color:#17130b;
 }
 
 
@@ -649,7 +674,6 @@ h1{
 
 .card-img img{
   width:100%;
-
   height:100%;
 
   object-fit:cover;
@@ -658,8 +682,7 @@ h1{
 }
 
 
-.card:hover
-.card-img img{
+.card:hover .card-img img{
   transform:scale(1.035);
 }
 
@@ -668,7 +691,6 @@ h1{
   position:absolute;
 
   left:14px;
-
   top:14px;
 
   z-index:8;
@@ -708,6 +730,8 @@ h1{
   font-size:27px;
 
   margin:8px 0 10px;
+
+  color:var(--ink);
 }
 
 
@@ -759,7 +783,6 @@ h1{
 
 .piemonte-foto > img{
   width:100%;
-
   height:100%;
 
   object-fit:cover;
@@ -772,18 +795,15 @@ h1{
   position:absolute;
 
   top:50%;
-
   left:50%;
 
   transform:
     translate(-50%,-50%);
 
   width:32%;
-
   height:45%;
 
   max-width:220px;
-
   min-width:95px;
 
   background-image:
@@ -809,18 +829,15 @@ h1{
   position:absolute;
 
   top:50%;
-
   left:50%;
 
   transform:
     translate(-50%,-50%);
 
   width:32%;
-
   height:45%;
 
   max-width:220px;
-
   min-width:95px;
 
   background-image:
@@ -895,7 +912,6 @@ h1{
 
 .regiao-home-img img{
   width:100%;
-
   height:100%;
 
   object-fit:cover;
@@ -920,6 +936,8 @@ h1{
   font-size:29px;
 
   margin:0 0 11px;
+
+  color:var(--ink);
 }
 
 
@@ -940,7 +958,6 @@ h1{
   display:block;
 
   width:36px;
-
   height:1px;
 
   margin-top:20px;
@@ -956,7 +973,6 @@ h1{
 .dark-section,
 .contact{
   background:var(--deep);
-
   color:#fff;
 }
 
@@ -1017,11 +1033,6 @@ h1{
 /* =====================================================
    FORMULÁRIOS
 ===================================================== */
-
-.warm{
-  background:var(--cream);
-}
-
 
 .form-layout{
   display:grid;
@@ -1177,7 +1188,6 @@ footer{
 .modal-card > img,
 .modal-foto{
   width:100%;
-
   height:470px;
 
   object-fit:cover;
@@ -1206,13 +1216,11 @@ footer{
   position:absolute;
 
   right:14px;
-
   top:14px;
 
   z-index:20;
 
   width:42px;
-
   height:42px;
 
   border:0;
@@ -1289,14 +1297,13 @@ footer{
 
 
 /* =====================================================
-   WHATSAPP / ATENDIMENTO FLUTUANTE
+   WHATSAPP PREMIUM
 ===================================================== */
 
 .whatsapp-float{
   position:fixed;
 
   right:24px;
-
   bottom:24px;
 
   z-index:9999;
@@ -1308,7 +1315,6 @@ footer{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   gap:11px;
@@ -1365,13 +1371,11 @@ footer{
 
 .whatsapp-float-icon{
   width:23px;
-
   height:23px;
 
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   flex-shrink:0;
@@ -1380,7 +1384,6 @@ footer{
 
 .whatsapp-float-icon svg{
   width:100%;
-
   height:100%;
 
   display:block;
@@ -1428,7 +1431,6 @@ footer{
     top:92px;
 
     left:0;
-
     right:0;
 
     margin:0;
@@ -1465,9 +1467,9 @@ footer{
   .header-inner > .nav a{
     width:100%;
 
-    padding:15px 22px;
+    padding:16px 22px;
 
-    font-size:14px;
+    font-size:16px;
 
     line-height:1.25;
 
@@ -1540,8 +1542,6 @@ footer{
   }
 
 
-  /* CABEÇALHO */
-
   .header .nav,
   .header-inner{
     min-height:82px;
@@ -1567,7 +1567,6 @@ footer{
     display:flex;
 
     width:44px;
-
     height:44px;
 
     font-size:26px;
@@ -1580,7 +1579,6 @@ footer{
     top:82px;
 
     left:-14px;
-
     right:-14px;
 
     width:auto;
@@ -1594,21 +1592,19 @@ footer{
   .header .nav nav a,
   .header-inner nav a,
   .header-inner > .nav a{
-    font-size:15px;
+    font-size:17px;
 
     font-weight:500;
 
-    padding:15px 22px;
+    padding:17px 22px;
 
-    min-height:50px;
+    min-height:54px;
 
     display:flex;
 
     align-items:center;
   }
 
-
-  /* HERO */
 
   .hero{
     min-height:650px;
@@ -1624,8 +1620,6 @@ footer{
     flex-direction:column;
   }
 
-
-  /* LAYOUT */
 
   .search-box,
   .cards,
@@ -1672,8 +1666,6 @@ footer{
   }
 
 
-  /* REGIÕES */
-
   .regiao-home-img{
     aspect-ratio:16/9;
   }
@@ -1688,8 +1680,6 @@ footer{
     font-size:27px;
   }
 
-
-  /* MODAL */
 
   .modal{
     padding:12px;
@@ -1748,11 +1738,8 @@ footer{
   }
 
 
-  /* WHATSAPP PREMIUM MOBILE */
-
   .whatsapp-float{
     right:14px;
-
     bottom:14px;
 
     min-height:50px;
@@ -1771,7 +1758,6 @@ footer{
 
   .whatsapp-float-icon{
     width:21px;
-
     height:21px;
   }
 
