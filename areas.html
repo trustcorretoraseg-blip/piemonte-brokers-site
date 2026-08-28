@@ -14,7 +14,7 @@
 
   <meta
     name="description"
-    content="Conheça as áreas, terrenos e oportunidades selecionadas pela Piemonte Brokers."
+    content="Conheça áreas, terrenos, glebas e oportunidades estratégicas selecionadas pela Piemonte Brokers."
   >
 
   <link
@@ -80,6 +80,10 @@
         Parcerias
       </a>
 
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
       <a href="/contato.html">
         Contato
       </a>
@@ -95,158 +99,166 @@
 <main>
 
 
-  <section class="page-hero">
+<section class="page-hero">
 
-    <div class="container">
+  <div class="container">
 
-      <span class="eyebrow">
-        ÁREAS & OPORTUNIDADES
+    <span class="eyebrow">
+      ÁREAS & OPORTUNIDADES
+    </span>
+
+    <h1>
+      Áreas selecionadas.
+    </h1>
+
+    <p>
+      Terrenos, glebas, áreas comerciais, industriais,
+      rurais e oportunidades para desenvolvimento
+      selecionadas pela Piemonte Brokers.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<section class="portfolio-section">
+
+  <div class="container">
+
+
+    <div
+      id="filtros"
+      class="filtros"
+    >
+
+
+      <select id="fCategoria">
+
+        <option value="">
+          Categoria
+        </option>
+
+      </select>
+
+
+      <select id="fNegocio">
+
+        <option value="">
+          Finalidade
+        </option>
+
+        <option value="Venda">
+          Venda
+        </option>
+
+        <option value="Locação">
+          Locação
+        </option>
+
+        <option value="Parceria">
+          Parceria
+        </option>
+
+        <option value="Permuta">
+          Permuta
+        </option>
+
+      </select>
+
+
+      <select id="fCidade">
+
+        <option value="">
+          Região
+        </option>
+
+      </select>
+
+
+      <select id="fTipo">
+
+        <option value="">
+          Tipo de área
+        </option>
+
+      </select>
+
+
+      <select id="fPreco">
+
+        <option value="">
+          Faixa de preço
+        </option>
+
+        <option value="ate-1m">
+          Até R$ 1 milhão
+        </option>
+
+        <option value="1m-3m">
+          R$ 1 a 3 milhões
+        </option>
+
+        <option value="3m-5m">
+          R$ 3 a 5 milhões
+        </option>
+
+        <option value="5m-10m">
+          R$ 5 a 10 milhões
+        </option>
+
+        <option value="10m-30m">
+          R$ 10 a 30 milhões
+        </option>
+
+        <option value="acima-30m">
+          Acima de R$ 30 milhões
+        </option>
+
+      </select>
+
+
+    </div>
+
+
+    <div class="portfolio-info">
+
+      <span id="contador">
+        Carregando áreas...
       </span>
 
-      <h1>
-        Áreas selecionadas
-      </h1>
+    </div>
+
+
+    <div
+      id="cards"
+      class="cards-grid"
+    >
+    </div>
+
+
+    <div
+      id="vazio"
+      class="vazio"
+      style="display:none;"
+    >
+
+      <h3>
+        Nenhuma área encontrada
+      </h3>
 
       <p>
-        Terrenos, glebas, áreas comerciais,
-        industriais e oportunidades estratégicas
-        selecionadas pela Piemonte Brokers.
+        Altere os filtros para visualizar
+        outras oportunidades.
       </p>
 
     </div>
 
-  </section>
 
+  </div>
 
-
-  <section class="portfolio-section">
-
-    <div class="container">
-
-
-      <div
-        id="filtros"
-        class="filtros"
-      >
-
-
-        <select id="fCategoria">
-
-          <option value="">
-            Categoria
-          </option>
-
-        </select>
-
-
-        <select id="fNegocio">
-
-          <option value="">
-            Finalidade
-          </option>
-
-          <option value="Venda">
-            Venda
-          </option>
-
-          <option value="Locação">
-            Locação
-          </option>
-
-        </select>
-
-
-        <select id="fCidade">
-
-          <option value="">
-            Região
-          </option>
-
-        </select>
-
-
-        <select id="fTipo">
-
-          <option value="">
-            Tipo de área
-          </option>
-
-        </select>
-
-
-        <select id="fPreco">
-
-          <option value="">
-            Faixa de preço
-          </option>
-
-          <option value="ate-1m">
-            Até R$ 1 milhão
-          </option>
-
-          <option value="1m-3m">
-            R$ 1 a 3 milhões
-          </option>
-
-          <option value="3m-5m">
-            R$ 3 a 5 milhões
-          </option>
-
-          <option value="5m-10m">
-            R$ 5 a 10 milhões
-          </option>
-
-          <option value="10m-30m">
-            R$ 10 a 30 milhões
-          </option>
-
-          <option value="acima-30m">
-            Acima de R$ 30 milhões
-          </option>
-
-        </select>
-
-
-      </div>
-
-
-      <div class="portfolio-info">
-
-        <span id="contador">
-          Carregando áreas...
-        </span>
-
-      </div>
-
-
-      <div
-        id="cards"
-        class="cards-grid"
-      >
-      </div>
-
-
-      <div
-        id="vazio"
-        class="vazio"
-        style="display:none;"
-      >
-
-        <h3>
-          Nenhuma área encontrada
-        </h3>
-
-        <p>
-          Altere os filtros para visualizar
-          outras oportunidades.
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </section>
+</section>
 
 
 </main>
@@ -375,6 +387,7 @@
     </div>
 
 
+
     <div>
 
       <a href="/imoveis.html">
@@ -396,6 +409,7 @@
     </div>
 
 
+
     <div>
 
       <a href="/anuncie.html">
@@ -404,6 +418,10 @@
 
       <a href="/parcerias.html">
         Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
       </a>
 
       <a href="/contato.html">
