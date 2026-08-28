@@ -1,5 +1,6 @@
 let SITE = {};
 let PORTFOLIO = [];
+let REGIOES = [];
 
 const $ = seletor => document.querySelector(seletor);
 const $$ = seletor => document.querySelectorAll(seletor);
@@ -19,7 +20,7 @@ const esc = valor =>
 
 
 /* =========================================================
-   DESCOBRIR PÁGINA ATUAL
+   PÁGINA ATUAL
 ========================================================= */
 
 function paginaAtual() {
@@ -55,43 +56,44 @@ function paginaAtual() {
 
 
 /* =========================================================
-   CARREGAMENTO DOS DADOS
+   CARREGAMENTO
 ========================================================= */
 
 async function carregar() {
   try {
-    const siteResp = await fetch("/data/site.json", {
-      cache: "no-store"
-    });
+    const respostas = await Promise.all([
+      fetch("/data/site.json", { cache: "no-store" }),
+      fetch("/data/portfolio.json", { cache: "no-store" }),
+      fetch("/data/regioes.json", { cache: "no-store" })
+    ]);
 
-    const portfolioResp = await fetch("/data/portfolio.json", {
-      cache: "no-store"
-    });
+    const [siteResp, portfolioResp, regioesResp] = respostas;
 
-    if (!siteResp.ok) {
-      throw new Error(
-        `Erro ao carregar site.json: ${siteResp.status}`
-      );
+    if (siteResp.ok) {
+      SITE = await siteResp.json();
     }
 
-    if (!portfolioResp.ok) {
-      throw new Error(
-        `Erro ao carregar portfolio.json: ${portfolioResp.status}`
-      );
+    if (portfolioResp.ok) {
+      const dados = await portfolioResp.json();
+
+      PORTFOLIO = Array.isArray(dados.itens)
+        ? dados.itens
+        : [];
     }
 
-    SITE = await siteResp.json();
+    if (regioesResp.ok) {
+      const dadosRegioes = await regioesResp.json();
 
-    const dados = await portfolioResp.json();
-
-    PORTFOLIO = Array.isArray(dados.itens)
-      ? dados.itens
-      : [];
+      REGIOES = Array.isArray(dadosRegioes.itens)
+        ? dadosRegioes.itens
+        : [];
+    }
 
     aplicarSite();
     prepararFiltros();
     aplicarFiltroDaURL();
     renderInicial();
+    renderRegioes();
 
   } catch (erro) {
     console.error("Erro ao carregar o site:", erro);
@@ -101,19 +103,6 @@ async function carregar() {
     if (contador) {
       contador.textContent =
         "Não foi possível carregar o portfólio.";
-    }
-
-    const cards = $("#cards");
-
-    if (cards) {
-      cards.innerHTML = `
-        <div class="vazio">
-          <h3>Erro ao carregar</h3>
-          <p>
-            Não foi possível carregar os imóveis neste momento.
-          </p>
-        </div>
-      `;
     }
   }
 }
@@ -195,8 +184,7 @@ function montarContato() {
       `);
     }
 
-    contatoLinks.innerHTML =
-      links.join(" ");
+    contatoLinks.innerHTML = links.join(" ");
   }
 
   $$("#footerContato").forEach(footer => {
@@ -245,14 +233,69 @@ function montarContato() {
       `);
     }
 
-    footer.innerHTML =
-      itens.join("");
+    footer.innerHTML = itens.join("");
   });
 }
 
 
 /* =========================================================
-   FORMATAR NÚMERO
+   REGIÕES DA HOME
+========================================================= */
+
+function renderRegioes() {
+  const box = $("#regioesCards");
+
+  if (!box) {
+    return;
+  }
+
+  const lista = REGIOES.filter(
+    item => item.destaque !== false
+  );
+
+  box.innerHTML = "";
+
+  lista.forEach(item => {
+    const link = document.createElement("a");
+
+    const cidadeFiltro =
+      item.cidadeFiltro || "";
+
+    link.href = cidadeFiltro
+      ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
+      : "/regioes.html";
+
+    link.className = "regiao-home-card";
+
+    const imagem =
+      item.imagem ||
+      "/assets/home-principal.jpeg";
+
+    link.innerHTML = `
+      <div class="regiao-home-img">
+        <img
+          src="${esc(imagem)}"
+          alt="${esc(item.nome)}"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="regiao-home-body">
+        <h3>${esc(item.nome)}</h3>
+
+        <p>
+          ${esc(item.descricao || "")}
+        </p>
+      </div>
+    `;
+
+    box.appendChild(link);
+  });
+}
+
+
+/* =========================================================
+   FORMATAR NÚMEROS
 ========================================================= */
 
 function formatarNumero(valor) {
@@ -313,7 +356,7 @@ function specs(item) {
 
 
 /* =========================================================
-   PREPARAR FILTROS
+   FILTROS
 ========================================================= */
 
 function adicionarOpcao(select, valor) {
@@ -369,10 +412,7 @@ function prepararFiltros() {
   ]
     .sort()
     .forEach(valor =>
-      adicionarOpcao(
-        categoria,
-        valor
-      )
+      adicionarOpcao(categoria, valor)
     );
 
   [
@@ -384,10 +424,7 @@ function prepararFiltros() {
   ]
     .sort()
     .forEach(valor =>
-      adicionarOpcao(
-        tipo,
-        valor
-      )
+      adicionarOpcao(tipo, valor)
     );
 
   [
@@ -399,10 +436,7 @@ function prepararFiltros() {
   ]
     .sort()
     .forEach(valor =>
-      adicionarOpcao(
-        cidade,
-        valor
-      )
+      adicionarOpcao(cidade, valor)
     );
 }
 
@@ -431,6 +465,13 @@ function aplicarFiltroDaURL() {
     return;
   }
 
+  if (
+    campo.tagName === "INPUT"
+  ) {
+    campo.value = cidade;
+    return;
+  }
+
   const opcao =
     [...campo.options]
       .find(
@@ -440,8 +481,7 @@ function aplicarFiltroDaURL() {
       );
 
   if (opcao) {
-    campo.value =
-      opcao.value;
+    campo.value = opcao.value;
   }
 }
 
@@ -455,33 +495,26 @@ function renderInicial() {
     return;
   }
 
-  let lista =
-    [...PORTFOLIO];
+  let lista = [...PORTFOLIO];
 
-  const pagina =
-    paginaAtual();
+  const pagina = paginaAtual();
 
   if (pagina === "imoveis") {
-    lista =
-      lista.filter(
-        item =>
-          item.categoria === "Imóvel"
-      );
+    lista = lista.filter(
+      item => item.categoria === "Imóvel"
+    );
   }
 
   if (pagina === "areas") {
-    lista =
-      lista.filter(
-        item =>
-          item.categoria === "Área"
-      );
+    lista = lista.filter(
+      item => item.categoria === "Área"
+    );
   }
 
   if (pagina === "home") {
     const destaques =
       lista.filter(
-        item =>
-          item.destaque === true
+        item => item.destaque === true
       );
 
     lista =
@@ -495,12 +528,11 @@ function renderInicial() {
 
 
 /* =========================================================
-   CRIAR CARDS
+   CARDS
 ========================================================= */
 
 function render(lista) {
-  const box =
-    $("#cards");
+  const box = $("#cards");
 
   if (!box) {
     return;
@@ -510,30 +542,21 @@ function render(lista) {
 
   lista.forEach(item => {
     const card =
-      document.createElement(
-        "article"
-      );
+      document.createElement("article");
 
-    card.className =
-      "card";
-
-    card.tabIndex =
-      0;
+    card.className = "card";
+    card.tabIndex = 0;
 
     const imagem =
       item.imagemCapa ||
       "/assets/logo-piemonte.png";
 
     card.innerHTML = `
-
       <div class="card-img">
 
         <img
           src="${esc(imagem)}"
-          alt="${esc(
-            item.titulo ||
-            "Piemonte Brokers"
-          )}"
+          alt="${esc(item.titulo || "Piemonte Brokers")}"
           loading="lazy"
         >
 
@@ -549,30 +572,21 @@ function render(lista) {
 
       </div>
 
-
       <div class="card-body">
 
         <div class="meta">
-
           ${esc(item.cidade || "")}
 
           ${
             item.regiao
-              ? " • " +
-                esc(item.regiao)
+              ? " • " + esc(item.regiao)
               : ""
           }
-
         </div>
 
-
         <h3>
-          ${esc(
-            item.titulo ||
-            "Oportunidade Piemonte"
-          )}
+          ${esc(item.titulo || "Oportunidade Piemonte")}
         </h3>
-
 
         <p>
           ${esc(
@@ -581,7 +595,6 @@ function render(lista) {
             ""
           )}
         </p>
-
 
         <strong class="price">
           ${esc(
@@ -614,9 +627,7 @@ function render(lista) {
     box.appendChild(card);
   });
 
-
-  const contador =
-    $("#contador");
+  const contador = $("#contador");
 
   if (contador) {
     contador.textContent =
@@ -627,9 +638,7 @@ function render(lista) {
       }`;
   }
 
-
-  const vazio =
-    $("#vazio");
+  const vazio = $("#vazio");
 
   if (vazio) {
     const semResultados =
@@ -647,7 +656,7 @@ function render(lista) {
 
 
 /* =========================================================
-   FAIXAS DE PREÇO
+   FAIXA DE PREÇO
 ========================================================= */
 
 function atendeFaixaPreco(item, faixa) {
@@ -660,6 +669,16 @@ function atendeFaixaPreco(item, faixa) {
 
   if (!valor) {
     return false;
+  }
+
+  const limiteNumerico =
+    Number(faixa);
+
+  if (
+    !Number.isNaN(limiteNumerico) &&
+    limiteNumerico > 0
+  ) {
+    return valor <= limiteNumerico;
   }
 
   switch (faixa) {
@@ -703,30 +722,24 @@ function atendeFaixaPreco(item, faixa) {
 
 
 /* =========================================================
-   FILTRAGEM
+   FILTRAR
 ========================================================= */
 
 function filtrar() {
-  let lista =
-    [...PORTFOLIO];
+  let lista = [...PORTFOLIO];
 
-  const pagina =
-    paginaAtual();
+  const pagina = paginaAtual();
 
   if (pagina === "imoveis") {
-    lista =
-      lista.filter(
-        item =>
-          item.categoria === "Imóvel"
-      );
+    lista = lista.filter(
+      item => item.categoria === "Imóvel"
+    );
   }
 
   if (pagina === "areas") {
-    lista =
-      lista.filter(
-        item =>
-          item.categoria === "Área"
-      );
+    lista = lista.filter(
+      item => item.categoria === "Área"
+    );
   }
 
   const categoria =
@@ -775,10 +788,7 @@ function filtrar() {
 
         &&
 
-        atendeFaixaPreco(
-          item,
-          preco
-        )
+        atendeFaixaPreco(item, preco)
       );
     });
 
@@ -791,11 +801,20 @@ function filtrar() {
 ========================================================= */
 
 function ativarFiltros() {
-  const filtros =
-    $("#filtros");
+  const filtros = $("#filtros");
 
   if (!filtros) {
     return;
+  }
+
+  if (filtros.tagName === "FORM") {
+    filtros.addEventListener(
+      "submit",
+      evento => {
+        evento.preventDefault();
+        filtrar();
+      }
+    );
   }
 
   [
@@ -806,8 +825,7 @@ function ativarFiltros() {
     "#fPreco"
   ]
     .forEach(seletor => {
-      const elemento =
-        $(seletor);
+      const elemento = $(seletor);
 
       if (elemento) {
         elemento.addEventListener(
@@ -824,15 +842,13 @@ function ativarFiltros() {
 ========================================================= */
 
 function abrir(item) {
-  const modal =
-    $("#modal");
+  const modal = $("#modal");
 
   if (!modal) {
     return;
   }
 
-  const imagem =
-    $("#modalImg");
+  const imagem = $("#modalImg");
 
   if (imagem) {
     imagem.src =
@@ -842,27 +858,34 @@ function abrir(item) {
       item.titulo || "";
   }
 
-
-  const categoria =
-    $("#modalCategoria");
+  const categoria = $("#modalCategoria");
 
   if (categoria) {
     categoria.textContent =
       item.categoria || "";
   }
 
+  const meta = $("#modalMeta");
 
-  const titulo =
-    $("#modalTitulo");
+  if (meta) {
+    meta.textContent =
+      [
+        item.categoria,
+        item.cidade,
+        item.negocio
+      ]
+        .filter(Boolean)
+        .join(" • ");
+  }
+
+  const titulo = $("#modalTitulo");
 
   if (titulo) {
     titulo.textContent =
       item.titulo || "";
   }
 
-
-  const local =
-    $("#modalLocal");
+  const local = $("#modalLocal");
 
   if (local) {
     local.textContent =
@@ -874,27 +897,21 @@ function abrir(item) {
         .join(" • ");
   }
 
-
-  const descricao =
-    $("#modalDescricao");
+  const descricao = $("#modalDescricao");
 
   if (descricao) {
     descricao.textContent =
       item.descricao || "";
   }
 
-
-  const descricaoAntiga =
-    $("#modalDesc");
+  const descricaoAntiga = $("#modalDesc");
 
   if (descricaoAntiga) {
     descricaoAntiga.textContent =
       item.descricao || "";
   }
 
-
-  const preco =
-    $("#modalPreco");
+  const preco = $("#modalPreco");
 
   if (preco) {
     preco.textContent =
@@ -902,9 +919,7 @@ function abrir(item) {
       "Consulte";
   }
 
-
-  const specsBox =
-    $("#modalSpecs");
+  const specsBox = $("#modalSpecs");
 
   if (specsBox) {
     specsBox.innerHTML = "";
@@ -940,38 +955,27 @@ function abrir(item) {
 
     if (item.areaConstruida) {
       valores.push(
-        `${formatarNumero(
-          item.areaConstruida
-        )} m² construídos`
+        `${formatarNumero(item.areaConstruida)} m² construídos`
       );
     }
 
     if (item.areaTerreno) {
       valores.push(
-        `${formatarNumero(
-          item.areaTerreno
-        )} m² de terreno`
+        `${formatarNumero(item.areaTerreno)} m² de terreno`
       );
     }
 
     valores.forEach(valor => {
       const span =
-        document.createElement(
-          "span"
-        );
+        document.createElement("span");
 
-      span.textContent =
-        valor;
+      span.textContent = valor;
 
-      specsBox.appendChild(
-        span
-      );
+      specsBox.appendChild(span);
     });
   }
 
-
-  const galeria =
-    $("#modalGaleria");
+  const galeria = $("#modalGaleria");
 
   if (galeria) {
     galeria.innerHTML = "";
@@ -983,32 +987,23 @@ function abrir(item) {
 
     fotos.forEach(src => {
       const wrapper =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
       wrapper.className =
         "piemonte-foto";
 
       const img =
-        document.createElement(
-          "img"
-        );
+        document.createElement("img");
 
       img.src = src;
-
       img.alt =
         item.titulo ||
         "Piemonte Brokers";
 
       wrapper.appendChild(img);
-
-      galeria.appendChild(
-        wrapper
-      );
+      galeria.appendChild(wrapper);
     });
   }
-
 
   modal.hidden = false;
 
@@ -1017,8 +1012,7 @@ function abrir(item) {
     "false"
   );
 
-  modal.style.display =
-    "block";
+  modal.style.display = "block";
 
   document.body.style.overflow =
     "hidden";
@@ -1026,8 +1020,7 @@ function abrir(item) {
 
 
 function fechar() {
-  const modal =
-    $("#modal");
+  const modal = $("#modal");
 
   if (!modal) {
     return;
@@ -1040,16 +1033,14 @@ function fechar() {
     "true"
   );
 
-  modal.style.display =
-    "none";
+  modal.style.display = "none";
 
-  document.body.style.overflow =
-    "";
+  document.body.style.overflow = "";
 }
 
 
 /* =========================================================
-   EVENTOS DO MODAL
+   MODAL - EVENTOS
 ========================================================= */
 
 function ativarModal() {
@@ -1099,25 +1090,17 @@ function ativarModal() {
 ========================================================= */
 
 function ativarMenu() {
-  const menuBtn =
-    $("#menuBtn");
+  const menuBtn = $("#menuBtn");
+  const menu = $("#menu");
 
-  const menu =
-    $("#menu");
-
-  if (
-    !menuBtn ||
-    !menu
-  ) {
+  if (!menuBtn || !menu) {
     return;
   }
 
   menuBtn.addEventListener(
     "click",
     () => {
-      menu.classList.toggle(
-        "open"
-      );
+      menu.classList.toggle("open");
     }
   );
 
@@ -1127,9 +1110,7 @@ function ativarMenu() {
       link.addEventListener(
         "click",
         () => {
-          menu.classList.remove(
-            "open"
-          );
+          menu.classList.remove("open");
         }
       );
     });

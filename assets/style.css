@@ -67,11 +67,6 @@ textarea{
   box-shadow:0 3px 18px rgba(0,0,0,.16);
 }
 
-
-/*
-  Compatibilidade com a estrutura original
-*/
-
 .nav{
   min-height:108px;
 
@@ -80,11 +75,6 @@ textarea{
 
   gap:35px;
 }
-
-
-/*
-  Compatibilidade com os novos HTML
-*/
 
 .header-inner{
   min-height:108px;
@@ -95,12 +85,10 @@ textarea{
   gap:35px;
 }
 
-
 .logo{
   display:flex;
   align-items:center;
 }
-
 
 .logo img,
 .header .logo{
@@ -112,19 +100,16 @@ textarea{
   transition:.25s ease;
 }
 
-
 .logo img:hover,
 .header .logo:hover{
   transform:scale(1.02);
 }
-
 
 .logo-link{
   display:flex;
   align-items:center;
   flex-shrink:0;
 }
-
 
 .nav nav{
   margin-left:auto;
@@ -134,11 +119,6 @@ textarea{
 
   gap:27px;
 }
-
-
-/*
-  Menu usado nos novos arquivos
-*/
 
 .header-inner > .nav{
   margin-left:auto;
@@ -150,7 +130,6 @@ textarea{
 
   gap:27px;
 }
-
 
 .nav nav a,
 .header-inner > .nav a{
@@ -168,13 +147,11 @@ textarea{
   transition:.25s ease;
 }
 
-
 .nav nav a:hover,
 .header-inner > .nav a:hover,
 .header-inner > .nav a.ativo{
   color:var(--gold);
 }
-
 
 .nav nav a::after,
 .header-inner > .nav a::after{
@@ -193,13 +170,11 @@ textarea{
   transition:.25s ease;
 }
 
-
 .nav nav a:hover::after,
 .header-inner > .nav a:hover::after,
 .header-inner > .nav a.ativo::after{
   width:100%;
 }
-
 
 .menu-btn{
   display:none;
@@ -234,7 +209,6 @@ textarea{
   position:relative;
 }
 
-
 .hero-overlay{
   position:absolute;
   inset:0;
@@ -246,13 +220,11 @@ textarea{
   );
 }
 
-
 .hero-content{
   padding-top:45px;
 
   position:relative;
 }
-
 
 .eyebrow{
   font-size:11px;
@@ -264,11 +236,9 @@ textarea{
   text-transform:uppercase;
 }
 
-
 .eyebrow.dark{
   color:#99763a;
 }
-
 
 h1,
 h2,
@@ -280,7 +250,6 @@ h3{
   margin:0;
 }
 
-
 h1{
   font-size:clamp(46px,6vw,78px);
 
@@ -288,7 +257,6 @@ h1{
 
   max-width:900px;
 }
-
 
 .hero p:not(.eyebrow){
   font-size:18px;
@@ -299,7 +267,6 @@ h1{
 
   color:rgba(255,255,255,.84);
 }
-
 
 .hero-actions{
   display:flex;
@@ -322,13 +289,11 @@ h1{
   padding:95px 0 80px;
 }
 
-
 .page-hero h1{
   margin-top:12px;
 
   font-size:clamp(42px,6vw,70px);
 }
-
 
 .page-hero p{
   max-width:720px;
@@ -367,18 +332,15 @@ h1{
   transition:.25s ease;
 }
 
-
 .gold{
   background:var(--gold);
 
   color:#17130b;
 }
 
-
 .gold:hover{
   filter:brightness(1.08);
 }
-
 
 .ghost{
   border-color:rgba(255,255,255,.55);
@@ -386,11 +348,9 @@ h1{
   color:#fff;
 }
 
-
 .ghost:hover{
   background:rgba(255,255,255,.10);
 }
-
 
 .dark-btn,
 .btn-primary{
@@ -399,11 +359,10 @@ h1{
   color:#fff;
 }
 
-
+.dark-btn:hover,
 .btn-primary:hover{
   background:#15372a;
 }
-
 
 .wide{
   width:100%;
@@ -422,7 +381,6 @@ h1{
   z-index:5;
 }
 
-
 .search-box{
   display:grid;
 
@@ -440,7 +398,6 @@ h1{
 
   box-shadow:0 18px 50px rgba(0,0,0,.15);
 }
-
 
 .search-box select,
 .search-box input{
@@ -464,7 +421,6 @@ h1{
   padding:95px 0;
 }
 
-
 .section-head{
   display:flex;
 
@@ -472,16 +428,16 @@ h1{
 
   justify-content:space-between;
 
+  gap:30px;
+
   margin-bottom:34px;
 }
-
 
 .section h2{
   font-size:clamp(36px,5vw,58px);
 
   line-height:1.08;
 }
-
 
 .counter{
   color:var(--muted);
@@ -498,7 +454,6 @@ h1{
   padding:70px 0 100px;
 }
 
-
 .filtros{
   display:grid;
 
@@ -508,7 +463,6 @@ h1{
 
   margin-bottom:25px;
 }
-
 
 .filtros select{
   width:100%;
@@ -528,11 +482,9 @@ h1{
   cursor:pointer;
 }
 
-
 .filtros select:focus{
   border-color:var(--gold);
 }
-
 
 .portfolio-info{
   margin:15px 0 25px;
@@ -544,7 +496,7 @@ h1{
 
 
 /* =====================================================
-   CARDS
+   CARDS DE IMÓVEIS E ÁREAS
 ===================================================== */
 
 .cards,
@@ -555,7 +507,6 @@ h1{
 
   gap:24px;
 }
-
 
 .card{
   border:1px solid #e6e2da;
@@ -569,13 +520,11 @@ h1{
   transition:.25s ease;
 }
 
-
 .card:hover{
   box-shadow:0 18px 45px rgba(0,0,0,.08);
 
   transform:translateY(-3px);
 }
-
 
 .card-img{
   aspect-ratio:4/3;
@@ -587,7 +536,6 @@ h1{
   position:relative;
 }
 
-
 .card-img img{
   width:100%;
   height:100%;
@@ -597,11 +545,9 @@ h1{
   transition:.35s;
 }
 
-
 .card:hover .card-img img{
   transform:scale(1.035);
 }
-
 
 .badge{
   position:absolute;
@@ -624,11 +570,9 @@ h1{
   letter-spacing:.1em;
 }
 
-
 .card-body{
   padding:22px;
 }
-
 
 .meta{
   font-size:10px;
@@ -640,20 +584,17 @@ h1{
   color:#8b8f89;
 }
 
-
 .card h3{
   font-size:27px;
 
   margin:8px 0 10px;
 }
 
-
 .card p{
   color:var(--muted);
 
   line-height:1.55;
 }
-
 
 .price{
   display:block;
@@ -665,11 +606,9 @@ h1{
   margin-top:16px;
 }
 
-
 .price.big{
   font-size:28px;
 }
-
 
 .empty,
 .vazio{
@@ -679,7 +618,6 @@ h1{
 
   padding:50px 20px;
 }
-
 
 .vazio h3{
   color:var(--ink);
@@ -694,11 +632,6 @@ h1{
    MARCA D'ÁGUA PIEMONTE
 ===================================================== */
 
-/*
-  Esta classe será adicionada automaticamente
-  pelo JavaScript nas fotos dos imóveis e áreas.
-*/
-
 .piemonte-foto{
   position:relative;
 
@@ -706,11 +639,6 @@ h1{
 
   width:100%;
 }
-
-
-/*
-  Fotografia
-*/
 
 .piemonte-foto > img{
   width:100%;
@@ -721,11 +649,6 @@ h1{
 
   display:block;
 }
-
-
-/*
-  Logo da marca d'água
-*/
 
 .piemonte-foto::after{
   content:"";
@@ -762,8 +685,7 @@ h1{
 
 
 /*
-  Também funciona diretamente
-  nos cards originais do site.
+  Marca d'água nos cards
 */
 
 .card-img::after{
@@ -800,13 +722,166 @@ h1{
 }
 
 
+/* =====================================================
+   REGIÕES DA HOME
+===================================================== */
+
+.regioes-home{
+  background:#fff;
+}
+
+
 /*
-  Mantém a logo sem sofrer zoom
-  quando passamos o mouse no card.
+  Grade com seis regiões
 */
 
-.card:hover .card-img::after{
-  transform:translate(-50%,-50%);
+.regioes-home-grid{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:24px;
+}
+
+
+/*
+  Card completo
+*/
+
+.regiao-home-card{
+  display:block;
+
+  background:#fff;
+
+  border:1px solid #e3ded4;
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+.regiao-home-card:hover{
+  transform:translateY(-5px);
+
+  box-shadow:0 20px 50px rgba(0,0,0,.10);
+
+  border-color:rgba(201,164,92,.65);
+}
+
+
+/*
+  Fotografia da região
+*/
+
+.regiao-home-img{
+  position:relative;
+
+  width:100%;
+
+  aspect-ratio:16/10;
+
+  overflow:hidden;
+
+  background:#ece9e2;
+}
+
+.regiao-home-img::after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:linear-gradient(
+    to top,
+    rgba(5,15,11,.20),
+    transparent 50%
+  );
+
+  pointer-events:none;
+}
+
+.regiao-home-img img{
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  transition:transform .6s ease;
+}
+
+.regiao-home-card:hover .regiao-home-img img{
+  transform:scale(1.045);
+}
+
+
+/*
+  IMPORTANTE:
+  Não aplicamos marca d'água nestas fotos.
+
+  As fotos de regiões são imagens institucionais/de contexto,
+  e não fotografias dos imóveis anunciados.
+*/
+
+
+/*
+  Texto do card
+*/
+
+.regiao-home-body{
+  padding:25px 24px 27px;
+}
+
+.regiao-home-body h3{
+  color:var(--ink);
+
+  font-size:29px;
+
+  line-height:1.15;
+
+  margin:0 0 11px;
+}
+
+.regiao-home-body p{
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.65;
+
+  margin:0;
+}
+
+
+/*
+  Linha dourada discreta
+*/
+
+.regiao-home-body::after{
+  content:"";
+
+  display:block;
+
+  width:36px;
+
+  height:1px;
+
+  margin-top:20px;
+
+  background:var(--gold);
+
+  transition:width .3s ease;
+}
+
+.regiao-home-card:hover
+.regiao-home-body::after{
+  width:65px;
 }
 
 
@@ -821,7 +896,6 @@ h1{
   color:#fff;
 }
 
-
 .split{
   display:grid;
 
@@ -832,7 +906,6 @@ h1{
   align-items:start;
 }
 
-
 .dark-section p,
 .contact p{
   color:rgba(255,255,255,.72);
@@ -841,7 +914,6 @@ h1{
 
   font-size:17px;
 }
-
 
 .text-link{
   display:inline-block;
@@ -852,7 +924,6 @@ h1{
 
   padding-bottom:4px;
 }
-
 
 .light{
   color:#ead4a7;
@@ -880,7 +951,6 @@ h1{
   background:var(--cream);
 }
 
-
 .form-layout{
   display:grid;
 
@@ -888,7 +958,6 @@ h1{
 
   gap:80px;
 }
-
 
 .form-layout>div>p{
   color:var(--muted);
@@ -898,7 +967,6 @@ h1{
   font-size:17px;
 }
 
-
 .lead-form{
   display:grid;
 
@@ -906,7 +974,6 @@ h1{
 
   gap:12px;
 }
-
 
 .lead-form input,
 .lead-form select,
@@ -920,7 +987,6 @@ h1{
   background:#fff;
 }
 
-
 .lead-form input:focus,
 .lead-form select:focus,
 .lead-form textarea:focus{
@@ -928,7 +994,6 @@ h1{
 
   border-color:var(--gold);
 }
-
 
 .lead-form textarea{
   grid-column:1/-1;
@@ -938,11 +1003,9 @@ h1{
   resize:vertical;
 }
 
-
 .lead-form button{
   grid-column:1/-1;
 }
-
 
 .bordered{
   padding:28px;
@@ -963,11 +1026,6 @@ footer{
   padding:55px 0 24px;
 }
 
-
-/*
-  Estrutura antiga
-*/
-
 .footer{
   display:grid;
 
@@ -975,11 +1033,6 @@ footer{
 
   gap:50px;
 }
-
-
-/*
-  Estrutura nova
-*/
 
 .footer-inner{
   display:flex;
@@ -991,7 +1044,6 @@ footer{
   gap:50px;
 }
 
-
 .footer img,
 .footer-logo{
   width:240px;
@@ -1000,7 +1052,6 @@ footer{
 
   object-fit:contain;
 }
-
 
 .footer a,
 .footer span{
@@ -1013,11 +1064,9 @@ footer{
   transition:.2s ease;
 }
 
-
 .footer a:hover{
   color:var(--gold);
 }
-
 
 .footer p{
   color:rgba(255,255,255,.65);
@@ -1026,7 +1075,6 @@ footer{
 
   margin:5px 0;
 }
-
 
 .copyright{
   margin-top:35px;
@@ -1042,7 +1090,7 @@ footer{
 
 
 /* =====================================================
-   MODAL ORIGINAL
+   MODAL
 ===================================================== */
 
 .modal{
@@ -1059,21 +1107,13 @@ footer{
   overflow:auto;
 }
 
-
 .modal[hidden]{
   display:none;
 }
 
-
-/*
-  Também esconde o modal novo
-  enquanto aria-hidden estiver true.
-*/
-
 .modal[aria-hidden="true"]{
   display:none;
 }
-
 
 .modal-card{
   width:min(920px,100%);
@@ -1085,7 +1125,6 @@ footer{
   position:relative;
 }
 
-
 .modal-card>img{
   width:100%;
 
@@ -1094,23 +1133,19 @@ footer{
   object-fit:cover;
 }
 
-
 .modal-body{
   padding:32px;
 }
 
-
 .modal-body h2{
   font-size:42px;
 }
-
 
 .modal-body p{
   color:var(--muted);
 
   line-height:1.7;
 }
-
 
 .close{
   position:absolute;
@@ -1132,7 +1167,6 @@ footer{
   z-index:15;
 }
 
-
 .specs{
   display:flex;
 
@@ -1143,7 +1177,6 @@ footer{
   margin:18px 0;
 }
 
-
 .specs span{
   background:#f2eee5;
 
@@ -1151,7 +1184,6 @@ footer{
 
   font-size:12px;
 }
-
 
 .mini-gallery{
   display:grid;
@@ -1162,7 +1194,6 @@ footer{
 
   margin:18px 0;
 }
-
 
 .mini-gallery img{
   height:120px;
@@ -1187,7 +1218,6 @@ footer{
   z-index:-1;
 }
 
-
 .modal-content{
   width:min(920px,100%);
 
@@ -1199,7 +1229,6 @@ footer{
 
   box-shadow:0 25px 80px rgba(0,0,0,.35);
 }
-
 
 .modal-close{
   position:absolute;
@@ -1225,7 +1254,6 @@ footer{
   cursor:pointer;
 }
 
-
 .modal-foto{
   width:100%;
 
@@ -1234,7 +1262,6 @@ footer{
   background:#eee;
 }
 
-
 .modal-foto img{
   width:100%;
 
@@ -1242,11 +1269,6 @@ footer{
 
   object-fit:cover;
 }
-
-
-/*
-  Marca d'água maior na foto principal aberta
-*/
 
 .modal-foto::after{
   width:27%;
@@ -1260,7 +1282,6 @@ footer{
   opacity:.42;
 }
 
-
 .modal-specs{
   display:flex;
 
@@ -1271,7 +1292,6 @@ footer{
   margin:18px 0;
 }
 
-
 .modal-specs span{
   background:#f2eee5;
 
@@ -1280,7 +1300,6 @@ footer{
   font-size:12px;
 }
 
-
 .modal-descricao{
   color:var(--muted);
 
@@ -1288,7 +1307,6 @@ footer{
 
   margin:20px 0;
 }
-
 
 .modal-galeria{
   display:grid;
@@ -1300,11 +1318,9 @@ footer{
   margin:20px 0;
 }
 
-
 .modal-galeria .piemonte-foto{
   height:140px;
 }
-
 
 .modal-galeria img{
   width:100%;
@@ -1313,7 +1329,6 @@ footer{
 
   object-fit:cover;
 }
-
 
 .modal-galeria .piemonte-foto::after{
   width:30%;
@@ -1324,7 +1339,6 @@ footer{
 
   opacity:.38;
 }
-
 
 .modal-footer{
   display:flex;
@@ -1342,7 +1356,6 @@ footer{
   border-top:1px solid var(--line);
 }
 
-
 .modal-footer small{
   display:block;
 
@@ -1350,7 +1363,6 @@ footer{
 
   margin-bottom:5px;
 }
-
 
 .modal-footer strong{
   color:var(--deep);
@@ -1370,14 +1382,12 @@ footer{
     min-height:92px;
   }
 
-
   .logo img,
   .header .logo{
     width:230px;
 
     max-height:76px;
   }
-
 
   .nav nav{
     display:none;
@@ -1402,22 +1412,15 @@ footer{
     box-shadow:0 15px 30px rgba(0,0,0,.25);
   }
 
-
   .nav nav.open{
     display:flex;
   }
-
 
   .nav nav a{
     width:100%;
 
     padding:12px 4px;
   }
-
-
-  /*
-    Menu novo
-  */
 
   .header-inner > .nav{
     gap:15px;
@@ -1427,37 +1430,34 @@ footer{
     justify-content:flex-end;
   }
 
-
   .header-inner > .nav a{
     font-size:11px;
   }
-
 
   .menu-btn{
     display:block;
   }
 
-
   .search-box{
     grid-template-columns:1fr 1fr;
   }
 
-
   .search-box button{
     grid-column:1/-1;
   }
-
 
   .cards,
   .cards-grid{
     grid-template-columns:1fr 1fr;
   }
 
+  .regioes-home-grid{
+    grid-template-columns:1fr 1fr;
+  }
 
   .filtros{
     grid-template-columns:1fr 1fr;
   }
-
 
   .split,
   .form-layout{
@@ -1466,17 +1466,16 @@ footer{
     gap:40px;
   }
 
-
   .footer{
     grid-template-columns:1fr 1fr;
   }
-
 
   .footer-inner{
     flex-direction:column;
 
     align-items:flex-start;
   }
+
 }
 
 
@@ -1490,12 +1489,10 @@ footer{
     width:min(100% - 28px,1180px);
   }
 
-
   .nav,
   .header-inner{
     min-height:82px;
   }
-
 
   .logo img,
   .header .logo{
@@ -1504,18 +1501,12 @@ footer{
     max-height:68px;
   }
 
-
   .nav nav{
     top:82px;
 
     left:14px;
     right:14px;
   }
-
-
-  /*
-    Menu novo
-  */
 
   .header-inner{
     flex-direction:column;
@@ -1524,7 +1515,6 @@ footer{
 
     padding:14px 0;
   }
-
 
   .header-inner > .nav{
     width:100%;
@@ -1536,42 +1526,36 @@ footer{
     gap:8px 18px;
   }
 
-
   .header-inner > .nav a{
     font-size:10px;
 
     padding:5px 0;
   }
 
-
   .hero{
     min-height:700px;
   }
-
 
   .hero-content{
     padding-top:25px;
   }
 
-
   .hero-actions{
     flex-direction:column;
   }
 
-
   .search-box,
   .cards,
   .cards-grid,
+  .regioes-home-grid,
   .lead-form,
   .footer{
     grid-template-columns:1fr;
   }
 
-
   .filtros{
     grid-template-columns:1fr;
   }
-
 
   .search-box select,
   .search-box input{
@@ -1580,55 +1564,61 @@ footer{
     border-bottom:1px solid #ddd;
   }
 
-
   .lead-form textarea,
   .lead-form button{
     grid-column:auto;
   }
 
-
   .section{
     padding:72px 0;
   }
-
 
   .section-head{
     display:block;
   }
 
+  .section-head .text-link{
+    margin-top:18px;
+  }
 
   .page-hero{
     padding:65px 0 55px;
   }
 
+  .regiao-home-img{
+    aspect-ratio:16/9;
+  }
+
+  .regiao-home-body{
+    padding:22px;
+  }
+
+  .regiao-home-body h3{
+    font-size:27px;
+  }
 
   .modal-card>img,
   .modal-foto{
     height:280px;
   }
 
-
   .modal-body{
     padding:22px;
   }
 
-
   .modal-body h2{
     font-size:32px;
   }
-
 
   .mini-gallery,
   .modal-galeria{
     grid-template-columns:1fr 1fr;
   }
 
-
   .modal-galeria .piemonte-foto,
   .modal-galeria img{
     height:110px;
   }
-
 
   .modal-footer{
     flex-direction:column;
@@ -1636,15 +1626,9 @@ footer{
     align-items:stretch;
   }
 
-
   .modal-footer .btn-primary{
     width:100%;
   }
-
-
-  /*
-    Marca d'água no celular
-  */
 
   .piemonte-foto::after,
   .card-img::after{
