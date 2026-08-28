@@ -1,52 +1,44 @@
 {
   "itens": [
     {
-      "id": "itu",
-      "nome": "Itu",
-      "descricao": "Casas de alto padrão, condomínios exclusivos, terrenos e áreas estratégicas.",
+      "nome": "Itu & Região",
+      "descricao": "Casas, condomínios, terrenos, áreas para desenvolvimento.",
       "imagem": "/assets/home-principal.jpeg",
       "cidadeFiltro": "Itu",
-      "destaque": true
+      "destaque": true,
+      "id": "itu"
     },
     {
-      "id": "porto-feliz",
-      "nome": "Porto Feliz",
-      "descricao": "Condomínios de luxo, propriedades diferenciadas e oportunidades exclusivas.",
+      "nome": "São Paulo & Alphaville",
+      "descricao": "Imóveis de alto padrão, residências exclusivas e oportunidades selecionadas.",
       "imagem": "/assets/home-principal.jpeg",
-      "cidadeFiltro": "Porto Feliz",
-      "destaque": true
+      "cidadeFiltro": "São Paulo",
+      "destaque": true,
+      "id": "porto-feliz"
     },
     {
-      "id": "indaiatuba",
-      "nome": "Indaiatuba",
-      "descricao": "Residências contemporâneas, condomínios consolidados e imóveis selecionados.",
-      "imagem": "/assets/home-principal.jpeg",
-      "cidadeFiltro": "Indaiatuba",
-      "destaque": true
-    },
-    {
-      "id": "alphaville",
-      "nome": "Alphaville",
-      "descricao": "Imóveis de alto padrão, oportunidades residenciais e ativos exclusivos.",
-      "imagem": "/assets/home-principal.jpeg",
-      "cidadeFiltro": "Alphaville",
-      "destaque": true
-    },
-    {
-      "id": "granja-viana",
       "nome": "Granja Viana",
-      "descricao": "Casas, terrenos e propriedades em condomínios de referência.",
+      "descricao": "Casas, condomínios de alto padrão, terrenos e propriedades com perfil exclusivo.",
       "imagem": "/assets/home-principal.jpeg",
       "cidadeFiltro": "Granja Viana",
-      "destaque": true
+      "destaque": true,
+      "id": "indaiatuba"
     },
     {
-      "id": "oportunidades-especiais",
-      "nome": "Oportunidades especiais",
-      "descricao": "Ativos selecionados em outras cidades, áreas rurais e oportunidades off-market.",
+      "nome": "Porto Feliz & Eixo Castelo Branco",
+      "descricao": "Propriedades de alto padrão, grandes áreas e ativos estratégicos.",
       "imagem": "/assets/home-principal.jpeg",
-      "cidadeFiltro": "",
-      "destaque": true
+      "cidadeFiltro": "Porto Feliz",
+      "destaque": true,
+      "id": "alphaville"
+    },
+    {
+      "nome": "Áreas & Grandes Oportunidades",
+      "descricao": "Áreas brutas, terrenos para incorporação, desenvolvimento urbano, comercial e logístico.",
+      "imagem": "/assets/home-principal.jpeg",
+      "cidadeFiltro": "Áreas",
+      "destaque": true,
+      "id": "granja-viana"
     }
   ]
 }
