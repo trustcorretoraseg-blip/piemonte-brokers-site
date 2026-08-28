@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
-
 backend:
   name: github
   repo: trustcorretoraseg-blip/piemonte-brokers-site
@@ -7,7 +5,7 @@ backend:
 
 media_folder: "uploads"
 public_folder: "/uploads"
-locale: "pt"
+
 
 collections:
 
@@ -17,7 +15,6 @@ collections:
 
   - name: "configuracoes"
     label: "Configurações do Site"
-
     files:
 
       - name: "site"
@@ -30,61 +27,76 @@ collections:
           - label: "Nome da empresa"
             name: "nome"
             widget: "string"
+            default: "Piemonte Brokers"
 
-          - label: "Título da Home"
+
+          - label: "Título principal da Home"
             name: "tituloHome"
             widget: "string"
+            required: false
 
-          - label: "Subtítulo da Home"
+
+          - label: "Subtítulo principal da Home"
             name: "subtituloHome"
             widget: "text"
+            required: false
+
 
           - label: "Imagem principal da Home"
             name: "imagemHome"
             widget: "image"
+            required: false
 
-          - label: "Texto Sobre"
+
+          - label: "Texto institucional"
             name: "textoSobre"
             widget: "text"
+            required: false
+
 
           - label: "WhatsApp"
             name: "whatsapp"
             widget: "string"
             required: false
-            hint: "Somente números, com DDI. Ex.: 5511999999999"
+            hint: "Exemplo: 5511933602204"
+
 
           - label: "E-mail"
             name: "email"
             widget: "string"
             required: false
 
+
           - label: "Instagram"
             name: "instagram"
             widget: "string"
             required: false
+            hint: "Coloque o link completo do Instagram"
+
 
           - label: "Cidade base"
             name: "cidadeBase"
             widget: "string"
             required: false
 
-          - label: "CRECI empresa"
+
+          - label: "CRECI da empresa"
             name: "creciEmpresa"
             widget: "string"
             required: false
 
 
+
   # =========================================================
-  # REGIÕES INSTITUCIONAIS
+  # REGIÕES
   # =========================================================
 
   - name: "regioes"
     label: "Regiões"
-
     files:
 
-      - name: "regioes"
-        label: "Fotos e informações das regiões"
+      - name: "lista_regioes"
+        label: "Regiões de atuação"
         file: "data/regioes.json"
         format: "json"
 
@@ -97,32 +109,38 @@ collections:
 
             fields:
 
-              - label: "ID interno"
-                name: "id"
-                widget: "string"
-                hint: "Ex.: itu, porto-feliz, alphaville"
-
               - label: "Nome da região"
                 name: "nome"
                 widget: "string"
+                hint: "Exemplo: Itu, Alphaville, Granja Viana"
 
-              - label: "Descrição"
+
+              - label: "Texto da região"
                 name: "descricao"
                 widget: "text"
+                required: false
+                hint: "Texto curto que aparece abaixo da imagem"
 
-              - label: "Foto da região"
+
+              - label: "Imagem da região"
                 name: "imagem"
                 widget: "image"
+                required: false
 
-              - label: "Cidade usada no filtro"
+
+              - label: "Região usada no filtro"
                 name: "cidadeFiltro"
                 widget: "string"
                 required: false
+                hint: "Deve corresponder à Região Principal cadastrada nos imóveis. Exemplo: Itu"
 
-              - label: "Mostrar na Home"
+
+              - label: "Exibir no site"
                 name: "destaque"
                 widget: "boolean"
                 default: true
+                required: false
+
 
 
   # =========================================================
@@ -131,74 +149,81 @@ collections:
 
   - name: "portfolio"
     label: "Portfólio"
-
     files:
 
-      - name: "portfolio"
+      - name: "lista_portfolio"
         label: "Imóveis e Áreas"
         file: "data/portfolio.json"
         format: "json"
 
         fields:
 
-          - label: "Oportunidades"
+          - label: "Imóveis e Áreas"
             name: "itens"
             widget: "list"
-            summary: "{{fields.titulo}} — {{fields.regiaoPrincipal}}"
+            summary: "{{fields.titulo}}"
 
             fields:
 
-              # =================================================
-              # 1. IDENTIFICAÇÃO
-              # =================================================
+              # -------------------------------------------------
+              # IDENTIFICAÇÃO
+              # -------------------------------------------------
 
-              - label: "ID interno"
+              - label: "ID"
                 name: "id"
                 widget: "string"
-                hint: "Ex.: casa-terras-sao-jose-itu"
+                hint: "Use um identificador simples, sem espaços. Exemplo: casa-itu-001"
+
 
               - label: "Categoria"
                 name: "categoria"
                 widget: "select"
+
                 options:
                   - "Imóvel"
                   - "Área"
-                default: "Imóvel"
+
 
               - label: "Status"
                 name: "status"
                 widget: "select"
+                required: false
+
                 options:
                   - "Disponível"
                   - "Reservado"
-                  - "Em negociação"
                   - "Vendido"
+                  - "Locado"
                   - "Indisponível"
-                default: "Disponível"
 
-              - label: "Negócio"
+
+              - label: "Finalidade"
                 name: "negocio"
                 widget: "select"
+                required: false
+
                 options:
                   - "Venda"
                   - "Locação"
                   - "Parceria"
                   - "Permuta"
-                default: "Venda"
 
-              - label: "Título do anúncio"
+
+              - label: "Título"
                 name: "titulo"
                 widget: "string"
-                hint: "Ex.: Residência contemporânea no Terras de São José"
 
 
-              # =================================================
-              # 2. ORGANIZAÇÃO / REGIÃO
-              # =================================================
+
+              # -------------------------------------------------
+              # LOCALIZAÇÃO
+              # -------------------------------------------------
 
               - label: "Região principal"
                 name: "regiaoPrincipal"
                 widget: "select"
+                required: false
+
                 options:
                   - "Itu"
                   - "Porto Feliz"
@@ -209,140 +234,162 @@ collections:
                   - "Avaré"
                   - "São Paulo"
                   - "Outras regiões"
-                hint: "Escolha onde esta oportunidade deve ficar organizada."
+
 
               - label: "Cidade"
                 name: "cidade"
                 widget: "string"
                 required: false
-                hint: "Ex.: Itu, Cotia, Santana de Parnaíba"
 
-              - label: "Bairro / Condomínio / Localização"
+
+              - label: "Bairro / Condomínio / Região"
                 name: "regiao"
                 widget: "string"
                 required: false
-                hint: "Ex.: Terras de São José I, Fazenda da Grama, Alphaville 1"
 
 
-              # =================================================
-              # 3. TIPO DO ATIVO
-              # =================================================
 
-              - label: "Tipo do ativo"
+              # -------------------------------------------------
+              # TIPO
+              # -------------------------------------------------
+
+              - label: "Tipo"
                 name: "tipo"
                 widget: "select"
+                required: false
+
                 options:
+
                   - "Casa"
+                  - "Casa em condomínio"
                   - "Apartamento"
-                  - "Terreno residencial"
-                  - "Sala comercial"
-                  - "Prédio comercial"
-                  - "Galpão"
-                  - "Hotel / Pousada"
-                  - "Fazenda / Sítio"
-                  - "Área residencial"
+                  - "Cobertura"
+                  - "Terreno"
+                  - "Terreno em condomínio"
+                  - "Sítio"
+                  - "Fazenda"
+                  - "Chácara"
+                  - "Área"
                   - "Área comercial"
                   - "Área industrial"
-                  - "Área para incorporação"
-                  - "Área para loteamento"
-                  - "Área rural"
+                  - "Área logística"
+                  - "Área residencial"
                   - "Gleba"
-                  - "Empreendimento"
+                  - "Loteamento"
+                  - "Galpão"
+                  - "Prédio comercial"
+                  - "Sala comercial"
+                  - "Hotel"
                   - "Outro"
-                hint: "Para Categoria Imóvel, escolha um tipo de imóvel. Para Categoria Área, escolha um tipo de área."
 
 
-              # =================================================
-              # 4. VALORES
-              # =================================================
+
+              # -------------------------------------------------
+              # PREÇO
+              # -------------------------------------------------
 
               - label: "Preço numérico"
                 name: "preco"
                 widget: "number"
                 required: false
-                hint: "Digite somente números. Ex.: 14500000"
+                value_type: "float"
+                hint: "Exemplo: 3500000"
+
 
               - label: "Preço exibido no site"
                 name: "precoTexto"
                 widget: "string"
                 required: false
-                hint: "Ex.: R$ 14.500.000 ou Valor sob consulta"
+                hint: "Exemplo: R$ 3.500.000,00 ou Sob consulta"
 
 
-              # =================================================
-              # 5. CARACTERÍSTICAS
-              # =================================================
+
+              # -------------------------------------------------
+              # CARACTERÍSTICAS
+              # -------------------------------------------------
 
               - label: "Dormitórios"
                 name: "quartos"
                 widget: "number"
                 required: false
-                default: 0
-                hint: "Para áreas, pode deixar 0."
+                value_type: "int"
+
 
               - label: "Suítes"
                 name: "suites"
                 widget: "number"
                 required: false
-                default: 0
-                hint: "Para áreas, pode deixar 0."
+                value_type: "int"
+
 
               - label: "Banheiros"
                 name: "banheiros"
                 widget: "number"
                 required: false
-                default: 0
-                hint: "Para áreas, pode deixar 0."
+                value_type: "int"
+
 
               - label: "Vagas"
                 name: "vagas"
                 widget: "number"
                 required: false
-                default: 0
-                hint: "Para áreas, pode deixar 0."
+                value_type: "int"
 
-              - label: "Área construída (m²)"
+
+              - label: "Área construída em m²"
                 name: "areaConstruida"
                 widget: "number"
                 required: false
-                default: 0
+                value_type: "float"
 
-              - label: "Área do terreno / total (m²)"
+
+              - label: "Área do terreno em m²"
                 name: "areaTerreno"
                 widget: "number"
                 required: false
-                default: 0
+                value_type: "float"
 
 
-              # =================================================
-              # 6. FOTOS
-              # =================================================
 
-              - label: "Foto de capa"
+              # -------------------------------------------------
+              # CONTEÚDO
+              # -------------------------------------------------
+
+              - label: "Descrição"
+                name: "descricao"
+                widget: "text"
+                required: false
+
+
+
+              # -------------------------------------------------
+              # FOTOS
+              # -------------------------------------------------
+
+              - label: "Foto principal"
                 name: "imagemCapa"
                 widget: "image"
-                hint: "Imagem principal do anúncio."
+                required: false
+
 
               - label: "Galeria de fotos"
                 name: "galeria"
                 widget: "list"
                 required: false
+
                 field:
                   label: "Foto"
                   name: "foto"
                   widget: "image"
 
 
-              # =================================================
-              # 7. APRESENTAÇÃO
-              # =================================================
 
-              - label: "Descrição"
-                name: "descricao"
-                widget: "text"
+              # -------------------------------------------------
+              # HOME
+              # -------------------------------------------------
 
-              - label: "Destaque na Home"
+              - label: "Exibir na Seleção Piemonte"
                 name: "destaque"
                 widget: "boolean"
                 default: false
-                hint: "Ative para esta oportunidade poder aparecer entre os destaques da Home."
+                required: false
