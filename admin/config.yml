@@ -10,59 +10,162 @@ public_folder: "/uploads"
 locale: "pt"
 
 collections:
+
+  # =========================================================
+  # CONFIGURAÇÕES DO SITE
+  # =========================================================
+
   - name: "configuracoes"
     label: "Configurações do Site"
+
     files:
+
       - name: "site"
         label: "Dados gerais"
         file: "data/site.json"
         format: "json"
+
         fields:
+
           - { label: "Nome da empresa", name: "nome", widget: "string" }
+
           - { label: "Título da Home", name: "tituloHome", widget: "string" }
+
           - { label: "Subtítulo da Home", name: "subtituloHome", widget: "text" }
+
           - { label: "Imagem principal da Home", name: "imagemHome", widget: "image" }
+
           - { label: "Texto Sobre", name: "textoSobre", widget: "text" }
+
           - { label: "WhatsApp (somente números, com DDI)", name: "whatsapp", widget: "string", required: false }
+
           - { label: "E-mail", name: "email", widget: "string", required: false }
+
           - { label: "Instagram", name: "instagram", widget: "string", required: false }
+
           - { label: "Cidade base", name: "cidadeBase", widget: "string", required: false }
+
           - { label: "CRECI empresa", name: "creciEmpresa", widget: "string", required: false }
+
+
+  # =========================================================
+  # REGIÕES
+  # =========================================================
+
+  - name: "regioes"
+    label: "Regiões"
+
+    files:
+
+      - name: "regioes"
+        label: "Fotos e informações das regiões"
+        file: "data/regioes.json"
+        format: "json"
+
+        fields:
+
+          - label: "Regiões"
+            name: "itens"
+            widget: "list"
+            summary: "{{fields.nome}}"
+
+            fields:
+
+              - label: "ID interno"
+                name: "id"
+                widget: "string"
+                hint: "Ex.: itu, porto-feliz, alphaville"
+
+              - label: "Nome da região"
+                name: "nome"
+                widget: "string"
+
+              - label: "Descrição"
+                name: "descricao"
+                widget: "text"
+
+              - label: "Foto da região"
+                name: "imagem"
+                widget: "image"
+
+              - label: "Cidade usada no filtro"
+                name: "cidadeFiltro"
+                widget: "string"
+                required: false
+                hint: "Ex.: Itu, Porto Feliz, Indaiatuba"
+
+              - label: "Destaque"
+                name: "destaque"
+                widget: "boolean"
+                default: true
+
+
+  # =========================================================
+  # PORTFÓLIO
+  # =========================================================
 
   - name: "portfolio"
     label: "Portfólio"
+
     files:
+
       - name: "portfolio"
         label: "Imóveis e Áreas"
         file: "data/portfolio.json"
         format: "json"
+
         fields:
+
           - label: "Itens"
             name: "itens"
             widget: "list"
             summary: "{{fields.titulo}} — {{fields.cidade}}"
+
             fields:
+
               - { label: "ID interno", name: "id", widget: "string", hint: "Ex.: casa-fazenda-da-grama" }
+
               - { label: "Categoria", name: "categoria", widget: "select", options: ["Imóvel", "Área"] }
+
               - { label: "Status", name: "status", widget: "select", options: ["Disponível", "Reservado", "Em negociação", "Vendido", "Indisponível"], default: "Disponível" }
+
               - { label: "Negócio", name: "negocio", widget: "select", options: ["Venda", "Locação", "Parceria", "Permuta"] }
+
               - { label: "Tipo", name: "tipo", widget: "string" }
+
               - { label: "Título", name: "titulo", widget: "string" }
+
               - { label: "Cidade", name: "cidade", widget: "string" }
+
               - { label: "Bairro / Condomínio / Região", name: "regiao", widget: "string", required: false }
+
               - { label: "Preço numérico", name: "preco", widget: "number", required: false }
+
               - { label: "Preço exibido", name: "precoTexto", widget: "string", required: false }
+
               - { label: "Dormitórios", name: "quartos", widget: "number", required: false, default: 0 }
+
               - { label: "Suítes", name: "suites", widget: "number", required: false, default: 0 }
+
               - { label: "Banheiros", name: "banheiros", widget: "number", required: false, default: 0 }
+
               - { label: "Vagas", name: "vagas", widget: "number", required: false, default: 0 }
+
               - { label: "Área construída (m²)", name: "areaConstruida", widget: "number", required: false, default: 0 }
+
               - { label: "Área do terreno / total (m²)", name: "areaTerreno", widget: "number", required: false, default: 0 }
+
               - { label: "Destaque", name: "destaque", widget: "boolean", default: false }
+
               - { label: "Foto de capa", name: "imagemCapa", widget: "image" }
+
               - label: "Galeria de fotos"
                 name: "galeria"
                 widget: "list"
                 required: false
-                field: { label: "Foto", name: "foto", widget: "image" }
+                field:
+                  label: "Foto"
+                  name: "foto"
+                  widget: "image"
+
               - { label: "Descrição", name: "descricao", widget: "text" }
