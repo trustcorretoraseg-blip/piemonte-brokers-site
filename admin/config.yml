@@ -27,29 +27,55 @@ collections:
 
         fields:
 
-          - { label: "Nome da empresa", name: "nome", widget: "string" }
+          - label: "Nome da empresa"
+            name: "nome"
+            widget: "string"
 
-          - { label: "Título da Home", name: "tituloHome", widget: "string" }
+          - label: "Título da Home"
+            name: "tituloHome"
+            widget: "string"
 
-          - { label: "Subtítulo da Home", name: "subtituloHome", widget: "text" }
+          - label: "Subtítulo da Home"
+            name: "subtituloHome"
+            widget: "text"
 
-          - { label: "Imagem principal da Home", name: "imagemHome", widget: "image" }
+          - label: "Imagem principal da Home"
+            name: "imagemHome"
+            widget: "image"
 
-          - { label: "Texto Sobre", name: "textoSobre", widget: "text" }
+          - label: "Texto Sobre"
+            name: "textoSobre"
+            widget: "text"
 
-          - { label: "WhatsApp (somente números, com DDI)", name: "whatsapp", widget: "string", required: false }
+          - label: "WhatsApp"
+            name: "whatsapp"
+            widget: "string"
+            required: false
+            hint: "Somente números, com DDI. Ex.: 5511999999999"
 
-          - { label: "E-mail", name: "email", widget: "string", required: false }
+          - label: "E-mail"
+            name: "email"
+            widget: "string"
+            required: false
 
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - label: "Instagram"
+            name: "instagram"
+            widget: "string"
+            required: false
 
-          - { label: "Cidade base", name: "cidadeBase", widget: "string", required: false }
+          - label: "Cidade base"
+            name: "cidadeBase"
+            widget: "string"
+            required: false
 
-          - { label: "CRECI empresa", name: "creciEmpresa", widget: "string", required: false }
+          - label: "CRECI empresa"
+            name: "creciEmpresa"
+            widget: "string"
+            required: false
 
 
   # =========================================================
-  # REGIÕES
+  # REGIÕES INSTITUCIONAIS
   # =========================================================
 
   - name: "regioes"
@@ -94,7 +120,7 @@ collections:
                 required: false
                 hint: "Ex.: Itu, Porto Feliz, Indaiatuba"
 
-              - label: "Destaque"
+              - label: "Mostrar na Home"
                 name: "destaque"
                 widget: "boolean"
                 default: true
@@ -116,48 +142,181 @@ collections:
 
         fields:
 
-          - label: "Itens"
+          - label: "Oportunidades"
             name: "itens"
             widget: "list"
             summary: "{{fields.titulo}} — {{fields.cidade}}"
 
             fields:
 
-              - { label: "ID interno", name: "id", widget: "string", hint: "Ex.: casa-fazenda-da-grama" }
+              # =================================================
+              # IDENTIFICAÇÃO
+              # =================================================
 
-              - { label: "Categoria", name: "categoria", widget: "select", options: ["Imóvel", "Área"] }
+              - label: "ID interno"
+                name: "id"
+                widget: "string"
+                hint: "Ex.: casa-terras-sao-jose-itu"
 
-              - { label: "Status", name: "status", widget: "select", options: ["Disponível", "Reservado", "Em negociação", "Vendido", "Indisponível"], default: "Disponível" }
+              - label: "Categoria"
+                name: "categoria"
+                widget: "select"
+                options:
+                  - "Imóvel"
+                  - "Área"
+                default: "Imóvel"
 
-              - { label: "Negócio", name: "negocio", widget: "select", options: ["Venda", "Locação", "Parceria", "Permuta"] }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options:
+                  - "Disponível"
+                  - "Reservado"
+                  - "Em negociação"
+                  - "Vendido"
+                  - "Indisponível"
+                default: "Disponível"
 
-              - { label: "Tipo", name: "tipo", widget: "string" }
+              - label: "Negócio"
+                name: "negocio"
+                widget: "select"
+                options:
+                  - "Venda"
+                  - "Locação"
+                  - "Parceria"
+                  - "Permuta"
+                default: "Venda"
 
-              - { label: "Título", name: "titulo", widget: "string" }
+              - label: "Título do anúncio"
+                name: "titulo"
+                widget: "string"
+                hint: "Ex.: Residência contemporânea no Terras de São José"
 
-              - { label: "Cidade", name: "cidade", widget: "string" }
 
-              - { label: "Bairro / Condomínio / Região", name: "regiao", widget: "string", required: false }
+              # =================================================
+              # LOCALIZAÇÃO
+              # =================================================
 
-              - { label: "Preço numérico", name: "preco", widget: "number", required: false }
+              - label: "Região principal"
+                name: "regiaoPrincipal"
+                widget: "select"
+                options:
+                  - "Itu"
+                  - "Porto Feliz"
+                  - "Indaiatuba"
+                  - "Alphaville"
+                  - "Granja Viana"
+                  - "Sorocaba"
+                  - "Avaré"
+                  - "São Paulo"
+                  - "Outras regiões"
+                hint: "Escolha onde esta oportunidade deve ser organizada."
 
-              - { label: "Preço exibido", name: "precoTexto", widget: "string", required: false }
+              - label: "Cidade"
+                name: "cidade"
+                widget: "string"
+                hint: "Ex.: Itu"
 
-              - { label: "Dormitórios", name: "quartos", widget: "number", required: false, default: 0 }
+              - label: "Bairro / Condomínio / Região"
+                name: "regiao"
+                widget: "string"
+                required: false
+                hint: "Ex.: Terras de São José I, Fazenda da Grama, Alphaville 1"
 
-              - { label: "Suítes", name: "suites", widget: "number", required: false, default: 0 }
 
-              - { label: "Banheiros", name: "banheiros", widget: "number", required: false, default: 0 }
+              # =================================================
+              # TIPO
+              # =================================================
 
-              - { label: "Vagas", name: "vagas", widget: "number", required: false, default: 0 }
+              - label: "Tipo"
+                name: "tipo"
+                widget: "select"
+                options:
+                  - "Casa"
+                  - "Apartamento"
+                  - "Terreno"
+                  - "Sala Comercial"
+                  - "Prédio Comercial"
+                  - "Galpão"
+                  - "Hotel / Pousada"
+                  - "Fazenda / Sítio"
+                  - "Área residencial"
+                  - "Área comercial"
+                  - "Área industrial"
+                  - "Área para incorporação"
+                  - "Área para loteamento"
+                  - "Área rural"
+                  - "Gleba"
+                  - "Empreendimento"
+                  - "Outro"
 
-              - { label: "Área construída (m²)", name: "areaConstruida", widget: "number", required: false, default: 0 }
 
-              - { label: "Área do terreno / total (m²)", name: "areaTerreno", widget: "number", required: false, default: 0 }
+              # =================================================
+              # VALORES
+              # =================================================
 
-              - { label: "Destaque", name: "destaque", widget: "boolean", default: false }
+              - label: "Preço numérico"
+                name: "preco"
+                widget: "number"
+                required: false
+                hint: "Digite somente números. Ex.: 14500000"
 
-              - { label: "Foto de capa", name: "imagemCapa", widget: "image" }
+              - label: "Preço exibido no site"
+                name: "precoTexto"
+                widget: "string"
+                required: false
+                hint: "Ex.: R$ 14.500.000 ou Valor sob consulta"
+
+
+              # =================================================
+              # CARACTERÍSTICAS
+              # =================================================
+
+              - label: "Dormitórios"
+                name: "quartos"
+                widget: "number"
+                required: false
+                default: 0
+
+              - label: "Suítes"
+                name: "suites"
+                widget: "number"
+                required: false
+                default: 0
+
+              - label: "Banheiros"
+                name: "banheiros"
+                widget: "number"
+                required: false
+                default: 0
+
+              - label: "Vagas"
+                name: "vagas"
+                widget: "number"
+                required: false
+                default: 0
+
+              - label: "Área construída (m²)"
+                name: "areaConstruida"
+                widget: "number"
+                required: false
+                default: 0
+
+              - label: "Área do terreno / total (m²)"
+                name: "areaTerreno"
+                widget: "number"
+                required: false
+                default: 0
+
+
+              # =================================================
+              # FOTOS
+              # =================================================
+
+              - label: "Foto de capa"
+                name: "imagemCapa"
+                widget: "image"
+                hint: "Esta será a principal foto do anúncio."
 
               - label: "Galeria de fotos"
                 name: "galeria"
@@ -168,4 +327,17 @@ collections:
                   name: "foto"
                   widget: "image"
 
-              - { label: "Descrição", name: "descricao", widget: "text" }
+
+              # =================================================
+              # APRESENTAÇÃO
+              # =================================================
+
+              - label: "Descrição"
+                name: "descricao"
+                widget: "text"
+
+              - label: "Destaque na Home"
+                name: "destaque"
+                widget: "boolean"
+                default: false
+                hint: "Ative para este imóvel ou área poder aparecer entre os destaques da página inicial."
