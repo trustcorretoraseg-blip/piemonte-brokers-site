@@ -1,608 +1,434 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Áreas | Piemonte Brokers</title>
 
   <meta
     name="description"
     content="Conheça as áreas, terrenos e oportunidades selecionadas pela Piemonte Brokers."
-  />
+  >
 
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link
+    rel="stylesheet"
+    href="/assets/style.css"
+  >
 
-  <style>
-    /* =====================================================
-       MARCA D'ÁGUA PIEMONTE
-       ===================================================== */
-
-    .piemonte-foto {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .piemonte-foto > img:first-child {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .piemonte-foto::after {
-      content: "";
-      position: absolute;
-
-      top: 50%;
-      left: 50%;
-
-      transform: translate(-50%, -50%);
-
-      width: 32%;
-      max-width: 230px;
-      min-width: 100px;
-
-      aspect-ratio: 1 / 1;
-
-      background-image: url("/assets/logo-marca-dagua.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-
-      opacity: 0.38;
-
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    /* Marca maior na visualização ampliada */
-    #modal .piemonte-foto::after {
-      width: 25%;
-      max-width: 280px;
-    }
-  </style>
 </head>
+
 
 <body>
 
-  <!-- =====================================================
-       CABEÇALHO
-       ===================================================== -->
 
-  <header class="header">
+<header class="header">
 
-    <div class="container header-inner">
+  <div class="container nav">
 
-      <a href="/index.html" class="logo-link">
+    <a
+      href="/index.html"
+      class="logo"
+    >
 
-        <img
-          src="/assets/logo-piemonte.png"
-          alt="Piemonte Brokers"
-          class="logo"
-        />
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
 
+    </a>
+
+
+    <button
+      id="menuBtn"
+      class="menu-btn"
+      aria-label="Abrir menu"
+    >
+      ☰
+    </button>
+
+
+    <nav id="menu">
+
+      <a href="/imoveis.html">
+        Imóveis
       </a>
 
-      <nav class="nav">
+      <a href="/areas.html">
+        Áreas
+      </a>
 
-        <a href="/index.html">
-          Home
-        </a>
+      <a href="/regioes.html">
+        Regiões
+      </a>
 
-        <a href="/imoveis.html">
-          Imóveis
-        </a>
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
 
-        <a
-          href="/areas.html"
-          class="ativo"
-        >
-          Áreas
-        </a>
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
 
-        <a href="/regioes.html">
-          Regiões
-        </a>
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
 
-        <a href="/sobre.html">
-          Sobre nós
-        </a>
+      <a href="/contato.html">
+        Contato
+      </a>
 
-        <a href="/parcerias.html">
-          Parcerias
-        </a>
+    </nav>
 
-        <a href="/anuncie.html">
-          Anuncie
-        </a>
+  </div>
 
-        <a href="/contato.html">
-          Contato
-        </a>
+</header>
 
-      </nav>
+
+
+<main>
+
+
+  <section class="page-hero">
+
+    <div class="container">
+
+      <span class="eyebrow">
+        ÁREAS & OPORTUNIDADES
+      </span>
+
+      <h1>
+        Áreas selecionadas
+      </h1>
+
+      <p>
+        Terrenos, glebas, áreas comerciais,
+        industriais e oportunidades estratégicas
+        selecionadas pela Piemonte Brokers.
+      </p>
 
     </div>
 
-  </header>
+  </section>
 
 
-  <!-- =====================================================
-       CONTEÚDO PRINCIPAL
-       ===================================================== -->
 
-  <main>
+  <section class="portfolio-section">
 
-    <!-- HERO -->
+    <div class="container">
 
-    <section class="page-hero">
 
-      <div class="container">
+      <div
+        id="filtros"
+        class="filtros"
+      >
 
-        <span class="eyebrow">
-          ÁREAS & OPORTUNIDADES
+
+        <select id="fCategoria">
+
+          <option value="">
+            Categoria
+          </option>
+
+        </select>
+
+
+        <select id="fNegocio">
+
+          <option value="">
+            Finalidade
+          </option>
+
+          <option value="Venda">
+            Venda
+          </option>
+
+          <option value="Locação">
+            Locação
+          </option>
+
+        </select>
+
+
+        <select id="fCidade">
+
+          <option value="">
+            Região
+          </option>
+
+        </select>
+
+
+        <select id="fTipo">
+
+          <option value="">
+            Tipo de área
+          </option>
+
+        </select>
+
+
+        <select id="fPreco">
+
+          <option value="">
+            Faixa de preço
+          </option>
+
+          <option value="ate-1m">
+            Até R$ 1 milhão
+          </option>
+
+          <option value="1m-3m">
+            R$ 1 a 3 milhões
+          </option>
+
+          <option value="3m-5m">
+            R$ 3 a 5 milhões
+          </option>
+
+          <option value="5m-10m">
+            R$ 5 a 10 milhões
+          </option>
+
+          <option value="10m-30m">
+            R$ 10 a 30 milhões
+          </option>
+
+          <option value="acima-30m">
+            Acima de R$ 30 milhões
+          </option>
+
+        </select>
+
+
+      </div>
+
+
+      <div class="portfolio-info">
+
+        <span id="contador">
+          Carregando áreas...
         </span>
 
-        <h1>
-          Áreas selecionadas
-        </h1>
+      </div>
+
+
+      <div
+        id="cards"
+        class="cards-grid"
+      >
+      </div>
+
+
+      <div
+        id="vazio"
+        class="vazio"
+        style="display:none;"
+      >
+
+        <h3>
+          Nenhuma área encontrada
+        </h3>
 
         <p>
-          Terrenos, glebas, áreas comerciais,
-          industriais e oportunidades estratégicas
-          selecionadas pela Piemonte Brokers.
+          Altere os filtros para visualizar
+          outras oportunidades.
         </p>
 
       </div>
 
-    </section>
+
+    </div>
+
+  </section>
 
 
-    <!-- =====================================================
-         PORTFÓLIO
-         ===================================================== -->
-
-    <section class="portfolio-section">
-
-      <div class="container">
+</main>
 
 
-        <!-- FILTROS -->
 
-        <div
-          id="filtros"
-          class="filtros"
-        >
-
-          <select id="fCategoria">
-
-            <option value="">
-              Categoria
-            </option>
-
-          </select>
+<div
+  id="modal"
+  class="modal"
+  aria-hidden="true"
+  hidden
+>
 
 
-          <select id="fNegocio">
-
-            <option value="">
-              Finalidade
-            </option>
-
-            <option value="Venda">
-              Venda
-            </option>
-
-            <option value="Locação">
-              Locação
-            </option>
-
-          </select>
+  <div class="modal-overlay">
+  </div>
 
 
-          <select id="fCidade">
-
-            <option value="">
-              Cidade / Região
-            </option>
-
-          </select>
+  <div class="modal-content">
 
 
-          <select id="fTipo">
-
-            <option value="">
-              Tipo de área
-            </option>
-
-          </select>
-
-
-          <select id="fPreco">
-
-            <option value="">
-              Faixa de preço
-            </option>
-
-            <option value="ate-1m">
-              Até R$ 1 milhão
-            </option>
-
-            <option value="1m-3m">
-              R$ 1 a 3 milhões
-            </option>
-
-            <option value="3m-5m">
-              R$ 3 a 5 milhões
-            </option>
-
-            <option value="5m-10m">
-              R$ 5 a 10 milhões
-            </option>
-
-            <option value="10m-30m">
-              R$ 10 a 30 milhões
-            </option>
-
-            <option value="acima-30m">
-              Acima de R$ 30 milhões
-            </option>
-
-          </select>
-
-        </div>
+    <button
+      type="button"
+      class="modal-close"
+      id="modalClose"
+      aria-label="Fechar"
+    >
+      ×
+    </button>
 
 
-        <!-- CONTADOR -->
+    <div class="piemonte-foto modal-foto">
 
-        <div class="portfolio-info">
-
-          <span id="contador">
-            Carregando áreas...
-          </span>
-
-        </div>
-
-
-        <!-- =====================================================
-             CARDS DAS ÁREAS
-             ===================================================== -->
-
-        <div
-          id="cards"
-          class="cards-grid"
-        ></div>
-
-
-        <!-- NENHUM RESULTADO -->
-
-        <div
-          id="vazio"
-          class="vazio"
-          style="display:none;"
-        >
-
-          <h3>
-            Nenhuma área encontrada
-          </h3>
-
-          <p>
-            Altere os filtros para visualizar
-            outras oportunidades.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================================
-       MODAL / DETALHES DA ÁREA
-       ===================================================== -->
-
-  <div
-    id="modal"
-    class="modal"
-    aria-hidden="true"
-  >
-
-    <div class="modal-overlay"></div>
-
-    <div class="modal-content">
-
-      <button
-        type="button"
-        class="modal-close"
-        id="modalClose"
-        aria-label="Fechar"
+      <img
+        id="modalImg"
+        src=""
+        alt=""
       >
-        ×
-      </button>
+
+    </div>
 
 
-      <!-- FOTO PRINCIPAL COM MARCA D'ÁGUA -->
+    <div class="modal-body">
 
-      <div class="piemonte-foto modal-foto">
 
-        <img
-          id="modalImg"
-          src=""
-          alt=""
-        />
+      <span
+        id="modalCategoria"
+        class="eyebrow dark"
+      >
+      </span>
 
+
+      <h2 id="modalTitulo">
+      </h2>
+
+
+      <p id="modalLocal">
+      </p>
+
+
+      <div
+        id="modalSpecs"
+        class="modal-specs"
+      >
       </div>
 
 
-      <!-- INFORMAÇÕES -->
-
-      <div class="modal-body">
-
-        <span
-          id="modalCategoria"
-          class="eyebrow"
-        ></span>
-
-        <h2 id="modalTitulo"></h2>
-
-        <p id="modalLocal"></p>
+      <div
+        id="modalDescricao"
+        class="modal-descricao"
+      >
+      </div>
 
 
-        <!-- CARACTERÍSTICAS -->
-
-        <div
-          id="modalSpecs"
-          class="modal-specs"
-        ></div>
-
-
-        <!-- DESCRIÇÃO -->
-
-        <div
-          id="modalDescricao"
-          class="modal-descricao"
-        ></div>
+      <div
+        id="modalGaleria"
+        class="modal-galeria"
+      >
+      </div>
 
 
-        <!-- GALERIA -->
+      <div class="modal-footer">
 
-        <div
-          id="modalGaleria"
-          class="modal-galeria"
-        ></div>
+        <div>
 
+          <small>
+            Valor
+          </small>
 
-        <!-- PREÇO / CONTATO -->
-
-        <div class="modal-footer">
-
-          <div>
-
-            <small>
-              Valor
-            </small>
-
-            <strong id="modalPreco"></strong>
-
-          </div>
-
-          <a
-            href="/contato.html"
-            class="btn-primary"
-          >
-            Tenho interesse
-          </a>
+          <strong id="modalPreco">
+          </strong>
 
         </div>
 
+
+        <a
+          href="/contato.html"
+          class="btn-primary"
+        >
+          Tenho interesse
+        </a>
+
       </div>
+
 
     </div>
 
   </div>
 
+</div>
 
-  <!-- =====================================================
-       RODAPÉ
-       ===================================================== -->
 
-  <footer class="footer">
 
-    <div class="container footer-inner">
+<footer>
 
-      <div>
+  <div class="container footer">
 
-        <img
-          src="/assets/logo-piemonte.png"
-          alt="Piemonte Brokers"
-          class="footer-logo"
-        />
 
-      </div>
+    <div>
 
-      <div>
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
 
-        <p>
-          Piemonte Brokers
-        </p>
+    </div>
 
-        <p>
-          Imóveis, áreas e oportunidades
-          com visão estratégica.
-        </p>
 
+    <div>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
+      <div id="footerContato">
       </div>
 
     </div>
 
-  </footer>
+
+  </div>
 
 
-  <!-- =====================================================
-       SCRIPT PRINCIPAL
-       ===================================================== -->
+  <div class="container copyright">
+    © 2026 Piemonte Brokers. Todos os direitos reservados.
+  </div>
 
-  <script src="/assets/script.js"></script>
-
-
-  <!-- =====================================================
-       MARCA D'ÁGUA AUTOMÁTICA
-       ===================================================== -->
-
-  <script>
-
-    function aplicarMarcaDagua() {
-
-      const imagens = document.querySelectorAll("#cards img");
-
-      imagens.forEach((imagem) => {
-
-        /*
-          Se já estiver dentro de uma camada
-          de marca d'água, não fazemos novamente.
-        */
-
-        if (
-          imagem.parentElement &&
-          imagem.parentElement.classList.contains("piemonte-foto")
-        ) {
-          return;
-        }
+</footer>
 
 
-        /*
-          Cria uma camada ao redor da foto.
-        */
+<script src="/assets/script.js"></script>
 
-        const wrapper =
-          document.createElement("div");
-
-        wrapper.className =
-          "piemonte-foto";
-
-
-        /*
-          Coloca o wrapper exatamente
-          onde a imagem estava.
-        */
-
-        imagem.parentNode.insertBefore(
-          wrapper,
-          imagem
-        );
-
-        wrapper.appendChild(imagem);
-
-      });
-
-    }
-
-
-    /*
-      Executa quando a página terminar
-      de carregar.
-    */
-
-    window.addEventListener(
-      "load",
-      aplicarMarcaDagua
-    );
-
-
-    /*
-      Os cards podem ser carregados
-      dinamicamente pelo script.js.
-
-      Por isso o navegador observa
-      alterações dentro da grade.
-    */
-
-    const cardsContainer =
-      document.getElementById("cards");
-
-    if (cardsContainer) {
-
-      const observer =
-        new MutationObserver(() => {
-
-          aplicarMarcaDagua();
-
-        });
-
-
-      observer.observe(
-        cardsContainer,
-        {
-          childList: true,
-          subtree: true
-        }
-      );
-
-    }
-
-
-    /*
-      Também coloca marca d'água
-      nas imagens da galeria do modal.
-    */
-
-    const galeria =
-      document.getElementById("modalGaleria");
-
-    if (galeria) {
-
-      const observerGaleria =
-        new MutationObserver(() => {
-
-          const imagensGaleria =
-            galeria.querySelectorAll("img");
-
-          imagensGaleria.forEach(
-            (imagem) => {
-
-              if (
-                imagem.parentElement &&
-                imagem.parentElement.classList.contains(
-                  "piemonte-foto"
-                )
-              ) {
-                return;
-              }
-
-              const wrapper =
-                document.createElement("div");
-
-              wrapper.className =
-                "piemonte-foto";
-
-              imagem.parentNode.insertBefore(
-                wrapper,
-                imagem
-              );
-
-              wrapper.appendChild(imagem);
-
-            }
-          );
-
-        });
-
-
-      observerGaleria.observe(
-        galeria,
-        {
-          childList: true,
-          subtree: true
-        }
-      );
-
-    }
-
-  </script>
 
 </body>
+
 </html>
