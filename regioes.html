@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta
+    name="description"
+    content="Áreas, glebas, propriedades rurais e oportunidades para investidores pela Piemonte Brokers."
+  >
+
+  <title>Áreas | Piemonte Brokers</title>
+
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+
+    <a href="/index.html" class="logo">
+      <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+    </a>
+
+    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">
+      ☰
+    </button>
+
+    <nav id="menu">
+      <a href="/imoveis.html">Imóveis</a>
+      <a href="/areas.html">Áreas</a>
+      <a href="/regioes.html">Regiões</a>
+      <a href="/sobre.html">Sobre Nós</a>
+      <a href="/anuncie.html">Anuncie conosco</a>
+      <a href="/parcerias.html">Parcerias</a>
+      <a href="/contato.html">Contato</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+<section class="section dark-section">
+
+  <div class="container">
+
+    <div style="max-width:900px">
+
+      <p class="eyebrow">
+        ÁREAS & NEGÓCIOS
+      </p>
+
+      <h1 style="font-size:clamp(44px,6vw,72px)">
+        Áreas estratégicas e oportunidades de investimento.
+      </h1>
+
+      <p style="
+        max-width:760px;
+        font-size:18px;
+        line-height:1.8;
+        color:rgba(255,255,255,.75);
+        margin-top:24px;
+      ">
+        Áreas para incorporação, loteamentos, ativos comerciais,
+        propriedades rurais, glebas e oportunidades selecionadas
+        para investidores e desenvolvedores.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="search-section" style="margin-top:-30px">
+
+  <div class="container">
+
+    <form id="filtros" class="search-box">
+
+      <select id="fCategoria">
+        <option value="">Áreas</option>
+        <option value="Área">Área</option>
+      </select>
+
+
+      <select id="fNegocio">
+        <option value="">Tipo de negociação</option>
+        <option value="Venda">Venda</option>
+        <option value="Parceria">Parceria</option>
+      </select>
+
+
+      <input
+        id="fCidade"
+        placeholder="Cidade ou região"
+      >
+
+
+      <select id="fTipo">
+        <option value="">Todos os tipos</option>
+      </select>
+
+
+      <select id="fPreco">
+
+        <option value="">
+          Qualquer valor
+        </option>
+
+        <option value="5000000">
+          Até R$ 5 mi
+        </option>
+
+        <option value="10000000">
+          Até R$ 10 mi
+        </option>
+
+        <option value="50000000">
+          Até R$ 50 mi
+        </option>
+
+        <option value="100000000">
+          Até R$ 100 mi
+        </option>
+
+        <option value="500000000">
+          Até R$ 500 mi
+        </option>
+
+      </select>
+
+
+      <button class="btn gold" type="submit">
+        Buscar
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+
+        <p class="eyebrow dark">
+          PORTFÓLIO
+        </p>
+
+        <h2>
+          Oportunidades para investidores.
+        </h2>
+
+      </div>
+
+      <span id="contador" class="counter"></span>
+
+    </div>
+
+
+    <div id="cards" class="cards"></div>
+
+
+    <p id="vazio" class="empty" hidden>
+      Nenhuma área encontrada.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<section class="section warm">
+
+  <div class="container split">
+
+    <div>
+
+      <p class="eyebrow dark">
+        INCORPORAÇÃO & DESENVOLVIMENTO
+      </p>
+
+      <h2>
+        Áreas para projetos imobiliários.
+      </h2>
+
+    </div>
+
+
+    <div class="prose">
+
+      <p>
+        Trabalhamos com glebas e áreas destinadas a loteamentos,
+        condomínios residenciais, empreendimentos comerciais,
+        industriais e projetos de desenvolvimento imobiliário.
+      </p>
+
+      <p>
+        Nossa atuação inclui oportunidades públicas e ativos
+        apresentados de forma reservada para investidores e
+        empresas qualificadas.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="section">
+
+  <div class="container split">
+
+    <div>
+
+      <p class="eyebrow dark">
+        PROPRIEDADES RURAIS
+      </p>
+
+      <h2>
+        Fazendas, sítios e grandes propriedades.
+      </h2>
+
+    </div>
+
+
+    <div class="prose">
+
+      <p>
+        A Piemonte também atua na apresentação de propriedades
+        rurais e ativos de maior escala, conectando proprietários,
+        compradores e investidores.
+      </p>
+
+      <a
+        href="/contato.html"
+        class="btn dark-btn"
+      >
+        Falar com nossa equipe
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="section dark-section">
+
+  <div class="container split">
+
+    <div>
+
+      <p class="eyebrow">
+        OFF-MARKET
+      </p>
+
+      <h2>
+        Nem toda oportunidade está publicada.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Parte dos ativos negociados pela Piemonte é apresentada
+        de forma reservada, respeitando a confidencialidade
+        de proprietários e investidores.
+      </p>
+
+      <a
+        href="/contato.html"
+        class="text-link light"
+      >
+        Solicitar oportunidades →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="section warm">
+
+  <div class="container split">
+
+    <div>
+
+      <p class="eyebrow dark">
+        PROPRIETÁRIOS
+      </p>
+
+      <h2>
+        Tem uma área ou ativo para apresentar?
+      </h2>
+
+    </div>
+
+
+    <div class="prose">
+
+      <p>
+        Se você possui uma área, gleba, propriedade rural,
+        ativo comercial ou oportunidade de desenvolvimento,
+        apresente as informações iniciais para nossa equipe.
+      </p>
+
+      <a
+        href="/anuncie.html"
+        class="btn dark-btn"
+      >
+        Apresentar uma oportunidade
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+
+<footer>
+
+  <div class="container footer">
+
+    <div>
+
+      <a href="/index.html">
+        <img
+          src="/assets/logo-piemonte.png"
+          alt="Piemonte Brokers"
+        >
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <a href="/imoveis.html">Imóveis</a>
+      <a href="/areas.html">Áreas</a>
+      <a href="/regioes.html">Regiões</a>
+      <a href="/sobre.html">Sobre Nós</a>
+
+    </div>
+
+
+    <div>
+
+      <a href="/anuncie.html">Anuncie conosco</a>
+      <a href="/parcerias.html">Parcerias</a>
+      <a href="/contato.html">Contato</a>
+
+      <div id="footerContato"></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="container copyright">
+    © 2026 Piemonte Brokers. Todos os direitos reservados.
+  </div>
+
+</footer>
+
+
+
+<div id="modal" class="modal" hidden>
+
+  <div class="modal-card">
+
+    <button
+      id="fecharModal"
+      class="close"
+      aria-label="Fechar"
+    >
+      ×
+    </button>
+
+    <img id="modalImg" alt="">
+
+    <div class="modal-body">
+
+      <p id="modalMeta" class="eyebrow dark"></p>
+
+      <h2 id="modalTitulo"></h2>
+
+      <p id="modalDesc"></p>
+
+      <div id="modalSpecs" class="specs"></div>
+
+      <div id="modalGaleria" class="mini-gallery"></div>
+
+      <strong
+        id="modalPreco"
+        class="price big"
+      ></strong>
+
+      <a
+        class="btn gold wide"
+        href="/contato.html"
+        id="modalCta"
+      >
+        Tenho interesse
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="/assets/script.js"></script>
+
+</body>
+
+</html>

@@ -1,163 +1,781 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Piemonte Brokers">
+
+  <meta name="description" content="Piemonte Brokers - Imóveis de alto padrão, áreas e oportunidades imobiliárias.">
+
   <title>Piemonte Brokers</title>
+
   <link rel="stylesheet" href="/assets/style.css">
 </head>
+
 <body>
+
 <header class="header">
   <div class="container nav">
-    <a href="#inicio" class="logo"><img src="/assets/logo-piemonte.png" alt="Piemonte Brokers"></a>
-    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">☰</button>
+
+    <a href="/index.html" class="logo">
+      <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+    </a>
+
+    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">
+      ☰
+    </button>
+
     <nav id="menu">
-      <a href="#portfolio">Imóveis</a>
-      <a href="#areas">Áreas</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#anuncie">Anuncie conosco</a>
-      <a href="#parcerias">Parcerias</a>
-      <a href="#contato">Contato</a>
+
+      <a href="/imoveis.html">Imóveis</a>
+
+      <a href="/areas.html">Áreas</a>
+
+      <a href="/regioes.html">Regiões</a>
+
+      <a href="/sobre.html">Sobre Nós</a>
+
+      <a href="/anuncie.html">Anuncie conosco</a>
+
+      <a href="/parcerias.html">Parcerias</a>
+
+      <a href="/contato.html">Contato</a>
+
     </nav>
+
   </div>
 </header>
 
+
 <main>
+
+
+<!-- =========================
+HERO
+========================= -->
+
 <section id="inicio" class="hero">
+
   <div class="hero-overlay"></div>
+
   <div class="container hero-content">
-    <p class="eyebrow">PIEMONTE BROKERS • CURADORIA IMOBILIÁRIA</p>
-    <h1 id="tituloHome">Imóveis, áreas e oportunidades com visão estratégica.</h1>
-    <p id="subtituloHome">Curadoria imobiliária de alto padrão.</p>
+
+    <p class="eyebrow">
+      PIEMONTE BROKERS • CURADORIA IMOBILIÁRIA
+    </p>
+
+    <h1 id="tituloHome">
+      Imóveis, áreas e oportunidades com visão estratégica.
+    </h1>
+
+    <p id="subtituloHome">
+      Curadoria imobiliária de alto padrão, ativos selecionados e oportunidades exclusivas.
+    </p>
+
     <div class="hero-actions">
-      <a class="btn gold" href="#portfolio">Explorar portfólio</a>
-      <a class="btn ghost" href="#anuncie">Quero anunciar</a>
+
+      <a class="btn gold" href="/imoveis.html">
+        Explorar imóveis
+      </a>
+
+      <a class="btn ghost" href="/anuncie.html">
+        Quero anunciar
+      </a>
+
     </div>
+
   </div>
+
 </section>
+
+
+<!-- =========================
+BUSCA
+========================= -->
 
 <section class="search-section">
+
   <div class="container">
+
     <form id="filtros" class="search-box">
-      <select id="fCategoria"><option value="">Imóveis e áreas</option><option>Imóvel</option><option>Área</option></select>
-      <select id="fNegocio"><option value="">Comprar ou alugar</option><option>Venda</option><option>Locação</option><option>Parceria</option></select>
-      <input id="fCidade" placeholder="Cidade ou região">
-      <select id="fTipo"><option value="">Todos os tipos</option></select>
-      <select id="fPreco">
-        <option value="">Qualquer valor</option>
-        <option value="1000000">Até R$ 1 mi</option>
-        <option value="3000000">Até R$ 3 mi</option>
-        <option value="5000000">Até R$ 5 mi</option>
-        <option value="10000000">Até R$ 10 mi</option>
-        <option value="50000000">Até R$ 50 mi</option>
+
+      <select id="fCategoria">
+
+        <option value="">
+          Imóveis e áreas
+        </option>
+
+        <option>
+          Imóvel
+        </option>
+
+        <option>
+          Área
+        </option>
+
       </select>
-      <button class="btn gold" type="submit">Buscar</button>
+
+
+      <select id="fNegocio">
+
+        <option value="">
+          Comprar ou alugar
+        </option>
+
+        <option>
+          Venda
+        </option>
+
+        <option>
+          Locação
+        </option>
+
+        <option>
+          Parceria
+        </option>
+
+      </select>
+
+
+      <input
+        id="fCidade"
+        placeholder="Cidade ou região"
+      >
+
+
+      <select id="fTipo">
+
+        <option value="">
+          Todos os tipos
+        </option>
+
+      </select>
+
+
+      <select id="fPreco">
+
+        <option value="">
+          Qualquer valor
+        </option>
+
+        <option value="1000000">
+          Até R$ 1 mi
+        </option>
+
+        <option value="3000000">
+          Até R$ 3 mi
+        </option>
+
+        <option value="5000000">
+          Até R$ 5 mi
+        </option>
+
+        <option value="10000000">
+          Até R$ 10 mi
+        </option>
+
+        <option value="50000000">
+          Até R$ 50 mi
+        </option>
+
+      </select>
+
+
+      <button class="btn gold" type="submit">
+        Buscar
+      </button>
+
     </form>
+
   </div>
+
 </section>
 
-<section id="portfolio" class="section">
+
+
+<!-- =========================
+IMÓVEIS EM DESTAQUE
+========================= -->
+
+<section class="section">
+
   <div class="container">
+
     <div class="section-head">
-      <div><p class="eyebrow dark">PORTFÓLIO</p><h2>Oportunidades selecionadas</h2></div>
-      <span id="contador" class="counter"></span>
+
+      <div>
+
+        <p class="eyebrow dark">
+          IMÓVEIS
+        </p>
+
+        <h2>
+          Oportunidades selecionadas.
+        </h2>
+
+      </div>
+
+      <a href="/imoveis.html" class="text-link">
+        Ver todos →
+      </a>
+
     </div>
-    <div id="cards" class="cards"></div>
-    <p id="vazio" class="empty" hidden>Nenhuma oportunidade encontrada.</p>
+
+
+    <div id="cards" class="cards">
+    </div>
+
+
+    <p id="vazio" class="empty" hidden>
+      Nenhuma oportunidade encontrada.
+    </p>
+
   </div>
+
 </section>
 
-<section id="areas" class="section dark-section">
+
+
+<!-- =========================
+ÁREAS E NEGÓCIOS
+========================= -->
+
+<section class="section dark-section">
+
   <div class="container split">
-    <div><p class="eyebrow">ÁREAS & NEGÓCIOS</p><h2>Ativos para investidores e desenvolvedores.</h2></div>
-    <div><p>Áreas para incorporação, loteamentos, ativos comerciais, propriedades rurais e oportunidades off-market.</p><a href="#parcerias" class="text-link light">Apresentar uma oportunidade →</a></div>
+
+    <div>
+
+      <p class="eyebrow">
+        ÁREAS & NEGÓCIOS
+      </p>
+
+      <h2>
+        Ativos para investidores e desenvolvedores.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Áreas para incorporação, loteamentos, ativos comerciais,
+        propriedades rurais e oportunidades off-market.
+      </p>
+
+      <a href="/areas.html" class="text-link light">
+        Conhecer nossas áreas →
+      </a>
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="sobre" class="section">
+
+
+<!-- =========================
+REGIÕES
+========================= -->
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+
+        <p class="eyebrow dark">
+          REGIÕES
+        </p>
+
+        <h2>
+          Atuação nos principais mercados.
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="cards">
+
+      <a href="/regioes.html" class="card">
+
+        <div class="card-body">
+
+          <p class="meta">
+            ITU
+          </p>
+
+          <h3>
+            Itu
+          </h3>
+
+          <p>
+            Casas de alto padrão, condomínios exclusivos,
+            terrenos e áreas estratégicas.
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a href="/regioes.html" class="card">
+
+        <div class="card-body">
+
+          <p class="meta">
+            PORTO FELIZ
+          </p>
+
+          <h3>
+            Porto Feliz
+          </h3>
+
+          <p>
+            Condomínios de luxo, propriedades diferenciadas
+            e oportunidades exclusivas.
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a href="/regioes.html" class="card">
+
+        <div class="card-body">
+
+          <p class="meta">
+            INDAIATUBA
+          </p>
+
+          <h3>
+            Indaiatuba
+          </h3>
+
+          <p>
+            Residências contemporâneas,
+            condomínios consolidados e imóveis selecionados.
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a href="/regioes.html" class="card">
+
+        <div class="card-body">
+
+          <p class="meta">
+            ALPHAVILLE
+          </p>
+
+          <h3>
+            Alphaville
+          </h3>
+
+          <p>
+            Imóveis de alto padrão,
+            oportunidades residenciais e ativos exclusivos.
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a href="/regioes.html" class="card">
+
+        <div class="card-body">
+
+          <p class="meta">
+            GRANJA VIANA
+          </p>
+
+          <h3>
+            Granja Viana
+          </h3>
+
+          <p>
+            Casas, terrenos e propriedades
+            em condomínios de referência.
+          </p>
+
+        </div>
+
+      </a>
+
+
+      <a href="/regioes.html" class="card">
+
+        <div class="card-body">
+
+          <p class="meta">
+            OUTRAS REGIÕES
+          </p>
+
+          <h3>
+            Oportunidades especiais
+          </h3>
+
+          <p>
+            Ativos selecionados em outras cidades,
+            áreas rurais e oportunidades off-market.
+          </p>
+
+        </div>
+
+      </a>
+
+    </div>
+
+
+    <div style="margin-top:35px">
+
+      <a class="btn dark-btn" href="/regioes.html">
+        Ver todas as regiões
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+SOBRE
+========================= -->
+
+<section class="section warm">
+
   <div class="container split">
-    <div><p class="eyebrow dark">SOBRE A PIEMONTE</p><h2>Relacionamento, curadoria e apresentação profissional.</h2></div>
-    <div class="prose"><p id="textoSobre"></p></div>
-  </div>
-</section>
 
-<section id="anuncie" class="section warm">
-  <div class="container form-layout">
     <div>
-      <p class="eyebrow dark">ANUNCIE CONOSCO</p>
-      <h2>Quer vender ou disponibilizar seu imóvel?</h2>
-      <p>Envie as informações iniciais. Nossa equipe entrará em contato para avaliar o ativo e conversar sobre estratégia comercial e apresentação.</p>
+
+      <p class="eyebrow dark">
+        SOBRE A PIEMONTE
+      </p>
+
+      <h2>
+        Relacionamento, estratégia e curadoria imobiliária.
+      </h2>
+
     </div>
-    <form name="anuncie-conosco" method="POST" data-netlify="true" class="lead-form">
-      <input type="hidden" name="form-name" value="anuncie-conosco">
-      <input name="nome" placeholder="Nome" required>
-      <input name="whatsapp" placeholder="WhatsApp" required>
-      <input name="email" type="email" placeholder="E-mail">
-      <select name="tipo"><option>Tipo do ativo</option><option>Casa</option><option>Apartamento</option><option>Terreno</option><option>Área</option><option>Fazenda / Sítio</option><option>Comercial</option><option>Outro</option></select>
-      <input name="cidade" placeholder="Cidade / região">
-      <input name="valor" placeholder="Valor pretendido">
-      <textarea name="descricao" placeholder="Conte um pouco sobre o imóvel ou área"></textarea>
-      <button class="btn dark-btn" type="submit">Solicitar contato</button>
-    </form>
+
+
+    <div class="prose">
+
+      <p>
+        A Piemonte Brokers atua na intermediação de imóveis,
+        áreas e oportunidades imobiliárias selecionadas,
+        oferecendo atendimento personalizado para proprietários,
+        compradores, investidores e parceiros.
+      </p>
+
+      <p>
+        Nosso trabalho combina conhecimento de mercado,
+        relacionamento, apresentação profissional dos ativos
+        e uma atuação direcionada para oportunidades de alto valor.
+      </p>
+
+      <a href="/sobre.html" class="text-link">
+        Conheça a Piemonte →
+      </a>
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="parcerias" class="section">
-  <div class="container form-layout">
-    <div>
-      <p class="eyebrow dark">PARCERIAS</p>
-      <h2>Corretores, incorporadoras e parceiros de negócios.</h2>
-      <p>Tem uma oportunidade, cliente comprador, área, empreendimento ou ativo que faça sentido para a Piemonte? Fale conosco.</p>
-    </div>
-    <form name="parcerias" method="POST" data-netlify="true" class="lead-form bordered">
-      <input type="hidden" name="form-name" value="parcerias">
-      <input name="nome" placeholder="Nome / empresa" required>
-      <input name="whatsapp" placeholder="WhatsApp" required>
-      <input name="email" type="email" placeholder="E-mail">
-      <select name="perfil"><option>Perfil da parceria</option><option>Corretor / imobiliária</option><option>Incorporadora / loteadora</option><option>Investidor</option><option>Proprietário</option><option>Outro</option></select>
-      <textarea name="mensagem" placeholder="Descreva a oportunidade ou parceria"></textarea>
-      <button class="btn dark-btn" type="submit">Falar sobre parceria</button>
-    </form>
-  </div>
-</section>
 
-<section id="contato" class="section contact">
+
+<!-- =========================
+ANUNCIE CONOSCO
+========================= -->
+
+<section class="section">
+
   <div class="container split">
-    <div><p class="eyebrow">CONTATO</p><h2>Vamos conversar?</h2></div>
+
     <div>
-      <p>Atendimento personalizado para compra, venda, captação e parcerias imobiliárias.</p>
-      <div id="contatoLinks"></div>
+
+      <p class="eyebrow dark">
+        ANUNCIE CONOSCO
+      </p>
+
+      <h2>
+        Seu imóvel merece uma apresentação diferenciada.
+      </h2>
+
     </div>
+
+
+    <div class="prose">
+
+      <p>
+        Se você deseja vender, disponibilizar ou apresentar
+        uma propriedade ao mercado, nossa equipe pode avaliar
+        a oportunidade e definir a melhor estratégia comercial.
+      </p>
+
+      <a class="btn gold" href="/anuncie.html">
+        Quero anunciar meu imóvel
+      </a>
+
+    </div>
+
   </div>
+
 </section>
+
+
+
+<!-- =========================
+PARCERIAS
+========================= -->
+
+<section class="section dark-section">
+
+  <div class="container split">
+
+    <div>
+
+      <p class="eyebrow">
+        PARCERIAS
+      </p>
+
+      <h2>
+        Conexões que geram oportunidades.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Trabalhamos com corretores, imobiliárias,
+        incorporadoras, loteadoras, investidores,
+        proprietários e parceiros estratégicos.
+      </p>
+
+      <a href="/parcerias.html" class="text-link light">
+        Falar sobre parceria →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+CONTATO
+========================= -->
+
+<section class="section contact">
+
+  <div class="container split">
+
+    <div>
+
+      <p class="eyebrow">
+        CONTATO
+      </p>
+
+      <h2>
+        Vamos conversar?
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Atendimento personalizado para compra,
+        venda, captação, investimentos e parcerias imobiliárias.
+      </p>
+
+      <div id="contatoLinks">
+      </div>
+
+      <a
+        href="/contato.html"
+        class="btn gold"
+        style="margin-top:20px"
+      >
+        Entrar em contato
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 </main>
 
+
+
+<!-- =========================
+RODAPÉ
+========================= -->
+
 <footer>
+
   <div class="container footer">
-    <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
-    <div><a href="#portfolio">Imóveis</a><a href="#areas">Áreas</a><a href="#anuncie">Anuncie conosco</a><a href="#parcerias">Parcerias</a></div>
-    <div id="footerContato"></div>
+
+    <div>
+
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
+
+    </div>
+
+
+    <div>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
+      <div id="footerContato">
+      </div>
+
+    </div>
+
   </div>
-  <div class="container copyright">© 2026 Piemonte Brokers. Todos os direitos reservados.</div>
+
+
+  <div class="container copyright">
+    © 2026 Piemonte Brokers. Todos os direitos reservados.
+  </div>
+
 </footer>
 
+
+
+<!-- =========================
+MODAL IMÓVEL
+========================= -->
+
 <div id="modal" class="modal" hidden>
+
   <div class="modal-card">
-    <button id="fecharModal" class="close" aria-label="Fechar">×</button>
+
+    <button
+      id="fecharModal"
+      class="close"
+      aria-label="Fechar"
+    >
+      ×
+    </button>
+
+
     <img id="modalImg" alt="">
+
+
     <div class="modal-body">
-      <p id="modalMeta" class="eyebrow dark"></p>
-      <h2 id="modalTitulo"></h2>
-      <p id="modalDesc"></p>
-      <div id="modalSpecs" class="specs"></div>
-      <div id="modalGaleria" class="mini-gallery"></div>
-      <strong id="modalPreco" class="price big"></strong>
-      <a class="btn gold wide" href="#contato" id="modalCta">Tenho interesse</a>
+
+      <p
+        id="modalMeta"
+        class="eyebrow dark"
+      >
+      </p>
+
+
+      <h2 id="modalTitulo">
+      </h2>
+
+
+      <p id="modalDesc">
+      </p>
+
+
+      <div
+        id="modalSpecs"
+        class="specs"
+      >
+      </div>
+
+
+      <div
+        id="modalGaleria"
+        class="mini-gallery"
+      >
+      </div>
+
+
+      <strong
+        id="modalPreco"
+        class="price big"
+      >
+      </strong>
+
+
+      <a
+        class="btn gold wide"
+        href="/contato.html"
+        id="modalCta"
+      >
+        Tenho interesse
+      </a>
+
     </div>
+
   </div>
+
 </div>
 
+
+
 <script src="/assets/script.js"></script>
+
 </body>
+
 </html>
