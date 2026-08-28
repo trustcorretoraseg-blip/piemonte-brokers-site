@@ -118,7 +118,6 @@ collections:
                 name: "cidadeFiltro"
                 widget: "string"
                 required: false
-                hint: "Ex.: Itu, Porto Feliz, Indaiatuba"
 
               - label: "Mostrar na Home"
                 name: "destaque"
@@ -145,12 +144,12 @@ collections:
           - label: "Oportunidades"
             name: "itens"
             widget: "list"
-            summary: "{{fields.titulo}} — {{fields.cidade}}"
+            summary: "{{fields.titulo}} — {{fields.regiaoPrincipal}}"
 
             fields:
 
               # =================================================
-              # IDENTIFICAÇÃO
+              # 1. IDENTIFICAÇÃO
               # =================================================
 
               - label: "ID interno"
@@ -194,7 +193,7 @@ collections:
 
 
               # =================================================
-              # LOCALIZAÇÃO
+              # 2. ORGANIZAÇÃO / REGIÃO
               # =================================================
 
               - label: "Região principal"
@@ -210,14 +209,15 @@ collections:
                   - "Avaré"
                   - "São Paulo"
                   - "Outras regiões"
-                hint: "Escolha onde esta oportunidade deve ser organizada."
+                hint: "Escolha onde esta oportunidade deve ficar organizada."
 
               - label: "Cidade"
                 name: "cidade"
                 widget: "string"
-                hint: "Ex.: Itu"
+                required: false
+                hint: "Ex.: Itu, Cotia, Santana de Parnaíba"
 
-              - label: "Bairro / Condomínio / Região"
+              - label: "Bairro / Condomínio / Localização"
                 name: "regiao"
                 widget: "string"
                 required: false
@@ -225,18 +225,18 @@ collections:
 
 
               # =================================================
-              # TIPO
+              # 3. TIPO DO ATIVO
               # =================================================
 
-              - label: "Tipo"
+              - label: "Tipo do ativo"
                 name: "tipo"
                 widget: "select"
                 options:
                   - "Casa"
                   - "Apartamento"
-                  - "Terreno"
-                  - "Sala Comercial"
-                  - "Prédio Comercial"
+                  - "Terreno residencial"
+                  - "Sala comercial"
+                  - "Prédio comercial"
                   - "Galpão"
                   - "Hotel / Pousada"
                   - "Fazenda / Sítio"
@@ -249,10 +249,11 @@ collections:
                   - "Gleba"
                   - "Empreendimento"
                   - "Outro"
+                hint: "Para Categoria Imóvel, escolha um tipo de imóvel. Para Categoria Área, escolha um tipo de área."
 
 
               # =================================================
-              # VALORES
+              # 4. VALORES
               # =================================================
 
               - label: "Preço numérico"
@@ -269,7 +270,7 @@ collections:
 
 
               # =================================================
-              # CARACTERÍSTICAS
+              # 5. CARACTERÍSTICAS
               # =================================================
 
               - label: "Dormitórios"
@@ -277,24 +278,28 @@ collections:
                 widget: "number"
                 required: false
                 default: 0
+                hint: "Para áreas, pode deixar 0."
 
               - label: "Suítes"
                 name: "suites"
                 widget: "number"
                 required: false
                 default: 0
+                hint: "Para áreas, pode deixar 0."
 
               - label: "Banheiros"
                 name: "banheiros"
                 widget: "number"
                 required: false
                 default: 0
+                hint: "Para áreas, pode deixar 0."
 
               - label: "Vagas"
                 name: "vagas"
                 widget: "number"
                 required: false
                 default: 0
+                hint: "Para áreas, pode deixar 0."
 
               - label: "Área construída (m²)"
                 name: "areaConstruida"
@@ -310,13 +315,13 @@ collections:
 
 
               # =================================================
-              # FOTOS
+              # 6. FOTOS
               # =================================================
 
               - label: "Foto de capa"
                 name: "imagemCapa"
                 widget: "image"
-                hint: "Esta será a principal foto do anúncio."
+                hint: "Imagem principal do anúncio."
 
               - label: "Galeria de fotos"
                 name: "galeria"
@@ -329,7 +334,7 @@ collections:
 
 
               # =================================================
-              # APRESENTAÇÃO
+              # 7. APRESENTAÇÃO
               # =================================================
 
               - label: "Descrição"
@@ -340,4 +345,4 @@ collections:
                 name: "destaque"
                 widget: "boolean"
                 default: false
-                hint: "Ative para este imóvel ou área poder aparecer entre os destaques da página inicial."
+                hint: "Ative para esta oportunidade poder aparecer entre os destaques da Home."
