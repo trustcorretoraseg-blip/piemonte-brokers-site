@@ -366,18 +366,35 @@
       >
 
 
+      <input
+        type="hidden"
+        name="origem"
+        value="Página de Parcerias"
+      >
+
+
       <p style="display:none">
+
         <label>
           Não preencher:
-          <input name="bot-field">
+
+          <input
+            name="bot-field"
+            tabindex="-1"
+            autocomplete="off"
+          >
+
         </label>
+
       </p>
+
 
 
       <input
         type="text"
         name="nome"
         placeholder="Nome completo"
+        autocomplete="name"
         required
       >
 
@@ -386,6 +403,7 @@
         type="tel"
         name="telefone"
         placeholder="Telefone / WhatsApp"
+        autocomplete="tel"
         required
       >
 
@@ -393,7 +411,8 @@
       <input
         type="email"
         name="email"
-        placeholder="E-mail"
+        placeholder="Seu e-mail"
+        autocomplete="email"
         required
       >
 
@@ -402,6 +421,7 @@
         type="text"
         name="empresa"
         placeholder="Empresa / Imobiliária"
+        autocomplete="organization"
       >
 
 
@@ -445,6 +465,7 @@
         type="text"
         name="cidade"
         placeholder="Cidade / Região"
+        autocomplete="address-level2"
       >
 
 
@@ -461,6 +482,20 @@
       >
         Enviar proposta de parceria
       </button>
+
+
+      <p
+        style="
+          margin-top:14px;
+          font-size:12px;
+          opacity:.7;
+          line-height:1.5;
+        "
+      >
+        Ao enviar, você autoriza a Piemonte Brokers
+        a entrar em contato para avaliar a proposta
+        e dar continuidade à conversa.
+      </p>
 
 
     </form>
@@ -496,10 +531,6 @@
         para apresentar uma oportunidade ou iniciar
         uma conversa sobre parceria.
       </p>
-
-
-      <div id="contatoLinks">
-      </div>
 
 
       <a
@@ -577,9 +608,6 @@
       <a href="/contato.html">
         Contato
       </a>
-
-      <div id="footerContato">
-      </div>
 
     </div>
 

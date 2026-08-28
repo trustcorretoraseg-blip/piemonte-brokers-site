@@ -364,11 +364,24 @@
       >
 
 
+      <input
+        type="hidden"
+        name="origem"
+        value="Página Trabalhe Conosco"
+      >
+
+
       <p style="display:none">
 
         <label>
           Não preencher:
-          <input name="bot-field">
+
+          <input
+            name="bot-field"
+            tabindex="-1"
+            autocomplete="off"
+          >
+
         </label>
 
       </p>
@@ -378,6 +391,7 @@
         type="text"
         name="nome"
         placeholder="Nome completo"
+        autocomplete="name"
         required
       >
 
@@ -386,6 +400,7 @@
         type="tel"
         name="telefone"
         placeholder="Telefone / WhatsApp"
+        autocomplete="tel"
         required
       >
 
@@ -393,7 +408,8 @@
       <input
         type="email"
         name="email"
-        placeholder="E-mail"
+        placeholder="Seu e-mail"
+        autocomplete="email"
         required
       >
 
@@ -402,6 +418,7 @@
         type="text"
         name="cidade"
         placeholder="Cidade / Estado"
+        autocomplete="address-level2"
       >
 
 
@@ -489,6 +506,20 @@
       >
         Enviar apresentação
       </button>
+
+
+      <p
+        style="
+          margin-top:14px;
+          font-size:12px;
+          opacity:.7;
+          line-height:1.5;
+        "
+      >
+        Ao enviar, você autoriza a Piemonte Brokers
+        a entrar em contato para avaliar seu perfil
+        em oportunidades compatíveis.
+      </p>
 
 
     </form>
@@ -592,9 +623,6 @@
       <a href="/contato.html">
         Contato
       </a>
-
-      <div id="footerContato">
-      </div>
 
     </div>
 

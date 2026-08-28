@@ -244,18 +244,11 @@ function montarContato() {
     }
 
 
-    if (SITE.email) {
-
-      links.push(`
-        <a
-          class="text-link"
-          href="mailto:${esc(SITE.email)}"
-        >
-          ${esc(SITE.email)}
-        </a>
-      `);
-
-    }
+    /*
+      O e-mail da Piemonte não é exibido publicamente.
+      O campo SITE.email pode continuar existindo no painel
+      para uso interno/futuro, mas não é inserido no HTML.
+    */
 
 
     contatoLinks.innerHTML =
@@ -289,17 +282,9 @@ function montarContato() {
       }
 
 
-      if (SITE.email) {
-
-        itens.push(`
-          <a
-            href="mailto:${esc(SITE.email)}"
-          >
-            ${esc(SITE.email)}
-          </a>
-        `);
-
-      }
+      /*
+        O e-mail também não é exibido no rodapé.
+      */
 
 
       if (SITE.instagram) {
