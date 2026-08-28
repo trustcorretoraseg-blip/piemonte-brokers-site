@@ -9,30 +9,41 @@
   --white:#fff;
 }
 
+
 *{
   box-sizing:border-box;
 }
+
 
 html{
   scroll-behavior:smooth;
 }
 
+
 body{
   margin:0;
+
   font-family:Arial,Helvetica,sans-serif;
+
   color:var(--ink);
+
   background:#fff;
 }
 
+
 a{
   text-decoration:none;
+
   color:inherit;
 }
 
+
 img{
   max-width:100%;
+
   display:block;
 }
+
 
 button,
 input,
@@ -41,20 +52,25 @@ textarea{
   font:inherit;
 }
 
+
 .container{
   width:min(1180px,calc(100% - 40px));
+
   margin:auto;
 }
 
 
 /* =====================================================
-   CABEÇALHO PADRONIZADO
+   CABEÇALHO
 ===================================================== */
 
 .header{
   position:sticky;
+
   top:0;
+
   left:0;
+
   right:0;
 
   z-index:100;
@@ -68,10 +84,6 @@ textarea{
   box-shadow:0 3px 18px rgba(0,0,0,.18);
 }
 
-
-/*
-  Estrutura principal usada em todas as páginas
-*/
 
 .header .nav,
 .header-inner{
@@ -131,7 +143,7 @@ textarea{
 
   align-items:center;
 
-  gap:28px;
+  gap:25px;
 }
 
 
@@ -142,13 +154,13 @@ textarea{
 
   color:#fff;
 
-  font-size:15px;
+  font-size:14px;
 
   font-weight:500;
 
   line-height:1;
 
-  letter-spacing:.02em;
+  letter-spacing:.015em;
 
   padding:15px 0;
 
@@ -160,8 +172,7 @@ textarea{
 
 .header .nav nav a:hover,
 .header-inner nav a:hover,
-.header-inner > .nav a:hover,
-.header-inner > .nav a.ativo{
+.header-inner > .nav a:hover{
   color:var(--gold);
 }
 
@@ -174,9 +185,11 @@ textarea{
   position:absolute;
 
   left:0;
+
   bottom:6px;
 
   width:0;
+
   height:1px;
 
   background:var(--gold);
@@ -187,14 +200,13 @@ textarea{
 
 .header .nav nav a:hover::after,
 .header-inner nav a:hover::after,
-.header-inner > .nav a:hover::after,
-.header-inner > .nav a.ativo::after{
+.header-inner > .nav a:hover::after{
   width:100%;
 }
 
 
 /* =====================================================
-   BOTÃO MOBILE
+   BOTÃO MENU MOBILE
 ===================================================== */
 
 .menu-btn{
@@ -203,9 +215,11 @@ textarea{
   margin-left:auto;
 
   width:46px;
+
   height:46px;
 
   align-items:center;
+
   justify-content:center;
 
   padding:0;
@@ -225,7 +239,7 @@ textarea{
 
 
 /* =====================================================
-   HERO PRINCIPAL
+   HERO HOME
 ===================================================== */
 
 .hero{
@@ -237,7 +251,9 @@ textarea{
 
   color:#fff;
 
-  background:url('/assets/home-principal.jpeg') center/cover;
+  background:
+    url('/assets/home-principal.jpeg')
+    center/cover;
 
   position:relative;
 }
@@ -284,7 +300,10 @@ textarea{
 h1,
 h2,
 h3{
-  font-family:Georgia,'Times New Roman',serif;
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
 
   font-weight:400;
 
@@ -293,7 +312,12 @@ h3{
 
 
 h1{
-  font-size:clamp(46px,6vw,78px);
+  font-size:
+    clamp(
+      46px,
+      6vw,
+      78px
+    );
 
   line-height:1.02;
 
@@ -322,7 +346,7 @@ h1{
 
 
 /* =====================================================
-   HERO INTERNO
+   HERO DAS PÁGINAS
 ===================================================== */
 
 .page-hero{
@@ -337,7 +361,12 @@ h1{
 .page-hero h1{
   margin-top:12px;
 
-  font-size:clamp(42px,6vw,70px);
+  font-size:
+    clamp(
+      42px,
+      6vw,
+      70px
+    );
 }
 
 
@@ -367,6 +396,7 @@ h1{
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
   border:1px solid transparent;
@@ -392,14 +422,16 @@ h1{
 
 
 .ghost{
-  border-color:rgba(255,255,255,.55);
+  border-color:
+    rgba(255,255,255,.55);
 
   color:#fff;
 }
 
 
 .ghost:hover{
-  background:rgba(255,255,255,.10);
+  background:
+    rgba(255,255,255,.10);
 }
 
 
@@ -423,7 +455,7 @@ h1{
 
 
 /* =====================================================
-   BUSCA
+   BUSCA HOME
 ===================================================== */
 
 .search-section{
@@ -450,7 +482,9 @@ h1{
 
   padding:14px;
 
-  box-shadow:0 18px 50px rgba(0,0,0,.15);
+  box-shadow:
+    0 18px 50px
+    rgba(0,0,0,.15);
 }
 
 
@@ -458,7 +492,8 @@ h1{
 .search-box input{
   border:0;
 
-  border-right:1px solid #ddd;
+  border-right:
+    1px solid #ddd;
 
   padding:13px 14px;
 
@@ -491,7 +526,12 @@ h1{
 
 
 .section h2{
-  font-size:clamp(36px,5vw,58px);
+  font-size:
+    clamp(
+      36px,
+      5vw,
+      58px
+    );
 
   line-height:1.08;
 }
@@ -505,7 +545,7 @@ h1{
 
 
 /* =====================================================
-   PORTFÓLIO / FILTROS
+   PORTFÓLIO
 ===================================================== */
 
 .portfolio-section{
@@ -516,7 +556,8 @@ h1{
 .filtros{
   display:grid;
 
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:
+    repeat(5,1fr);
 
   gap:10px;
 
@@ -531,7 +572,8 @@ h1{
 
   padding:0 14px;
 
-  border:1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   background:#fff;
 
@@ -563,14 +605,16 @@ h1{
 .cards-grid{
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:24px;
 }
 
 
 .card{
-  border:1px solid #e6e2da;
+  border:
+    1px solid #e6e2da;
 
   background:#fff;
 
@@ -583,9 +627,12 @@ h1{
 
 
 .card:hover{
-  box-shadow:0 18px 45px rgba(0,0,0,.08);
+  box-shadow:
+    0 18px 45px
+    rgba(0,0,0,.08);
 
-  transform:translateY(-3px);
+  transform:
+    translateY(-3px);
 }
 
 
@@ -602,6 +649,7 @@ h1{
 
 .card-img img{
   width:100%;
+
   height:100%;
 
   object-fit:cover;
@@ -610,7 +658,8 @@ h1{
 }
 
 
-.card:hover .card-img img{
+.card:hover
+.card-img img{
   transform:scale(1.035);
 }
 
@@ -619,11 +668,13 @@ h1{
   position:absolute;
 
   left:14px;
+
   top:14px;
 
   z-index:8;
 
-  background:rgba(10,35,26,.92);
+  background:
+    rgba(10,35,26,.92);
 
   color:#fff;
 
@@ -721,18 +772,22 @@ h1{
   position:absolute;
 
   top:50%;
+
   left:50%;
 
-  transform:translate(-50%,-50%);
+  transform:
+    translate(-50%,-50%);
 
   width:32%;
+
   height:45%;
 
   max-width:220px;
 
   min-width:95px;
 
-  background-image:url('/assets/logo-marca-dagua.png');
+  background-image:
+    url('/assets/logo-marca-dagua.png');
 
   background-repeat:no-repeat;
 
@@ -754,18 +809,22 @@ h1{
   position:absolute;
 
   top:50%;
+
   left:50%;
 
-  transform:translate(-50%,-50%);
+  transform:
+    translate(-50%,-50%);
 
   width:32%;
+
   height:45%;
 
   max-width:220px;
 
   min-width:95px;
 
-  background-image:url('/assets/logo-marca-dagua.png');
+  background-image:
+    url('/assets/logo-marca-dagua.png');
 
   background-repeat:no-repeat;
 
@@ -782,13 +841,14 @@ h1{
 
 
 /* =====================================================
-   REGIÕES DA HOME
+   REGIÕES
 ===================================================== */
 
 .regioes-home-grid{
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:24px;
 }
@@ -799,7 +859,8 @@ h1{
 
   background:#fff;
 
-  border:1px solid #e3ded4;
+  border:
+    1px solid #e3ded4;
 
   overflow:hidden;
 
@@ -810,9 +871,12 @@ h1{
 
 
 .regiao-home-card:hover{
-  transform:translateY(-5px);
+  transform:
+    translateY(-5px);
 
-  box-shadow:0 20px 50px rgba(0,0,0,.10);
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.10);
 }
 
 
@@ -831,11 +895,13 @@ h1{
 
 .regiao-home-img img{
   width:100%;
+
   height:100%;
 
   object-fit:cover;
 
-  transition:transform .6s ease;
+  transition:
+    transform .6s ease;
 }
 
 
@@ -898,7 +964,8 @@ h1{
 .split{
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap:80px;
 
@@ -908,7 +975,8 @@ h1{
 
 .dark-section p,
 .contact p{
-  color:rgba(255,255,255,.72);
+  color:
+    rgba(255,255,255,.72);
 
   line-height:1.8;
 
@@ -921,7 +989,8 @@ h1{
 
   margin-top:14px;
 
-  border-bottom:1px solid currentColor;
+  border-bottom:
+    1px solid currentColor;
 
   padding-bottom:4px;
 }
@@ -933,7 +1002,7 @@ h1{
 
 
 /* =====================================================
-   SOBRE
+   TEXTO
 ===================================================== */
 
 .prose p{
@@ -957,7 +1026,8 @@ h1{
 .form-layout{
   display:grid;
 
-  grid-template-columns:.85fr 1.15fr;
+  grid-template-columns:
+    .85fr 1.15fr;
 
   gap:80px;
 }
@@ -966,7 +1036,8 @@ h1{
 .lead-form{
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap:12px;
 }
@@ -979,7 +1050,8 @@ h1{
 
   padding:15px 14px;
 
-  border:1px solid #d8d2c7;
+  border:
+    1px solid #d8d2c7;
 
   background:#fff;
 }
@@ -1015,7 +1087,8 @@ footer{
 .footer{
   display:grid;
 
-  grid-template-columns:1.5fr 1fr 1fr;
+  grid-template-columns:
+    1.5fr 1fr 1fr;
 
   gap:50px;
 }
@@ -1035,7 +1108,8 @@ footer{
 .footer span{
   display:block;
 
-  color:rgba(255,255,255,.65);
+  color:
+    rgba(255,255,255,.65);
 
   line-height:2;
 }
@@ -1051,9 +1125,12 @@ footer{
 
   padding-top:20px;
 
-  border-top:1px solid rgba(255,255,255,.12);
+  border-top:
+    1px solid
+    rgba(255,255,255,.12);
 
-  color:rgba(255,255,255,.4);
+  color:
+    rgba(255,255,255,.4);
 
   font-size:12px;
 }
@@ -1068,7 +1145,8 @@ footer{
 
   inset:0;
 
-  background:rgba(0,0,0,.72);
+  background:
+    rgba(0,0,0,.72);
 
   z-index:200;
 
@@ -1096,7 +1174,7 @@ footer{
 }
 
 
-.modal-card>img,
+.modal-card > img,
 .modal-foto{
   width:100%;
 
@@ -1128,11 +1206,13 @@ footer{
   position:absolute;
 
   right:14px;
+
   top:14px;
 
   z-index:20;
 
   width:42px;
+
   height:42px;
 
   border:0;
@@ -1171,7 +1251,8 @@ footer{
 .modal-galeria{
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:8px;
 
@@ -1202,7 +1283,112 @@ footer{
 
   padding-top:25px;
 
-  border-top:1px solid var(--line);
+  border-top:
+    1px solid var(--line);
+}
+
+
+/* =====================================================
+   WHATSAPP / ATENDIMENTO FLUTUANTE
+===================================================== */
+
+.whatsapp-float{
+  position:fixed;
+
+  right:24px;
+
+  bottom:24px;
+
+  z-index:9999;
+
+  min-height:56px;
+
+  padding:0 22px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:11px;
+
+  background:#0a0a0a;
+
+  color:var(--gold);
+
+  border:
+    1px solid rgba(201,164,92,.72);
+
+  border-radius:3px;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.22);
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease,
+    box-shadow .25s ease;
+}
+
+
+.whatsapp-float:hover{
+  background:var(--gold);
+
+  color:#0a0a0a;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 16px 42px
+    rgba(0,0,0,.28);
+}
+
+
+.whatsapp-float-icon{
+  width:23px;
+
+  height:23px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-shrink:0;
+}
+
+
+.whatsapp-float-icon svg{
+  width:100%;
+
+  height:100%;
+
+  display:block;
+}
+
+
+.whatsapp-float-text{
+  white-space:nowrap;
 }
 
 
@@ -1242,6 +1428,7 @@ footer{
     top:92px;
 
     left:0;
+
     right:0;
 
     margin:0;
@@ -1250,9 +1437,13 @@ footer{
 
     background:#000;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:
+      1px solid
+      rgba(255,255,255,.08);
 
-    box-shadow:0 16px 30px rgba(0,0,0,.28);
+    box-shadow:
+      0 16px 30px
+      rgba(0,0,0,.28);
 
     flex-direction:column;
 
@@ -1280,7 +1471,9 @@ footer{
 
     line-height:1.25;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:
+      1px solid
+      rgba(255,255,255,.08);
   }
 
 
@@ -1292,7 +1485,8 @@ footer{
 
 
   .search-box{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
 
@@ -1304,12 +1498,14 @@ footer{
   .cards,
   .cards-grid,
   .regioes-home-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
 
   .filtros{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
 
@@ -1322,7 +1518,8 @@ footer{
 
 
   .footer{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
 }
@@ -1335,7 +1532,11 @@ footer{
 @media(max-width:680px){
 
   .container{
-    width:min(100% - 28px,1180px);
+    width:
+      min(
+        100% - 28px,
+        1180px
+      );
   }
 
 
@@ -1366,6 +1567,7 @@ footer{
     display:flex;
 
     width:44px;
+
     height:44px;
 
     font-size:26px;
@@ -1378,6 +1580,7 @@ footer{
     top:82px;
 
     left:-14px;
+
     right:-14px;
 
     width:auto;
@@ -1443,7 +1646,8 @@ footer{
   .search-box input{
     border-right:0;
 
-    border-bottom:1px solid #ddd;
+    border-bottom:
+      1px solid #ddd;
   }
 
 
@@ -1457,7 +1661,8 @@ footer{
   }
 
 
-  .section-head .text-link{
+  .section-head
+  .text-link{
     margin-top:18px;
   }
 
@@ -1497,7 +1702,7 @@ footer{
   }
 
 
-  .modal-card>img,
+  .modal-card > img,
   .modal-foto{
     height:280px;
   }
@@ -1515,7 +1720,8 @@ footer{
 
   .mini-gallery,
   .modal-galeria{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
 
@@ -1539,6 +1745,39 @@ footer{
     min-width:80px;
 
     max-width:150px;
+  }
+
+
+  /* WHATSAPP PREMIUM MOBILE */
+
+  .whatsapp-float{
+    right:14px;
+
+    bottom:14px;
+
+    min-height:50px;
+
+    padding:0 15px;
+
+    gap:8px;
+
+    font-size:10px;
+
+    letter-spacing:.055em;
+
+    border-radius:2px;
+  }
+
+
+  .whatsapp-float-icon{
+    width:21px;
+
+    height:21px;
+  }
+
+
+  .whatsapp-float-text{
+    white-space:nowrap;
   }
 
 }

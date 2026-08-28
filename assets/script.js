@@ -5,6 +5,11 @@ let REGIOES = [];
 const $ = seletor => document.querySelector(seletor);
 const $$ = seletor => document.querySelectorAll(seletor);
 
+
+/* =========================================================
+   SEGURANÇA DE TEXTO
+========================================================= */
+
 const esc = valor =>
   String(valor ?? "").replace(
     /[&<>"']/g,
@@ -24,6 +29,7 @@ const esc = valor =>
 ========================================================= */
 
 function paginaAtual() {
+
   const caminho = window.location.pathname
     .toLowerCase()
     .replace(/\/+$/, "");
@@ -56,16 +62,19 @@ function paginaAtual() {
 
 
 /* =========================================================
-   CARREGAMENTO
+   CARREGAMENTO DOS DADOS
 ========================================================= */
 
 async function carregar() {
+
   try {
+
     const [
       siteResp,
       portfolioResp,
       regioesResp
     ] = await Promise.all([
+
       fetch("/data/site.json", {
         cache: "no-store"
       }),
@@ -77,23 +86,29 @@ async function carregar() {
       fetch("/data/regioes.json", {
         cache: "no-store"
       })
+
     ]);
+
 
     if (siteResp.ok) {
       SITE = await siteResp.json();
     }
 
+
     if (portfolioResp.ok) {
-      const dados =
-        await portfolioResp.json();
+
+      const dados = await portfolioResp.json();
 
       PORTFOLIO =
         Array.isArray(dados.itens)
           ? dados.itens
           : [];
+
     }
 
+
     if (regioesResp.ok) {
+
       const dadosRegioes =
         await regioesResp.json();
 
@@ -101,7 +116,9 @@ async function carregar() {
         Array.isArray(dadosRegioes.itens)
           ? dadosRegioes.itens
           : [];
+
     }
+
 
     aplicarSite();
     prepararFiltros();
@@ -109,7 +126,9 @@ async function carregar() {
     renderInicial();
     renderRegioes();
 
+
   } catch (erro) {
+
     console.error(
       "Erro ao carregar o site:",
       erro
@@ -119,43 +138,57 @@ async function carregar() {
       $("#contador");
 
     if (contador) {
+
       contador.textContent =
         "Não foi possível carregar o portfólio.";
+
     }
+
   }
+
 }
 
 
 /* =========================================================
-   DADOS DO SITE
+   DADOS GERAIS DO SITE
 ========================================================= */
 
 function aplicarSite() {
+
   const tituloHome =
     $("#tituloHome");
 
   if (tituloHome) {
+
     tituloHome.textContent =
       SITE.tituloHome ||
       "Imóveis, áreas e oportunidades com visão estratégica.";
+
   }
+
 
   const subtituloHome =
     $("#subtituloHome");
 
   if (subtituloHome) {
+
     subtituloHome.textContent =
       SITE.subtituloHome ||
       "Curadoria imobiliária de alto padrão.";
+
   }
+
 
   const textoSobre =
     $("#textoSobre");
 
   if (textoSobre) {
+
     textoSobre.textContent =
       SITE.textoSobre || "";
+
   }
+
 
   const hero =
     $(".hero");
@@ -164,26 +197,35 @@ function aplicarSite() {
     hero &&
     SITE.imagemHome
   ) {
+
     hero.style.backgroundImage =
       `url("${SITE.imagemHome}")`;
+
   }
 
+
   montarContato();
+
 }
 
 
 /* =========================================================
-   CONTATO
+   CONTATOS
 ========================================================= */
 
 function montarContato() {
+
   const contatoLinks =
     $("#contatoLinks");
 
+
   if (contatoLinks) {
+
     const links = [];
 
+
     if (SITE.whatsapp) {
+
       const numero =
         String(SITE.whatsapp)
           .replace(/\D/g, "");
@@ -198,9 +240,12 @@ function montarContato() {
           WhatsApp
         </a>
       `);
+
     }
 
+
     if (SITE.email) {
+
       links.push(`
         <a
           class="text-link"
@@ -209,17 +254,24 @@ function montarContato() {
           ${esc(SITE.email)}
         </a>
       `);
+
     }
+
 
     contatoLinks.innerHTML =
       links.join(" ");
+
   }
+
 
   $$("#footerContato")
     .forEach(footer => {
+
       const itens = [];
 
+
       if (SITE.whatsapp) {
+
         const numero =
           String(SITE.whatsapp)
             .replace(/\D/g, "");
@@ -233,9 +285,12 @@ function montarContato() {
             WhatsApp
           </a>
         `);
+
       }
 
+
       if (SITE.email) {
+
         itens.push(`
           <a
             href="mailto:${esc(SITE.email)}"
@@ -243,9 +298,12 @@ function montarContato() {
             ${esc(SITE.email)}
           </a>
         `);
+
       }
 
+
       if (SITE.instagram) {
+
         itens.push(`
           <a
             href="${esc(SITE.instagram)}"
@@ -255,33 +313,173 @@ function montarContato() {
             Instagram
           </a>
         `);
+
       }
 
+
       if (SITE.cidadeBase) {
+
         itens.push(`
           <span>
             ${esc(SITE.cidadeBase)}
           </span>
         `);
+
       }
+
 
       footer.innerHTML =
         itens.join("");
+
     });
+
 }
 
 
 /* =========================================================
-   REGIÕES DA HOME
+   WHATSAPP FLUTUANTE
+========================================================= */
+
+function criarWhatsAppFlutuante() {
+
+  const numeroWhatsApp =
+    "5511933602204";
+
+
+  if (
+    document.querySelector(
+      ".whatsapp-float"
+    )
+  ) {
+    return;
+  }
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.className =
+    "whatsapp-float";
+
+
+  const mensagem =
+    "Olá! Vim pelo site da Piemonte Brokers e gostaria de mais informações.";
+
+
+  link.href =
+    `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+
+  link.target =
+    "_blank";
+
+
+  link.rel =
+    "noopener noreferrer";
+
+
+  link.setAttribute(
+    "aria-label",
+    "Falar com a Piemonte Brokers pelo WhatsApp"
+  );
+
+
+  link.innerHTML = `
+
+    <span class="whatsapp-float-icon">
+
+      <svg
+        viewBox="0 0 32 32"
+        aria-hidden="true"
+      >
+
+        <path
+          fill="currentColor"
+          d="
+            M19.11 17.21
+            c-.27-.14-1.61-.79-1.86-.88
+            -.25-.09-.43-.14-.61.14
+            -.18.27-.7.88-.86 1.06
+            -.16.18-.32.2-.59.07
+            -.27-.14-1.15-.42-2.19-1.34
+            -.81-.72-1.36-1.61-1.52-1.88
+            -.16-.27-.02-.42.12-.55
+            .12-.12.27-.32.41-.48
+            .14-.16.18-.27.27-.45
+            .09-.18.05-.34-.02-.48
+            -.07-.14-.61-1.47-.84-2.01
+            -.22-.53-.45-.46-.61-.47
+            -.16-.01-.34-.01-.52-.01
+            -.18 0-.48.07-.73.34
+            -.25.27-.95.93-.95 2.26
+            0 1.33.97 2.62 1.1 2.8
+            .14.18 1.91 2.92 4.63 4.09
+            .65.28 1.15.45 1.55.58
+            .65.21 1.24.18 1.71.11
+            .52-.08 1.61-.66 1.84-1.3
+            .23-.64.23-1.19.16-1.3
+            -.07-.11-.25-.18-.52-.32
+            z
+          "
+        />
+
+        <path
+          fill="currentColor"
+          d="
+            M16.02 3
+            C8.85 3 3 8.84 3 16
+            c0 2.53.74 4.99 2.14 7.1
+            L3 29
+            l6.08-2.01
+            A12.94 12.94 0 0 0 16.02 29
+            C23.18 29 29 23.16 29 16
+            S23.18 3 16.02 3
+            z
+
+            M16.02 26.64
+            c-2.03 0-4.01-.55-5.73-1.59
+            l-.41-.25-3.61 1.2
+            1.19-3.52-.27-.43
+            A10.56 10.56 0 0 1 5.37 16
+            c0-5.87 4.78-10.64 10.65-10.64
+            S26.65 10.13 26.65 16
+            21.88 26.64 16.02 26.64
+            z
+          "
+        />
+
+      </svg>
+
+    </span>
+
+
+    <span class="whatsapp-float-text">
+      Fale com a Piemonte
+    </span>
+
+  `;
+
+
+  document.body.appendChild(link);
+
+}
+
+
+/* =========================================================
+   REGIÕES
 ========================================================= */
 
 function renderRegioes() {
+
   const box =
     $("#regioesCards");
+
 
   if (!box) {
     return;
   }
+
 
   const lista =
     REGIOES.filter(
@@ -289,37 +487,50 @@ function renderRegioes() {
         item.destaque !== false
     );
 
+
   box.innerHTML = "";
 
+
   lista.forEach(item => {
+
     const link =
       document.createElement("a");
 
+
     const cidadeFiltro =
       item.cidadeFiltro || "";
+
 
     link.href =
       cidadeFiltro
         ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
         : "/regioes.html";
 
+
     link.className =
       "regiao-home-card";
+
 
     const imagem =
       item.imagem ||
       "/assets/home-principal.jpeg";
 
+
     link.innerHTML = `
+
       <div class="regiao-home-img">
+
         <img
           src="${esc(imagem)}"
           alt="${esc(item.nome)}"
           loading="lazy"
         >
+
       </div>
 
+
       <div class="regiao-home-body">
+
         <h3>
           ${esc(item.nome)}
         </h3>
@@ -327,25 +538,33 @@ function renderRegioes() {
         <p>
           ${esc(item.descricao || "")}
         </p>
+
       </div>
+
     `;
 
+
     box.appendChild(link);
+
   });
+
 }
 
 
 /* =========================================================
-   FORMATAR NÚMERO
+   FORMATAR NÚMEROS
 ========================================================= */
 
 function formatarNumero(valor) {
+
   const numero =
     Number(valor);
+
 
   if (Number.isNaN(numero)) {
     return valor;
   }
+
 
   return numero.toLocaleString(
     "pt-BR",
@@ -353,6 +572,7 @@ function formatarNumero(valor) {
       maximumFractionDigits: 2
     }
   );
+
 }
 
 
@@ -361,9 +581,12 @@ function formatarNumero(valor) {
 ========================================================= */
 
 function specs(item) {
+
   const dados = [];
 
+
   if (item.suites) {
+
     dados.push(
       `${item.suites} ${
         Number(item.suites) === 1
@@ -371,7 +594,9 @@ function specs(item) {
           : "suítes"
       }`
     );
+
   } else if (item.quartos) {
+
     dados.push(
       `${item.quartos} ${
         Number(item.quartos) === 1
@@ -379,51 +604,65 @@ function specs(item) {
           : "dormitórios"
       }`
     );
+
   }
 
+
   if (item.areaConstruida) {
+
     dados.push(
       `${formatarNumero(
         item.areaConstruida
       )} m² construídos`
     );
+
   }
 
+
   if (item.areaTerreno) {
+
     dados.push(
       `${formatarNumero(
         item.areaTerreno
       )} m² de terreno`
     );
+
   }
 
+
   return dados.join(" • ");
+
 }
 
 
 /* =========================================================
-   LOCAL / REGIÃO DO ITEM
+   LOCALIZAÇÃO
 ========================================================= */
 
 function textoLocalItem(item) {
+
   return [
+
     item.regiaoPrincipal,
     item.cidade,
     item.regiao
+
   ]
     .filter(Boolean)
     .join(" ");
+
 }
 
 
 /* =========================================================
-   ADICIONAR OPÇÃO
+   OPÇÕES DOS FILTROS
 ========================================================= */
 
 function adicionarOpcao(
   campo,
   valor
 ) {
+
   if (
     !campo ||
     campo.tagName !== "SELECT" ||
@@ -432,6 +671,7 @@ function adicionarOpcao(
     return;
   }
 
+
   const existe =
     [...campo.options]
       .some(
@@ -439,20 +679,26 @@ function adicionarOpcao(
           opcao.value === valor
       );
 
+
   if (existe) {
     return;
   }
 
+
   const option =
     document.createElement("option");
+
 
   option.value =
     valor;
 
+
   option.textContent =
     valor;
 
+
   campo.appendChild(option);
+
 }
 
 
@@ -461,31 +707,40 @@ function adicionarOpcao(
 ========================================================= */
 
 function prepararFiltros() {
+
   let lista =
     [...PORTFOLIO];
+
 
   const pagina =
     paginaAtual();
 
+
   if (
     pagina === "imoveis"
   ) {
+
     lista =
       lista.filter(
         item =>
           item.categoria === "Imóvel"
       );
+
   }
+
 
   if (
     pagina === "areas"
   ) {
+
     lista =
       lista.filter(
         item =>
           item.categoria === "Área"
       );
+
   }
+
 
   const categoria =
     $("#fCategoria");
@@ -531,15 +786,11 @@ function prepararFiltros() {
     );
 
 
-  /*
-    Aqui priorizamos Região Principal.
-    Se não existir, usamos Cidade.
-  */
-
   if (
     cidade &&
     cidade.tagName === "SELECT"
   ) {
+
     const locais =
       [
         ...new Set(
@@ -554,6 +805,7 @@ function prepararFiltros() {
       ]
         .sort();
 
+
     locais.forEach(
       valor =>
         adicionarOpcao(
@@ -561,7 +813,9 @@ function prepararFiltros() {
           valor
         )
     );
+
   }
+
 }
 
 
@@ -570,37 +824,47 @@ function prepararFiltros() {
 ========================================================= */
 
 function aplicarFiltroDaURL() {
+
   const params =
     new URLSearchParams(
       window.location.search
     );
 
+
   const cidade =
     params.get("cidade");
+
 
   if (!cidade) {
     return;
   }
 
+
   const campo =
     $("#fCidade");
+
 
   if (!campo) {
     return;
   }
 
+
   if (
     campo.tagName === "INPUT"
   ) {
+
     campo.value =
       cidade;
 
     return;
+
   }
+
 
   if (
     campo.tagName === "SELECT"
   ) {
+
     const opcao =
       [...campo.options]
         .find(
@@ -609,11 +873,16 @@ function aplicarFiltroDaURL() {
             cidade.toLowerCase()
         );
 
+
     if (opcao) {
+
       campo.value =
         opcao.value;
+
     }
+
   }
+
 }
 
 
@@ -622,52 +891,67 @@ function aplicarFiltroDaURL() {
 ========================================================= */
 
 function renderInicial() {
+
   if (!$("#cards")) {
     return;
   }
 
+
   let lista =
     [...PORTFOLIO];
+
 
   const pagina =
     paginaAtual();
 
+
   if (
     pagina === "imoveis"
   ) {
+
     lista =
       lista.filter(
         item =>
           item.categoria === "Imóvel"
       );
+
   }
+
 
   if (
     pagina === "areas"
   ) {
+
     lista =
       lista.filter(
         item =>
           item.categoria === "Área"
       );
+
   }
+
 
   if (
     pagina === "home"
   ) {
+
     const destaques =
       lista.filter(
         item =>
           item.destaque === true
       );
 
+
     lista =
       destaques.length
         ? destaques.slice(0, 6)
         : lista.slice(0, 6);
+
   }
 
+
   render(lista);
+
 }
 
 
@@ -676,30 +960,39 @@ function renderInicial() {
 ========================================================= */
 
 function render(lista) {
+
   const box =
     $("#cards");
+
 
   if (!box) {
     return;
   }
 
+
   box.innerHTML = "";
 
+
   lista.forEach(item => {
+
     const card =
       document.createElement(
         "article"
       );
 
+
     card.className =
       "card";
+
 
     card.tabIndex =
       0;
 
+
     const imagem =
       item.imagemCapa ||
       "/assets/logo-piemonte.png";
+
 
     const localCard =
       [
@@ -709,10 +1002,13 @@ function render(lista) {
       ]
         .filter(Boolean);
 
+
     const localUnico =
       [...new Set(localCard)];
 
+
     card.innerHTML = `
+
       <div class="card-img">
 
         <img
@@ -735,6 +1031,7 @@ function render(lista) {
         }
 
       </div>
+
 
       <div class="card-body">
 
@@ -767,7 +1064,9 @@ function render(lista) {
         </strong>
 
       </div>
+
     `;
+
 
     card.addEventListener(
       "click",
@@ -775,86 +1074,112 @@ function render(lista) {
         abrir(item)
     );
 
+
     card.addEventListener(
       "keydown",
       evento => {
+
         if (
           evento.key === "Enter" ||
           evento.key === " "
         ) {
+
           evento.preventDefault();
+
           abrir(item);
+
         }
+
       }
     );
 
+
     box.appendChild(card);
+
   });
 
 
   const contador =
     $("#contador");
 
+
   if (contador) {
+
     contador.textContent =
       `${lista.length} ${
         lista.length === 1
           ? "oportunidade"
           : "oportunidades"
       }`;
+
   }
 
 
   const vazio =
     $("#vazio");
 
+
   if (vazio) {
+
     const semResultados =
       lista.length === 0;
 
+
     vazio.hidden =
       !semResultados;
+
 
     vazio.style.display =
       semResultados
         ? "block"
         : "none";
+
   }
+
 }
 
 
 /* =========================================================
-   PREÇO
+   FAIXAS DE PREÇO
 ========================================================= */
 
 function atendeFaixaPreco(
   item,
   faixa
 ) {
+
   if (!faixa) {
     return true;
   }
+
 
   const valor =
     Number(
       item.preco || 0
     );
 
+
   if (!valor) {
     return false;
   }
 
+
   const limite =
     Number(faixa);
+
 
   if (
     !Number.isNaN(limite) &&
     limite > 0
   ) {
+
     return valor <= limite;
+
   }
 
+
   switch (faixa) {
+
     case "ate-1m":
       return valor <= 1000000;
 
@@ -890,7 +1215,9 @@ function atendeFaixaPreco(
 
     default:
       return true;
+
   }
+
 }
 
 
@@ -899,39 +1226,50 @@ function atendeFaixaPreco(
 ========================================================= */
 
 function filtrar() {
+
   let lista =
     [...PORTFOLIO];
+
 
   const pagina =
     paginaAtual();
 
+
   if (
     pagina === "imoveis"
   ) {
+
     lista =
       lista.filter(
         item =>
           item.categoria === "Imóvel"
       );
+
   }
+
 
   if (
     pagina === "areas"
   ) {
+
     lista =
       lista.filter(
         item =>
           item.categoria === "Área"
       );
+
   }
+
 
   const categoria =
     $("#fCategoria")
       ?.value || "";
 
+
   const negocio =
     $("#fNegocio")
       ?.value || "";
+
 
   const cidade =
     $("#fCidade")
@@ -939,9 +1277,11 @@ function filtrar() {
       ?.trim()
       ?.toLowerCase() || "";
 
+
   const tipo =
     $("#fTipo")
       ?.value || "";
+
 
   const preco =
     $("#fPreco")
@@ -958,6 +1298,7 @@ function filtrar() {
 
 
         return (
+
           (
             !categoria ||
             item.categoria === categoria
@@ -991,6 +1332,7 @@ function filtrar() {
             item,
             preco
           )
+
         );
 
       }
@@ -998,32 +1340,42 @@ function filtrar() {
 
 
   render(lista);
+
 }
 
 
 /* =========================================================
-   FILTROS - EVENTOS
+   EVENTOS DOS FILTROS
 ========================================================= */
 
 function ativarFiltros() {
+
   const filtros =
     $("#filtros");
+
 
   if (!filtros) {
     return;
   }
 
+
   if (
     filtros.tagName === "FORM"
   ) {
+
     filtros.addEventListener(
       "submit",
       evento => {
+
         evento.preventDefault();
+
         filtrar();
+
       }
     );
+
   }
+
 
   [
     "#fCategoria",
@@ -1033,30 +1385,40 @@ function ativarFiltros() {
   ]
     .forEach(
       seletor => {
+
         const elemento =
           $(seletor);
 
+
         if (elemento) {
+
           elemento.addEventListener(
             "change",
             filtrar
           );
+
         }
+
       }
     );
 
+
   const cidade =
     $("#fCidade");
+
 
   if (
     cidade &&
     cidade.tagName === "SELECT"
   ) {
+
     cidade.addEventListener(
       "change",
       filtrar
     );
+
   }
+
 }
 
 
@@ -1065,36 +1427,50 @@ function ativarFiltros() {
 ========================================================= */
 
 function abrir(item) {
+
   const modal =
     $("#modal");
+
 
   if (!modal) {
     return;
   }
 
+
   const imagem =
     $("#modalImg");
 
+
   if (imagem) {
+
     imagem.src =
       item.imagemCapa || "";
 
+
     imagem.alt =
       item.titulo || "";
+
   }
+
 
   const categoria =
     $("#modalCategoria");
 
+
   if (categoria) {
+
     categoria.textContent =
       item.categoria || "";
+
   }
+
 
   const meta =
     $("#modalMeta");
 
+
   if (meta) {
+
     meta.textContent =
       [
         item.categoria,
@@ -1108,20 +1484,28 @@ function abrir(item) {
             arr.indexOf(valor) === indice
         )
         .join(" • ");
+
   }
+
 
   const titulo =
     $("#modalTitulo");
 
+
   if (titulo) {
+
     titulo.textContent =
       item.titulo || "";
+
   }
+
 
   const local =
     $("#modalLocal");
 
+
   if (local) {
+
     local.textContent =
       [
         item.regiaoPrincipal,
@@ -1134,157 +1518,227 @@ function abrir(item) {
             arr.indexOf(valor) === indice
         )
         .join(" • ");
+
   }
+
 
   const descricao =
     $("#modalDescricao");
 
+
   if (descricao) {
+
     descricao.textContent =
       item.descricao || "";
+
   }
+
 
   const descricaoAntiga =
     $("#modalDesc");
 
+
   if (descricaoAntiga) {
+
     descricaoAntiga.textContent =
       item.descricao || "";
+
   }
+
 
   const preco =
     $("#modalPreco");
 
+
   if (preco) {
+
     preco.textContent =
       item.precoTexto ||
       "Consulte";
+
   }
+
 
   const specsBox =
     $("#modalSpecs");
 
+
   if (specsBox) {
+
     specsBox.innerHTML = "";
+
 
     const valores = [];
 
+
     if (item.suites) {
+
       valores.push(
         `${item.suites} suítes`
       );
+
     }
+
 
     if (
       item.quartos &&
       !item.suites
     ) {
+
       valores.push(
         `${item.quartos} dormitórios`
       );
+
     }
 
+
     if (item.banheiros) {
+
       valores.push(
         `${item.banheiros} banheiros`
       );
+
     }
 
+
     if (item.vagas) {
+
       valores.push(
         `${item.vagas} vagas`
       );
+
     }
 
+
     if (item.areaConstruida) {
+
       valores.push(
         `${formatarNumero(
           item.areaConstruida
         )} m² construídos`
       );
+
     }
 
+
     if (item.areaTerreno) {
+
       valores.push(
         `${formatarNumero(
           item.areaTerreno
         )} m² de terreno`
       );
+
     }
+
 
     valores.forEach(
       valor => {
+
         const span =
           document.createElement(
             "span"
           );
 
+
         span.textContent =
           valor;
+
 
         specsBox.appendChild(
           span
         );
+
       }
     );
+
   }
 
 
   const galeria =
     $("#modalGaleria");
 
+
   if (galeria) {
+
     galeria.innerHTML = "";
+
 
     const fotos =
       Array.isArray(item.galeria)
         ? item.galeria
         : [];
 
-    fotos.forEach(src => {
+
+    fotos.forEach(foto => {
+
+      const src =
+        typeof foto === "string"
+          ? foto
+          : foto?.foto;
+
+
+      if (!src) {
+        return;
+      }
+
+
       const wrapper =
         document.createElement(
           "div"
         );
 
+
       wrapper.className =
         "piemonte-foto";
+
 
       const img =
         document.createElement(
           "img"
         );
 
+
       img.src =
         src;
+
 
       img.alt =
         item.titulo ||
         "Piemonte Brokers";
 
+
       wrapper.appendChild(
         img
       );
 
+
       galeria.appendChild(
         wrapper
       );
+
     });
+
   }
+
 
   modal.hidden =
     false;
+
 
   modal.setAttribute(
     "aria-hidden",
     "false"
   );
 
+
   modal.style.display =
     "block";
 
+
   document.body.style.overflow =
     "hidden";
+
 }
 
 
@@ -1293,26 +1747,33 @@ function abrir(item) {
 ========================================================= */
 
 function fechar() {
+
   const modal =
     $("#modal");
+
 
   if (!modal) {
     return;
   }
 
+
   modal.hidden =
     true;
+
 
   modal.setAttribute(
     "aria-hidden",
     "true"
   );
 
+
   modal.style.display =
     "none";
 
+
   document.body.style.overflow =
     "";
+
 }
 
 
@@ -1321,46 +1782,64 @@ function fechar() {
 ========================================================= */
 
 function ativarModal() {
+
   const botaoNovo =
     $("#modalClose");
+
 
   const botaoAntigo =
     $("#fecharModal");
 
+
   if (botaoNovo) {
+
     botaoNovo.addEventListener(
       "click",
       fechar
     );
+
   }
 
+
   if (botaoAntigo) {
+
     botaoAntigo.addEventListener(
       "click",
       fechar
     );
+
   }
+
 
   const overlay =
     $(".modal-overlay");
 
+
   if (overlay) {
+
     overlay.addEventListener(
       "click",
       fechar
     );
+
   }
+
 
   document.addEventListener(
     "keydown",
     evento => {
+
       if (
         evento.key === "Escape"
       ) {
+
         fechar();
+
       }
+
     }
   );
+
 }
 
 
@@ -1369,11 +1848,14 @@ function ativarModal() {
 ========================================================= */
 
 function ativarMenu() {
+
   const menuBtn =
     $("#menuBtn");
 
+
   const menu =
     $("#menu");
+
 
   if (
     !menuBtn ||
@@ -1382,29 +1864,38 @@ function ativarMenu() {
     return;
   }
 
+
   menuBtn.addEventListener(
     "click",
     () => {
+
       menu.classList.toggle(
         "open"
       );
+
     }
   );
+
 
   menu
     .querySelectorAll("a")
     .forEach(
       link => {
+
         link.addEventListener(
           "click",
           () => {
+
             menu.classList.remove(
               "open"
             );
+
           }
         );
+
       }
     );
+
 }
 
 
@@ -1415,9 +1906,16 @@ function ativarMenu() {
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+
     ativarMenu();
+
     ativarFiltros();
+
     ativarModal();
+
+    criarWhatsAppFlutuante();
+
     carregar();
+
   }
 );
