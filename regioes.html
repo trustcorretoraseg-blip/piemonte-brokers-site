@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1"
   >
 
   <meta
     name="description"
-    content="Conheça as principais regiões atendidas pela Piemonte Brokers."
+    content="Conheça as principais regiões de atuação da Piemonte Brokers e oportunidades imobiliárias selecionadas."
   >
 
   <title>Regiões | Piemonte Brokers</title>
@@ -20,566 +20,387 @@
     rel="stylesheet"
     href="/assets/style.css"
   >
-
-  <style>
-
-    /* =====================================================
-       PÁGINA DE REGIÕES
-    ===================================================== */
-
-    .regioes-hero{
-      background:#0c251c;
-      color:#fff;
-      padding:90px 0 80px;
-    }
-
-    .regioes-hero .eyebrow{
-      margin-bottom:15px;
-      display:block;
-    }
-
-    .regioes-hero h1{
-      font-size:clamp(44px,6vw,72px);
-      max-width:850px;
-    }
-
-    .regioes-hero p{
-      max-width:700px;
-      margin:22px 0 0;
-      color:rgba(255,255,255,.72);
-      font-size:17px;
-      line-height:1.75;
-    }
-
-
-    /* =====================================================
-       REGIÕES
-    ===================================================== */
-
-    .regioes-section{
-      padding:85px 0 100px;
-      background:#fff;
-    }
-
-    .regioes-head{
-      margin-bottom:38px;
-    }
-
-    .regioes-head h2{
-      font-size:clamp(36px,5vw,54px);
-      margin-top:10px;
-    }
-
-    .regioes-head p{
-      color:#70756f;
-      max-width:680px;
-      line-height:1.7;
-      font-size:16px;
-    }
-
-
-    /* =====================================================
-       GRADE
-    ===================================================== */
-
-    .regioes-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
-    }
-
-
-    /* =====================================================
-       CARD
-    ===================================================== */
-
-    .regiao-card{
-      min-height:210px;
-
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-
-      padding:30px 20px;
-
-      border:1px solid #ddd8cc;
-
-      background:#fff;
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-    }
-
-    .regiao-card:hover{
-      transform:translateY(-4px);
-
-      border-color:#c9a45c;
-
-      box-shadow:0 16px 40px rgba(0,0,0,.07);
-    }
-
-    .regiao-card h3{
-      font-family:Georgia,'Times New Roman',serif;
-
-      font-size:28px;
-
-      font-weight:400;
-
-      margin:0 0 14px;
-
-      color:#111;
-    }
-
-    .regiao-card p{
-      margin:0;
-
-      color:#70756f;
-
-      font-size:15px;
-
-      line-height:1.6;
-    }
-
-    .regiao-card .ver-regiao{
-      margin-top:22px;
-
-      color:#99763a;
-
-      font-size:11px;
-
-      font-weight:700;
-
-      letter-spacing:.10em;
-
-      text-transform:uppercase;
-    }
-
-
-    /* =====================================================
-       CHAMADA FINAL
-    ===================================================== */
-
-    .regioes-cta{
-      margin-top:38px;
-    }
-
-    .regioes-cta a{
-      min-height:48px;
-
-      display:inline-flex;
-
-      align-items:center;
-
-      padding:0 22px;
-
-      background:#0c251c;
-
-      color:#fff;
-
-      font-weight:700;
-
-      font-size:14px;
-
-      transition:.25s ease;
-    }
-
-    .regioes-cta a:hover{
-      background:#15372a;
-    }
-
-
-    /* =====================================================
-       TABLET
-    ===================================================== */
-
-    @media(max-width:980px){
-
-      .regioes-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-    }
-
-
-    /* =====================================================
-       CELULAR
-    ===================================================== */
-
-    @media(max-width:680px){
-
-      .regioes-hero{
-        padding:65px 0 60px;
-      }
-
-      .regioes-section{
-        padding:65px 0 75px;
-      }
-
-      .regioes-grid{
-        grid-template-columns:1fr;
-      }
-
-      .regiao-card{
-        min-height:auto;
-        padding:28px 22px;
-      }
-
-    }
-
-  </style>
-
 </head>
 
 
 <body>
 
 
-  <!-- =====================================================
-       CABEÇALHO
-  ===================================================== -->
+<!-- =====================================================
+     CABEÇALHO
+===================================================== -->
 
-  <header class="header">
+<header class="header">
 
-    <div class="container nav">
+  <div class="container nav">
 
-      <a
-        href="/"
-        class="logo"
-        aria-label="Piemonte Brokers"
+    <a
+      href="/index.html"
+      class="logo"
+    >
+
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
       >
 
-        <img
-          src="/assets/logo-piemonte.png"
-          alt="Piemonte Brokers"
-        >
+    </a>
 
+
+    <button
+      id="menuBtn"
+      class="menu-btn"
+      aria-label="Abrir menu"
+    >
+      ☰
+    </button>
+
+
+    <nav id="menu">
+
+      <a href="/imoveis.html">
+        Imóveis
       </a>
 
+      <a href="/areas.html">
+        Áreas
+      </a>
 
-      <button
-        id="menuBtn"
-        class="menu-btn"
-        type="button"
-        aria-label="Abrir menu"
-      >
-        ☰
-      </button>
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
 
 
-      <nav id="menu">
 
-        <a href="/imoveis">
-          Imóveis
-        </a>
+<main>
 
-        <a href="/areas">
-          Áreas
-        </a>
 
-        <a href="/regioes">
-          Regiões
-        </a>
+<!-- =====================================================
+     ABERTURA
+===================================================== -->
 
-        <a href="/sobre">
-          Sobre Nós
-        </a>
+<section class="page-hero">
 
-        <a href="/anuncie">
-          Anuncie conosco
-        </a>
+  <div class="container">
 
-        <a href="/parcerias">
-          Parcerias
-        </a>
+    <p class="eyebrow">
+      REGIÕES • PIEMONTE BROKERS
+    </p>
 
-        <a href="/contato">
-          Contato
-        </a>
+    <h1>
+      Presença nos principais mercados imobiliários.
+    </h1>
 
-      </nav>
+    <p>
+      Nossa atuação está concentrada em regiões selecionadas,
+      com mercados consolidados, condomínios de referência
+      e oportunidades imobiliárias estratégicas.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTRODUÇÃO
+===================================================== -->
+
+<section class="section">
+
+  <div class="container split">
+
+
+    <div>
+
+      <p class="eyebrow dark">
+        ATUAÇÃO REGIONAL
+      </p>
+
+      <h2>
+        Conhecimento local faz diferença.
+      </h2>
 
     </div>
 
-  </header>
+
+    <div class="prose">
+
+      <p>
+        Cada região possui características próprias,
+        diferentes perfis de compradores e dinâmicas
+        específicas de mercado.
+      </p>
+
+      <p>
+        Por isso, a Piemonte Brokers organiza seu portfólio
+        por regiões estratégicas, permitindo uma apresentação
+        mais direcionada das oportunidades.
+      </p>
+
+      <p>
+        Trabalhamos com imóveis residenciais de alto padrão,
+        terrenos, áreas, propriedades rurais e outros ativos
+        selecionados de acordo com cada mercado.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       HERO
-  ===================================================== -->
 
-  <main>
+<!-- =====================================================
+     REGIÕES
+===================================================== -->
 
-    <section class="regioes-hero">
+<section class="section warm regioes-home">
 
-      <div class="container">
+  <div class="container">
 
-        <span class="eyebrow">
-          PRESENÇA E CURADORIA
-        </span>
 
-        <h1>
-          Regiões selecionadas
-        </h1>
+    <div class="section-head">
 
-        <p>
-          Atuamos em mercados estratégicos do interior e da
-          região metropolitana de São Paulo, conectando clientes
-          a imóveis, terrenos, áreas e oportunidades selecionadas.
+      <div>
+
+        <p class="eyebrow dark">
+          NOSSAS REGIÕES
         </p>
 
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         REGIÕES
-    ===================================================== -->
-
-    <section class="regioes-section">
-
-      <div class="container">
-
-        <div class="regioes-head">
-
-          <span class="eyebrow dark">
-            ONDE ATUAMOS
-          </span>
-
-          <h2>
-            Mercados em destaque
-          </h2>
-
-          <p>
-            Explore algumas das principais regiões do portfólio
-            Piemonte Brokers.
-          </p>
-
-        </div>
-
-
-        <div class="regioes-grid">
-
-
-          <!-- ITU -->
-
-          <a
-            href="/imoveis?cidade=Itu"
-            class="regiao-card"
-          >
-
-            <h3>
-              Itu
-            </h3>
-
-            <p>
-              Casas de alto padrão, condomínios exclusivos,
-              terrenos e áreas estratégicas.
-            </p>
-
-            <span class="ver-regiao">
-              Ver oportunidades
-            </span>
-
-          </a>
-
-
-          <!-- PORTO FELIZ -->
-
-          <a
-            href="/imoveis?cidade=Porto%20Feliz"
-            class="regiao-card"
-          >
-
-            <h3>
-              Porto Feliz
-            </h3>
-
-            <p>
-              Condomínios de luxo, propriedades diferenciadas
-              e oportunidades exclusivas.
-            </p>
-
-            <span class="ver-regiao">
-              Ver oportunidades
-            </span>
-
-          </a>
-
-
-          <!-- INDAIATUBA -->
-
-          <a
-            href="/imoveis?cidade=Indaiatuba"
-            class="regiao-card"
-          >
-
-            <h3>
-              Indaiatuba
-            </h3>
-
-            <p>
-              Residências contemporâneas, condomínios
-              consolidados e imóveis selecionados.
-            </p>
-
-            <span class="ver-regiao">
-              Ver oportunidades
-            </span>
-
-          </a>
-
-
-          <!-- ALPHAVILLE -->
-
-          <a
-            href="/imoveis?cidade=Alphaville"
-            class="regiao-card"
-          >
-
-            <h3>
-              Alphaville
-            </h3>
-
-            <p>
-              Imóveis de alto padrão, oportunidades
-              residenciais e ativos exclusivos.
-            </p>
-
-            <span class="ver-regiao">
-              Ver oportunidades
-            </span>
-
-          </a>
-
-
-          <!-- GRANJA VIANA -->
-
-          <a
-            href="/imoveis?cidade=Granja%20Viana"
-            class="regiao-card"
-          >
-
-            <h3>
-              Granja Viana
-            </h3>
-
-            <p>
-              Casas, terrenos e propriedades em
-              condomínios de referência.
-            </p>
-
-            <span class="ver-regiao">
-              Ver oportunidades
-            </span>
-
-          </a>
-
-
-          <!-- OUTRAS REGIÕES -->
-
-          <a
-            href="/imoveis"
-            class="regiao-card"
-          >
-
-            <h3>
-              Oportunidades especiais
-            </h3>
-
-            <p>
-              Ativos selecionados em outras cidades,
-              áreas rurais e oportunidades off-market.
-            </p>
-
-            <span class="ver-regiao">
-              Explorar portfólio
-            </span>
-
-          </a>
-
-
-        </div>
-
-
-        <div class="regioes-cta">
-
-          <a href="/imoveis">
-            Ver todo o portfólio
-          </a>
-
-        </div>
+        <h2>
+          Explore nossas áreas de atuação.
+        </h2>
 
       </div>
 
-    </section>
-
-  </main>
+    </div>
 
 
-  <!-- =====================================================
-       RODAPÉ
-  ===================================================== -->
+    <!--
+      As regiões abaixo são carregadas automaticamente
+      pelo data/regioes.json através do script.js.
+    -->
 
-  <footer>
+    <div
+      id="regioesCards"
+      class="regioes-home-grid"
+    >
+    </div>
 
-    <div class="container footer">
 
-      <div>
+  </div>
 
-        <img
-          src="/assets/logo-piemonte.png"
-          alt="Piemonte Brokers"
-        >
+</section>
 
+
+
+<!-- =====================================================
+     OPORTUNIDADES ESPECIAIS
+===================================================== -->
+
+<section class="section dark-section">
+
+  <div class="container split">
+
+
+    <div>
+
+      <p class="eyebrow">
+        ALÉM DAS REGIÕES PRINCIPAIS
+      </p>
+
+      <h2>
+        Oportunidades especiais em outros mercados.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Além das regiões apresentadas, a Piemonte Brokers
+        também avalia imóveis, áreas, propriedades rurais
+        e ativos estratégicos localizados em outros mercados.
+      </p>
+
+      <p>
+        Algumas dessas oportunidades podem ser trabalhadas
+        de forma reservada, conforme o perfil do ativo
+        e as condições da negociação.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTATO
+===================================================== -->
+
+<section class="section contact">
+
+  <div class="container split">
+
+
+    <div>
+
+      <p class="eyebrow">
+        LOCALIZAÇÃO
+      </p>
+
+      <h2>
+        Procura uma região específica?
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        Se você busca uma propriedade ou oportunidade
+        em uma localização específica, fale com nossa equipe
+        e informe a região de interesse.
+      </p>
+
+
+      <div id="contatoLinks">
       </div>
 
 
-      <div>
+      <a
+        href="/contato.html"
+        class="btn gold"
+        style="margin-top:20px"
+      >
+        Falar com a Piemonte
+      </a>
 
-        <strong>
-          Piemonte Brokers
-        </strong>
+    </div>
 
-        <span>
-          Imóveis de alto padrão
-        </span>
 
-        <span>
-          Áreas e oportunidades
-        </span>
+  </div>
 
-      </div>
+</section>
 
+
+</main>
+
+
+
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
+
+<footer>
+
+  <div class="container footer">
+
+
+    <div>
+
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
+
+    </div>
+
+
+
+    <div>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+    </div>
+
+
+
+    <div>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
 
       <div id="footerContato">
-
-        <span>
-          São Paulo, Brasil
-        </span>
-
       </div>
 
     </div>
 
 
-    <div class="container copyright">
-
-      © Piemonte Brokers.
-      Todos os direitos reservados.
-
-    </div>
-
-  </footer>
+  </div>
 
 
-  <!-- =====================================================
-       JAVASCRIPT
-  ===================================================== -->
+  <div class="container copyright">
+    © 2026 Piemonte Brokers. Todos os direitos reservados.
+  </div>
 
-  <script src="/assets/script.js"></script>
+</footer>
+
+
+
+<script src="/assets/script.js"></script>
 
 
 </body>
