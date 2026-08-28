@@ -3,27 +3,43 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
   <meta
     name="description"
-    content="Entre em contato com a Piemonte Brokers."
+    content="Entre em contato com a Piemonte Brokers para atendimento imobiliário, captação, investimentos e parcerias."
   >
 
   <title>Contato | Piemonte Brokers</title>
 
-  <link rel="stylesheet" href="/assets/style.css">
+  <link
+    rel="stylesheet"
+    href="/assets/style.css"
+  >
 </head>
 
+
 <body>
+
 
 <header class="header">
 
   <div class="container nav">
 
-    <a href="/index.html" class="logo">
-      <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+    <a
+      href="/index.html"
+      class="logo"
+    >
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
     </a>
+
 
     <button
       id="menuBtn"
@@ -33,14 +49,41 @@
       ☰
     </button>
 
+
     <nav id="menu">
-      <a href="/imoveis.html">Imóveis</a>
-      <a href="/areas.html">Áreas</a>
-      <a href="/regioes.html">Regiões</a>
-      <a href="/sobre.html">Sobre Nós</a>
-      <a href="/anuncie.html">Anuncie conosco</a>
-      <a href="/parcerias.html">Parcerias</a>
-      <a href="/contato.html">Contato</a>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
     </nav>
 
   </div>
@@ -48,44 +91,38 @@
 </header>
 
 
+
 <main>
 
-<section class="section dark-section">
+
+<section class="page-hero">
 
   <div class="container">
 
-    <div style="max-width:900px">
+    <p class="eyebrow">
+      CONTATO • PIEMONTE BROKERS
+    </p>
 
-      <p class="eyebrow">
-        CONTATO
-      </p>
+    <h1>
+      Vamos conversar?
+    </h1>
 
-      <h1 style="font-size:clamp(44px,6vw,72px)">
-        Vamos conversar?
-      </h1>
-
-      <p style="
-        max-width:760px;
-        font-size:18px;
-        line-height:1.8;
-        color:rgba(255,255,255,.75);
-        margin-top:24px;
-      ">
-        Fale com a Piemonte Brokers para compra, venda,
-        captação de imóveis, áreas, investimentos
-        ou oportunidades de parceria.
-      </p>
-
-    </div>
+    <p>
+      Fale com a Piemonte Brokers para apresentar uma oportunidade,
+      buscar um imóvel, discutir uma área, iniciar uma parceria
+      ou obter mais informações sobre nossa atuação.
+    </p>
 
   </div>
 
 </section>
 
 
+
 <section class="section">
 
   <div class="container form-layout">
+
 
     <div>
 
@@ -94,26 +131,43 @@
       </p>
 
       <h2>
-        Atendimento personalizado.
+        Atendimento direto e personalizado.
       </h2>
 
-      <p>
-        Envie sua mensagem e nossa equipe entrará em contato.
-        Quanto mais detalhes você fornecer,
-        mais direcionado poderá ser nosso atendimento.
-      </p>
+      <div class="prose">
 
-      <div id="contatoLinks" style="margin-top:25px"></div>
+        <p>
+          Envie sua mensagem e nossa equipe analisará
+          sua solicitação para direcionar o atendimento
+          da forma mais adequada.
+        </p>
+
+        <p>
+          Você também pode utilizar nossos canais diretos
+          de contato para falar com a Piemonte Brokers.
+        </p>
+
+      </div>
+
+
+      <div
+        id="contatoLinks"
+        style="margin-top:25px"
+      >
+      </div>
 
     </div>
 
 
+
     <form
+      class="lead-form"
       name="contato"
       method="POST"
       data-netlify="true"
-      class="lead-form bordered"
+      netlify-honeypot="bot-field"
     >
+
 
       <input
         type="hidden"
@@ -122,62 +176,72 @@
       >
 
 
+      <p style="display:none">
+        <label>
+          Não preencher:
+          <input name="bot-field">
+        </label>
+      </p>
+
+
       <input
+        type="text"
         name="nome"
-        placeholder="Nome"
+        placeholder="Nome completo"
         required
       >
 
 
       <input
-        name="whatsapp"
-        placeholder="WhatsApp"
+        type="tel"
+        name="telefone"
+        placeholder="Telefone / WhatsApp"
         required
       >
 
 
       <input
-        name="email"
         type="email"
+        name="email"
         placeholder="E-mail"
+        required
       >
 
 
-      <select name="assunto" required>
+      <select
+        name="assunto"
+        required
+      >
 
         <option value="">
-          Como podemos ajudar?
+          Assunto
         </option>
 
-        <option>
-          Quero comprar um imóvel
+        <option value="Compra de imóvel">
+          Compra de imóvel
         </option>
 
-        <option>
-          Quero vender um imóvel
+        <option value="Venda ou captação">
+          Venda / Captação de imóvel
         </option>
 
-        <option>
-          Quero alugar um imóvel
+        <option value="Área ou terreno">
+          Área / Terreno
         </option>
 
-        <option>
-          Procuro uma área
+        <option value="Investimento">
+          Investimento
         </option>
 
-        <option>
-          Tenho uma área para apresentar
+        <option value="Parceria">
+          Parceria
         </option>
 
-        <option>
-          Oportunidade de investimento
+        <option value="Trabalhe conosco">
+          Trabalhe Conosco
         </option>
 
-        <option>
-          Parceria comercial
-        </option>
-
-        <option>
+        <option value="Outro">
           Outro assunto
         </option>
 
@@ -185,24 +249,26 @@
 
 
       <input
+        type="text"
         name="cidade"
-        placeholder="Cidade / região de interesse"
+        placeholder="Cidade / Região"
       >
 
 
       <textarea
         name="mensagem"
-        placeholder="Conte um pouco sobre o que você procura"
+        placeholder="Como podemos ajudar?"
         required
       ></textarea>
 
 
       <button
-        class="btn dark-btn"
         type="submit"
+        class="btn gold"
       >
         Enviar mensagem
       </button>
+
 
     </form>
 
@@ -211,173 +277,20 @@
 </section>
 
 
-<section class="section warm">
 
-  <div class="container">
-
-    <div class="section-head">
-
-      <div>
-
-        <p class="eyebrow dark">
-          COMO PODEMOS AJUDAR
-        </p>
-
-        <h2>
-          Atendimento em diferentes frentes.
-        </h2>
-
-      </div>
-
-    </div>
-
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="card-body">
-
-          <p class="meta">01</p>
-
-          <h3>
-            Compra
-          </h3>
-
-          <p>
-            Busca de imóveis selecionados,
-            oportunidades publicadas
-            e opções off-market.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-body">
-
-          <p class="meta">02</p>
-
-          <h3>
-            Venda
-          </h3>
-
-          <p>
-            Avaliação da oportunidade,
-            posicionamento e estratégia comercial
-            para apresentação ao mercado.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-body">
-
-          <p class="meta">03</p>
-
-          <h3>
-            Áreas
-          </h3>
-
-          <p>
-            Glebas, loteamentos,
-            áreas comerciais, rurais
-            e oportunidades para desenvolvimento.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-body">
-
-          <p class="meta">04</p>
-
-          <h3>
-            Investimentos
-          </h3>
-
-          <p>
-            Ativos e oportunidades imobiliárias
-            direcionadas conforme perfil
-            e objetivo do investidor.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-body">
-
-          <p class="meta">05</p>
-
-          <h3>
-            Parcerias
-          </h3>
-
-          <p>
-            Relacionamento com corretores,
-            imobiliárias, incorporadoras,
-            loteadoras e parceiros estratégicos.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-body">
-
-          <p class="meta">06</p>
-
-          <h3>
-            Atendimento reservado
-          </h3>
-
-          <p>
-            Tratativas direcionadas
-            para imóveis, clientes
-            e oportunidades que exigem discrição.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="section dark-section">
+<section class="section contact">
 
   <div class="container split">
+
 
     <div>
 
       <p class="eyebrow">
-        PIEMONTE BROKERS
+        ATENDIMENTO
       </p>
 
       <h2>
-        Imóveis, áreas e oportunidades.
+        Piemonte Brokers.
       </h2>
 
     </div>
@@ -386,64 +299,88 @@
     <div>
 
       <p>
-        Nosso atendimento é baseado em relacionamento,
-        conhecimento do mercado e compreensão
-        do objetivo de cada cliente.
+        Atendimento para compradores, proprietários,
+        investidores e parceiros com foco em relações
+        comerciais de longo prazo.
       </p>
 
-      <a
-        href="/imoveis.html"
-        class="text-link light"
-      >
-        Conhecer o portfólio →
-      </a>
+
+      <div id="footerContato">
+      </div>
 
     </div>
+
 
   </div>
 
 </section>
 
+
 </main>
+
 
 
 <footer>
 
   <div class="container footer">
 
+
     <div>
 
-      <a href="/index.html">
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
 
-        <img
-          src="/assets/logo-piemonte.png"
-          alt="Piemonte Brokers"
-        >
+    </div>
 
+
+
+    <div>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
       </a>
 
     </div>
 
 
-    <div>
-
-      <a href="/imoveis.html">Imóveis</a>
-      <a href="/areas.html">Áreas</a>
-      <a href="/regioes.html">Regiões</a>
-      <a href="/sobre.html">Sobre Nós</a>
-
-    </div>
-
 
     <div>
 
-      <a href="/anuncie.html">Anuncie conosco</a>
-      <a href="/parcerias.html">Parcerias</a>
-      <a href="/contato.html">Contato</a>
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
 
-      <div id="footerContato"></div>
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
+      <div id="footerContato">
+      </div>
 
     </div>
+
 
   </div>
 
@@ -456,6 +393,7 @@
 
 
 <script src="/assets/script.js"></script>
+
 
 </body>
 
