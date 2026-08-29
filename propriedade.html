@@ -1045,6 +1045,363 @@
       }
     }
 
+
+    /* =====================================================
+       RESPONSIVO FINAL — TABLET E MOBILE
+       Mantém a estrutura desktop e reorganiza a página
+       para telas menores sem cortes ou overflow.
+    ===================================================== */
+
+    @media (max-width: 900px) {
+      .property-container {
+        width: min(100% - 32px, 1240px);
+      }
+
+      .property-heading {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 8px 0 24px;
+      }
+
+      .property-price-top {
+        text-align: left;
+      }
+
+      .property-price-top strong {
+        white-space: normal;
+      }
+
+      .property-gallery {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, .46fr);
+        height: clamp(360px, 58vw, 500px);
+      }
+
+      .property-highlights-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .property-content {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .property-sidebar {
+        position: static;
+      }
+
+      .interest-box {
+        max-width: 100%;
+      }
+
+      .glp-detail-group {
+        grid-template-columns: minmax(130px, .35fr) 1fr;
+      }
+
+      .similar-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .property-page {
+        overflow-x: hidden;
+      }
+
+      .property-container {
+        width: calc(100% - 28px);
+      }
+
+      .property-breadcrumb {
+        padding: 18px 0 12px;
+        font-size: 11px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .property-heading {
+        padding: 8px 0 20px;
+      }
+
+      .property-heading h1 {
+        font-size: clamp(32px, 9.5vw, 43px);
+        line-height: 1.04;
+        letter-spacing: -.028em;
+      }
+
+      .property-location {
+        margin-top: 12px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .property-price-top span {
+        margin-bottom: 5px;
+      }
+
+      .property-price-top strong {
+        font-size: 25px;
+      }
+
+      /* Galeria mobile: uma foto principal limpa e proporcional */
+      .property-gallery {
+        display: block;
+        width: 100vw;
+        height: auto;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        background: #111a16;
+      }
+
+      .gallery-main {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        background: #111a16;
+      }
+
+      .gallery-main > img {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .gallery-side {
+        display: none !important;
+      }
+
+      .gallery-button {
+        right: 14px;
+        bottom: 14px;
+        padding: 10px 13px;
+        font-size: 11px;
+      }
+
+      .gallery-main.piemonte-foto::after {
+        width: clamp(110px, 30vw, 150px);
+        opacity: .38;
+      }
+
+      .photo-strip {
+        display: none !important;
+      }
+
+      /* Faixa de números: 2 colunas e leitura fácil */
+      .property-highlights {
+        margin: 24px 0 0;
+      }
+
+      .property-highlights-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .highlight-item {
+        min-width: 0;
+        padding: 20px 14px 18px;
+        border-right: 1px solid rgba(21,43,36,.12);
+        border-bottom: 1px solid rgba(21,43,36,.12);
+      }
+
+      .highlight-item:nth-child(even) {
+        border-right: 0;
+      }
+
+      .highlight-value {
+        font-size: 27px;
+        overflow-wrap: anywhere;
+      }
+
+      .highlight-label {
+        font-size: 9px;
+        line-height: 1.35;
+      }
+
+      .property-costs {
+        gap: 8px 18px;
+        padding: 14px 0 38px;
+        font-size: 12px;
+      }
+
+      /* Conteúdo */
+      .property-content {
+        display: block;
+        padding-bottom: 62px;
+      }
+
+      .content-section,
+      .content-section.glp-about {
+        margin-bottom: 46px;
+      }
+
+      .content-section.glp-about h2,
+      .content-section h2 {
+        font-size: 31px;
+        line-height: 1.08;
+        margin-bottom: 20px;
+      }
+
+      .property-description {
+        font-size: 15px;
+        line-height: 1.78;
+      }
+
+      .glp-detail-group {
+        display: block;
+        padding: 22px 0;
+      }
+
+      .glp-detail-group h3 {
+        margin-bottom: 15px;
+      }
+
+      .glp-detail-items {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .glp-detail-item {
+        gap: 14px;
+        padding: 11px 0;
+        font-size: 13px;
+      }
+
+      .glp-detail-item strong {
+        max-width: 54%;
+      }
+
+      /* Card de contato sem ficar espremido */
+      .property-sidebar {
+        margin-top: 18px;
+      }
+
+      .interest-box {
+        padding: 30px 24px;
+      }
+
+      .interest-box h3 {
+        font-size: 27px;
+      }
+
+      .side-price {
+        font-size: 22px;
+      }
+
+      /* Semelhantes: carrossel horizontal no mobile */
+      .similar-section {
+        padding: 62px 0 72px;
+        overflow: hidden;
+      }
+
+      .similar-header {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 26px;
+      }
+
+      .similar-title {
+        font-size: 31px;
+      }
+
+      .similar-view-all {
+        flex: 0 0 auto;
+        font-size: 9px;
+      }
+
+      .similar-grid {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scroll-snap-type: x mandatory;
+        padding: 0 14px 14px 0;
+        margin-right: -14px;
+        scrollbar-width: none;
+      }
+
+      .similar-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .similar-card {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+      }
+
+      .similar-image {
+        height: auto;
+        aspect-ratio: 4 / 3;
+      }
+
+      .similar-body {
+        padding: 18px;
+      }
+
+      .similar-body h3 {
+        font-size: 19px;
+      }
+
+      /* Lightbox */
+      .lightbox-photo-wrap {
+        max-width: 100vw;
+        max-height: 82vh;
+      }
+
+      .lightbox-photo-wrap img,
+      .photo-lightbox img {
+        max-width: 100vw;
+        max-height: 82vh;
+      }
+
+      .lightbox-close {
+        right: 8px;
+        top: 8px;
+      }
+
+      .lightbox-prev,
+      .lightbox-next {
+        width: 42px;
+        height: 54px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .property-container {
+        width: calc(100% - 24px);
+      }
+
+      .gallery-main {
+        aspect-ratio: 1 / 1;
+      }
+
+      .property-highlights-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .highlight-value {
+        font-size: 24px;
+      }
+
+      .similar-card {
+        flex-basis: 88%;
+      }
+
+      .similar-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
   </style>
 
 </head>
