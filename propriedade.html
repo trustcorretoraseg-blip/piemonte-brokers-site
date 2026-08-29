@@ -12,7 +12,7 @@
 
   <meta
     name="description"
-    content="Conheça esta oportunidade selecionada pela Piemonte Brokers."
+    content="Propriedade selecionada pela Piemonte Brokers."
   >
 
   <title>Propriedade | Piemonte Brokers</title>
@@ -26,7 +26,7 @@
   <style>
 
     /* =====================================================
-       PÁGINA INDIVIDUAL DO IMÓVEL
+       PÁGINA
     ===================================================== */
 
     .property-page {
@@ -35,10 +35,20 @@
       color: #17251f;
     }
 
+    .property-container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+
+    /* =====================================================
+       BREADCRUMB
+    ===================================================== */
+
     .property-breadcrumb {
-      padding: 28px 0 18px;
+      padding: 30px 0 20px;
       font-size: 13px;
-      opacity: .7;
+      color: rgba(23, 37, 31, .58);
     }
 
     .property-breadcrumb a {
@@ -46,60 +56,69 @@
       text-decoration: none;
     }
 
+    .property-breadcrumb a:hover {
+      color: #a9843f;
+    }
+
     .property-breadcrumb span {
       margin: 0 8px;
-      opacity: .55;
     }
 
 
     /* =====================================================
-       CABEÇALHO DO IMÓVEL
+       CABEÇALHO
     ===================================================== */
 
     .property-heading {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
-      gap: 35px;
+      gap: 40px;
       align-items: end;
-      padding-bottom: 28px;
+      padding: 10px 0 34px;
     }
 
-    .property-heading .eyebrow {
+    .property-eyebrow {
       color: #a9843f;
-      margin-bottom: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
     }
 
     .property-heading h1 {
       margin: 0;
-      max-width: 900px;
-      font-size: clamp(34px, 5vw, 64px);
-      line-height: .98;
-      font-weight: 500;
+      max-width: 880px;
+      font-size: clamp(35px, 5vw, 62px);
+      line-height: 1.02;
+      font-weight: 400;
+      letter-spacing: -.025em;
     }
 
     .property-location {
-      margin-top: 17px;
+      margin-top: 18px;
       font-size: 16px;
-      opacity: .72;
+      color: rgba(23, 37, 31, .66);
     }
 
     .property-price-top {
       text-align: right;
-      white-space: nowrap;
+      padding-bottom: 5px;
     }
 
     .property-price-label {
       display: block;
-      font-size: 11px;
+      margin-bottom: 8px;
+      font-size: 10px;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      letter-spacing: .12em;
-      opacity: .55;
-      margin-bottom: 7px;
+      color: rgba(23, 37, 31, .48);
     }
 
     .property-price-top strong {
       display: block;
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(25px, 3vw, 35px);
+      line-height: 1;
       font-weight: 500;
     }
 
@@ -111,88 +130,124 @@
     .property-gallery {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      gap: 8px;
-      min-height: 560px;
-      margin-bottom: 44px;
+      gap: 7px;
+      margin-bottom: 12px;
+      height: 600px;
       overflow: hidden;
     }
 
-    .property-gallery-main,
-    .property-gallery-side-item {
+    .gallery-main {
       position: relative;
       overflow: hidden;
-      background: #ddd;
+      background: #dedbd2;
     }
 
-    .property-gallery-main {
-      min-height: 560px;
-    }
-
-    .property-gallery-side {
+    .gallery-side {
       display: grid;
       grid-template-rows: 1fr 1fr;
-      gap: 8px;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .gallery-side-item {
+      position: relative;
+      overflow: hidden;
+      background: #dedbd2;
     }
 
     .property-gallery img {
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
-      transition: transform .45s ease;
+      display: block;
       cursor: pointer;
+      transition: transform .45s ease;
     }
 
     .property-gallery img:hover {
-      transform: scale(1.015);
+      transform: scale(1.02);
     }
 
-    .gallery-more {
+    .gallery-counter {
       position: absolute;
       right: 18px;
       bottom: 18px;
-      padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,.55);
-      background: rgba(8,18,14,.75);
+      z-index: 2;
+      padding: 11px 15px;
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(10, 20, 16, .76);
       backdrop-filter: blur(8px);
-      color: #fff;
+      color: white;
       font-size: 12px;
       cursor: pointer;
     }
 
 
     /* =====================================================
-       RESUMO / ÍCONES
+       TODAS AS FOTOS
+    ===================================================== */
+
+    .all-photos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      margin: 7px 0 48px;
+    }
+
+    .all-photo {
+      position: relative;
+      height: 125px;
+      overflow: hidden;
+      background: #ddd;
+      cursor: pointer;
+    }
+
+    .all-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+
+    .all-photo:hover img {
+      transform: scale(1.04);
+    }
+
+
+    /* =====================================================
+       RESUMO PRINCIPAL
     ===================================================== */
 
     .property-summary {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      border-top: 1px solid rgba(20,40,30,.15);
-      border-bottom: 1px solid rgba(20,40,30,.15);
-      margin-bottom: 55px;
+      grid-template-columns: repeat(5, 1fr);
+      margin-bottom: 75px;
+      border-top: 1px solid rgba(23,37,31,.15);
+      border-bottom: 1px solid rgba(23,37,31,.15);
     }
 
-    .property-summary-item {
-      padding: 24px 14px;
-      border-right: 1px solid rgba(20,40,30,.12);
+    .summary-item {
+      padding: 27px 20px;
+      border-right: 1px solid rgba(23,37,31,.12);
     }
 
-    .property-summary-item:last-child {
+    .summary-item:last-child {
       border-right: 0;
     }
 
-    .property-summary-item span {
+    .summary-label {
       display: block;
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: .09em;
-      opacity: .55;
-      margin-bottom: 6px;
+      letter-spacing: .13em;
+      color: rgba(23,37,31,.48);
+      margin-bottom: 8px;
     }
 
-    .property-summary-item strong {
-      font-size: 18px;
+    .summary-value {
+      display: block;
+      font-size: 20px;
       font-weight: 500;
     }
 
@@ -201,35 +256,31 @@
        CONTEÚDO
     ===================================================== */
 
-    .property-content-grid {
+    .property-content {
       display: grid;
-      grid-template-columns: minmax(0, 1.65fr) minmax(300px, .75fr);
-      gap: 70px;
+      grid-template-columns: minmax(0, 1.7fr) minmax(300px, .72fr);
+      gap: 80px;
       align-items: start;
-      padding-bottom: 70px;
+      padding-bottom: 90px;
     }
 
-    .property-section {
-      margin-bottom: 52px;
+    .content-section {
+      margin-bottom: 65px;
     }
 
-    .property-section .eyebrow {
-      color: #a9843f;
-    }
-
-    .property-section h2 {
-      margin-top: 8px;
-      margin-bottom: 22px;
-      font-size: clamp(28px, 4vw, 43px);
-      font-weight: 500;
-      line-height: 1.04;
+    .content-section h2 {
+      margin: 8px 0 25px;
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.06;
+      font-weight: 400;
+      letter-spacing: -.02em;
     }
 
     .property-description {
       font-size: 17px;
-      line-height: 1.8;
+      line-height: 1.85;
+      color: rgba(23,37,31,.79);
       white-space: pre-line;
-      color: rgba(23,37,31,.82);
     }
 
 
@@ -239,15 +290,16 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px 30px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 35px;
+      border-top: 1px solid rgba(23,37,31,.12);
     }
 
     .feature-item {
       position: relative;
-      padding: 12px 0 12px 22px;
-      border-bottom: 1px solid rgba(20,40,30,.1);
-      line-height: 1.45;
+      padding: 17px 0 17px 22px;
+      border-bottom: 1px solid rgba(23,37,31,.12);
+      font-size: 15px;
     }
 
     .feature-item::before {
@@ -259,28 +311,44 @@
 
 
     /* =====================================================
-       FICHA TÉCNICA
+       NOVA FICHA TÉCNICA
     ===================================================== */
 
-    .technical-list {
-      border-top: 1px solid rgba(20,40,30,.13);
+    .technical-section {
+      margin-top: 15px;
     }
 
-    .technical-row {
+    .technical-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(23,37,31,.12);
+      border: 1px solid rgba(23,37,31,.12);
+    }
+
+    .technical-card {
+      min-height: 135px;
+      padding: 26px;
+      background: #f7f5ef;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      gap: 30px;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(20,40,30,.13);
     }
 
-    .technical-row span {
-      opacity: .58;
+    .technical-card-label {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(23,37,31,.47);
     }
 
-    .technical-row strong {
-      text-align: right;
+    .technical-card-value {
+      margin-top: 22px;
+      font-size: 22px;
+      line-height: 1.18;
       font-weight: 500;
+      color: #17251f;
+      word-break: break-word;
     }
 
 
@@ -294,138 +362,135 @@
     }
 
     .interest-box {
-      padding: 32px;
+      padding: 36px;
       background: #15372e;
-      color: #fff;
+      color: white;
     }
 
-    .interest-box .eyebrow {
+    .interest-box .property-eyebrow {
       color: #d0aa58;
     }
 
     .interest-box h3 {
-      margin: 10px 0 13px;
-      font-size: 29px;
-      font-weight: 500;
-      line-height: 1.05;
+      margin: 10px 0 14px;
+      font-size: 31px;
+      line-height: 1.08;
+      font-weight: 400;
     }
 
     .interest-box p {
-      margin-bottom: 25px;
-      line-height: 1.6;
-      opacity: .82;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.76);
+      margin-bottom: 26px;
     }
 
-    .interest-box .property-side-price {
+    .side-price {
       display: block;
-      border-top: 1px solid rgba(255,255,255,.18);
-      border-bottom: 1px solid rgba(255,255,255,.18);
       padding: 20px 0;
-      margin-bottom: 24px;
-      font-size: 24px;
+      margin-bottom: 22px;
+      border-top: 1px solid rgba(255,255,255,.17);
+      border-bottom: 1px solid rgba(255,255,255,.17);
+      font-size: 25px;
+      font-weight: 500;
     }
 
     .interest-box .btn {
       width: 100%;
-      justify-content: center;
       text-align: center;
+      justify-content: center;
     }
 
-    .interest-secondary {
+    .secondary-contact {
       display: block;
-      margin-top: 11px;
-      padding: 14px;
-      border: 1px solid rgba(255,255,255,.3);
-      color: #fff;
+      margin-top: 10px;
+      padding: 14px 10px;
       text-align: center;
       text-decoration: none;
+      color: white;
+      border: 1px solid rgba(255,255,255,.3);
       font-size: 13px;
     }
 
 
     /* =====================================================
-       IMÓVEIS SEMELHANTES
+       SEMELHANTES
     ===================================================== */
 
     .similar-section {
-      padding: 75px 0 90px;
+      padding: 85px 0 95px;
       background: #15372e;
-      color: #fff;
+      color: white;
     }
 
-    .similar-section .eyebrow {
+    .similar-section .property-eyebrow {
       color: #d0aa58;
     }
 
-    .similar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 30px;
-      margin-bottom: 32px;
-    }
-
-    .similar-header h2 {
-      font-size: clamp(30px, 4vw, 45px);
-      font-weight: 500;
-      margin: 8px 0 0;
+    .similar-title {
+      margin: 8px 0 35px;
+      font-size: clamp(31px, 4vw, 45px);
+      font-weight: 400;
     }
 
     .similar-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
 
     .similar-card {
-      background: #fff;
+      background: white;
       color: #17251f;
       cursor: pointer;
       transition: transform .25s ease;
     }
 
     .similar-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
     }
 
-    .similar-card-img {
-      height: 265px;
+    .similar-image {
+      height: 260px;
       overflow: hidden;
       background: #ddd;
     }
 
-    .similar-card-img img {
+    .similar-image img {
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
+      display: block;
     }
 
-    .similar-card-body {
-      padding: 22px;
+    .similar-body {
+      padding: 23px;
     }
 
-    .similar-card-meta {
-      font-size: 11px;
+    .similar-meta {
+      min-height: 17px;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: .07em;
-      opacity: .57;
+      letter-spacing: .1em;
+      color: rgba(23,37,31,.54);
     }
 
-    .similar-card h3 {
+    .similar-body h3 {
+      margin: 9px 0 13px;
       font-size: 22px;
-      line-height: 1.1;
-      margin: 8px 0 14px;
+      line-height: 1.15;
       font-weight: 500;
     }
 
-    .similar-card p {
+    .similar-specs {
+      min-height: 35px;
       font-size: 13px;
-      opacity: .65;
+      line-height: 1.5;
+      color: rgba(23,37,31,.6);
       margin-bottom: 16px;
     }
 
-    .similar-card strong {
+    .similar-body strong {
       font-size: 18px;
       font-weight: 500;
     }
@@ -439,8 +504,8 @@
       display: none;
       position: fixed;
       inset: 0;
-      z-index: 99999;
-      background: rgba(0,0,0,.94);
+      z-index: 999999;
+      background: rgba(0,0,0,.96);
       align-items: center;
       justify-content: center;
     }
@@ -450,19 +515,22 @@
     }
 
     .photo-lightbox img {
-      max-width: 92vw;
+      display: block;
+      max-width: 91vw;
       max-height: 88vh;
       object-fit: contain;
     }
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
       right: 25px;
-      background: none;
+      top: 18px;
+      width: 48px;
+      height: 48px;
       border: 0;
-      color: #fff;
-      font-size: 42px;
+      background: transparent;
+      color: white;
+      font-size: 40px;
       cursor: pointer;
     }
 
@@ -470,12 +538,12 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 60px;
       border: 1px solid rgba(255,255,255,.3);
       background: rgba(0,0,0,.35);
-      color: #fff;
-      font-size: 25px;
+      color: white;
+      font-size: 30px;
       cursor: pointer;
     }
 
@@ -485,6 +553,31 @@
 
     .lightbox-next {
       right: 20px;
+    }
+
+    .lightbox-count {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+
+    /* =====================================================
+       ERRO
+    ===================================================== */
+
+    .property-error {
+      padding: 100px 0 150px;
+      text-align: center;
+    }
+
+    .property-error h1 {
+      font-size: 42px;
+      font-weight: 400;
     }
 
 
@@ -503,28 +596,28 @@
       }
 
       .property-gallery {
-        min-height: 450px;
+        height: 480px;
       }
 
-      .property-gallery-main {
-        min-height: 450px;
+      .all-photos {
+        grid-template-columns: repeat(4, 1fr);
       }
 
       .property-summary {
         grid-template-columns: repeat(3, 1fr);
       }
 
-      .property-summary-item:nth-child(3) {
-        border-right: 0;
-      }
-
-      .property-content-grid {
+      .property-content {
         grid-template-columns: 1fr;
         gap: 30px;
       }
 
       .property-sidebar {
         position: static;
+      }
+
+      .technical-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .similar-grid {
@@ -536,12 +629,8 @@
 
     @media (max-width: 650px) {
 
-      .property-breadcrumb {
-        padding-top: 18px;
-      }
-
-      .property-heading {
-        gap: 18px;
+      .property-container {
+        width: min(100% - 30px, 1180px);
       }
 
       .property-heading h1 {
@@ -550,42 +639,69 @@
 
       .property-gallery {
         display: block;
-        min-height: auto;
-        margin-left: -16px;
-        margin-right: -16px;
+        height: auto;
+        margin-left: -15px;
+        margin-right: -15px;
       }
 
-      .property-gallery-main {
-        height: 380px;
-        min-height: 0;
+      .gallery-main {
+        height: 390px;
       }
 
-      .property-gallery-side {
+      .gallery-side {
         display: none;
+      }
+
+      .all-photos {
+        grid-template-columns: repeat(3, 1fr);
+        margin-left: -15px;
+        margin-right: -15px;
+      }
+
+      .all-photo {
+        height: 100px;
       }
 
       .property-summary {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .property-summary-item:nth-child(2n) {
-        border-right: 0;
+      .summary-item {
+        border-bottom: 1px solid rgba(23,37,31,.12);
       }
 
       .features-grid {
         grid-template-columns: 1fr;
       }
 
+      .technical-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .technical-card {
+        min-height: 115px;
+        padding: 20px;
+      }
+
+      .technical-card-value {
+        font-size: 18px;
+      }
+
       .similar-grid {
         grid-template-columns: 1fr;
       }
 
-      .similar-header {
-        display: block;
+      .lightbox-nav {
+        width: 42px;
+        height: 52px;
       }
 
-      .property-content-grid {
-        padding-bottom: 45px;
+      .lightbox-prev {
+        left: 5px;
+      }
+
+      .lightbox-next {
+        right: 5px;
       }
 
     }
@@ -673,7 +789,10 @@ HEADER
 <main class="property-page">
 
 
-  <div class="container">
+  <div
+    class="property-container"
+    id="propertyMain"
+  >
 
 
     <!-- BREADCRUMB -->
@@ -703,22 +822,24 @@ HEADER
 
 
 
-    <!-- TÍTULO -->
+    <!-- CABEÇALHO -->
 
     <section class="property-heading">
 
       <div>
 
         <p
-          class="eyebrow dark"
+          class="property-eyebrow"
           id="propertyCategory"
         >
           PIEMONTE BROKERS
         </p>
 
+
         <h1 id="propertyTitle">
           Carregando propriedade...
         </h1>
+
 
         <div
           class="property-location"
@@ -744,14 +865,15 @@ HEADER
     </section>
 
 
-    <!-- GALERIA -->
+
+    <!-- GALERIA PRINCIPAL -->
 
     <section
       class="property-gallery"
       id="propertyGallery"
     >
 
-      <div class="property-gallery-main">
+      <div class="gallery-main">
 
         <img
           id="galleryMain"
@@ -759,16 +881,36 @@ HEADER
           alt="Piemonte Brokers"
         >
 
+
+        <button
+          class="gallery-counter"
+          id="galleryCounter"
+          type="button"
+        >
+          Ver fotos
+        </button>
+
       </div>
 
 
       <div
-        class="property-gallery-side"
+        class="gallery-side"
         id="gallerySide"
       >
       </div>
 
     </section>
+
+
+
+    <!-- TODAS AS FOTOS -->
+
+    <div
+      class="all-photos"
+      id="allPhotos"
+    >
+    </div>
+
 
 
     <!-- RESUMO -->
@@ -780,9 +922,10 @@ HEADER
     </section>
 
 
+
     <!-- CONTEÚDO -->
 
-    <section class="property-content-grid">
+    <section class="property-content">
 
 
       <div>
@@ -790,9 +933,9 @@ HEADER
 
         <!-- DESCRIÇÃO -->
 
-        <div class="property-section">
+        <div class="content-section">
 
-          <p class="eyebrow dark">
+          <p class="property-eyebrow">
             A PROPRIEDADE
           </p>
 
@@ -813,16 +956,16 @@ HEADER
         <!-- DIFERENCIAIS -->
 
         <div
-          class="property-section"
+          class="content-section"
           id="featuresSection"
         >
 
-          <p class="eyebrow dark">
+          <p class="property-eyebrow">
             DESTAQUES
           </p>
 
           <h2>
-            Diferenciais da propriedade
+            Diferenciais
           </h2>
 
           <div
@@ -837,9 +980,9 @@ HEADER
 
         <!-- FICHA TÉCNICA -->
 
-        <div class="property-section">
+        <div class="content-section technical-section">
 
-          <p class="eyebrow dark">
+          <p class="property-eyebrow">
             INFORMAÇÕES
           </p>
 
@@ -848,8 +991,8 @@ HEADER
           </h2>
 
           <div
-            class="technical-list"
-            id="technicalList"
+            class="technical-grid"
+            id="technicalGrid"
           >
           </div>
 
@@ -860,13 +1003,13 @@ HEADER
 
 
 
-      <!-- SIDEBAR -->
+      <!-- CONTATO -->
 
       <aside class="property-sidebar">
 
         <div class="interest-box">
 
-          <p class="eyebrow">
+          <p class="property-eyebrow">
             PIEMONTE BROKERS
           </p>
 
@@ -875,12 +1018,12 @@ HEADER
           </h3>
 
           <p>
-            Fale com nossa equipe para receber mais informações,
-            disponibilidade e condições desta oportunidade.
+            Converse com nossa equipe para receber mais informações,
+            condições e disponibilidade desta oportunidade.
           </p>
 
           <strong
-            class="property-side-price"
+            class="side-price"
             id="propertyPriceSide"
           >
             Consulte
@@ -898,7 +1041,7 @@ HEADER
 
           <a
             href="/contato.html"
-            class="interest-secondary"
+            class="secondary-contact"
           >
             Enviar uma mensagem
           </a>
@@ -915,31 +1058,22 @@ HEADER
 
 
 
-  <!-- IMÓVEIS SEMELHANTES -->
+  <!-- SEMELHANTES -->
 
   <section
     class="similar-section"
     id="similarSection"
   >
 
-    <div class="container">
+    <div class="property-container">
 
-      <div class="similar-header">
+      <p class="property-eyebrow">
+        SELEÇÃO PIEMONTE
+      </p>
 
-        <div>
-
-          <p class="eyebrow">
-            SELEÇÃO PIEMONTE
-          </p>
-
-          <h2>
-            Oportunidades semelhantes
-          </h2>
-
-        </div>
-
-      </div>
-
+      <h2 class="similar-title">
+        Oportunidades semelhantes
+      </h2>
 
       <div
         class="similar-grid"
@@ -968,31 +1102,44 @@ LIGHTBOX
   <button
     class="lightbox-close"
     id="lightboxClose"
-    aria-label="Fechar galeria"
+    type="button"
+    aria-label="Fechar"
   >
     ×
   </button>
 
+
   <button
     class="lightbox-nav lightbox-prev"
     id="lightboxPrev"
+    type="button"
     aria-label="Foto anterior"
   >
     ‹
   </button>
+
 
   <img
     id="lightboxImage"
     alt=""
   >
 
+
   <button
     class="lightbox-nav lightbox-next"
     id="lightboxNext"
+    type="button"
     aria-label="Próxima foto"
   >
     ›
   </button>
+
+
+  <div
+    class="lightbox-count"
+    id="lightboxCount"
+  >
+  </div>
 
 </div>
 
@@ -1005,7 +1152,6 @@ FOOTER
 <footer>
 
   <div class="container footer">
-
 
     <div>
 
@@ -1058,7 +1204,6 @@ FOOTER
 
     </div>
 
-
   </div>
 
 
@@ -1076,11 +1221,12 @@ FOOTER
      VARIÁVEIS
   ===================================================== */
 
-  let portfolio = [];
-  let propriedade = null;
-  let fotos = [];
-  let fotoAtual = 0;
-  let site = {};
+  let PORTFOLIO = [];
+  let SITE = {};
+  let PROPRIEDADE = null;
+
+  let FOTOS = [];
+  let FOTO_ATUAL = 0;
 
 
   const $ =
@@ -1093,31 +1239,46 @@ FOOTER
       String(valor ?? "")
         .replace(
           /[&<>"']/g,
-          c =>
+          caractere =>
             ({
               "&": "&amp;",
               "<": "&lt;",
               ">": "&gt;",
               '"': "&quot;",
               "'": "&#039;"
-            }[c])
+            }[caractere])
         );
 
 
   /* =====================================================
-     FORMATADORES
+     FORMATAÇÃO
   ===================================================== */
 
   function formatarNumero(valor) {
 
+    if (
+      valor === undefined ||
+      valor === null ||
+      valor === ""
+    ) {
+
+      return "";
+
+    }
+
+
     const numero =
       Number(valor);
+
 
     if (
       Number.isNaN(numero)
     ) {
-      return valor;
+
+      return String(valor);
+
     }
+
 
     return numero.toLocaleString(
       "pt-BR",
@@ -1130,77 +1291,157 @@ FOOTER
 
 
 
-  function textoLocal(item) {
+  function formatarBooleano(valor) {
 
-    return [
-      item.regiaoPrincipal,
-      item.cidade,
-      item.regiao
-    ]
-      .filter(Boolean)
-      .filter(
-        (valor, indice, array) =>
-          array.indexOf(valor) === indice
-      )
-      .join(" • ");
+    return valor
+      ? "Sim"
+      : "";
 
   }
 
 
 
-  function normalizarGaleria(item) {
+  /* =====================================================
+     LOCALIZAÇÃO
+  ===================================================== */
+
+  function montarLocalizacao(item) {
+
+    const valores =
+      [
+        item.condominio,
+        item.regiao,
+        item.cidade
+      ]
+        .filter(Boolean);
+
+
+    return [
+      ...new Set(valores)
+    ].join(" • ");
+
+  }
+
+
+
+  /* =====================================================
+     GALERIA
+     
+     COMPATÍVEL COM:
+     
+     galeria: [
+       "/uploads/foto1.jpg",
+       "/uploads/foto2.jpg"
+     ]
+     
+     E TAMBÉM COM O FORMATO ANTIGO:
+     
+     galeria: [
+       { foto: "/uploads/foto1.jpg" }
+     ]
+  ===================================================== */
+
+  function obterFotos(item) {
 
     const resultado = [];
 
 
-    if (item.imagemCapa) {
+    function adicionarFoto(valor) {
 
-      resultado.push(
-        item.imagemCapa
-      );
+      if (!valor) {
+
+        return;
+
+      }
+
+
+      let caminho = "";
+
+
+      if (
+        typeof valor === "string"
+      ) {
+
+        caminho =
+          valor;
+
+      }
+
+
+      else if (
+        typeof valor === "object"
+      ) {
+
+        caminho =
+          valor.foto ||
+          valor.image ||
+          valor.imagem ||
+          valor.src ||
+          valor.path ||
+          "";
+
+      }
+
+
+      if (
+        caminho &&
+        !resultado.includes(caminho)
+      ) {
+
+        resultado.push(caminho);
+
+      }
 
     }
 
+
+
+    /*
+      CAPA
+    */
+
+    adicionarFoto(
+      item.imagemCapa
+    );
+
+
+
+    /*
+      GALERIA
+    */
 
     if (
       Array.isArray(item.galeria)
     ) {
 
-      item.galeria.forEach(
-        foto => {
+      item.galeria
+        .forEach(
+          foto =>
+            adicionarFoto(foto)
+        );
 
-          let src = "";
-
-          if (
-            typeof foto === "string"
-          ) {
-
-            src = foto;
-
-          } else {
-
-            src =
-              foto?.foto ||
-              foto?.image ||
-              "";
-
-          }
+    }
 
 
-          if (
-            src &&
-            !resultado.includes(src)
-          ) {
+    /*
+      CASO O CMS DEVOLVA UMA ÚNICA STRING
+    */
 
-            resultado.push(src);
+    else if (
+      item.galeria
+    ) {
 
-          }
-
-        }
+      adicionarFoto(
+        item.galeria
       );
 
     }
 
+
+
+    /*
+      FALLBACK
+    */
 
     if (
       !resultado.length
@@ -1218,6 +1459,7 @@ FOOTER
   }
 
 
+
   /* =====================================================
      CARREGAR DADOS
   ===================================================== */
@@ -1227,8 +1469,8 @@ FOOTER
     try {
 
       const [
-        portfolioResp,
-        siteResp
+        portfolioResponse,
+        siteResponse
       ] =
         await Promise.all([
 
@@ -1249,22 +1491,35 @@ FOOTER
         ]);
 
 
-      const dados =
-        await portfolioResp.json();
+      if (
+        !portfolioResponse.ok
+      ) {
+
+        throw new Error(
+          "Não foi possível carregar o portfólio."
+        );
+
+      }
 
 
-      portfolio =
-        Array.isArray(dados.itens)
-          ? dados.itens
+      const dadosPortfolio =
+        await portfolioResponse.json();
+
+
+      PORTFOLIO =
+        Array.isArray(
+          dadosPortfolio.itens
+        )
+          ? dadosPortfolio.itens
           : [];
 
 
       if (
-        siteResp.ok
+        siteResponse.ok
       ) {
 
-        site =
-          await siteResp.json();
+        SITE =
+          await siteResponse.json();
 
       }
 
@@ -1275,14 +1530,13 @@ FOOTER
     } catch (erro) {
 
       console.error(
-        "Erro ao carregar propriedade:",
         erro
       );
 
 
-      $("#propertyTitle")
-        .textContent =
-          "Não foi possível carregar esta propriedade.";
+      mostrarErro(
+        "Não foi possível carregar esta propriedade."
+      );
 
     }
 
@@ -1291,23 +1545,23 @@ FOOTER
 
 
   /* =====================================================
-     LOCALIZAR IMÓVEL
+     LOCALIZAR
   ===================================================== */
 
   function localizarPropriedade() {
 
-    const params =
+    const parametros =
       new URLSearchParams(
         window.location.search
       );
 
 
     const id =
-      params.get("id");
+      parametros.get("id");
 
 
-    propriedade =
-      portfolio.find(
+    PROPRIEDADE =
+      PORTFOLIO.find(
         item =>
           String(item.id) ===
           String(id)
@@ -1315,22 +1569,12 @@ FOOTER
 
 
     if (
-      !propriedade
+      !PROPRIEDADE
     ) {
 
-      $("#propertyTitle")
-        .textContent =
-          "Propriedade não encontrada";
-
-
-      $("#propertyDescription")
-        .textContent =
-          "Esta oportunidade pode ter sido removida ou o endereço utilizado não é mais válido.";
-
-
-      $("#similarSection")
-        .style.display =
-          "none";
+      mostrarErro(
+        "Propriedade não encontrada."
+      );
 
 
       return;
@@ -1345,56 +1589,112 @@ FOOTER
 
 
   /* =====================================================
+     ERRO
+  ===================================================== */
+
+  function mostrarErro(
+    mensagem
+  ) {
+
+    const principal =
+      $("#propertyMain");
+
+
+    principal.innerHTML = `
+
+      <div class="property-error">
+
+        <p class="property-eyebrow">
+          PIEMONTE BROKERS
+        </p>
+
+        <h1>
+          ${esc(mensagem)}
+        </h1>
+
+        <a
+          href="/imoveis.html"
+          class="btn gold"
+        >
+          Ver imóveis
+        </a>
+
+      </div>
+
+    `;
+
+
+    const semelhantes =
+      $("#similarSection");
+
+
+    if (semelhantes) {
+
+      semelhantes.style.display =
+        "none";
+
+    }
+
+  }
+
+
+
+  /* =====================================================
      MONTAR PÁGINA
   ===================================================== */
 
   function montarPagina() {
 
     document.title =
-      `${propriedade.titulo || "Propriedade"} | Piemonte Brokers`;
+      `${
+        PROPRIEDADE.titulo ||
+        "Propriedade"
+      } | Piemonte Brokers`;
 
 
     $("#propertyTitle")
       .textContent =
-        propriedade.titulo ||
+        PROPRIEDADE.titulo ||
         "Oportunidade Piemonte";
 
 
     $("#breadcrumbTitulo")
       .textContent =
-        propriedade.titulo ||
+        PROPRIEDADE.titulo ||
         "Propriedade";
 
 
     $("#propertyCategory")
       .textContent =
         `${
-          propriedade.categoria ||
+          PROPRIEDADE.categoria ||
           "OPORTUNIDADE"
         } • PIEMONTE BROKERS`;
 
 
-    const breadcrumbCategoria =
+    const breadcrumb =
       $("#breadcrumbCategoria");
 
 
     if (
-      propriedade.categoria ===
+      PROPRIEDADE.categoria ===
       "Área"
     ) {
 
-      breadcrumbCategoria.href =
+      breadcrumb.href =
         "/areas.html";
 
-      breadcrumbCategoria.textContent =
+      breadcrumb.textContent =
         "Áreas";
 
-    } else {
+    }
 
-      breadcrumbCategoria.href =
+    else {
+
+      breadcrumb.href =
         "/imoveis.html";
 
-      breadcrumbCategoria.textContent =
+      breadcrumb.textContent =
         "Imóveis";
 
     }
@@ -1402,11 +1702,13 @@ FOOTER
 
     $("#propertyLocation")
       .textContent =
-        textoLocal(propriedade);
+        montarLocalizacao(
+          PROPRIEDADE
+        );
 
 
     const preco =
-      propriedade.precoTexto ||
+      PROPRIEDADE.precoTexto ||
       "Consulte";
 
 
@@ -1422,16 +1724,21 @@ FOOTER
 
     $("#propertyDescription")
       .textContent =
-        propriedade.descricaoLonga ||
-        propriedade.descricao ||
-        "Entre em contato com a Piemonte Brokers para mais informações sobre esta oportunidade.";
+        PROPRIEDADE.descricaoLonga ||
+        PROPRIEDADE.descricao ||
+        "Consulte nossa equipe para mais informações sobre esta oportunidade.";
 
 
     montarGaleria();
+
     montarResumo();
+
     montarDiferenciais();
+
     montarFichaTecnica();
+
     montarWhatsApp();
+
     montarSemelhantes();
 
   }
@@ -1444,22 +1751,26 @@ FOOTER
 
   function montarGaleria() {
 
-    fotos =
-      normalizarGaleria(
-        propriedade
+    FOTOS =
+      obterFotos(
+        PROPRIEDADE
       );
 
+
+    /*
+      FOTO PRINCIPAL
+    */
 
     const principal =
       $("#galleryMain");
 
 
     principal.src =
-      fotos[0];
+      FOTOS[0];
 
 
     principal.alt =
-      propriedade.titulo ||
+      PROPRIEDADE.titulo ||
       "Piemonte Brokers";
 
 
@@ -1468,6 +1779,31 @@ FOOTER
         abrirLightbox(0);
 
 
+
+    /*
+      CONTADOR
+    */
+
+    const contador =
+      $("#galleryCounter");
+
+
+    contador.textContent =
+      FOTOS.length === 1
+        ? "Ver foto"
+        : `Ver todas as ${FOTOS.length} fotos`;
+
+
+    contador.onclick =
+      () =>
+        abrirLightbox(0);
+
+
+
+    /*
+      DUAS FOTOS LATERAIS
+    */
+
     const lateral =
       $("#gallerySide");
 
@@ -1475,93 +1811,63 @@ FOOTER
     lateral.innerHTML = "";
 
 
-    fotos
-      .slice(1, 3)
-      .forEach(
-        (foto, indice) => {
-
-          const wrapper =
-            document.createElement(
-              "div"
-            );
+    const laterais =
+      FOTOS.slice(
+        1,
+        3
+      );
 
 
-          wrapper.className =
-            "property-gallery-side-item";
+    laterais.forEach(
+      (foto, indice) => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
 
 
-          const img =
-            document.createElement(
-              "img"
-            );
+        div.className =
+          "gallery-side-item";
 
 
-          img.src =
-            foto;
+        div.innerHTML = `
+
+          <img
+            src="${esc(foto)}"
+            alt="${esc(
+              PROPRIEDADE.titulo ||
+              ""
+            )}"
+          >
+
+        `;
 
 
-          img.alt =
-            propriedade.titulo || "";
-
-
-          img.onclick =
+        div
+          .querySelector("img")
+          .onclick =
             () =>
               abrirLightbox(
                 indice + 1
               );
 
 
-          wrapper.appendChild(
-            img
-          );
+        lateral.appendChild(
+          div
+        );
+
+      }
+    );
 
 
-          if (
-            indice === 1 &&
-            fotos.length > 3
-          ) {
 
-            const botao =
-              document.createElement(
-                "button"
-              );
-
-
-            botao.className =
-              "gallery-more";
-
-
-            botao.textContent =
-              `Ver todas as ${fotos.length} fotos`;
-
-
-            botao.onclick =
-              evento => {
-
-                evento.stopPropagation();
-
-                abrirLightbox(0);
-
-              };
-
-
-            wrapper.appendChild(
-              botao
-            );
-
-          }
-
-
-          lateral.appendChild(
-            wrapper
-          );
-
-        }
-      );
-
+    /*
+      SE TIVER UMA FOTO APENAS
+    */
 
     if (
-      fotos.length === 1
+      FOTOS.length === 1
     ) {
 
       $("#propertyGallery")
@@ -1570,6 +1876,89 @@ FOOTER
 
 
       lateral.style.display =
+        "none";
+
+    }
+
+
+
+    /*
+      TODAS AS MINIATURAS
+    */
+
+    montarMiniaturas();
+
+  }
+
+
+
+  /* =====================================================
+     MINIATURAS
+  ===================================================== */
+
+  function montarMiniaturas() {
+
+    const container =
+      $("#allPhotos");
+
+
+    container.innerHTML = "";
+
+
+    /*
+      Mostramos todas as fotos cadastradas.
+      
+      A capa também aparece aqui para que
+      nenhuma foto fique "escondida".
+    */
+
+    FOTOS.forEach(
+      (foto, indice) => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "all-photo";
+
+
+        div.innerHTML = `
+
+          <img
+            src="${esc(foto)}"
+            alt="${esc(
+              PROPRIEDADE.titulo ||
+              ""
+            )}"
+            loading="lazy"
+          >
+
+        `;
+
+
+        div.onclick =
+          () =>
+            abrirLightbox(
+              indice
+            );
+
+
+        container.appendChild(
+          div
+        );
+
+      }
+    );
+
+
+    if (
+      FOTOS.length <= 1
+    ) {
+
+      container.style.display =
         "none";
 
     }
@@ -1588,99 +1977,92 @@ FOOTER
 
 
     if (
-      propriedade.suites
+      PROPRIEDADE.suites
     ) {
 
-      itens.push([
-        "Suítes",
-        propriedade.suites
-      ]);
+      itens.push({
+        label: "Suítes",
+        valor: PROPRIEDADE.suites
+      });
 
-    } else if (
-      propriedade.quartos
+    }
+
+
+    else if (
+      PROPRIEDADE.quartos
     ) {
 
-      itens.push([
-        "Dormitórios",
-        propriedade.quartos
-      ]);
+      itens.push({
+        label: "Dormitórios",
+        valor: PROPRIEDADE.quartos
+      });
 
     }
 
 
     if (
-      propriedade.banheiros
+      PROPRIEDADE.banheiros
     ) {
 
-      itens.push([
-        "Banheiros",
-        propriedade.banheiros
-      ]);
+      itens.push({
+        label: "Banheiros",
+        valor: PROPRIEDADE.banheiros
+      });
 
     }
 
 
     if (
-      propriedade.vagas
+      PROPRIEDADE.vagas
     ) {
 
-      itens.push([
-        "Vagas",
-        propriedade.vagas
-      ]);
+      itens.push({
+        label: "Vagas",
+        valor: PROPRIEDADE.vagas
+      });
 
     }
 
 
     if (
-      propriedade.areaConstruida
+      PROPRIEDADE.areaConstruida
     ) {
 
-      itens.push([
-        "Área construída",
-        `${formatarNumero(
-          propriedade.areaConstruida
-        )} m²`
-      ]);
+      itens.push({
+        label: "Área construída",
+        valor:
+          `${formatarNumero(
+            PROPRIEDADE.areaConstruida
+          )} m²`
+      });
 
     }
 
 
     if (
-      propriedade.areaTerreno
+      PROPRIEDADE.areaTerreno
     ) {
 
-      itens.push([
-        "Terreno",
-        `${formatarNumero(
-          propriedade.areaTerreno
-        )} m²`
-      ]);
+      itens.push({
+        label: "Área do terreno",
+        valor:
+          `${formatarNumero(
+            PROPRIEDADE.areaTerreno
+          )} m²`
+      });
 
     }
 
 
-    if (
-      propriedade.tipo
-    ) {
-
-      itens.push([
-        "Tipo",
-        propriedade.tipo
-      ]);
-
-    }
-
-
-    const box =
+    const container =
       $("#propertySummary");
 
 
-    box.innerHTML = "";
+    container.innerHTML = "";
 
 
     itens
-      .slice(0, 6)
+      .slice(0, 5)
       .forEach(
         item => {
 
@@ -1691,31 +2073,35 @@ FOOTER
 
 
           div.className =
-            "property-summary-item";
+            "summary-item";
 
 
           div.innerHTML = `
-            <span>
-              ${esc(item[0])}
+
+            <span class="summary-label">
+              ${esc(item.label)}
             </span>
 
-            <strong>
-              ${esc(item[1])}
+            <strong class="summary-value">
+              ${esc(item.valor)}
             </strong>
+
           `;
 
 
-          box.appendChild(div);
+          container.appendChild(
+            div
+          );
 
         }
       );
 
 
     if (
-      !itens.length
+      itens.length === 0
     ) {
 
-      box.style.display =
+      container.style.display =
         "none";
 
     }
@@ -1730,98 +2116,126 @@ FOOTER
 
   function montarDiferenciais() {
 
-    const box =
-      $("#propertyFeatures");
-
-
-    let diferenciais = [];
+    let lista = [];
 
 
     if (
       Array.isArray(
-        propriedade.diferenciais
+        PROPRIEDADE.diferenciais
       )
     ) {
 
-      diferenciais =
-        propriedade.diferenciais
+      lista =
+        PROPRIEDADE.diferenciais
           .map(
-            item =>
-              typeof item === "string"
-                ? item
-                : item?.texto
+            item => {
+
+              if (
+                typeof item === "string"
+              ) {
+
+                return item;
+
+              }
+
+
+              return (
+                item.texto ||
+                item.nome ||
+                item.valor ||
+                ""
+              );
+
+            }
           )
           .filter(Boolean);
 
     }
 
 
-    if (
-      propriedade.piscina
-    ) {
-      diferenciais.push("Piscina");
-    }
 
     if (
-      propriedade.mobiliado
+      PROPRIEDADE.piscina
     ) {
-      diferenciais.push("Imóvel mobiliado");
-    }
 
-    if (
-      propriedade.escritorio
-    ) {
-      diferenciais.push("Escritório");
-    }
-
-    if (
-      propriedade.areaGourmet
-    ) {
-      diferenciais.push("Área gourmet");
-    }
-
-    if (
-      propriedade.condominio
-    ) {
-      diferenciais.push(
-        `Condomínio ${propriedade.condominio}`
-      );
-    }
-
-
-    diferenciais =
-      [...new Set(diferenciais)];
-
-
-    box.innerHTML = "";
-
-
-    diferenciais
-      .forEach(
-        diferencial => {
-
-          const div =
-            document.createElement(
-              "div"
-            );
-
-
-          div.className =
-            "feature-item";
-
-
-          div.textContent =
-            diferencial;
-
-
-          box.appendChild(div);
-
-        }
+      lista.push(
+        "Piscina"
       );
 
+    }
+
 
     if (
-      !diferenciais.length
+      PROPRIEDADE.mobiliado
+    ) {
+
+      lista.push(
+        "Imóvel mobiliado"
+      );
+
+    }
+
+
+    if (
+      PROPRIEDADE.escritorio
+    ) {
+
+      lista.push(
+        "Escritório"
+      );
+
+    }
+
+
+    if (
+      PROPRIEDADE.areaGourmet
+    ) {
+
+      lista.push(
+        "Área gourmet"
+      );
+
+    }
+
+
+    lista =
+      [...new Set(lista)];
+
+
+    const container =
+      $("#propertyFeatures");
+
+
+    container.innerHTML = "";
+
+
+    lista.forEach(
+      texto => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "feature-item";
+
+
+        div.textContent =
+          texto;
+
+
+        container.appendChild(
+          div
+        );
+
+      }
+    );
+
+
+    if (
+      !lista.length
     ) {
 
       $("#featuresSection")
@@ -1835,7 +2249,7 @@ FOOTER
 
 
   /* =====================================================
-     FICHA TÉCNICA
+     NOVA FICHA TÉCNICA
   ===================================================== */
 
   function montarFichaTecnica() {
@@ -1844,119 +2258,68 @@ FOOTER
 
 
     function adicionar(
-      nome,
+      label,
       valor
     ) {
 
       if (
-        valor !== undefined &&
-        valor !== null &&
-        valor !== ""
+        valor === undefined ||
+        valor === null ||
+        valor === ""
       ) {
 
-        dados.push([
-          nome,
-          valor
-        ]);
+        return;
 
       }
 
-    }
 
-
-    adicionar(
-      "Categoria",
-      propriedade.categoria
-    );
-
-    adicionar(
-      "Tipo de propriedade",
-      propriedade.tipo
-    );
-
-    adicionar(
-      "Negócio",
-      propriedade.negocio
-    );
-
-    adicionar(
-      "Status",
-      propriedade.status
-    );
-
-    adicionar(
-      "Cidade",
-      propriedade.cidade
-    );
-
-    adicionar(
-      "Região",
-      propriedade.regiaoPrincipal
-    );
-
-    adicionar(
-      "Bairro / Condomínio",
-      propriedade.condominio ||
-      propriedade.regiao
-    );
-
-
-    if (
-      propriedade.quartos
-    ) {
-
-      adicionar(
-        "Dormitórios",
-        propriedade.quartos
-      );
+      dados.push({
+        label,
+        valor
+      });
 
     }
 
 
-    if (
-      propriedade.suites
-    ) {
 
-      adicionar(
-        "Suítes",
-        propriedade.suites
-      );
-
-    }
+    /*
+      INFORMAÇÕES RELEVANTES
+      AO COMPRADOR
+    */
 
 
-    if (
-      propriedade.banheiros
-    ) {
-
-      adicionar(
-        "Banheiros",
-        propriedade.banheiros
-      );
-
-    }
+    adicionar(
+      "Dormitórios",
+      PROPRIEDADE.quartos
+    );
 
 
-    if (
-      propriedade.vagas
-    ) {
+    adicionar(
+      "Suítes",
+      PROPRIEDADE.suites
+    );
 
-      adicionar(
-        "Vagas",
-        propriedade.vagas
-      );
 
-    }
+    adicionar(
+      "Banheiros",
+      PROPRIEDADE.banheiros
+    );
+
+
+    adicionar(
+      "Vagas",
+      PROPRIEDADE.vagas
+    );
 
 
     if (
-      propriedade.areaConstruida
+      PROPRIEDADE.areaConstruida
     ) {
 
       adicionar(
         "Área construída",
         `${formatarNumero(
-          propriedade.areaConstruida
+          PROPRIEDADE.areaConstruida
         )} m²`
       );
 
@@ -1964,13 +2327,13 @@ FOOTER
 
 
     if (
-      propriedade.areaTerreno
+      PROPRIEDADE.areaTerreno
     ) {
 
       adicionar(
         "Área do terreno",
         `${formatarNumero(
-          propriedade.areaTerreno
+          PROPRIEDADE.areaTerreno
         )} m²`
       );
 
@@ -1978,53 +2341,101 @@ FOOTER
 
 
     adicionar(
-      "Condomínio",
-      propriedade.valorCondominio
+      "Tipo",
+      PROPRIEDADE.tipo
     );
+
+
+    adicionar(
+      "Finalidade",
+      PROPRIEDADE.negocio
+    );
+
+
+    adicionar(
+      "Condomínio",
+      PROPRIEDADE.condominio
+    );
+
+
+    adicionar(
+      "Cidade",
+      PROPRIEDADE.cidade
+    );
+
+
+    adicionar(
+      "Bairro / Região",
+      PROPRIEDADE.regiao
+    );
+
+
+    adicionar(
+      "Valor do condomínio",
+      PROPRIEDADE.valorCondominio
+    );
+
 
     adicionar(
       "IPTU",
-      propriedade.iptu
+      PROPRIEDADE.iptu
     );
+
 
     adicionar(
       "Ano de construção",
-      propriedade.anoConstrucao
+      PROPRIEDADE.anoConstrucao
     );
 
 
-    const box =
-      $("#technicalList");
+    if (
+      PROPRIEDADE.mobiliado
+    ) {
+
+      adicionar(
+        "Mobiliado",
+        "Sim"
+      );
+
+    }
 
 
-    box.innerHTML = "";
+    const container =
+      $("#technicalGrid");
+
+
+    container.innerHTML = "";
 
 
     dados.forEach(
-      dado => {
+      item => {
 
-        const div =
+        const card =
           document.createElement(
             "div"
           );
 
 
-        div.className =
-          "technical-row";
+        card.className =
+          "technical-card";
 
 
-        div.innerHTML = `
-          <span>
-            ${esc(dado[0])}
+        card.innerHTML = `
+
+          <span class="technical-card-label">
+            ${esc(item.label)}
           </span>
 
-          <strong>
-            ${esc(dado[1])}
+          <strong class="technical-card-value">
+            ${esc(item.valor)}
           </strong>
+
         `;
 
 
-        box.appendChild(div);
+        container.appendChild(
+          card
+        );
 
       }
     );
@@ -2041,7 +2452,7 @@ FOOTER
 
     let numero =
       String(
-        site.whatsapp ||
+        SITE.whatsapp ||
         "5511933602204"
       )
         .replace(
@@ -2051,91 +2462,103 @@ FOOTER
 
 
     const mensagem =
-      `Olá! Tenho interesse na propriedade "${propriedade.titulo}". Gostaria de mais informações.`;
+      `Olá! Tenho interesse na propriedade "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
 
 
     $("#propertyWhatsApp")
       .href =
-        `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+        `https://wa.me/${numero}?text=${encodeURIComponent(
+          mensagem
+        )}`;
 
   }
 
 
 
   /* =====================================================
-     IMÓVEIS SEMELHANTES
+     SEMELHANTES
   ===================================================== */
 
   function montarSemelhantes() {
 
-    /*
-      ORDEM DE PRIORIDADE:
-
-      1. Mesma região principal
-      2. Mesma cidade
-      3. Mesma categoria
-      4. Mesmo tipo
-      5. Preço mais próximo
-
-      Isso evita mostrar Granja Viana
-      para quem está procurando Itu.
-    */
-
-
     const atual =
-      propriedade;
+      PROPRIEDADE;
 
 
-    let candidatos =
-      portfolio.filter(
+    let lista =
+      PORTFOLIO.filter(
         item =>
-          item.id !== atual.id &&
-          (
-            item.status !== "Vendido" &&
-            item.status !== "Indisponível"
-          )
+          String(item.id) !==
+          String(atual.id)
       );
 
 
-    candidatos =
-      candidatos.map(
+    lista =
+      lista.filter(
+        item =>
+          item.status !== "Vendido" &&
+          item.status !== "Indisponível"
+      );
+
+
+
+    /*
+      PRIORIDADE ABSOLUTA:
+      MESMA REGIÃO PRINCIPAL
+    */
+
+    if (
+      atual.regiaoPrincipal
+    ) {
+
+      const regiao =
+        String(
+          atual.regiaoPrincipal
+        )
+          .toLowerCase()
+          .trim();
+
+
+      lista =
+        lista.filter(
+          item =>
+            String(
+              item.regiaoPrincipal ||
+              ""
+            )
+              .toLowerCase()
+              .trim() ===
+            regiao
+        );
+
+    }
+
+
+
+    /*
+      PONTUAÇÃO DE SEMELHANÇA
+    */
+
+    lista =
+      lista.map(
         item => {
 
           let pontos = 0;
 
 
           if (
-            atual.regiaoPrincipal &&
-            item.regiaoPrincipal &&
-            atual.regiaoPrincipal
-              .toLowerCase() ===
-            item.regiaoPrincipal
-              .toLowerCase()
-          ) {
-
-            pontos += 100;
-
-          }
-
-
-          if (
-            atual.cidade &&
-            item.cidade &&
-            atual.cidade
-              .toLowerCase() ===
-            item.cidade
-              .toLowerCase()
-          ) {
-
-            pontos += 80;
-
-          }
-
-
-          if (
-            atual.categoria &&
             item.categoria ===
             atual.categoria
+          ) {
+
+            pontos += 40;
+
+          }
+
+
+          if (
+            item.tipo ===
+            atual.tipo
           ) {
 
             pontos += 30;
@@ -2144,9 +2567,8 @@ FOOTER
 
 
           if (
-            atual.tipo &&
-            item.tipo ===
-            atual.tipo
+            item.negocio ===
+            atual.negocio
           ) {
 
             pontos += 20;
@@ -2155,12 +2577,15 @@ FOOTER
 
 
           if (
-            atual.negocio &&
-            item.negocio ===
-            atual.negocio
+            item.cidade &&
+            atual.cidade &&
+            String(item.cidade)
+              .toLowerCase() ===
+            String(atual.cidade)
+              .toLowerCase()
           ) {
 
-            pontos += 10;
+            pontos += 20;
 
           }
 
@@ -2186,22 +2611,21 @@ FOOTER
               Math.abs(
                 precoAtual -
                 precoItem
-              );
-
-
-            const percentual =
-              diferenca /
+              ) /
               precoAtual;
 
 
             if (
-              percentual <= .20
+              diferenca <= .25
             ) {
 
               pontos += 20;
 
-            } else if (
-              percentual <= .40
+            }
+
+
+            else if (
+              diferenca <= .50
             ) {
 
               pontos += 10;
@@ -2213,7 +2637,7 @@ FOOTER
 
           return {
             ...item,
-            _pontosSemelhanca:
+            _pontos:
               pontos
           };
 
@@ -2221,76 +2645,28 @@ FOOTER
       );
 
 
-    candidatos.sort(
+    lista.sort(
       (a, b) =>
-        b._pontosSemelhanca -
-        a._pontosSemelhanca
+        b._pontos -
+        a._pontos
     );
 
 
-    /*
-      Se a propriedade tiver região principal,
-      exigimos relação geográfica.
-
-      Isso evita misturar regiões.
-    */
-
-    if (
-      atual.regiaoPrincipal
-    ) {
-
-      const mesmaRegiao =
-        candidatos.filter(
-          item =>
-            item.regiaoPrincipal &&
-            item.regiaoPrincipal
-              .toLowerCase() ===
-            atual.regiaoPrincipal
-              .toLowerCase()
-        );
-
-
-      if (
-        mesmaRegiao.length
-      ) {
-
-        candidatos =
-          mesmaRegiao;
-
-      } else if (
-        atual.cidade
-      ) {
-
-        candidatos =
-          candidatos.filter(
-            item =>
-              item.cidade &&
-              item.cidade
-                .toLowerCase() ===
-              atual.cidade
-                .toLowerCase()
-          );
-
-      }
-
-    }
-
-
-    candidatos =
-      candidatos.slice(
+    lista =
+      lista.slice(
         0,
         3
       );
 
 
-    const box =
+    const container =
       $("#similarGrid");
 
 
-    box.innerHTML = "";
+    container.innerHTML = "";
 
 
-    candidatos.forEach(
+    lista.forEach(
       item => {
 
         const card =
@@ -2303,17 +2679,16 @@ FOOTER
           "similar-card";
 
 
-        const imagem =
-          item.imagemCapa ||
-          "/assets/logo-piemonte.png";
-
-
         card.innerHTML = `
 
-          <div class="similar-card-img">
+          <div class="similar-image">
 
             <img
-              src="${esc(imagem)}"
+              src="${esc(
+                item.imagemCapa ||
+                obterFotos(item)[0] ||
+                "/assets/logo-piemonte.png"
+              )}"
               alt="${esc(
                 item.titulo ||
                 "Piemonte Brokers"
@@ -2324,12 +2699,12 @@ FOOTER
           </div>
 
 
-          <div class="similar-card-body">
+          <div class="similar-body">
 
-            <div class="similar-card-meta">
+            <div class="similar-meta">
 
               ${esc(
-                textoLocal(item)
+                montarLocalizacao(item)
               )}
 
             </div>
@@ -2345,13 +2720,13 @@ FOOTER
             </h3>
 
 
-            <p>
+            <div class="similar-specs">
 
               ${esc(
-                resumoCard(item)
+                resumoSemelhante(item)
               )}
 
-            </p>
+            </div>
 
 
             <strong>
@@ -2372,12 +2747,14 @@ FOOTER
           () => {
 
             window.location.href =
-              `/propriedade.html?id=${encodeURIComponent(item.id)}`;
+              `/propriedade.html?id=${encodeURIComponent(
+                item.id
+              )}`;
 
           };
 
 
-        box.appendChild(
+        container.appendChild(
           card
         );
 
@@ -2386,7 +2763,7 @@ FOOTER
 
 
     if (
-      !candidatos.length
+      !lista.length
     ) {
 
       $("#similarSection")
@@ -2399,7 +2776,9 @@ FOOTER
 
 
 
-  function resumoCard(item) {
+  function resumoSemelhante(
+    item
+  ) {
 
     const dados = [];
 
@@ -2412,7 +2791,10 @@ FOOTER
         `${item.suites} suítes`
       );
 
-    } else if (
+    }
+
+
+    else if (
       item.quartos
     ) {
 
@@ -2430,7 +2812,7 @@ FOOTER
       dados.push(
         `${formatarNumero(
           item.areaConstruida
-        )} m² construídos`
+        )} m²`
       );
 
     }
@@ -2449,7 +2831,9 @@ FOOTER
     }
 
 
-    return dados.join(" • ");
+    return dados.join(
+      " • "
+    );
 
   }
 
@@ -2463,7 +2847,16 @@ FOOTER
     indice
   ) {
 
-    fotoAtual =
+    if (
+      !FOTOS.length
+    ) {
+
+      return;
+
+    }
+
+
+    FOTO_ATUAL =
       indice;
 
 
@@ -2478,6 +2871,26 @@ FOOTER
 
     document.body.style.overflow =
       "hidden";
+
+  }
+
+
+
+  function atualizarLightbox() {
+
+    const imagem =
+      $("#lightboxImage");
+
+
+    imagem.src =
+      FOTOS[
+        FOTO_ATUAL
+      ];
+
+
+    $("#lightboxCount")
+      .textContent =
+        `${FOTO_ATUAL + 1} / ${FOTOS.length}`;
 
   }
 
@@ -2498,16 +2911,6 @@ FOOTER
 
 
 
-  function atualizarLightbox() {
-
-    $("#lightboxImage")
-      .src =
-        fotos[fotoAtual];
-
-  }
-
-
-
   $("#lightboxClose")
     .addEventListener(
       "click",
@@ -2515,24 +2918,27 @@ FOOTER
     );
 
 
+
   $("#lightboxPrev")
     .addEventListener(
       "click",
       () => {
 
-        fotoAtual =
+        FOTO_ATUAL =
           (
-            fotoAtual -
+            FOTO_ATUAL -
             1 +
-            fotos.length
-          ) %
-          fotos.length;
+            FOTOS.length
+          )
+          %
+          FOTOS.length;
 
 
         atualizarLightbox();
 
       }
     );
+
 
 
   $("#lightboxNext")
@@ -2540,18 +2946,20 @@ FOOTER
       "click",
       () => {
 
-        fotoAtual =
+        FOTO_ATUAL =
           (
-            fotoAtual +
+            FOTO_ATUAL +
             1
-          ) %
-          fotos.length;
+          )
+          %
+          FOTOS.length;
 
 
         atualizarLightbox();
 
       }
     );
+
 
 
   $("#photoLightbox")
@@ -2572,15 +2980,64 @@ FOOTER
     );
 
 
+
   document.addEventListener(
     "keydown",
     evento => {
 
       if (
-        evento.key === "Escape"
+        evento.key ===
+        "Escape"
       ) {
 
         fecharLightbox();
+
+      }
+
+
+      if (
+        $("#photoLightbox")
+          .classList
+          .contains("open")
+      ) {
+
+        if (
+          evento.key ===
+          "ArrowRight"
+        ) {
+
+          FOTO_ATUAL =
+            (
+              FOTO_ATUAL +
+              1
+            )
+            %
+            FOTOS.length;
+
+
+          atualizarLightbox();
+
+        }
+
+
+        if (
+          evento.key ===
+          "ArrowLeft"
+        ) {
+
+          FOTO_ATUAL =
+            (
+              FOTO_ATUAL -
+              1 +
+              FOTOS.length
+            )
+            %
+            FOTOS.length;
+
+
+          atualizarLightbox();
+
+        }
 
       }
 
