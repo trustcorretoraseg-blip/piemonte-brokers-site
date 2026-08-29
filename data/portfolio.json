@@ -81,7 +81,7 @@
       "regiaoPrincipal": "Granja Viana",
       "cidade": "Cotia",
       "regiao": "Pallos verdes",
-      "tipo": "",
+      "tipo": "Casa",
       "preco": 5800000,
       "precoTexto": "5.800.000,00",
       "quartos": 4,
@@ -94,7 +94,7 @@
       "galeria": [],
       "descricao": "",
       "destaque": false,
-      "ordemDestaque": 1
+      "ordemDestaque": 2
     }
   ]
 }
