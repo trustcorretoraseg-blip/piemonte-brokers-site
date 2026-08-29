@@ -124,6 +124,64 @@
 
 
     /* =====================================================
+       MARCA D'ÁGUA PIEMONTE
+    ===================================================== */
+
+    .piemonte-foto {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .piemonte-foto::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: clamp(110px, 25%, 230px);
+      aspect-ratio: 1 / 1;
+      transform: translate(-50%, -50%);
+      background-image: url("/assets/logo-marca-dagua.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: .42;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .gallery-main.piemonte-foto::after {
+      width: clamp(150px, 28%, 290px);
+    }
+
+    .gallery-side-item.piemonte-foto::after {
+      width: clamp(90px, 28%, 150px);
+    }
+
+    .photo-strip-item.piemonte-foto::after {
+      width: 38%;
+      min-width: 52px;
+      max-width: 90px;
+      opacity: .48;
+    }
+
+    .similar-image.piemonte-foto::after {
+      width: clamp(95px, 27%, 150px);
+    }
+
+    .lightbox-photo-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 91vw;
+      max-height: 87vh;
+      line-height: 0;
+    }
+
+    .lightbox-photo-wrap.piemonte-foto::after {
+      width: clamp(150px, 25%, 300px);
+      opacity: .45;
+    }
+
+    /* =====================================================
        GALERIA
     ===================================================== */
 
@@ -149,15 +207,36 @@
     }
 
     .property-gallery img {
-      width: 100%;
-      height: 100%;
       display: block;
-      object-fit: cover;
       cursor: pointer;
       transition: transform .5s ease;
     }
 
-    .property-gallery img:hover {
+    /* Foto principal: nunca amplia além do tamanho natural.
+       Isso evita perda de nitidez em arquivos menores. */
+    .gallery-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111a16;
+    }
+
+    .gallery-main > img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* Fotos laterais continuam preenchendo os quadros. */
+    .gallery-side-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-side-item img:hover {
       transform: scale(1.018);
     }
 
@@ -931,7 +1010,7 @@ HEADER
       id="propertyGallery"
     >
 
-      <div class="gallery-main">
+      <div class="gallery-main piemonte-foto">
 
         <img
           id="galleryMain"
@@ -1200,10 +1279,14 @@ LIGHTBOX
     ‹
   </button>
 
-  <img
-    id="lightboxImage"
-    alt=""
-  >
+  <div class="lightbox-photo-wrap piemonte-foto">
+
+    <img
+      id="lightboxImage"
+      alt=""
+    >
+
+  </div>
 
   <button
     class="lightbox-nav lightbox-next"
@@ -1799,7 +1882,7 @@ function montarGaleria() {
 
 
         div.className =
-          "gallery-side-item";
+          "gallery-side-item piemonte-foto";
 
 
         div.innerHTML = `
@@ -1878,7 +1961,7 @@ function montarMiniaturas() {
 
 
         div.className =
-          "photo-strip-item";
+          "photo-strip-item piemonte-foto";
 
 
         div.innerHTML = `
@@ -2664,7 +2747,7 @@ function montarSemelhantes() {
 
       card.innerHTML = `
 
-        <div class="similar-image">
+        <div class="similar-image piemonte-foto">
 
           <img
             src="${esc(foto)}"
