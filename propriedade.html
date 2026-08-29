@@ -22,7 +22,6 @@
     href="/assets/style.css"
   >
 
-
   <style>
 
     /* =====================================================
@@ -124,7 +123,7 @@
 
 
     /* =====================================================
-       MARCA D'ÁGUA PIEMONTE
+       MARCA D'ÁGUA
     ===================================================== */
 
     .piemonte-foto {
@@ -137,138 +136,150 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      width: clamp(110px, 25%, 230px);
+      width: clamp(110px,25%,230px);
       aspect-ratio: 1 / 1;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%,-50%);
       background-image: url("/assets/logo-marca-dagua.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
       opacity: .42;
       pointer-events: none;
-      z-index: 2;
+      z-index: 4;
     }
 
     .gallery-main.piemonte-foto::after {
-      width: clamp(150px, 28%, 290px);
+      width: clamp(145px,24%,260px);
     }
 
     .gallery-side-item.piemonte-foto::after {
-      width: clamp(90px, 28%, 150px);
+      width: clamp(80px,26%,135px);
     }
 
     .photo-strip-item.piemonte-foto::after {
-      width: 38%;
-      min-width: 52px;
-      max-width: 90px;
-      opacity: .48;
+      width: 37%;
+      min-width: 50px;
+      max-width: 85px;
+      opacity: .46;
     }
 
     .similar-image.piemonte-foto::after {
-      width: clamp(95px, 27%, 150px);
-    }
-
-    .lightbox-photo-wrap {
-      position: relative;
-      display: inline-block;
-      max-width: 91vw;
-      max-height: 87vh;
-      line-height: 0;
+      width: clamp(90px,25%,145px);
     }
 
     .lightbox-photo-wrap.piemonte-foto::after {
-      width: clamp(150px, 25%, 300px);
-      opacity: .45;
+      width: clamp(150px,23%,290px);
+      opacity: .44;
     }
 
+
     /* =====================================================
-       GALERIA
+       GALERIA PRINCIPAL
     ===================================================== */
 
     .property-gallery {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      height: 610px;
+      grid-template-columns: minmax(0,2.1fr) minmax(260px,1fr);
+      height: clamp(390px,38vw,500px);
       gap: 7px;
       overflow: hidden;
+      background: #e4e0d7;
     }
 
-    .gallery-main,
+    .gallery-main {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #e6e2d9;
+    }
+
+    /*
+      IMPORTANTE:
+
+      A foto principal não usa mais object-fit: cover.
+
+      Ela não é cortada e também não é ampliada
+      além do tamanho natural da imagem.
+    */
+
+    .gallery-main > img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+
+    /* =====================================================
+       FOTOS LATERAIS
+    ===================================================== */
+
+    .gallery-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 7px;
+      min-width: 0;
+    }
+
     .gallery-side-item {
       position: relative;
       overflow: hidden;
       background: #ddd9cf;
     }
 
-    .gallery-side {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 7px;
-    }
-
-    .property-gallery img {
-      display: block;
-      cursor: pointer;
-      transition: transform .5s ease;
-    }
-
-    /* Foto principal: nunca amplia além do tamanho natural.
-       Isso evita perda de nitidez em arquivos menores. */
-    .gallery-main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #111a16;
-    }
-
-    .gallery-main > img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    /* Fotos laterais continuam preenchendo os quadros. */
     .gallery-side-item img {
       width: 100%;
       height: 100%;
+      display: block;
       object-fit: cover;
+      cursor: pointer;
+      transition: transform .35s ease;
     }
 
-    .gallery-side-item img:hover {
-      transform: scale(1.018);
+    .gallery-side-item:hover img {
+      transform: scale(1.015);
     }
+
+
+    /* =====================================================
+       BOTÃO VER FOTOS
+    ===================================================== */
 
     .gallery-button {
       position: absolute;
       right: 18px;
       bottom: 18px;
-      z-index: 3;
+      z-index: 8;
       padding: 12px 16px;
-      border: 1px solid rgba(255,255,255,.48);
-      background: rgba(12,27,22,.76);
+      border: 1px solid rgba(255,255,255,.55);
+      background: rgba(12,27,22,.78);
       backdrop-filter: blur(10px);
-      color: white;
+      color: #fff;
       font-size: 12px;
       cursor: pointer;
     }
 
 
     /* =====================================================
-       MINI GALERIA
+       MINIATURAS
     ===================================================== */
 
     .photo-strip {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(6,1fr);
       gap: 7px;
       margin-top: 7px;
       margin-bottom: 63px;
     }
 
     .photo-strip-item {
-      height: 110px;
+      position: relative;
+      height: 105px;
       overflow: hidden;
       background: #ddd9cf;
       cursor: pointer;
@@ -279,11 +290,11 @@
       height: 100%;
       display: block;
       object-fit: cover;
-      transition: transform .35s ease;
+      transition: transform .3s ease;
     }
 
     .photo-strip-item:hover img {
-      transform: scale(1.04);
+      transform: scale(1.025);
     }
 
 
@@ -299,11 +310,10 @@
 
     .property-highlights-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
     }
 
     .highlight-item {
-      position: relative;
       padding: 33px 28px 31px;
       border-right: 1px solid rgba(21,43,36,.12);
     }
@@ -392,7 +402,7 @@
 
 
     /* =====================================================
-       FICHA TÉCNICA - NOVO DESIGN
+       FICHA TÉCNICA
     ===================================================== */
 
     .technical-area {
@@ -407,9 +417,6 @@
       line-height: 1.7;
       color: rgba(21,43,36,.57);
     }
-
-
-    /* NÚMEROS GRANDES */
 
     .technical-main {
       display: grid;
@@ -446,9 +453,6 @@
       text-transform: uppercase;
       color: rgba(21,43,36,.48);
     }
-
-
-    /* INFORMAÇÕES COMPLEMENTARES */
 
     .technical-secondary-title {
       margin-bottom: 20px;
@@ -585,7 +589,8 @@
     }
 
     .similar-image {
-      height: 270px;
+      position: relative;
+      height: 260px;
       overflow: hidden;
       background: #ddd;
     }
@@ -648,7 +653,19 @@
       display: flex;
     }
 
-    .photo-lightbox img {
+    .lightbox-photo-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 91vw;
+      max-height: 87vh;
+    }
+
+    .lightbox-photo-wrap img {
+      display: block;
+      width: auto;
+      height: auto;
       max-width: 91vw;
       max-height: 87vh;
       object-fit: contain;
@@ -665,6 +682,7 @@
       color: white;
       font-size: 42px;
       cursor: pointer;
+      z-index: 20;
     }
 
     .lightbox-nav {
@@ -678,6 +696,7 @@
       color: white;
       font-size: 31px;
       cursor: pointer;
+      z-index: 20;
     }
 
     .lightbox-prev {
@@ -696,6 +715,7 @@
       color: white;
       font-size: 12px;
       letter-spacing: .1em;
+      z-index: 20;
     }
 
 
@@ -730,7 +750,8 @@
       }
 
       .property-gallery {
-        height: 500px;
+        grid-template-columns: 2fr 1fr;
+        height: 430px;
       }
 
       .photo-strip {
@@ -778,8 +799,16 @@
         width: calc(100% - 30px);
       }
 
+      .property-heading {
+        gap: 15px;
+      }
+
       .property-heading h1 {
         font-size: 37px;
+      }
+
+      .property-price-top strong {
+        white-space: normal;
       }
 
       .property-gallery {
@@ -787,10 +816,18 @@
         height: auto;
         margin-left: -15px;
         margin-right: -15px;
+        background: #e6e2d9;
       }
 
       .gallery-main {
-        height: 400px;
+        height: 310px;
+      }
+
+      .gallery-main > img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
       }
 
       .gallery-side {
@@ -805,7 +842,7 @@
       }
 
       .photo-strip-item {
-        height: 100px;
+        height: 95px;
       }
 
       .property-highlights {
@@ -851,6 +888,10 @@
         right: 5px;
       }
 
+      .piemonte-foto::after {
+        opacity: .38;
+      }
+
     }
 
   </style>
@@ -861,15 +902,14 @@
 <body>
 
 
-<!-- =====================================================
-HEADER
-===================================================== -->
-
 <header class="header">
 
   <div class="container nav">
 
-    <a href="/index.html" class="logo">
+    <a
+      href="/index.html"
+      class="logo"
+    >
 
       <img
         src="/assets/logo-piemonte.png"
@@ -878,6 +918,7 @@ HEADER
 
     </a>
 
+
     <button
       id="menuBtn"
       class="menu-btn"
@@ -885,6 +926,7 @@ HEADER
     >
       ☰
     </button>
+
 
     <nav id="menu">
 
@@ -961,8 +1003,6 @@ HEADER
 
 
 
-    <!-- CABEÇALHO -->
-
     <section class="property-heading">
 
       <div>
@@ -1010,7 +1050,9 @@ HEADER
       id="propertyGallery"
     >
 
-      <div class="gallery-main piemonte-foto">
+      <div
+        class="gallery-main piemonte-foto"
+      >
 
         <img
           id="galleryMain"
@@ -1039,8 +1081,6 @@ HEADER
 
 
 
-    <!-- MINIATURAS -->
-
     <div
       class="photo-strip"
       id="photoStrip"
@@ -1049,7 +1089,7 @@ HEADER
 
 
 
-    <!-- DADOS PRINCIPAIS -->
+    <!-- PRINCIPAIS INFORMAÇÕES -->
 
     <section
       class="property-highlights"
@@ -1065,8 +1105,6 @@ HEADER
     </section>
 
 
-
-    <!-- CONTEÚDO -->
 
     <section class="property-content">
 
@@ -1254,7 +1292,7 @@ HEADER
 
 
 <!-- =====================================================
-LIGHTBOX
+     LIGHTBOX
 ===================================================== -->
 
 <div
@@ -1271,15 +1309,21 @@ LIGHTBOX
     ×
   </button>
 
+
   <button
     class="lightbox-nav lightbox-prev"
     id="lightboxPrev"
     type="button"
+    aria-label="Foto anterior"
   >
     ‹
   </button>
 
-  <div class="lightbox-photo-wrap piemonte-foto">
+
+  <div
+    class="lightbox-photo-wrap piemonte-foto"
+    id="lightboxPhotoWrap"
+  >
 
     <img
       id="lightboxImage"
@@ -1288,13 +1332,16 @@ LIGHTBOX
 
   </div>
 
+
   <button
     class="lightbox-nav lightbox-next"
     id="lightboxNext"
     type="button"
+    aria-label="Próxima foto"
   >
     ›
   </button>
+
 
   <div
     class="lightbox-count"
@@ -1307,7 +1354,7 @@ LIGHTBOX
 
 
 <!-- =====================================================
-FOOTER
+     FOOTER
 ===================================================== -->
 
 <footer>
@@ -1322,6 +1369,7 @@ FOOTER
       >
 
     </div>
+
 
     <div>
 
@@ -1342,6 +1390,7 @@ FOOTER
       </a>
 
     </div>
+
 
     <div>
 
@@ -1404,6 +1453,7 @@ const esc =
     );
 
 
+
 /* =====================================================
    FORMATAÇÃO
 ===================================================== */
@@ -1419,7 +1469,9 @@ function formatarNumero(valor) {
     valor === undefined ||
     Number.isNaN(numero)
   ) {
+
     return "";
+
   }
 
   return numero.toLocaleString(
@@ -1432,8 +1484,9 @@ function formatarNumero(valor) {
 }
 
 
+
 /* =====================================================
-   LOCAL
+   LOCALIZAÇÃO
 ===================================================== */
 
 function montarLocalizacao(item) {
@@ -1451,6 +1504,7 @@ function montarLocalizacao(item) {
   ].join(" • ");
 
 }
+
 
 
 /* =====================================================
@@ -1475,7 +1529,8 @@ function obterFotos(item) {
       typeof valor === "string"
     ) {
 
-      caminho = valor;
+      caminho =
+        valor;
 
     }
 
@@ -1500,7 +1555,9 @@ function obterFotos(item) {
       !fotos.includes(caminho)
     ) {
 
-      fotos.push(caminho);
+      fotos.push(
+        caminho
+      );
 
     }
 
@@ -1513,7 +1570,9 @@ function obterFotos(item) {
 
 
   if (
-    Array.isArray(item.galeria)
+    Array.isArray(
+      item.galeria
+    )
   ) {
 
     item.galeria.forEach(
@@ -1548,6 +1607,7 @@ function obterFotos(item) {
   return fotos;
 
 }
+
 
 
 /* =====================================================
@@ -1597,7 +1657,9 @@ async function carregar() {
 
 
     PORTFOLIO =
-      Array.isArray(dados.itens)
+      Array.isArray(
+        dados.itens
+      )
         ? dados.itens
         : [];
 
@@ -1616,6 +1678,7 @@ async function carregar() {
 
   }
 
+
   catch (erro) {
 
     console.error(
@@ -1630,6 +1693,7 @@ async function carregar() {
   }
 
 }
+
 
 
 /* =====================================================
@@ -1674,6 +1738,7 @@ function localizarPropriedade() {
 }
 
 
+
 /* =====================================================
    ERRO
 ===================================================== */
@@ -1705,15 +1770,23 @@ function mostrarErro(texto) {
     `;
 
 
-  $("#similarSection")
-    .style.display =
+  const semelhantes =
+    $("#similarSection");
+
+
+  if (semelhantes) {
+
+    semelhantes.style.display =
       "none";
+
+  }
 
 }
 
 
+
 /* =====================================================
-   MONTAR
+   MONTAR PÁGINA
 ===================================================== */
 
 function montarPagina() {
@@ -1817,6 +1890,7 @@ function montarPagina() {
 }
 
 
+
 /* =====================================================
    GALERIA
 ===================================================== */
@@ -1847,6 +1921,7 @@ function montarGaleria() {
       abrirLightbox(0);
 
 
+
   const botao =
     $("#galleryButton");
 
@@ -1860,6 +1935,7 @@ function montarGaleria() {
   botao.onclick =
     () =>
       abrirLightbox(0);
+
 
 
   const lateral =
@@ -1930,9 +2006,20 @@ function montarGaleria() {
   }
 
 
+  else if (
+    FOTOS.length === 2
+  ) {
+
+    lateral.style.gridTemplateRows =
+      "1fr";
+
+  }
+
+
   montarMiniaturas();
 
 }
+
 
 
 /* =====================================================
@@ -2005,8 +2092,9 @@ function montarMiniaturas() {
 }
 
 
+
 /* =====================================================
-   NÚMEROS PRINCIPAIS
+   PRINCIPAIS DADOS
 ===================================================== */
 
 function montarHighlights() {
@@ -2147,6 +2235,7 @@ function montarHighlights() {
 }
 
 
+
 /* =====================================================
    DIFERENCIAIS
 ===================================================== */
@@ -2168,7 +2257,8 @@ function montarDiferenciais() {
           item => {
 
             if (
-              typeof item === "string"
+              typeof item ===
+              "string"
             ) {
 
               return item;
@@ -2281,6 +2371,7 @@ function montarDiferenciais() {
   }
 
 }
+
 
 
 /* =====================================================
@@ -2572,6 +2663,7 @@ function montarFichaTecnica() {
 }
 
 
+
 /* =====================================================
    WHATSAPP
 ===================================================== */
@@ -2602,6 +2694,7 @@ function montarWhatsApp() {
 }
 
 
+
 /* =====================================================
    SEMELHANTES
 ===================================================== */
@@ -2625,7 +2718,8 @@ function montarSemelhantes() {
 
 
   /*
-    IMPEDE MISTURA DE REGIÕES.
+    Os semelhantes ficam obrigatoriamente
+    dentro da mesma região principal.
   */
 
   if (
@@ -2667,7 +2761,9 @@ function montarSemelhantes() {
             item.categoria ===
             PROPRIEDADE.categoria
           ) {
+
             pontos += 40;
+
           }
 
 
@@ -2675,7 +2771,9 @@ function montarSemelhantes() {
             item.tipo ===
             PROPRIEDADE.tipo
           ) {
+
             pontos += 30;
+
           }
 
 
@@ -2683,7 +2781,9 @@ function montarSemelhantes() {
             item.negocio ===
             PROPRIEDADE.negocio
           ) {
+
             pontos += 20;
+
           }
 
 
@@ -2695,7 +2795,53 @@ function montarSemelhantes() {
             String(PROPRIEDADE.cidade)
               .toLowerCase()
           ) {
+
             pontos += 20;
+
+          }
+
+
+          const precoAtual =
+            Number(
+              PROPRIEDADE.preco || 0
+            );
+
+
+          const precoItem =
+            Number(
+              item.preco || 0
+            );
+
+
+          if (
+            precoAtual > 0 &&
+            precoItem > 0
+          ) {
+
+            const diferenca =
+              Math.abs(
+                precoAtual -
+                precoItem
+              ) /
+              precoAtual;
+
+
+            if (
+              diferenca <= .2
+            ) {
+
+              pontos += 20;
+
+            }
+
+            else if (
+              diferenca <= .4
+            ) {
+
+              pontos += 10;
+
+            }
+
           }
 
 
@@ -2755,9 +2901,11 @@ function montarSemelhantes() {
               item.titulo ||
               "Piemonte Brokers"
             )}"
+            loading="lazy"
           >
 
         </div>
+
 
         <div class="similar-body">
 
@@ -2824,6 +2972,7 @@ function montarSemelhantes() {
 }
 
 
+
 /* =====================================================
    RESUMO SEMELHANTE
 ===================================================== */
@@ -2888,6 +3037,7 @@ function resumoSemelhante(item) {
 }
 
 
+
 /* =====================================================
    LIGHTBOX
 ===================================================== */
@@ -2913,13 +3063,22 @@ function abrirLightbox(indice) {
 }
 
 
+
 function atualizarLightbox() {
 
-  $("#lightboxImage")
-    .src =
-      FOTOS[
-        FOTO_ATUAL
-      ];
+  const imagem =
+    $("#lightboxImage");
+
+
+  imagem.src =
+    FOTOS[
+      FOTO_ATUAL
+    ];
+
+
+  imagem.alt =
+    PROPRIEDADE?.titulo ||
+    "Piemonte Brokers";
 
 
   $("#lightboxCount")
@@ -2927,6 +3086,7 @@ function atualizarLightbox() {
       `${FOTO_ATUAL + 1} / ${FOTOS.length}`;
 
 }
+
 
 
 function fecharLightbox() {
@@ -2941,6 +3101,7 @@ function fecharLightbox() {
     "";
 
 }
+
 
 
 $("#lightboxClose")
@@ -3014,7 +3175,8 @@ document.addEventListener(
   evento => {
 
     if (
-      evento.key === "Escape"
+      evento.key ===
+      "Escape"
     ) {
 
       fecharLightbox();
@@ -3034,7 +3196,8 @@ document.addEventListener(
 
 
     if (
-      evento.key === "ArrowRight"
+      evento.key ===
+      "ArrowRight"
     ) {
 
       FOTO_ATUAL =
@@ -3052,7 +3215,8 @@ document.addEventListener(
 
 
     if (
-      evento.key === "ArrowLeft"
+      evento.key ===
+      "ArrowLeft"
     ) {
 
       FOTO_ATUAL =
@@ -3071,6 +3235,7 @@ document.addEventListener(
 
   }
 );
+
 
 
 /* =====================================================
@@ -3101,7 +3266,28 @@ if (
     }
   );
 
+
+  menu
+    .querySelectorAll("a")
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            menu.classList.remove(
+              "open"
+            );
+
+          }
+        );
+
+      }
+    );
+
 }
+
 
 
 /* =====================================================
