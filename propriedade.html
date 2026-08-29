@@ -861,6 +861,190 @@
 
     }
 
+
+    /* =====================================================
+       LAYOUT DE DETALHES — INSPIRADO NA DISPOSIÇÃO GLP
+    ===================================================== */
+
+    .property-highlights {
+      margin: 24px 0 14px;
+      border-top: 1px solid rgba(21,43,36,.14);
+      border-bottom: 1px solid rgba(21,43,36,.14);
+    }
+
+    .property-highlights-grid {
+      grid-template-columns: repeat(5,1fr);
+    }
+
+    .property-costs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 28px;
+      padding: 15px 0 54px;
+      font-size: 13px;
+      color: rgba(21,43,36,.66);
+    }
+
+    .property-costs strong {
+      color: #152b24;
+      font-weight: 600;
+    }
+
+    .property-content {
+      grid-template-columns: minmax(0,1.7fr) minmax(300px,.62fr);
+      gap: 72px;
+      padding-bottom: 92px;
+    }
+
+    .content-section.glp-about {
+      margin-bottom: 54px;
+    }
+
+    .content-section.glp-about h2 {
+      margin-bottom: 24px;
+      font-size: clamp(30px,3.4vw,44px);
+    }
+
+    .property-description {
+      font-size: 16px;
+      line-height: 1.86;
+      color: rgba(21,43,36,.78);
+    }
+
+    .glp-details {
+      margin-top: 8px;
+      border-top: 1px solid rgba(21,43,36,.15);
+    }
+
+    .glp-detail-group {
+      display: grid;
+      grid-template-columns: minmax(165px,.42fr) 1fr;
+      gap: 34px;
+      padding: 27px 0;
+      border-bottom: 1px solid rgba(21,43,36,.13);
+    }
+
+    .glp-detail-group h3 {
+      margin: 0;
+      font-family: Arial,Helvetica,sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: #9c7a39;
+    }
+
+    .glp-detail-items {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 13px 28px;
+    }
+
+    .glp-detail-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid rgba(21,43,36,.07);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .glp-detail-item span:first-child {
+      color: rgba(21,43,36,.55);
+    }
+
+    .glp-detail-item strong {
+      text-align: right;
+      font-weight: 600;
+      color: #152b24;
+    }
+
+    .glp-detail-item.single-value {
+      display: block;
+      border-bottom: 0;
+      padding: 0;
+      color: #152b24;
+    }
+
+    .glp-detail-item.single-value strong {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .similar-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 37px;
+    }
+
+    .similar-title {
+      margin-bottom: 0;
+    }
+
+    .similar-view-all {
+      color: #d2ae64;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(210,174,100,.55);
+      padding-bottom: 5px;
+      white-space: nowrap;
+    }
+
+    .similar-grid {
+      grid-template-columns: repeat(4,1fr);
+      gap: 17px;
+    }
+
+    .similar-image {
+      height: 210px;
+    }
+
+    .similar-body {
+      padding: 20px;
+    }
+
+    .similar-body h3 {
+      font-size: 19px;
+    }
+
+    @media (max-width: 1100px) {
+      .property-highlights-grid {
+        grid-template-columns: repeat(3,1fr);
+      }
+      .similar-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .property-highlights-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+      .glp-detail-group {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .glp-detail-items {
+        grid-template-columns: 1fr;
+      }
+      .similar-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .similar-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 
 </head>
@@ -1083,6 +1267,8 @@ HEADER
 
     </section>
 
+    <div class="property-costs" id="propertyCosts"></div>
+
 
 
     <!-- CONTEÚDO -->
@@ -1093,16 +1279,16 @@ HEADER
       <div>
 
 
-        <!-- DESCRIÇÃO -->
+        <!-- SOBRE O IMÓVEL -->
 
-        <div class="content-section">
+        <div class="content-section glp-about">
 
           <p class="property-eyebrow">
             A PROPRIEDADE
           </p>
 
           <h2>
-            Sobre esta oportunidade
+            Sobre o Imóvel
           </h2>
 
           <div
@@ -1115,71 +1301,13 @@ HEADER
 
 
 
-        <!-- DIFERENCIAIS -->
+        <!-- CARACTERÍSTICAS EM GRUPOS -->
 
         <div
-          class="content-section"
-          id="featuresSection"
+          class="glp-details"
+          id="glpDetails"
         >
-
-          <p class="property-eyebrow">
-            DESTAQUES
-          </p>
-
-          <h2>
-            Diferenciais
-          </h2>
-
-          <div
-            class="features-grid"
-            id="propertyFeatures"
-          >
-          </div>
-
         </div>
-
-
-
-        <!-- FICHA TÉCNICA -->
-
-        <div class="content-section technical-area">
-
-          <p class="property-eyebrow">
-            FICHA TÉCNICA
-          </p>
-
-          <h2>
-            Informações da propriedade
-          </h2>
-
-          <p class="technical-intro">
-            Principais características, dimensões e informações desta oportunidade.
-          </p>
-
-
-          <div
-            class="technical-main"
-            id="technicalMain"
-          >
-          </div>
-
-
-          <div id="technicalSecondaryArea">
-
-            <div class="technical-secondary-title">
-              Informações complementares
-            </div>
-
-            <div
-              class="technical-secondary"
-              id="technicalSecondary"
-            >
-            </div>
-
-          </div>
-
-        </div>
-
 
       </div>
 
@@ -1249,13 +1377,23 @@ HEADER
 
     <div class="property-container">
 
-      <p class="property-eyebrow">
-        SELEÇÃO PIEMONTE
-      </p>
+      <div class="similar-header">
 
-      <h2 class="similar-title">
-        Oportunidades semelhantes
-      </h2>
+        <div>
+          <p class="property-eyebrow">
+            SELEÇÃO PIEMONTE
+          </p>
+
+          <h2 class="similar-title">
+            Imóveis Semelhantes
+          </h2>
+        </div>
+
+        <a class="similar-view-all" href="/imoveis.html">
+          Ver todos
+        </a>
+
+      </div>
 
       <div
         class="similar-grid"
@@ -2048,139 +2186,47 @@ function montarMiniaturas() {
 
 function montarHighlights() {
 
-  const dados = [];
-
-
-  if (
-    PROPRIEDADE.suites
-  ) {
-
-    dados.push([
-      PROPRIEDADE.suites,
-      "Suítes"
-    ]);
-
-  }
-
-  else if (
-    PROPRIEDADE.quartos
-  ) {
-
-    dados.push([
-      PROPRIEDADE.quartos,
-      "Dormitórios"
-    ]);
-
-  }
-
-
-  if (
-    PROPRIEDADE.vagas
-  ) {
-
-    dados.push([
-      PROPRIEDADE.vagas,
-      "Vagas"
-    ]);
-
-  }
-
-
-  if (
-    PROPRIEDADE.areaConstruida
-  ) {
-
-    dados.push([
-      `${formatarNumero(
-        PROPRIEDADE.areaConstruida
-      )} m²`,
+  const dados = [
+    [PROPRIEDADE.quartos, "Quartos"],
+    [PROPRIEDADE.banheiros, "Banheiros"],
+    [
+      PROPRIEDADE.areaConstruida
+        ? `${formatarNumero(PROPRIEDADE.areaConstruida)} m²`
+        : "",
       "Área construída"
-    ]);
+    ],
+    [PROPRIEDADE.vagas, "Vagas"],
+    [PROPRIEDADE.suites, "Suítes"]
+  ].filter(item => item[0] !== undefined && item[0] !== null && item[0] !== "");
 
+  const container = $("#propertyHighlightsGrid");
+  container.innerHTML = "";
+
+  dados.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "highlight-item";
+    div.innerHTML = `
+      <strong class="highlight-value">${esc(item[0])}</strong>
+      <span class="highlight-label">${esc(item[1])}</span>
+    `;
+    container.appendChild(div);
+  });
+
+  if (dados.length === 0) {
+    $("#propertyHighlights").style.display = "none";
   }
 
-
-  if (
-    PROPRIEDADE.areaTerreno
-  ) {
-
-    dados.push([
-      `${formatarNumero(
-        PROPRIEDADE.areaTerreno
-      )} m²`,
-      "Área do terreno"
-    ]);
-
+  const custos = [];
+  if (PROPRIEDADE.valorCondominio) {
+    custos.push(`<span>Condomínio: <strong>${esc(PROPRIEDADE.valorCondominio)}</strong></span>`);
   }
-
-
-  if (
-    dados.length < 4 &&
-    PROPRIEDADE.banheiros
-  ) {
-
-    dados.push([
-      PROPRIEDADE.banheiros,
-      "Banheiros"
-    ]);
-
+  if (PROPRIEDADE.iptu) {
+    custos.push(`<span>IPTU: <strong>${esc(PROPRIEDADE.iptu)}</strong></span>`);
   }
-
-
-  const container =
-    $("#propertyHighlightsGrid");
-
-
-  container.innerHTML =
-    "";
-
-
-  dados
-    .slice(0,4)
-    .forEach(
-      item => {
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-
-        div.className =
-          "highlight-item";
-
-
-        div.innerHTML = `
-
-          <strong class="highlight-value">
-            ${esc(item[0])}
-          </strong>
-
-          <span class="highlight-label">
-            ${esc(item[1])}
-          </span>
-
-        `;
-
-
-        container.appendChild(
-          div
-        );
-
-      }
-    );
-
-
-  if (
-    dados.length === 0
-  ) {
-
-    $("#propertyHighlights")
-      .style.display =
-        "none";
-
+  $("#propertyCosts").innerHTML = custos.join("");
+  if (!custos.length) {
+    $("#propertyCosts").style.display = "none";
   }
-
 }
 
 
@@ -2189,423 +2235,84 @@ function montarHighlights() {
 ===================================================== */
 
 function montarDiferenciais() {
-
-  let lista = [];
-
-
-  if (
-    Array.isArray(
-      PROPRIEDADE.diferenciais
-    )
-  ) {
-
-    lista =
-      PROPRIEDADE.diferenciais
-        .map(
-          item => {
-
-            if (
-              typeof item === "string"
-            ) {
-
-              return item;
-
-            }
-
-            return (
-              item.texto ||
-              item.nome ||
-              item.valor ||
-              ""
-            );
-
-          }
-        )
-        .filter(Boolean);
-
-  }
-
-
-  if (
-    PROPRIEDADE.piscina
-  ) {
-
-    lista.push(
-      "Piscina"
-    );
-
-  }
-
-
-  if (
-    PROPRIEDADE.areaGourmet
-  ) {
-
-    lista.push(
-      "Área gourmet"
-    );
-
-  }
-
-
-  if (
-    PROPRIEDADE.escritorio
-  ) {
-
-    lista.push(
-      "Escritório"
-    );
-
-  }
-
-
-  if (
-    PROPRIEDADE.mobiliado
-  ) {
-
-    lista.push(
-      "Imóvel mobiliado"
-    );
-
-  }
-
-
-  lista =
-    [...new Set(lista)];
-
-
-  const box =
-    $("#propertyFeatures");
-
-
-  box.innerHTML =
-    "";
-
-
-  lista.forEach(
-    texto => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-
-      div.className =
-        "feature-item";
-
-
-      div.textContent =
-        texto;
-
-
-      box.appendChild(
-        div
-      );
-
-    }
-  );
-
-
-  if (
-    lista.length === 0
-  ) {
-
-    $("#featuresSection")
-      .style.display =
-        "none";
-
-  }
-
+  /* Os diferenciais são exibidos dentro dos grupos abaixo. */
 }
 
 
 /* =====================================================
-   FICHA TÉCNICA
+   FICHA TÉCNICA EM GRUPOS
 ===================================================== */
 
 function montarFichaTecnica() {
 
-  const principais = [];
+  const grupos = [];
 
-
-  function principal(
-    label,
-    valor
-  ) {
-
-    if (
-      valor !== undefined &&
-      valor !== null &&
-      valor !== ""
-    ) {
-
-      principais.push([
-        label,
-        valor
-      ]);
-
-    }
-
+  function adicionarGrupo(titulo, itens) {
+    const validos = itens.filter(item => item && item.valor !== undefined && item.valor !== null && item.valor !== "" && item.valor !== false);
+    if (validos.length) grupos.push({ titulo, itens: validos });
   }
 
+  adicionarGrupo("Geral", [
+    { label: "Tipo", valor: PROPRIEDADE.tipo },
+    { label: "Quartos", valor: PROPRIEDADE.quartos },
+    { label: "Banheiros", valor: PROPRIEDADE.banheiros },
+    { label: "Suítes", valor: PROPRIEDADE.suites },
+    { label: "Vagas", valor: PROPRIEDADE.vagas },
+    { label: "Construção", valor: PROPRIEDADE.anoConstrucao },
+    { label: "Finalidade", valor: PROPRIEDADE.negocio }
+  ]);
 
-  principal(
-    "Suítes",
-    PROPRIEDADE.suites
-  );
+  adicionarGrupo("Áreas", [
+    { label: "Construída", valor: PROPRIEDADE.areaConstruida ? `${formatarNumero(PROPRIEDADE.areaConstruida)} m²` : "" },
+    { label: "Terreno", valor: PROPRIEDADE.areaTerreno ? `${formatarNumero(PROPRIEDADE.areaTerreno)} m²` : "" }
+  ]);
 
+  adicionarGrupo("Ambientes & Interior", [
+    { label: "Escritório", valor: PROPRIEDADE.escritorio ? "Sim" : "" },
+    { label: "Área Gourmet", valor: PROPRIEDADE.areaGourmet ? "Sim" : "" }
+  ]);
 
-  principal(
-    "Vagas",
-    PROPRIEDADE.vagas
-  );
+  adicionarGrupo("Áreas Externas & Lazer", [
+    { label: "Piscina", valor: PROPRIEDADE.piscina ? "Sim" : "" }
+  ]);
 
+  adicionarGrupo("Mobília", [
+    { label: "Mobiliado", valor: PROPRIEDADE.mobiliado ? "Sim" : "" }
+  ]);
 
-  if (
-    PROPRIEDADE.areaConstruida
-  ) {
-
-    principal(
-      "Área construída",
-      `${formatarNumero(
-        PROPRIEDADE.areaConstruida
-      )} m²`
-    );
-
+  let diferenciais = [];
+  if (Array.isArray(PROPRIEDADE.diferenciais)) {
+    diferenciais = PROPRIEDADE.diferenciais.map(item => {
+      if (typeof item === "string") return item;
+      return item?.texto || item?.nome || item?.valor || "";
+    }).filter(Boolean);
   }
 
-
-  if (
-    PROPRIEDADE.areaTerreno
-  ) {
-
-    principal(
-      "Área do terreno",
-      `${formatarNumero(
-        PROPRIEDADE.areaTerreno
-      )} m²`
-    );
-
+  if (diferenciais.length) {
+    adicionarGrupo("Destaques Piemonte", diferenciais.map(texto => ({ label: "", valor: texto, single: true })));
   }
 
+  const box = $("#glpDetails");
+  box.innerHTML = "";
 
-  if (
-    principais.length < 4
-  ) {
+  grupos.forEach(grupo => {
+    const section = document.createElement("section");
+    section.className = "glp-detail-group";
 
-    principal(
-      "Dormitórios",
-      PROPRIEDADE.quartos
-    );
-
-  }
-
-
-  if (
-    principais.length < 4
-  ) {
-
-    principal(
-      "Banheiros",
-      PROPRIEDADE.banheiros
-    );
-
-  }
-
-
-  const principalBox =
-    $("#technicalMain");
-
-
-  principalBox.innerHTML =
-    "";
-
-
-  principais
-    .slice(0,4)
-    .forEach(
-      item => {
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-
-        div.className =
-          "technical-main-item";
-
-
-        div.innerHTML = `
-
-          <strong class="technical-main-value">
-            ${esc(item[1])}
-          </strong>
-
-          <span class="technical-main-label">
-            ${esc(item[0])}
-          </span>
-
-        `;
-
-
-        principalBox.appendChild(
-          div
-        );
-
+    const itensHtml = grupo.itens.map(item => {
+      if (item.single) {
+        return `<div class="glp-detail-item single-value"><strong>${esc(item.valor)}</strong></div>`;
       }
-    );
+      return `<div class="glp-detail-item"><span>${esc(item.label)}</span><strong>${esc(item.valor)}</strong></div>`;
+    }).join("");
 
+    section.innerHTML = `
+      <h3>${esc(grupo.titulo)}</h3>
+      <div class="glp-detail-items">${itensHtml}</div>
+    `;
 
-  const secundarios = [];
-
-
-  function secundario(
-    label,
-    valor
-  ) {
-
-    if (
-      valor !== undefined &&
-      valor !== null &&
-      valor !== ""
-    ) {
-
-      secundarios.push([
-        label,
-        valor
-      ]);
-
-    }
-
-  }
-
-
-  secundario(
-    "Condomínio",
-    PROPRIEDADE.condominio
-  );
-
-
-  secundario(
-    "Cidade",
-    PROPRIEDADE.cidade
-  );
-
-
-  secundario(
-    "Bairro / Região",
-    PROPRIEDADE.regiao
-  );
-
-
-  secundario(
-    "Tipo de imóvel",
-    PROPRIEDADE.tipo
-  );
-
-
-  secundario(
-    "Finalidade",
-    PROPRIEDADE.negocio
-  );
-
-
-  secundario(
-    "Dormitórios",
-    PROPRIEDADE.quartos
-  );
-
-
-  secundario(
-    "Banheiros",
-    PROPRIEDADE.banheiros
-  );
-
-
-  secundario(
-    "Valor do condomínio",
-    PROPRIEDADE.valorCondominio
-  );
-
-
-  secundario(
-    "IPTU",
-    PROPRIEDADE.iptu
-  );
-
-
-  secundario(
-    "Ano de construção",
-    PROPRIEDADE.anoConstrucao
-  );
-
-
-  if (
-    PROPRIEDADE.mobiliado
-  ) {
-
-    secundario(
-      "Mobiliado",
-      "Sim"
-    );
-
-  }
-
-
-  const secondaryBox =
-    $("#technicalSecondary");
-
-
-  secondaryBox.innerHTML =
-    "";
-
-
-  secundarios.forEach(
-    item => {
-
-      const linha =
-        document.createElement(
-          "div"
-        );
-
-
-      linha.className =
-        "technical-row";
-
-
-      linha.innerHTML = `
-
-        <span class="technical-row-label">
-          ${esc(item[0])}
-        </span>
-
-        <strong class="technical-row-value">
-          ${esc(item[1])}
-        </strong>
-
-      `;
-
-
-      secondaryBox.appendChild(
-        linha
-      );
-
-    }
-  );
-
-
-  if (
-    secundarios.length === 0
-  ) {
-
-    $("#technicalSecondaryArea")
-      .style.display =
-        "none";
-
-  }
-
+    box.appendChild(section);
+  });
 }
 
 
@@ -2751,7 +2458,7 @@ function montarSemelhantes() {
       )
       .slice(
         0,
-        3
+        4
       );
 
 
