@@ -12,6 +12,7 @@ collections:
 
   - name: "site"
     label: "Configurações do site"
+
     files:
 
       - name: "configuracoes"
@@ -69,6 +70,7 @@ collections:
 
   - name: "regioes"
     label: "Regiões"
+
     files:
 
       - name: "regioes"
@@ -117,6 +119,7 @@ collections:
 
   - name: "portfolio"
     label: "Portfólio"
+
     files:
 
       - name: "portfolio"
@@ -136,7 +139,7 @@ collections:
               - label: "ID"
                 name: "id"
                 widget: "string"
-                hint: "Use um identificador único, sem repetir em outro imóvel."
+                hint: "Use um identificador único. Ex.: casa-terras-sao-jose-itu"
 
               - label: "Categoria"
                 name: "categoria"
@@ -287,26 +290,26 @@ collections:
                 name: "imagemCapa"
                 widget: "image"
                 required: false
-                hint: "Essa será a principal foto exibida nos cards."
+                hint: "Foto principal que aparecerá nos cards do site."
 
               - label: "Galeria de fotos"
                 name: "galeria"
                 widget: "image"
                 multiple: true
                 required: false
-                hint: "Você pode selecionar várias fotos de uma só vez."
+                hint: "Selecione várias fotos de uma só vez."
 
               - label: "Descrição curta"
                 name: "descricao"
                 widget: "text"
                 required: false
-                hint: "Texto resumido para cards e chamadas."
+                hint: "Resumo curto para apresentar a propriedade."
 
               - label: "Descrição completa"
                 name: "descricaoLonga"
                 widget: "text"
                 required: false
-                hint: "Texto detalhado que aparecerá na página individual da propriedade."
+                hint: "Descrição detalhada que aparecerá na página individual."
 
               - label: "Piscina"
                 name: "piscina"
@@ -332,19 +335,19 @@ collections:
                 default: false
                 required: false
 
-             - label: "Diferenciais"
-  name: "diferenciais"
-  widget: "list"
-  required: false
-  label_singular: "Diferencial"
-  hint: "Digite um diferencial por item."
+              - label: "Diferenciais"
+                name: "diferenciais"
+                widget: "list"
+                required: false
+                label_singular: "Diferencial"
+                hint: "Digite um diferencial por item."
 
               - label: "Exibir na Seleção Piemonte"
                 name: "destaque"
                 widget: "boolean"
                 default: false
                 required: false
-                hint: "Ative para exibir este item na Seleção Piemonte da página inicial."
+                hint: "Ative para exibir este imóvel na Seleção Piemonte da página inicial."
 
               - label: "Ordem na Seleção Piemonte"
                 name: "ordemDestaque"
@@ -353,4 +356,4 @@ collections:
                 required: false
                 value_type: "int"
                 min: 1
-                hint: "Use 1 para aparecer primeiro, 2 para aparecer em segundo e assim por diante."
+                hint: "Use 1 para aparecer primeiro, 2 para segundo e assim por diante."
