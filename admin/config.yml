@@ -332,15 +332,12 @@ collections:
                 default: false
                 required: false
 
-              - label: "Diferenciais"
-                name: "diferenciais"
-                widget: "list"
-                required: false
-                hint: "Adicione os principais diferenciais da propriedade."
-                field:
-                  label: "Diferencial"
-                  name: "texto"
-                  widget: "string"
+             - label: "Diferenciais"
+  name: "diferenciais"
+  widget: "list"
+  required: false
+  label_singular: "Diferencial"
+  hint: "Digite um diferencial por item."
 
               - label: "Exibir na Seleção Piemonte"
                 name: "destaque"
