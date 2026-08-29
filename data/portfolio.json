@@ -5,10 +5,11 @@
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",
-      "tipo": "Casa",
       "titulo": "Residência contemporânea em condomínio",
+      "regiaoPrincipal": "",
       "cidade": "Itu",
       "regiao": "Condomínio fechado",
+      "tipo": "Casa",
       "preco": 14500000,
       "precoTexto": "R$ 14.500.000",
       "quartos": 5,
@@ -17,20 +18,22 @@
       "vagas": 6,
       "areaConstruida": 710,
       "areaTerreno": 0,
-      "destaque": true,
       "imagemCapa": "/uploads/casa-de-luxo-7-1-1024x576.jpg",
       "galeria": [],
-      "descricao": "Residência de alto padrão com arquitetura contemporânea, ambientes integrados e área de lazer completa."
+      "descricao": "Residência de alto padrão com arquitetura contemporânea, ambientes integrados e área de lazer completa.",
+      "destaque": true,
+      "ordemDestaque": 99
     },
     {
       "id": "casa-granja-viana",
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",
-      "tipo": "Casa",
       "titulo": "Casa integrada à natureza",
+      "regiaoPrincipal": "",
       "cidade": "Granja Viana",
       "regiao": "Cotia",
+      "tipo": "Casa",
       "preco": 3200000,
       "precoTexto": "R$ 3.200.000",
       "quartos": 4,
@@ -39,20 +42,22 @@
       "vagas": 4,
       "areaConstruida": 307,
       "areaTerreno": 550,
-      "destaque": true,
       "imagemCapa": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
       "galeria": [],
-      "descricao": "Casa sofisticada com integração entre área social, gourmet e jardim."
+      "descricao": "Casa sofisticada com integração entre área social, gourmet e jardim.",
+      "destaque": true,
+      "ordemDestaque": 99
     },
     {
       "id": "area-sorocaba",
       "categoria": "Área",
       "status": "Disponível",
       "negocio": "Venda",
-      "tipo": "Área para desenvolvimento",
       "titulo": "Área para desenvolvimento imobiliário",
+      "regiaoPrincipal": "",
       "cidade": "Sorocaba",
       "regiao": "Sorocaba/SP",
+      "tipo": "Área para desenvolvimento",
       "preco": 45000000,
       "precoTexto": "R$ 45.000.000",
       "quartos": 0,
@@ -61,10 +66,39 @@
       "vagas": 0,
       "areaConstruida": 0,
       "areaTerreno": 395886.6,
-      "destaque": true,
       "imagemCapa": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85",
       "galeria": [],
-      "descricao": "Oportunidade para incorporadoras, loteadoras e investidores."
+      "descricao": "Oportunidade para incorporadoras, loteadoras e investidores.",
+      "destaque": false,
+      "ordemDestaque": 1
+    },
+    {
+      "id": "Casa Pallos verdes",
+      "categoria": "Imóvel",
+      "status": "Disponível",
+      "negocio": "Venda",
+      "titulo": "Casa Cond. Pallos Verdes | Granja Viana",
+      "regiaoPrincipal": "Granja Viana",
+      "cidade": "Cotia",
+      "regiao": "Pallos verdes",
+      "tipo": "",
+      "preco": 5800000,
+      "precoTexto": "5.800.000,00",
+      "quartos": 4,
+      "suites": 4,
+      "banheiros": 5,
+      "vagas": 5,
+      "areaConstruida": 250,
+      "areaTerreno": 1000,
+      "imagemCapa": "/uploads/2AFE7676-ADC0-4C5A-9388-93CA3CC1826F.jpeg",
+      "galeria": [
+        {
+          "foto": "/uploads/0B64BF03-EAE4-462D-941A-37CEE10B4107.jpeg"
+        }
+      ],
+      "descricao": "",
+      "destaque": false,
+      "ordemDestaque": 1
     }
   ]
 }
