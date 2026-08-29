@@ -244,13 +244,6 @@ function montarContato() {
     }
 
 
-    /*
-      O e-mail da Piemonte não é exibido publicamente.
-      O campo SITE.email pode continuar existindo no painel
-      para uso interno/futuro, mas não é inserido no HTML.
-    */
-
-
     contatoLinks.innerHTML =
       links.join(" ");
 
@@ -280,11 +273,6 @@ function montarContato() {
         `);
 
       }
-
-
-      /*
-        O e-mail também não é exibido no rodapé.
-      */
 
 
       if (SITE.instagram) {
@@ -330,7 +318,6 @@ function criarWhatsAppFlutuante() {
   const numeroWhatsApp =
     "5511933602204";
 
-
   if (
     document.querySelector(
       ".whatsapp-float"
@@ -343,7 +330,6 @@ function criarWhatsAppFlutuante() {
   const link =
     document.createElement("a");
 
-
   link.className =
     "whatsapp-float";
 
@@ -355,14 +341,11 @@ function criarWhatsAppFlutuante() {
   link.href =
     `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
-
   link.target =
     "_blank";
 
-
   link.rel =
     "noopener noreferrer";
-
 
   link.setAttribute(
     "aria-label",
@@ -460,7 +443,6 @@ function renderRegioes() {
   const box =
     $("#regioesCards");
 
-
   if (!box) {
     return;
   }
@@ -480,7 +462,6 @@ function renderRegioes() {
 
     const link =
       document.createElement("a");
-
 
     const cidadeFiltro =
       item.cidadeFiltro || "";
@@ -676,7 +657,6 @@ function adicionarOpcao(
 
   option.value =
     valor;
-
 
   option.textContent =
     valor;
@@ -921,10 +901,16 @@ function renderInicial() {
   ) {
 
     const destaques =
-      lista.filter(
-        item =>
-          item.destaque === true
-      );
+      lista
+        .filter(
+          item =>
+            item.destaque === true
+        )
+        .sort(
+          (a, b) =>
+            Number(a.ordemDestaque ?? 99) -
+            Number(b.ordemDestaque ?? 99)
+        );
 
 
     lista =
@@ -968,7 +954,6 @@ function render(lista) {
 
     card.className =
       "card";
-
 
     card.tabIndex =
       0;
@@ -1431,7 +1416,6 @@ function abrir(item) {
     imagem.src =
       item.imagemCapa || "";
 
-
     imagem.alt =
       item.titulo || "";
 
@@ -1893,13 +1877,9 @@ document.addEventListener(
   () => {
 
     ativarMenu();
-
     ativarFiltros();
-
     ativarModal();
-
     criarWhatsAppFlutuante();
-
     carregar();
 
   }
