@@ -91,11 +91,7 @@
       "areaConstruida": 250,
       "areaTerreno": 1000,
       "imagemCapa": "/uploads/2AFE7676-ADC0-4C5A-9388-93CA3CC1826F.jpeg",
-      "galeria": [
-        {
-          "foto": "/uploads/0B64BF03-EAE4-462D-941A-37CEE10B4107.jpeg"
-        }
-      ],
+      "galeria": [],
       "descricao": "",
       "destaque": false,
       "ordemDestaque": 1
