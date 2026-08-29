@@ -12,7 +12,6 @@ collections:
 
   - name: "site"
     label: "Configurações do site"
-
     files:
 
       - name: "configuracoes"
@@ -70,7 +69,6 @@ collections:
 
   - name: "regioes"
     label: "Regiões"
-
     files:
 
       - name: "regioes"
@@ -100,6 +98,78 @@ collections:
                 widget: "text"
                 required: false
 
+              - label: "Descrição completa"
+                name: "descricaoLonga"
+                widget: "text"
+                required: false
+                hint: "Texto completo exibido na página da propriedade."
+
+              - label: "Acabamentos"
+                name: "acabamentos"
+                widget: "list"
+                required: false
+                label_singular: "Acabamento"
+                hint: "Adicione somente os acabamentos que este imóvel possui."
+                field:
+                  label: "Acabamento"
+                  name: "item"
+                  widget: "string"
+
+              - label: "Ambientes & Interior"
+                name: "ambientesInterior"
+                widget: "list"
+                required: false
+                label_singular: "Ambiente / característica"
+                hint: "Ex.: Escritório, adega, lareira, home cinema, closet, espaço gourmet."
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+              - label: "Áreas Externas & Lazer"
+                name: "areasExternasLazer"
+                widget: "list"
+                required: false
+                label_singular: "Item de lazer"
+                hint: "Ex.: Piscina, piscina aquecida, sauna, spa, jardim, quadra, churrasqueira."
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+              - label: "Tecnologia, Segurança & Conforto"
+                name: "tecnologiaConforto"
+                widget: "list"
+                required: false
+                label_singular: "Item"
+                hint: "Ex.: Automação, energia solar, ar-condicionado, CFTV, aquecimento, gerador."
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+              - label: "Mobília & Eletros"
+                name: "mobiliaEletros"
+                widget: "list"
+                required: false
+                label_singular: "Item"
+                hint: "Ex.: Mobiliado, marcenaria planejada, eletrodomésticos inclusos."
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+              - label: "Destaques Piemonte"
+                name: "diferenciais"
+                widget: "list"
+                required: false
+                label_singular: "Destaque"
+                hint: "Características especiais que merecem destaque nesta propriedade."
+                field:
+                  label: "Destaque"
+                  name: "item"
+                  widget: "string"
+
               - label: "Imagem"
                 name: "imagem"
                 widget: "image"
@@ -119,7 +189,6 @@ collections:
 
   - name: "portfolio"
     label: "Portfólio"
-
     files:
 
       - name: "portfolio"
@@ -139,7 +208,6 @@ collections:
               - label: "ID"
                 name: "id"
                 widget: "string"
-                hint: "Use um identificador único. Ex.: casa-terras-sao-jose-itu"
 
               - label: "Categoria"
                 name: "categoria"
@@ -151,7 +219,7 @@ collections:
               - label: "Status"
                 name: "status"
                 widget: "select"
-                default: "Disponível"
+                required: false
                 options:
                   - "Disponível"
                   - "Reservado"
@@ -172,17 +240,8 @@ collections:
 
               - label: "Região principal"
                 name: "regiaoPrincipal"
-                widget: "select"
+                widget: "string"
                 required: false
-                options:
-                  - "Itu e Região"
-                  - "Porto Feliz e Região"
-                  - "Granja Viana"
-                  - "Alphaville"
-                  - "São Paulo"
-                  - "Sorocaba"
-                  - "Indaiatuba"
-                  - "Outras Regiões"
 
               - label: "Cidade"
                 name: "cidade"
@@ -194,37 +253,16 @@ collections:
                 widget: "string"
                 required: false
 
-              - label: "Nome do condomínio"
-                name: "condominio"
-                widget: "string"
-                required: false
-
               - label: "Tipo"
                 name: "tipo"
-                widget: "select"
+                widget: "string"
                 required: false
-                options:
-                  - "Casa"
-                  - "Apartamento"
-                  - "Cobertura"
-                  - "Terreno"
-                  - "Área"
-                  - "Fazenda"
-                  - "Sítio"
-                  - "Chácara"
-                  - "Comercial"
-                  - "Industrial"
-                  - "Galpão"
-                  - "Prédio"
-                  - "Hotel"
-                  - "Outro"
 
               - label: "Preço numérico"
                 name: "preco"
                 widget: "number"
                 required: false
                 value_type: "float"
-                hint: "Digite apenas números. Ex.: 4500000"
 
               - label: "Preço exibido"
                 name: "precoTexto"
@@ -232,7 +270,7 @@ collections:
                 required: false
                 hint: "Ex.: R$ 4.500.000 ou Consulte"
 
-              - label: "Dormitórios"
+              - label: "Quartos"
                 name: "quartos"
                 widget: "number"
                 required: false
@@ -268,86 +306,34 @@ collections:
                 required: false
                 value_type: "float"
 
-              - label: "Valor do condomínio"
-                name: "valorCondominio"
-                widget: "string"
-                required: false
-                hint: "Ex.: R$ 1.200/mês"
-
-              - label: "IPTU"
-                name: "iptu"
-                widget: "string"
-                required: false
-                hint: "Ex.: R$ 8.500/ano"
-
-              - label: "Ano de construção"
-                name: "anoConstrucao"
-                widget: "number"
-                required: false
-                value_type: "int"
-
               - label: "Imagem de capa"
                 name: "imagemCapa"
                 widget: "image"
                 required: false
-                hint: "Foto principal que aparecerá nos cards do site."
 
               - label: "Galeria de fotos"
                 name: "galeria"
-                widget: "image"
-                multiple: true
+                widget: "list"
                 required: false
-                hint: "Selecione várias fotos de uma só vez."
+                summary: "{{fields.foto}}"
 
-              - label: "Descrição curta"
+                fields:
+
+                  - label: "Foto"
+                    name: "foto"
+                    widget: "image"
+
+              - label: "Descrição"
                 name: "descricao"
                 widget: "text"
                 required: false
-                hint: "Resumo curto para apresentar a propriedade."
-
-              - label: "Descrição completa"
-                name: "descricaoLonga"
-                widget: "text"
-                required: false
-                hint: "Descrição detalhada que aparecerá na página individual."
-
-              - label: "Piscina"
-                name: "piscina"
-                widget: "boolean"
-                default: false
-                required: false
-
-              - label: "Mobiliado"
-                name: "mobiliado"
-                widget: "boolean"
-                default: false
-                required: false
-
-              - label: "Escritório"
-                name: "escritorio"
-                widget: "boolean"
-                default: false
-                required: false
-
-              - label: "Área gourmet"
-                name: "areaGourmet"
-                widget: "boolean"
-                default: false
-                required: false
-
-              - label: "Diferenciais"
-                name: "diferenciais"
-                widget: "list"
-                required: false
-                label_singular: "Diferencial"
-                hint: "Digite um diferencial por item."
 
               - label: "Exibir na Seleção Piemonte"
                 name: "destaque"
                 widget: "boolean"
                 default: false
                 required: false
-                hint: "Ative para exibir este imóvel na Seleção Piemonte da página inicial."
+                hint: "Ative para exibir este item na Seleção Piemonte da página inicial."
 
               - label: "Ordem na Seleção Piemonte"
                 name: "ordemDestaque"
@@ -356,4 +342,4 @@ collections:
                 required: false
                 value_type: "int"
                 min: 1
-                hint: "Use 1 para aparecer primeiro, 2 para segundo e assim por diante."
+                hint: "Use 1 para aparecer primeiro, 2 para aparecer em segundo e assim por diante."

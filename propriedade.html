@@ -2605,10 +2605,60 @@ function montarFichaTecnica() {
   const grupos = [];
 
   function adicionarGrupo(titulo, itens) {
-    const validos = itens.filter(item => item && item.valor !== undefined && item.valor !== null && item.valor !== "" && item.valor !== false);
-    if (validos.length) grupos.push({ titulo, itens: validos });
+    const validos = itens.filter(
+      item =>
+        item &&
+        item.valor !== undefined &&
+        item.valor !== null &&
+        item.valor !== "" &&
+        item.valor !== false
+    );
+
+    if (validos.length) {
+      grupos.push({ titulo, itens: validos });
+    }
   }
 
+  function normalizarLista(valor) {
+    if (!valor) return [];
+
+    const lista = Array.isArray(valor) ? valor : [valor];
+
+    return lista
+      .map(item => {
+        if (typeof item === "string") return item.trim();
+
+        if (typeof item === "object" && item) {
+          return String(
+            item.item ||
+            item.texto ||
+            item.nome ||
+            item.valor ||
+            ""
+          ).trim();
+        }
+
+        return "";
+      })
+      .filter(Boolean);
+  }
+
+  function adicionarLista(titulo, valor) {
+    const lista = normalizarLista(valor);
+
+    if (!lista.length) return;
+
+    adicionarGrupo(
+      titulo,
+      lista.map(texto => ({
+        label: "",
+        valor: texto,
+        single: true
+      }))
+    );
+  }
+
+  /* Dados estruturais usados também nos cards e filtros. */
   adicionarGrupo("Geral", [
     { label: "Tipo", valor: PROPRIEDADE.tipo },
     { label: "Quartos", valor: PROPRIEDADE.quartos },
@@ -2620,34 +2670,29 @@ function montarFichaTecnica() {
   ]);
 
   adicionarGrupo("Áreas", [
-    { label: "Construída", valor: PROPRIEDADE.areaConstruida ? `${formatarNumero(PROPRIEDADE.areaConstruida)} m²` : "" },
-    { label: "Terreno", valor: PROPRIEDADE.areaTerreno ? `${formatarNumero(PROPRIEDADE.areaTerreno)} m²` : "" }
+    {
+      label: "Construída",
+      valor: PROPRIEDADE.areaConstruida
+        ? `${formatarNumero(PROPRIEDADE.areaConstruida)} m²`
+        : ""
+    },
+    {
+      label: "Terreno",
+      valor: PROPRIEDADE.areaTerreno
+        ? `${formatarNumero(PROPRIEDADE.areaTerreno)} m²`
+        : ""
+    }
   ]);
 
-  adicionarGrupo("Ambientes & Interior", [
-    { label: "Escritório", valor: PROPRIEDADE.escritorio ? "Sim" : "" },
-    { label: "Área Gourmet", valor: PROPRIEDADE.areaGourmet ? "Sim" : "" }
-  ]);
-
-  adicionarGrupo("Áreas Externas & Lazer", [
-    { label: "Piscina", valor: PROPRIEDADE.piscina ? "Sim" : "" }
-  ]);
-
-  adicionarGrupo("Mobília", [
-    { label: "Mobiliado", valor: PROPRIEDADE.mobiliado ? "Sim" : "" }
-  ]);
-
-  let diferenciais = [];
-  if (Array.isArray(PROPRIEDADE.diferenciais)) {
-    diferenciais = PROPRIEDADE.diferenciais.map(item => {
-      if (typeof item === "string") return item;
-      return item?.texto || item?.nome || item?.valor || "";
-    }).filter(Boolean);
-  }
-
-  if (diferenciais.length) {
-    adicionarGrupo("Destaques Piemonte", diferenciais.map(texto => ({ label: "", valor: texto, single: true })));
-  }
+  /* Características livres cadastradas no admin, no padrão GLP.
+     Campos antigos como piscina, areaGourmet, escritorio e mobiliado
+     deixam de ser exibidos automaticamente. */
+  adicionarLista("Acabamentos", PROPRIEDADE.acabamentos);
+  adicionarLista("Ambientes & Interior", PROPRIEDADE.ambientesInterior);
+  adicionarLista("Áreas Externas & Lazer", PROPRIEDADE.areasExternasLazer);
+  adicionarLista("Tecnologia, Segurança & Conforto", PROPRIEDADE.tecnologiaConforto);
+  adicionarLista("Mobília & Eletros", PROPRIEDADE.mobiliaEletros);
+  adicionarLista("Destaques Piemonte", PROPRIEDADE.diferenciais);
 
   const box = $("#glpDetails");
   box.innerHTML = "";
@@ -2656,12 +2701,24 @@ function montarFichaTecnica() {
     const section = document.createElement("section");
     section.className = "glp-detail-group";
 
-    const itensHtml = grupo.itens.map(item => {
-      if (item.single) {
-        return `<div class="glp-detail-item single-value"><strong>${esc(item.valor)}</strong></div>`;
-      }
-      return `<div class="glp-detail-item"><span>${esc(item.label)}</span><strong>${esc(item.valor)}</strong></div>`;
-    }).join("");
+    const itensHtml = grupo.itens
+      .map(item => {
+        if (item.single) {
+          return `
+            <div class="glp-detail-item single-value">
+              <strong>${esc(item.valor)}</strong>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="glp-detail-item">
+            <span>${esc(item.label)}</span>
+            <strong>${esc(item.valor)}</strong>
+          </div>
+        `;
+      })
+      .join("");
 
     section.innerHTML = `
       <h3>${esc(grupo.titulo)}</h3>
