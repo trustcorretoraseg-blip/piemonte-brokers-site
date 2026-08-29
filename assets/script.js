@@ -25,6 +25,21 @@ const esc = valor =>
 
 
 /* =========================================================
+   NORMALIZAÇÃO DE TEXTO
+========================================================= */
+
+function normalizarTexto(valor) {
+
+  return String(valor || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+
+}
+
+
+/* =========================================================
    PÁGINA ATUAL
 ========================================================= */
 
@@ -34,19 +49,26 @@ function paginaAtual() {
     .toLowerCase()
     .replace(/\/+$/, "");
 
+
   if (
     caminho.endsWith("/imoveis") ||
     caminho.endsWith("/imoveis.html")
   ) {
+
     return "imoveis";
+
   }
+
 
   if (
     caminho.endsWith("/areas") ||
     caminho.endsWith("/areas.html")
   ) {
+
     return "areas";
+
   }
+
 
   if (
     caminho === "" ||
@@ -54,10 +76,14 @@ function paginaAtual() {
     caminho.endsWith("/index") ||
     caminho.endsWith("/index.html")
   ) {
+
     return "home";
+
   }
 
+
   return "outra";
+
 }
 
 
@@ -75,29 +101,43 @@ async function carregar() {
       regioesResp
     ] = await Promise.all([
 
-      fetch("/data/site.json", {
-        cache: "no-store"
-      }),
+      fetch(
+        "/data/site.json",
+        {
+          cache: "no-store"
+        }
+      ),
 
-      fetch("/data/portfolio.json", {
-        cache: "no-store"
-      }),
+      fetch(
+        "/data/portfolio.json",
+        {
+          cache: "no-store"
+        }
+      ),
 
-      fetch("/data/regioes.json", {
-        cache: "no-store"
-      })
+      fetch(
+        "/data/regioes.json",
+        {
+          cache: "no-store"
+        }
+      )
 
     ]);
 
 
     if (siteResp.ok) {
-      SITE = await siteResp.json();
+
+      SITE =
+        await siteResp.json();
+
     }
 
 
     if (portfolioResp.ok) {
 
-      const dados = await portfolioResp.json();
+      const dados =
+        await portfolioResp.json();
+
 
       PORTFOLIO =
         Array.isArray(dados.itens)
@@ -112,6 +152,7 @@ async function carregar() {
       const dadosRegioes =
         await regioesResp.json();
 
+
       REGIOES =
         Array.isArray(dadosRegioes.itens)
           ? dadosRegioes.itens
@@ -121,9 +162,13 @@ async function carregar() {
 
 
     aplicarSite();
+
     prepararFiltros();
+
     aplicarFiltroDaURL();
+
     renderInicial();
+
     renderRegioes();
 
 
@@ -134,8 +179,10 @@ async function carregar() {
       erro
     );
 
+
     const contador =
       $("#contador");
+
 
     if (contador) {
 
@@ -158,6 +205,7 @@ function aplicarSite() {
   const tituloHome =
     $("#tituloHome");
 
+
   if (tituloHome) {
 
     tituloHome.textContent =
@@ -169,6 +217,7 @@ function aplicarSite() {
 
   const subtituloHome =
     $("#subtituloHome");
+
 
   if (subtituloHome) {
 
@@ -182,6 +231,7 @@ function aplicarSite() {
   const textoSobre =
     $("#textoSobre");
 
+
   if (textoSobre) {
 
     textoSobre.textContent =
@@ -192,6 +242,7 @@ function aplicarSite() {
 
   const hero =
     $(".hero");
+
 
   if (
     hero &&
@@ -230,7 +281,9 @@ function montarContato() {
         String(SITE.whatsapp)
           .replace(/\D/g, "");
 
+
       links.push(`
+
         <a
           class="btn gold"
           href="https://wa.me/${esc(numero)}"
@@ -239,6 +292,7 @@ function montarContato() {
         >
           WhatsApp
         </a>
+
       `);
 
     }
@@ -251,60 +305,69 @@ function montarContato() {
 
 
   $$("#footerContato")
-    .forEach(footer => {
+    .forEach(
+      footer => {
 
-      const itens = [];
+        const itens = [];
 
 
-      if (SITE.whatsapp) {
+        if (SITE.whatsapp) {
 
-        const numero =
-          String(SITE.whatsapp)
-            .replace(/\D/g, "");
+          const numero =
+            String(SITE.whatsapp)
+              .replace(/\D/g, "");
 
-        itens.push(`
-          <a
-            href="https://wa.me/${esc(numero)}"
-            target="_blank"
-            rel="noopener"
-          >
-            WhatsApp
-          </a>
-        `);
+
+          itens.push(`
+
+            <a
+              href="https://wa.me/${esc(numero)}"
+              target="_blank"
+              rel="noopener"
+            >
+              WhatsApp
+            </a>
+
+          `);
+
+        }
+
+
+        if (SITE.instagram) {
+
+          itens.push(`
+
+            <a
+              href="${esc(SITE.instagram)}"
+              target="_blank"
+              rel="noopener"
+            >
+              Instagram
+            </a>
+
+          `);
+
+        }
+
+
+        if (SITE.cidadeBase) {
+
+          itens.push(`
+
+            <span>
+              ${esc(SITE.cidadeBase)}
+            </span>
+
+          `);
+
+        }
+
+
+        footer.innerHTML =
+          itens.join("");
 
       }
-
-
-      if (SITE.instagram) {
-
-        itens.push(`
-          <a
-            href="${esc(SITE.instagram)}"
-            target="_blank"
-            rel="noopener"
-          >
-            Instagram
-          </a>
-        `);
-
-      }
-
-
-      if (SITE.cidadeBase) {
-
-        itens.push(`
-          <span>
-            ${esc(SITE.cidadeBase)}
-          </span>
-        `);
-
-      }
-
-
-      footer.innerHTML =
-        itens.join("");
-
-    });
+    );
 
 }
 
@@ -316,19 +379,27 @@ function montarContato() {
 function criarWhatsAppFlutuante() {
 
   const numeroWhatsApp =
-    "5511933602204";
+    String(
+      SITE.whatsapp ||
+      "5511933602204"
+    )
+      .replace(/\D/g, "");
+
 
   if (
     document.querySelector(
       ".whatsapp-float"
     )
   ) {
+
     return;
+
   }
 
 
   const link =
     document.createElement("a");
+
 
   link.className =
     "whatsapp-float";
@@ -341,11 +412,14 @@ function criarWhatsAppFlutuante() {
   link.href =
     `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
+
   link.target =
     "_blank";
 
+
   link.rel =
     "noopener noreferrer";
+
 
   link.setAttribute(
     "aria-label",
@@ -429,13 +503,15 @@ function criarWhatsAppFlutuante() {
   `;
 
 
-  document.body.appendChild(link);
+  document.body.appendChild(
+    link
+  );
 
 }
 
 
 /* =========================================================
-   REGIÕES
+   REGIÕES DA HOME
 ========================================================= */
 
 function renderRegioes() {
@@ -443,8 +519,11 @@ function renderRegioes() {
   const box =
     $("#regioesCards");
 
+
   if (!box) {
+
     return;
+
   }
 
 
@@ -458,61 +537,66 @@ function renderRegioes() {
   box.innerHTML = "";
 
 
-  lista.forEach(item => {
+  lista.forEach(
+    item => {
 
-    const link =
-      document.createElement("a");
-
-    const cidadeFiltro =
-      item.cidadeFiltro || "";
+      const link =
+        document.createElement("a");
 
 
-    link.href =
-      cidadeFiltro
-        ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
-        : "/regioes.html";
+      const cidadeFiltro =
+        item.cidadeFiltro || "";
 
 
-    link.className =
-      "regiao-home-card";
+      link.href =
+        cidadeFiltro
+          ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
+          : "/regioes.html";
 
 
-    const imagem =
-      item.imagem ||
-      "/assets/home-principal.jpeg";
+      link.className =
+        "regiao-home-card";
 
 
-    link.innerHTML = `
-
-      <div class="regiao-home-img">
-
-        <img
-          src="${esc(imagem)}"
-          alt="${esc(item.nome)}"
-          loading="lazy"
-        >
-
-      </div>
+      const imagem =
+        item.imagem ||
+        "/assets/home-principal.jpeg";
 
 
-      <div class="regiao-home-body">
+      link.innerHTML = `
 
-        <h3>
-          ${esc(item.nome)}
-        </h3>
+        <div class="regiao-home-img">
 
-        <p>
-          ${esc(item.descricao || "")}
-        </p>
+          <img
+            src="${esc(imagem)}"
+            alt="${esc(item.nome || "Piemonte Brokers")}"
+            loading="lazy"
+          >
 
-      </div>
-
-    `;
+        </div>
 
 
-    box.appendChild(link);
+        <div class="regiao-home-body">
 
-  });
+          <h3>
+            ${esc(item.nome || "")}
+          </h3>
+
+          <p>
+            ${esc(item.descricao || "")}
+          </p>
+
+        </div>
+
+      `;
+
+
+      box.appendChild(
+        link
+      );
+
+    }
+  );
 
 }
 
@@ -527,8 +611,12 @@ function formatarNumero(valor) {
     Number(valor);
 
 
-  if (Number.isNaN(numero)) {
+  if (
+    Number.isNaN(numero)
+  ) {
+
     return valor;
+
   }
 
 
@@ -554,21 +642,25 @@ function specs(item) {
   if (item.suites) {
 
     dados.push(
+
       `${item.suites} ${
         Number(item.suites) === 1
           ? "suíte"
           : "suítes"
       }`
+
     );
 
   } else if (item.quartos) {
 
     dados.push(
+
       `${item.quartos} ${
         Number(item.quartos) === 1
           ? "dormitório"
           : "dormitórios"
       }`
+
     );
 
   }
@@ -577,9 +669,11 @@ function specs(item) {
   if (item.areaConstruida) {
 
     dados.push(
+
       `${formatarNumero(
         item.areaConstruida
       )} m² construídos`
+
     );
 
   }
@@ -588,9 +682,11 @@ function specs(item) {
   if (item.areaTerreno) {
 
     dados.push(
+
       `${formatarNumero(
         item.areaTerreno
       )} m² de terreno`
+
     );
 
   }
@@ -615,7 +711,11 @@ function textoLocalItem(item) {
 
   ]
     .filter(Boolean)
-    .join(" ");
+    .filter(
+      (valor, indice, lista) =>
+        lista.indexOf(valor) === indice
+    )
+    .join(" • ");
 
 }
 
@@ -634,7 +734,9 @@ function adicionarOpcao(
     campo.tagName !== "SELECT" ||
     !valor
   ) {
+
     return;
+
   }
 
 
@@ -647,22 +749,29 @@ function adicionarOpcao(
 
 
   if (existe) {
+
     return;
+
   }
 
 
   const option =
-    document.createElement("option");
+    document.createElement(
+      "option"
+    );
 
 
   option.value =
     valor;
 
+
   option.textContent =
     valor;
 
 
-  campo.appendChild(option);
+  campo.appendChild(
+    option
+  );
 
 }
 
@@ -710,8 +819,10 @@ function prepararFiltros() {
   const categoria =
     $("#fCategoria");
 
+
   const tipo =
     $("#fTipo");
+
 
   const cidade =
     $("#fCidade");
@@ -720,7 +831,10 @@ function prepararFiltros() {
   [
     ...new Set(
       lista
-        .map(item => item.categoria)
+        .map(
+          item =>
+            item.categoria
+        )
         .filter(Boolean)
     )
   ]
@@ -737,7 +851,10 @@ function prepararFiltros() {
   [
     ...new Set(
       lista
-        .map(item => item.tipo)
+        .map(
+          item =>
+            item.tipo
+        )
         .filter(Boolean)
     )
   ]
@@ -785,7 +902,7 @@ function prepararFiltros() {
 
 
 /* =========================================================
-   FILTRO DA URL
+   FILTRO RECEBIDO PELA URL
 ========================================================= */
 
 function aplicarFiltroDaURL() {
@@ -801,7 +918,9 @@ function aplicarFiltroDaURL() {
 
 
   if (!cidade) {
+
     return;
+
   }
 
 
@@ -810,7 +929,9 @@ function aplicarFiltroDaURL() {
 
 
   if (!campo) {
+
     return;
+
   }
 
 
@@ -821,6 +942,10 @@ function aplicarFiltroDaURL() {
     campo.value =
       cidade;
 
+
+    filtrar();
+
+
     return;
 
   }
@@ -830,12 +955,18 @@ function aplicarFiltroDaURL() {
     campo.tagName === "SELECT"
   ) {
 
+    const cidadeNormalizada =
+      normalizarTexto(cidade);
+
+
     const opcao =
       [...campo.options]
         .find(
           item =>
-            item.value.toLowerCase() ===
-            cidade.toLowerCase()
+            normalizarTexto(
+              item.value
+            ) ===
+            cidadeNormalizada
         );
 
 
@@ -845,6 +976,9 @@ function aplicarFiltroDaURL() {
         opcao.value;
 
     }
+
+
+    filtrar();
 
   }
 
@@ -857,13 +991,30 @@ function aplicarFiltroDaURL() {
 
 function renderInicial() {
 
-  if (!$("#cards")) {
+  if (
+    !$("#cards")
+  ) {
+
     return;
+
   }
 
 
   let lista =
     [...PORTFOLIO];
+
+
+  /*
+    Não mostramos itens vendidos ou indisponíveis
+    nas listagens públicas.
+  */
+
+  lista =
+    lista.filter(
+      item =>
+        item.status !== "Vendido" &&
+        item.status !== "Indisponível"
+    );
 
 
   const pagina =
@@ -908,15 +1059,29 @@ function renderInicial() {
         )
         .sort(
           (a, b) =>
-            Number(a.ordemDestaque ?? 99) -
-            Number(b.ordemDestaque ?? 99)
+
+            Number(
+              a.ordemDestaque ?? 99
+            )
+
+            -
+
+            Number(
+              b.ordemDestaque ?? 99
+            )
         );
 
 
     lista =
       destaques.length
-        ? destaques.slice(0, 6)
-        : lista.slice(0, 6);
+        ? destaques.slice(
+            0,
+            6
+          )
+        : lista.slice(
+            0,
+            6
+          );
 
   }
 
@@ -937,136 +1102,176 @@ function render(lista) {
 
 
   if (!box) {
+
     return;
+
   }
 
 
   box.innerHTML = "";
 
 
-  lista.forEach(item => {
+  lista.forEach(
+    item => {
 
-    const card =
-      document.createElement(
-        "article"
+      const card =
+        document.createElement(
+          "article"
+        );
+
+
+      card.className =
+        "card";
+
+
+      card.tabIndex =
+        0;
+
+
+      card.setAttribute(
+        "role",
+        "link"
       );
 
 
-    card.className =
-      "card";
-
-    card.tabIndex =
-      0;
+      const imagem =
+        item.imagemCapa ||
+        "/assets/logo-piemonte.png";
 
 
-    const imagem =
-      item.imagemCapa ||
-      "/assets/logo-piemonte.png";
+      const localCard =
+        [
+          item.regiaoPrincipal,
+          item.cidade,
+          item.regiao
+        ]
+          .filter(Boolean);
 
 
-    const localCard =
-      [
-        item.regiaoPrincipal,
-        item.cidade,
-        item.regiao
-      ]
-        .filter(Boolean);
+      const localUnico =
+        [...new Set(localCard)];
 
 
-    const localUnico =
-      [...new Set(localCard)];
+      card.innerHTML = `
 
+        <div class="card-img">
 
-    card.innerHTML = `
+          <img
+            src="${esc(imagem)}"
+            alt="${esc(
+              item.titulo ||
+              "Piemonte Brokers"
+            )}"
+            loading="lazy"
+          >
 
-      <div class="card-img">
+          ${
+            item.categoria
+              ? `
 
-        <img
-          src="${esc(imagem)}"
-          alt="${esc(
-            item.titulo ||
-            "Piemonte Brokers"
-          )}"
-          loading="lazy"
-        >
+                <span class="badge">
+                  ${esc(item.categoria)}
+                </span>
 
-        ${
-          item.categoria
-            ? `
-              <span class="badge">
-                ${esc(item.categoria)}
-              </span>
-            `
-            : ""
-        }
+              `
+              : ""
+          }
 
-      </div>
-
-
-      <div class="card-body">
-
-        <div class="meta">
-          ${esc(
-            localUnico.join(" • ")
-          )}
         </div>
 
-        <h3>
-          ${esc(
-            item.titulo ||
-            "Oportunidade Piemonte"
-          )}
-        </h3>
 
-        <p>
-          ${esc(
-            specs(item) ||
-            item.descricao ||
-            ""
-          )}
-        </p>
+        <div class="card-body">
 
-        <strong class="price">
-          ${esc(
-            item.precoTexto ||
-            "Consulte"
-          )}
-        </strong>
+          <div class="meta">
 
-      </div>
+            ${esc(
+              localUnico.join(" • ")
+            )}
 
-    `;
+          </div>
 
 
-    card.addEventListener(
-      "click",
-      () =>
-        abrir(item)
-    );
+          <h3>
+
+            ${esc(
+              item.titulo ||
+              "Oportunidade Piemonte"
+            )}
+
+          </h3>
 
 
-    card.addEventListener(
-      "keydown",
-      evento => {
+          <p>
 
-        if (
-          evento.key === "Enter" ||
-          evento.key === " "
-        ) {
+            ${esc(
+              specs(item) ||
+              item.descricao ||
+              ""
+            )}
 
-          evento.preventDefault();
+          </p>
 
-          abrir(item);
+
+          <strong class="price">
+
+            ${esc(
+              item.precoTexto ||
+              "Consulte"
+            )}
+
+          </strong>
+
+        </div>
+
+      `;
+
+
+      /*
+        IMPORTANTE:
+
+        Antes os cards abriam um modal.
+
+        Agora todos os imóveis e áreas abrem
+        a página individual propriedade.html.
+      */
+
+      card.addEventListener(
+        "click",
+        () =>
+          abrirPropriedade(
+            item
+          )
+      );
+
+
+      card.addEventListener(
+        "keydown",
+        evento => {
+
+          if (
+            evento.key === "Enter" ||
+            evento.key === " "
+          ) {
+
+            evento.preventDefault();
+
+
+            abrirPropriedade(
+              item
+            );
+
+          }
 
         }
-
-      }
-    );
+      );
 
 
-    box.appendChild(card);
+      box.appendChild(
+        card
+      );
 
-  });
+    }
+  );
 
 
   const contador =
@@ -1110,6 +1315,65 @@ function render(lista) {
 
 
 /* =========================================================
+   ABRIR PÁGINA INDIVIDUAL
+========================================================= */
+
+function abrirPropriedade(
+  item
+) {
+
+  if (
+    !item ||
+    !item.id
+  ) {
+
+    console.warn(
+      "Imóvel sem ID:",
+      item
+    );
+
+
+    return;
+
+  }
+
+
+  const id =
+    encodeURIComponent(
+      item.id
+    );
+
+
+  window.location.href =
+    `/propriedade.html?id=${id}`;
+
+}
+
+
+/* =========================================================
+   COMPATIBILIDADE COM CÓDIGO ANTIGO
+========================================================= */
+
+/*
+  Algumas partes antigas do site podem ainda
+  chamar a função abrir().
+
+  Mantemos esta função para evitar erro,
+  mas agora ela leva para propriedade.html.
+*/
+
+function abrir(
+  item
+) {
+
+  abrirPropriedade(
+    item
+  );
+
+}
+
+
+/* =========================================================
    FAIXAS DE PREÇO
 ========================================================= */
 
@@ -1119,7 +1383,9 @@ function atendeFaixaPreco(
 ) {
 
   if (!faixa) {
+
     return true;
+
   }
 
 
@@ -1130,7 +1396,9 @@ function atendeFaixaPreco(
 
 
   if (!valor) {
+
     return false;
+
   }
 
 
@@ -1151,39 +1419,63 @@ function atendeFaixaPreco(
   switch (faixa) {
 
     case "ate-1m":
-      return valor <= 1000000;
+
+      return (
+        valor <=
+        1000000
+      );
+
 
     case "1m-3m":
+
       return (
         valor > 1000000 &&
         valor <= 3000000
       );
 
+
     case "3m-5m":
+
       return (
         valor > 3000000 &&
         valor <= 5000000
       );
 
+
     case "5m-10m":
+
       return (
         valor > 5000000 &&
         valor <= 10000000
       );
 
+
     case "10m-30m":
+
       return (
         valor > 10000000 &&
         valor <= 30000000
       );
 
+
     case "acima-10m":
-      return valor > 10000000;
+
+      return (
+        valor >
+        10000000
+      );
+
 
     case "acima-30m":
-      return valor > 30000000;
+
+      return (
+        valor >
+        30000000
+      );
+
 
     default:
+
       return true;
 
   }
@@ -1192,13 +1484,26 @@ function atendeFaixaPreco(
 
 
 /* =========================================================
-   FILTRAR
+   FILTRAGEM
 ========================================================= */
 
 function filtrar() {
 
   let lista =
     [...PORTFOLIO];
+
+
+  /*
+    Remove vendidos e indisponíveis
+    das listagens públicas.
+  */
+
+  lista =
+    lista.filter(
+      item =>
+        item.status !== "Vendido" &&
+        item.status !== "Indisponível"
+    );
 
 
   const pagina =
@@ -1243,9 +1548,7 @@ function filtrar() {
 
   const cidade =
     $("#fCidade")
-      ?.value
-      ?.trim()
-      ?.toLowerCase() || "";
+      ?.value || "";
 
 
   const tipo =
@@ -1258,13 +1561,52 @@ function filtrar() {
       ?.value || "";
 
 
+  const cidadeNormalizada =
+    normalizarTexto(
+      cidade
+    );
+
+
   lista =
     lista.filter(
       item => {
 
-        const local =
-          textoLocalItem(item)
-            .toLowerCase();
+        /*
+          Para localização utilizamos os campos estruturados.
+
+          Isso evita depender apenas da descrição
+          e reduz resultados incorretos.
+        */
+
+        const regiaoPrincipal =
+          normalizarTexto(
+            item.regiaoPrincipal
+          );
+
+
+        const cidadeItem =
+          normalizarTexto(
+            item.cidade
+          );
+
+
+        const regiao =
+          normalizarTexto(
+            item.regiao
+          );
+
+
+        const localCorresponde =
+          !cidadeNormalizada ||
+
+          regiaoPrincipal ===
+            cidadeNormalizada ||
+
+          cidadeItem ===
+            cidadeNormalizada ||
+
+          regiao ===
+            cidadeNormalizada;
 
 
         return (
@@ -1284,10 +1626,7 @@ function filtrar() {
 
           &&
 
-          (
-            !cidade ||
-            local.includes(cidade)
-          )
+          localCorresponde
 
           &&
 
@@ -1309,7 +1648,9 @@ function filtrar() {
     );
 
 
-  render(lista);
+  render(
+    lista
+  );
 
 }
 
@@ -1325,7 +1666,9 @@ function ativarFiltros() {
 
 
   if (!filtros) {
+
     return;
+
   }
 
 
@@ -1338,6 +1681,7 @@ function ativarFiltros() {
       evento => {
 
         evento.preventDefault();
+
 
         filtrar();
 
@@ -1377,343 +1721,46 @@ function ativarFiltros() {
     $("#fCidade");
 
 
-  if (
-    cidade &&
-    cidade.tagName === "SELECT"
-  ) {
-
-    cidade.addEventListener(
-      "change",
-      filtrar
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function abrir(item) {
-
-  const modal =
-    $("#modal");
-
-
-  if (!modal) {
-    return;
-  }
-
-
-  const imagem =
-    $("#modalImg");
-
-
-  if (imagem) {
-
-    imagem.src =
-      item.imagemCapa || "";
-
-    imagem.alt =
-      item.titulo || "";
-
-  }
-
-
-  const categoria =
-    $("#modalCategoria");
-
-
-  if (categoria) {
-
-    categoria.textContent =
-      item.categoria || "";
-
-  }
-
-
-  const meta =
-    $("#modalMeta");
-
-
-  if (meta) {
-
-    meta.textContent =
-      [
-        item.categoria,
-        item.regiaoPrincipal,
-        item.cidade,
-        item.negocio
-      ]
-        .filter(Boolean)
-        .filter(
-          (valor, indice, arr) =>
-            arr.indexOf(valor) === indice
-        )
-        .join(" • ");
-
-  }
-
-
-  const titulo =
-    $("#modalTitulo");
-
-
-  if (titulo) {
-
-    titulo.textContent =
-      item.titulo || "";
-
-  }
-
-
-  const local =
-    $("#modalLocal");
-
-
-  if (local) {
-
-    local.textContent =
-      [
-        item.regiaoPrincipal,
-        item.cidade,
-        item.regiao
-      ]
-        .filter(Boolean)
-        .filter(
-          (valor, indice, arr) =>
-            arr.indexOf(valor) === indice
-        )
-        .join(" • ");
-
-  }
-
-
-  const descricao =
-    $("#modalDescricao");
-
-
-  if (descricao) {
-
-    descricao.textContent =
-      item.descricao || "";
-
-  }
-
-
-  const descricaoAntiga =
-    $("#modalDesc");
-
-
-  if (descricaoAntiga) {
-
-    descricaoAntiga.textContent =
-      item.descricao || "";
-
-  }
-
-
-  const preco =
-    $("#modalPreco");
-
-
-  if (preco) {
-
-    preco.textContent =
-      item.precoTexto ||
-      "Consulte";
-
-  }
-
-
-  const specsBox =
-    $("#modalSpecs");
-
-
-  if (specsBox) {
-
-    specsBox.innerHTML = "";
-
-
-    const valores = [];
-
-
-    if (item.suites) {
-
-      valores.push(
-        `${item.suites} suítes`
+  if (cidade) {
+
+    if (
+      cidade.tagName === "SELECT"
+    ) {
+
+      cidade.addEventListener(
+        "change",
+        filtrar
       );
 
     }
 
 
     if (
-      item.quartos &&
-      !item.suites
+      cidade.tagName === "INPUT"
     ) {
 
-      valores.push(
-        `${item.quartos} dormitórios`
+      cidade.addEventListener(
+        "input",
+        filtrar
       );
 
     }
-
-
-    if (item.banheiros) {
-
-      valores.push(
-        `${item.banheiros} banheiros`
-      );
-
-    }
-
-
-    if (item.vagas) {
-
-      valores.push(
-        `${item.vagas} vagas`
-      );
-
-    }
-
-
-    if (item.areaConstruida) {
-
-      valores.push(
-        `${formatarNumero(
-          item.areaConstruida
-        )} m² construídos`
-      );
-
-    }
-
-
-    if (item.areaTerreno) {
-
-      valores.push(
-        `${formatarNumero(
-          item.areaTerreno
-        )} m² de terreno`
-      );
-
-    }
-
-
-    valores.forEach(
-      valor => {
-
-        const span =
-          document.createElement(
-            "span"
-          );
-
-
-        span.textContent =
-          valor;
-
-
-        specsBox.appendChild(
-          span
-        );
-
-      }
-    );
 
   }
-
-
-  const galeria =
-    $("#modalGaleria");
-
-
-  if (galeria) {
-
-    galeria.innerHTML = "";
-
-
-    const fotos =
-      Array.isArray(item.galeria)
-        ? item.galeria
-        : [];
-
-
-    fotos.forEach(foto => {
-
-      const src =
-        typeof foto === "string"
-          ? foto
-          : foto?.foto;
-
-
-      if (!src) {
-        return;
-      }
-
-
-      const wrapper =
-        document.createElement(
-          "div"
-        );
-
-
-      wrapper.className =
-        "piemonte-foto";
-
-
-      const img =
-        document.createElement(
-          "img"
-        );
-
-
-      img.src =
-        src;
-
-
-      img.alt =
-        item.titulo ||
-        "Piemonte Brokers";
-
-
-      wrapper.appendChild(
-        img
-      );
-
-
-      galeria.appendChild(
-        wrapper
-      );
-
-    });
-
-  }
-
-
-  modal.hidden =
-    false;
-
-
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-
-  modal.style.display =
-    "block";
-
-
-  document.body.style.overflow =
-    "hidden";
 
 }
 
 
 /* =========================================================
-   FECHAR MODAL
+   MODAL ANTIGO
 ========================================================= */
+
+/*
+  O site agora utiliza propriedade.html.
+
+  Mantemos somente o fechamento do modal antigo
+  caso alguma página ainda possua o HTML legado.
+*/
 
 function fechar() {
 
@@ -1722,7 +1769,9 @@ function fechar() {
 
 
   if (!modal) {
+
     return;
+
   }
 
 
@@ -1747,7 +1796,7 @@ function fechar() {
 
 
 /* =========================================================
-   EVENTOS DO MODAL
+   EVENTOS DO MODAL ANTIGO
 ========================================================= */
 
 function ativarModal() {
@@ -1799,7 +1848,8 @@ function ativarModal() {
     evento => {
 
       if (
-        evento.key === "Escape"
+        evento.key ===
+        "Escape"
       ) {
 
         fechar();
@@ -1830,7 +1880,9 @@ function ativarMenu() {
     !menuBtn ||
     !menu
   ) {
+
     return;
+
   }
 
 
@@ -1877,10 +1929,23 @@ document.addEventListener(
   () => {
 
     ativarMenu();
+
     ativarFiltros();
+
     ativarModal();
-    criarWhatsAppFlutuante();
+
     carregar();
+
+    /*
+      O WhatsApp é criado depois que SITE
+      for carregado. Como carregar é assíncrono,
+      aguardamos rapidamente.
+    */
+
+    setTimeout(
+      criarWhatsAppFlutuante,
+      500
+    );
 
   }
 );
