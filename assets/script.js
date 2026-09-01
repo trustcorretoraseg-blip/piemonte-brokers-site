@@ -868,36 +868,48 @@ function prepararFiltros() {
     );
 
 
-  if (
-    cidade &&
-    cidade.tagName === "SELECT"
-  ) {
+ if (
+  cidade &&
+  cidade.tagName === "SELECT"
+) {
 
-    const locais =
-      [
-        ...new Set(
-          lista
-            .map(
-              item =>
-                item.regiaoPrincipal ||
-                item.cidade
-            )
-            .filter(Boolean)
-        )
-      ]
-        .sort();
+  /*
+    Um imóvel pode ter localização cadastrada em:
+    regiaoPrincipal, cidade e/ou regiao.
+
+    O filtro precisa considerar os três campos.
+  */
+
+  const locais =
+    [
+      ...new Set(
+        lista
+          .flatMap(
+            item => [
+              item.regiaoPrincipal,
+              item.cidade,
+              item.regiao
+            ]
+          )
+          .filter(Boolean)
+      )
+    ]
+      .sort(
+        (a, b) =>
+          String(a).localeCompare(
+            String(b),
+            "pt-BR"
+          )
+      );
 
 
-    locais.forEach(
-      valor =>
-        adicionarOpcao(
-          cidade,
-          valor
-        )
-    );
-
-  }
-
+  locais.forEach(
+    valor =>
+      adicionarOpcao(
+        cidade,
+        valor
+      )
+  );
 }
 
 
@@ -935,16 +947,30 @@ function aplicarFiltroDaURL() {
   }
 
 
-  if (
-    campo.tagName === "INPUT"
-  ) {
+  if (opcao) {
 
-    campo.value =
-      cidade;
+  campo.value =
+    opcao.value;
+
+} else {
+
+  /*
+    Se a região recebida pela URL ainda não estiver
+    no select, adicionamos essa região automaticamente.
+  */
+
+  adicionarOpcao(
+    campo,
+    cidade
+  );
+
+  campo.value =
+    cidade;
+
+}
 
 
-    filtrar();
-
+filtrar();
 
     return;
 
