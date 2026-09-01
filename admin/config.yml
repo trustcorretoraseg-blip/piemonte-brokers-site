@@ -8,10 +8,16 @@ locale: "pt"
 media_folder: "uploads"
 public_folder: "/uploads"
 
+
 collections:
+
+  # =========================================================
+  # CONFIGURAÇÕES GERAIS
+  # =========================================================
 
   - name: "site"
     label: "Configurações do site"
+
     files:
 
       - name: "configuracoes"
@@ -67,8 +73,13 @@ collections:
             required: false
 
 
+  # =========================================================
+  # REGIÕES
+  # =========================================================
+
   - name: "regioes"
     label: "Regiões"
+
     files:
 
       - name: "regioes"
@@ -88,6 +99,7 @@ collections:
               - label: "ID"
                 name: "id"
                 widget: "string"
+                hint: "Identificador interno. Ex.: itu-regiao"
 
               - label: "Nome"
                 name: "nome"
@@ -98,87 +110,22 @@ collections:
                 widget: "text"
                 required: false
 
-              - label: "Descrição completa"
-                name: "descricaoLonga"
-                widget: "text"
-                required: false
-                hint: "Texto completo exibido na página da propriedade."
-
-              - label: "Acabamentos"
-                name: "acabamentos"
-                widget: "list"
-                required: false
-                label_singular: "Acabamento"
-                hint: "Adicione somente os acabamentos que este imóvel possui."
-                field:
-                  label: "Acabamento"
-                  name: "item"
-                  widget: "string"
-
-              - label: "Ambientes & Interior"
-                name: "ambientesInterior"
-                widget: "list"
-                required: false
-                label_singular: "Ambiente / característica"
-                hint: "Ex.: Escritório, adega, lareira, home cinema, closet, espaço gourmet."
-                field:
-                  label: "Item"
-                  name: "item"
-                  widget: "string"
-
-              - label: "Áreas Externas & Lazer"
-                name: "areasExternasLazer"
-                widget: "list"
-                required: false
-                label_singular: "Item de lazer"
-                hint: "Ex.: Piscina, piscina aquecida, sauna, spa, jardim, quadra, churrasqueira."
-                field:
-                  label: "Item"
-                  name: "item"
-                  widget: "string"
-
-              - label: "Tecnologia, Segurança & Conforto"
-                name: "tecnologiaConforto"
-                widget: "list"
-                required: false
-                label_singular: "Item"
-                hint: "Ex.: Automação, energia solar, ar-condicionado, CFTV, aquecimento, gerador."
-                field:
-                  label: "Item"
-                  name: "item"
-                  widget: "string"
-
-              - label: "Mobília & Eletros"
-                name: "mobiliaEletros"
-                widget: "list"
-                required: false
-                label_singular: "Item"
-                hint: "Ex.: Mobiliado, marcenaria planejada, eletrodomésticos inclusos."
-                field:
-                  label: "Item"
-                  name: "item"
-                  widget: "string"
-
-              - label: "Destaques Piemonte"
-                name: "diferenciais"
-                widget: "list"
-                required: false
-                label_singular: "Destaque"
-                hint: "Características especiais que merecem destaque nesta propriedade."
-                field:
-                  label: "Destaque"
-                  name: "item"
-                  widget: "string"
-
               - label: "Imagem"
                 name: "imagem"
                 widget: "image"
                 required: false
 
-              - label: "Cidade usada no filtro"
+              - label: "Região usada no filtro"
                 name: "cidadeFiltro"
-                widget: "string"
+                widget: "select"
                 required: false
+
+                options:
+                  - "Itu & Região"
+                  - "Porto Feliz & Região"
+                  - "Granja Viana"
+                  - "São Paulo & Alphaville"
+                  - "Áreas & Oportunidades"
 
               - label: "Exibir na Home"
                 name: "destaque"
@@ -187,8 +134,13 @@ collections:
                 required: false
 
 
+  # =========================================================
+  # PORTFÓLIO
+  # =========================================================
+
   - name: "portfolio"
     label: "Portfólio"
+
     files:
 
       - name: "portfolio"
@@ -205,13 +157,19 @@ collections:
 
             fields:
 
+              # -------------------------------------------------
+              # IDENTIFICAÇÃO
+              # -------------------------------------------------
+
               - label: "ID"
                 name: "id"
                 widget: "string"
+                hint: "Use um identificador único. Ex.: casa-palos-verdes"
 
               - label: "Categoria"
                 name: "categoria"
                 widget: "select"
+
                 options:
                   - "Imóvel"
                   - "Área"
@@ -220,6 +178,8 @@ collections:
                 name: "status"
                 widget: "select"
                 required: false
+                default: "Disponível"
+
                 options:
                   - "Disponível"
                   - "Reservado"
@@ -230,6 +190,8 @@ collections:
                 name: "negocio"
                 widget: "select"
                 required: false
+                default: "Venda"
+
                 options:
                   - "Venda"
                   - "Locação"
@@ -238,25 +200,52 @@ collections:
                 name: "titulo"
                 widget: "string"
 
+
+              # -------------------------------------------------
+              # LOCALIZAÇÃO
+              # -------------------------------------------------
+
               - label: "Região principal"
                 name: "regiaoPrincipal"
-                widget: "string"
+                widget: "select"
                 required: false
+                hint: "Escolha a região macro onde este imóvel será exibido."
+
+                options:
+                  - "Itu & Região"
+                  - "Porto Feliz & Região"
+                  - "Granja Viana"
+                  - "São Paulo & Alphaville"
+                  - "Áreas & Oportunidades"
 
               - label: "Cidade"
                 name: "cidade"
                 widget: "string"
                 required: false
+                hint: "Ex.: Itu, Cotia, Porto Feliz, Barueri."
 
               - label: "Bairro / Condomínio / Região"
                 name: "regiao"
                 widget: "string"
                 required: false
+                hint: "Ex.: Terras de São José, Palos Verdes, Fazenda Boa Vista."
+
+              - label: "Condomínio"
+                name: "condominio"
+                widget: "string"
+                required: false
+                hint: "Opcional. Use quando quiser informar separadamente o condomínio."
+
+
+              # -------------------------------------------------
+              # TIPO E VALORES
+              # -------------------------------------------------
 
               - label: "Tipo"
                 name: "tipo"
                 widget: "string"
                 required: false
+                hint: "Ex.: Casa, Apartamento, Terreno, Fazenda."
 
               - label: "Preço numérico"
                 name: "preco"
@@ -269,6 +258,21 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Ex.: R$ 4.500.000 ou Consulte"
+
+              - label: "Valor do condomínio"
+                name: "valorCondominio"
+                widget: "string"
+                required: false
+
+              - label: "IPTU"
+                name: "iptu"
+                widget: "string"
+                required: false
+
+
+              # -------------------------------------------------
+              # FICHA TÉCNICA
+              # -------------------------------------------------
 
               - label: "Quartos"
                 name: "quartos"
@@ -306,6 +310,17 @@ collections:
                 required: false
                 value_type: "float"
 
+              - label: "Ano da construção"
+                name: "anoConstrucao"
+                widget: "number"
+                required: false
+                value_type: "int"
+
+
+              # -------------------------------------------------
+              # FOTOS
+              # -------------------------------------------------
+
               - label: "Imagem de capa"
                 name: "imagemCapa"
                 widget: "image"
@@ -315,18 +330,165 @@ collections:
                 name: "galeria"
                 widget: "list"
                 required: false
-                summary: "{{fields.foto}}"
+                label_singular: "Foto"
 
-                fields:
+                field:
+                  label: "Foto"
+                  name: "foto"
+                  widget: "image"
 
-                  - label: "Foto"
-                    name: "foto"
-                    widget: "image"
 
-              - label: "Descrição"
+              # -------------------------------------------------
+              # DESCRIÇÕES
+              # -------------------------------------------------
+
+              - label: "Descrição curta"
                 name: "descricao"
                 widget: "text"
                 required: false
+                hint: "Resumo exibido nos cards e apresentações rápidas."
+
+              - label: "Descrição completa"
+                name: "descricaoLonga"
+                widget: "text"
+                required: false
+                hint: "Texto completo exibido na página individual da propriedade."
+
+
+              # -------------------------------------------------
+              # CARACTERÍSTICAS PRINCIPAIS
+              # -------------------------------------------------
+
+              - label: "Piscina"
+                name: "piscina"
+                widget: "boolean"
+                default: false
+                required: false
+
+              - label: "Mobiliado"
+                name: "mobiliado"
+                widget: "boolean"
+                default: false
+                required: false
+
+              - label: "Escritório"
+                name: "escritorio"
+                widget: "boolean"
+                default: false
+                required: false
+
+              - label: "Área gourmet"
+                name: "areaGourmet"
+                widget: "boolean"
+                default: false
+                required: false
+
+
+              # -------------------------------------------------
+              # ACABAMENTOS
+              # -------------------------------------------------
+
+              - label: "Acabamentos"
+                name: "acabamentos"
+                widget: "list"
+                required: false
+                label_singular: "Acabamento"
+                hint: "Ex.: Mármore, madeira natural, porcelanato, esquadrias especiais."
+
+                field:
+                  label: "Acabamento"
+                  name: "item"
+                  widget: "string"
+
+
+              # -------------------------------------------------
+              # AMBIENTES
+              # -------------------------------------------------
+
+              - label: "Ambientes & Interior"
+                name: "ambientesInterior"
+                widget: "list"
+                required: false
+                label_singular: "Ambiente / característica"
+                hint: "Ex.: Escritório, adega, lareira, home cinema, closet."
+
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+
+              # -------------------------------------------------
+              # LAZER
+              # -------------------------------------------------
+
+              - label: "Áreas Externas & Lazer"
+                name: "areasExternasLazer"
+                widget: "list"
+                required: false
+                label_singular: "Item de lazer"
+                hint: "Ex.: Piscina, sauna, spa, jardim, quadra, churrasqueira."
+
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+
+              # -------------------------------------------------
+              # TECNOLOGIA E CONFORTO
+              # -------------------------------------------------
+
+              - label: "Tecnologia, Segurança & Conforto"
+                name: "tecnologiaConforto"
+                widget: "list"
+                required: false
+                label_singular: "Item"
+                hint: "Ex.: Automação, energia solar, ar-condicionado, CFTV, gerador."
+
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+
+              # -------------------------------------------------
+              # MOBÍLIA
+              # -------------------------------------------------
+
+              - label: "Mobília & Eletros"
+                name: "mobiliaEletros"
+                widget: "list"
+                required: false
+                label_singular: "Item"
+                hint: "Ex.: Mobiliado, marcenaria planejada, eletrodomésticos inclusos."
+
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
+
+              # -------------------------------------------------
+              # DIFERENCIAIS
+              # -------------------------------------------------
+
+              - label: "Destaques Piemonte"
+                name: "diferenciais"
+                widget: "list"
+                required: false
+                label_singular: "Destaque"
+                hint: "Características especiais que merecem destaque nesta propriedade."
+
+                field:
+                  label: "Destaque"
+                  name: "item"
+                  widget: "string"
+
+
+              # -------------------------------------------------
+              # DESTAQUE NA HOME
+              # -------------------------------------------------
 
               - label: "Exibir na Seleção Piemonte"
                 name: "destaque"
