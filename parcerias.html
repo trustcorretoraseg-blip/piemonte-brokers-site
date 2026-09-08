@@ -1,60 +1,170 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Parcerias imobiliárias com a Piemonte Brokers.">
-  <title>Parcerias | Piemonte Brokers</title>
-  <link rel="stylesheet" href="/assets/style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Parcerias comerciais e imobiliárias com a Piemonte Brokers."
+  >
+
+  <title>
+    Parcerias | Piemonte Brokers
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="/assets/style.css"
+  >
 </head>
+
+
 <body>
+
+
 <header class="header">
+
   <div class="container nav">
-    <a href="/index.html" class="logo">
-      <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+
+    <a
+      href="/index.html"
+      class="logo"
+    >
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
     </a>
-    <button id="menuBtn" class="menu-btn" aria-label="Abrir menu">☰</button>
+
+
+    <button
+      id="menuBtn"
+      class="menu-btn"
+      aria-label="Abrir menu"
+    >
+      ☰
+    </button>
+
+
     <nav id="menu">
-      <a href="/imoveis.html">Imóveis</a>
-      <a href="/areas.html">Áreas</a>
-      <a href="/regioes.html">Regiões</a>
-      <a href="/sobre.html">Sobre Nós</a>
-      <a href="/anuncie.html">Anuncie conosco</a>
-      <a href="/parcerias.html">Parcerias</a>
-      <a href="/trabalhe-conosco.html">Trabalhe Conosco</a>
-      <a href="/contato.html">Contato</a>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
     </nav>
+
   </div>
+
 </header>
 
-<main>
+
+
+<main class="partnership-page">
+
+
   <section class="page-hero">
+
     <div class="container">
-      <span class="eyebrow">PARCERIAS</span>
-      <h1>Conexões que ampliam oportunidades.</h1>
+
+      <span class="eyebrow">
+        PIEMONTE BROKERS
+      </span>
+
+      <h1>
+        Apresente uma oportunidade.
+      </h1>
+
       <p>
-        Trabalhamos com corretores, imobiliárias, incorporadoras, investidores
-        e proprietários em relações pautadas por transparência e visão de longo prazo.
+        Se você possui um imóvel, área, cliente comprador
+        ou uma oportunidade de investimento,
+        envie as informações para nossa equipe.
       </p>
+
     </div>
+
   </section>
 
-  <section class="section partnership-page">
+
+
+  <section class="section">
+
     <div class="container partnership-layout">
+
+
+      <!-- COLUNA ESQUERDA -->
+
       <div class="partnership-copy">
-        <p class="eyebrow dark">PIEMONTE BROKERS</p>
-        <h2>Apresente uma oportunidade.</h2>
+
+        <span class="eyebrow dark">
+          PARCERIAS ESTRATÉGICAS
+        </span>
+
+        <h2>
+          Construímos negócios através de boas conexões.
+        </h2>
+
         <p>
-          Se você possui um imóvel, área, cliente comprador ou uma oportunidade
-          de investimento, envie as informações para nossa equipe.
+          Avaliamos cada parceria de forma individual,
+          preservando a origem da oportunidade,
+          o relacionamento entre as partes
+          e as condições comerciais.
         </p>
+
         <p>
-          Avaliamos cada parceria de forma individual, preservando a origem da
-          oportunidade, o relacionamento entre as partes e as condições comerciais.
+          Trabalhamos com corretores, proprietários,
+          incorporadores, investidores,
+          family offices e parceiros estratégicos.
         </p>
+
+        <p>
+          Se você possui uma oportunidade que faça sentido
+          para o perfil da Piemonte Brokers,
+          envie as informações ao lado.
+        </p>
+
       </div>
 
+
+
+      <!-- FORMULÁRIO -->
+
       <div class="partnership-form-card">
+
         <form
           name="parceria"
           method="POST"
@@ -62,99 +172,309 @@
           data-netlify="true"
           netlify-honeypot="bot-field"
         >
-          <input type="hidden" name="form-name" value="parceria">
+
+          <input
+            type="hidden"
+            name="form-name"
+            value="parceria"
+          >
+
 
           <p style="display:none;">
             <label>
-              Não preencha este campo:
+              Não preencha:
               <input name="bot-field">
             </label>
           </p>
 
+
+
           <div class="form-grid">
-            <div>
-              <label for="nome-parceria">Nome</label>
-              <input id="nome-parceria" type="text" name="nome" placeholder="Seu nome" required>
-            </div>
+
 
             <div>
-              <label for="telefone-parceria">Telefone / WhatsApp</label>
-              <input id="telefone-parceria" type="tel" name="telefone" placeholder="(11) 99999-9999" required>
+
+              <label for="nome">
+                Nome
+              </label>
+
+              <input
+                id="nome"
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                required
+              >
+
             </div>
 
-            <div>
-              <label for="email-parceria">E-mail</label>
-              <input id="email-parceria" type="email" name="email" placeholder="seuemail@exemplo.com" required>
-            </div>
+
 
             <div>
-              <label for="empresa-parceria">Empresa</label>
-              <input id="empresa-parceria" type="text" name="empresa" placeholder="Nome da empresa">
+
+              <label for="telefone">
+                Telefone / WhatsApp
+              </label>
+
+              <input
+                id="telefone"
+                type="tel"
+                name="telefone"
+                placeholder="(11) 99999-9999"
+                required
+              >
+
             </div>
+
+
+
+            <div>
+
+              <label for="email">
+                E-mail
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="seuemail@exemplo.com"
+                required
+              >
+
+            </div>
+
+
+
+            <div>
+
+              <label for="empresa">
+                Empresa
+              </label>
+
+              <input
+                id="empresa"
+                type="text"
+                name="empresa"
+                placeholder="Nome da empresa"
+              >
+
+            </div>
+
+
+
+            <div>
+
+              <label for="tipo">
+                Tipo de parceria
+              </label>
+
+              <select
+                id="tipo"
+                name="tipo"
+                required
+              >
+
+                <option value="">
+                  Selecione
+                </option>
+
+                <option value="Imóvel para venda">
+                  Imóvel para venda
+                </option>
+
+                <option value="Área">
+                  Área
+                </option>
+
+                <option value="Cliente comprador">
+                  Cliente comprador
+                </option>
+
+                <option value="Investidor">
+                  Investidor
+                </option>
+
+                <option value="Parceria entre corretores">
+                  Parceria entre corretores
+                </option>
+
+                <option value="Outra oportunidade">
+                  Outra oportunidade
+                </option>
+
+              </select>
+
+            </div>
+
+
           </div>
 
-          <div class="form-field">
-            <label for="tipo-parceria">Tipo de parceria</label>
-            <select id="tipo-parceria" name="tipo_parceria" required>
-              <option value="">Selecione</option>
-              <option value="Corretor parceiro">Corretor parceiro</option>
-              <option value="Imobiliária">Imobiliária</option>
-              <option value="Investidor">Investidor</option>
-              <option value="Incorporadora">Incorporadora</option>
-              <option value="Proprietário">Proprietário</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
+
 
           <div class="form-field">
-            <label for="mensagem-parceria">Conte-nos sobre a oportunidade ou proposta</label>
+
+            <label for="mensagem">
+              Conte-nos sobre a oportunidade ou proposta
+            </label>
+
             <textarea
-              id="mensagem-parceria"
+              id="mensagem"
               name="mensagem"
-              rows="6"
+              rows="7"
               placeholder="Descreva brevemente a oportunidade, imóvel, área, cliente ou proposta de parceria."
               required
             ></textarea>
+
           </div>
 
-          <button type="submit" class="btn gold partnership-submit">
+
+
+          <button
+            type="submit"
+            class="btn gold partnership-submit"
+          >
             Enviar proposta de parceria
           </button>
 
+
+
           <p class="form-privacy">
-            Ao enviar, você autoriza a Piemonte Brokers a entrar em contato
-            para avaliar a proposta e dar continuidade à conversa.
+            Ao enviar, você autoriza a Piemonte Brokers
+            a entrar em contato para avaliar a proposta
+            e dar continuidade à conversa.
           </p>
+
+
         </form>
+
       </div>
+
+
     </div>
+
   </section>
+
+
+
+  <section
+    class="section"
+    style="
+      background:#0c251c;
+      color:#fff;
+    "
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <span class="eyebrow">
+            PIEMONTE BROKERS
+          </span>
+
+          <h2>
+            Uma rede construída com confiança.
+          </h2>
+
+        </div>
+
+        <p
+          style="
+            color:rgba(255,255,255,.72);
+          "
+        >
+          Valorizamos relações de longo prazo,
+          transparência entre as partes
+          e oportunidades imobiliárias
+          com potencial real de negócio.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
 </main>
 
+
+
 <footer>
+
   <div class="container footer">
+
+
     <div>
-      <img src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
+
     </div>
+
+
     <div>
-      <a href="/imoveis.html">Imóveis</a>
-      <a href="/areas.html">Áreas</a>
-      <a href="/regioes.html">Regiões</a>
-      <a href="/sobre.html">Sobre Nós</a>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
     </div>
+
+
     <div>
-      <a href="/anuncie.html">Anuncie conosco</a>
-      <a href="/parcerias.html">Parcerias</a>
-      <a href="/trabalhe-conosco.html">Trabalhe Conosco</a>
-      <a href="/contato.html">Contato</a>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
       <div id="footerContato"></div>
+
     </div>
+
+
   </div>
+
+
   <div class="container copyright">
     © 2026 Piemonte Brokers. Todos os direitos reservados.
   </div>
+
 </footer>
 
+
+
 <script src="/assets/script.js"></script>
+
+
 </body>
 </html>
