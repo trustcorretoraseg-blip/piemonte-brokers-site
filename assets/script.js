@@ -903,13 +903,16 @@ function prepararFiltros() {
       );
 
 
-  locais.forEach(
+   locais.forEach(
     valor =>
       adicionarOpcao(
         cidade,
         valor
       )
   );
+
+  }
+
 }
 
 
@@ -947,39 +950,53 @@ function aplicarFiltroDaURL() {
   }
 
 
-  if (opcao) {
-
-  campo.value =
-    opcao.value;
-
-} else {
-
-  /*
-    Se a região recebida pela URL ainda não estiver
-    no select, adicionamos essa região automaticamente.
-  */
-
-  adicionarOpcao(
-    campo,
-    cidade
-  );
-
-  campo.value =
-    cidade;
-
-}
-
-
-filtrar();
-
-    return;
-
-  }
-
-
   if (
     campo.tagName === "SELECT"
   ) {
+
+    const cidadeNormalizada =
+      normalizarTexto(cidade);
+
+
+    const opcao =
+      [...campo.options]
+        .find(
+          item =>
+            normalizarTexto(
+              item.value
+            ) ===
+            cidadeNormalizada
+        );
+
+
+    if (opcao) {
+
+      campo.value =
+        opcao.value;
+
+    } else {
+
+      adicionarOpcao(
+        campo,
+        cidade
+      );
+
+
+      campo.value =
+        cidade;
+
+    }
+
+
+    filtrar();
+
+  }
+
+}
+  if (
+    campo.tagName === "SELECT"
+  ) {
+
 
     const cidadeNormalizada =
       normalizarTexto(cidade);
