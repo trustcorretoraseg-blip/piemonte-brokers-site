@@ -2250,3 +2250,113 @@ body .section-head p{
   }
 
 }
+/* =====================================================
+   REGIÕES — CABEÇALHO "ONDE ATUAMOS"
+   CORREÇÃO ISOLADA
+===================================================== */
+
+.regioes-titulo-area{
+  width:100% !important;
+
+  display:flex !important;
+  flex-direction:row !important;
+
+  align-items:flex-end !important;
+  justify-content:space-between !important;
+
+  gap:80px !important;
+
+  margin:0 0 38px !important;
+}
+
+.regioes-titulo-esquerda{
+  display:block !important;
+
+  flex:0 0 auto !important;
+
+  width:auto !important;
+  min-width:max-content !important;
+  max-width:none !important;
+}
+
+.regioes-titulo-esquerda .eyebrow{
+  display:block !important;
+
+  margin:0 0 10px !important;
+}
+
+.regioes-titulo-esquerda h2{
+  display:block !important;
+
+  width:auto !important;
+  min-width:max-content !important;
+  max-width:none !important;
+
+  margin:0 !important;
+
+  font-size:clamp(44px,4.3vw,64px) !important;
+  line-height:1 !important;
+
+  white-space:nowrap !important;
+
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+}
+
+.regioes-titulo-texto{
+  flex:1 1 auto !important;
+
+  width:auto !important;
+  max-width:620px !important;
+
+  margin-left:auto !important;
+}
+
+.regioes-titulo-texto p{
+  width:100% !important;
+
+  margin:0 !important;
+
+  font-size:15px !important;
+  line-height:1.6 !important;
+
+  white-space:normal !important;
+
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+
+
+/* TABLET / CELULAR */
+
+@media(max-width:800px){
+
+  .regioes-titulo-area{
+    display:block !important;
+
+    margin-bottom:30px !important;
+  }
+
+  .regioes-titulo-esquerda{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .regioes-titulo-esquerda h2{
+    width:100% !important;
+    min-width:0 !important;
+
+    white-space:normal !important;
+
+    font-size:42px !important;
+  }
+
+  .regioes-titulo-texto{
+    width:100% !important;
+    max-width:600px !important;
+
+    margin:20px 0 0 !important;
+  }
+
+}
