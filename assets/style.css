@@ -2174,3 +2174,79 @@ footer{
     white-space:nowrap;
   }
 }
+/* =====================================================
+   CORREÇÃO DEFINITIVA — PÁGINA REGIÕES
+===================================================== */
+
+.regioes-page .section-head,
+body .section-head{
+  display:grid;
+  grid-template-columns:minmax(320px, 420px) minmax(0, 1fr);
+  gap:70px;
+  align-items:end;
+}
+
+.regioes-page .section-head > div,
+body .section-head > div{
+  min-width:0;
+}
+
+.regioes-page .section-head h2,
+body .section-head h2{
+  margin:0;
+  font-size:clamp(42px,4.2vw,64px);
+  line-height:1;
+  white-space:nowrap;
+  word-break:normal;
+  overflow-wrap:normal;
+}
+
+.regioes-page .section-head p,
+body .section-head p{
+  margin:0;
+  max-width:620px;
+  font-size:15px;
+  line-height:1.6;
+  color:var(--muted);
+}
+
+/* cards */
+.regioes-home-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  width:100%;
+}
+
+.regiao-home-card{
+  min-width:0;
+}
+
+/* tablet */
+@media(max-width:900px){
+
+  .regioes-page .section-head,
+  body .section-head{
+    grid-template-columns:1fr;
+    gap:18px;
+    align-items:start;
+  }
+
+  .regioes-page .section-head h2,
+  body .section-head h2{
+    white-space:normal;
+  }
+
+  .regioes-home-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* celular */
+@media(max-width:620px){
+
+  .regioes-home-grid{
+    grid-template-columns:1fr;
+  }
+
+}
