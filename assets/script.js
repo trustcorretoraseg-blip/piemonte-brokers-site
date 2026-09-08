@@ -54,9 +54,7 @@ function paginaAtual() {
     caminho.endsWith("/imoveis") ||
     caminho.endsWith("/imoveis.html")
   ) {
-
     return "imoveis";
-
   }
 
 
@@ -64,9 +62,7 @@ function paginaAtual() {
     caminho.endsWith("/areas") ||
     caminho.endsWith("/areas.html")
   ) {
-
     return "areas";
-
   }
 
 
@@ -76,9 +72,7 @@ function paginaAtual() {
     caminho.endsWith("/index") ||
     caminho.endsWith("/index.html")
   ) {
-
     return "home";
-
   }
 
 
@@ -126,10 +120,7 @@ async function carregar() {
 
 
     if (siteResp.ok) {
-
-      SITE =
-        await siteResp.json();
-
+      SITE = await siteResp.json();
     }
 
 
@@ -138,11 +129,17 @@ async function carregar() {
       const dados =
         await portfolioResp.json();
 
-
       PORTFOLIO =
         Array.isArray(dados.itens)
           ? dados.itens
           : [];
+
+    } else {
+
+      console.error(
+        "Erro ao carregar portfolio.json:",
+        portfolioResp.status
+      );
 
     }
 
@@ -151,7 +148,6 @@ async function carregar() {
 
       const dadosRegioes =
         await regioesResp.json();
-
 
       REGIOES =
         Array.isArray(dadosRegioes.itens)
@@ -391,9 +387,7 @@ function criarWhatsAppFlutuante() {
       ".whatsapp-float"
     )
   ) {
-
     return;
-
   }
 
 
@@ -521,9 +515,7 @@ function renderRegioes() {
 
 
   if (!box) {
-
     return;
-
   }
 
 
@@ -614,9 +606,7 @@ function formatarNumero(valor) {
   if (
     Number.isNaN(numero)
   ) {
-
     return valor;
-
   }
 
 
@@ -642,25 +632,21 @@ function specs(item) {
   if (item.suites) {
 
     dados.push(
-
       `${item.suites} ${
         Number(item.suites) === 1
           ? "suíte"
           : "suítes"
       }`
-
     );
 
   } else if (item.quartos) {
 
     dados.push(
-
       `${item.quartos} ${
         Number(item.quartos) === 1
           ? "dormitório"
           : "dormitórios"
       }`
-
     );
 
   }
@@ -669,11 +655,9 @@ function specs(item) {
   if (item.areaConstruida) {
 
     dados.push(
-
       `${formatarNumero(
         item.areaConstruida
       )} m² construídos`
-
     );
 
   }
@@ -682,40 +666,15 @@ function specs(item) {
   if (item.areaTerreno) {
 
     dados.push(
-
       `${formatarNumero(
         item.areaTerreno
       )} m² de terreno`
-
     );
 
   }
 
 
   return dados.join(" • ");
-
-}
-
-
-/* =========================================================
-   LOCALIZAÇÃO
-========================================================= */
-
-function textoLocalItem(item) {
-
-  return [
-
-    item.regiaoPrincipal,
-    item.cidade,
-    item.regiao
-
-  ]
-    .filter(Boolean)
-    .filter(
-      (valor, indice, lista) =>
-        lista.indexOf(valor) === indice
-    )
-    .join(" • ");
 
 }
 
@@ -734,9 +693,7 @@ function adicionarOpcao(
     campo.tagName !== "SELECT" ||
     !valor
   ) {
-
     return;
-
   }
 
 
@@ -749,9 +706,7 @@ function adicionarOpcao(
 
 
   if (existe) {
-
     return;
-
   }
 
 
@@ -763,7 +718,6 @@ function adicionarOpcao(
 
   option.value =
     valor;
-
 
   option.textContent =
     valor;
@@ -819,10 +773,8 @@ function prepararFiltros() {
   const categoria =
     $("#fCategoria");
 
-
   const tipo =
     $("#fTipo");
-
 
   const cidade =
     $("#fCidade");
@@ -868,48 +820,41 @@ function prepararFiltros() {
     );
 
 
- if (
-  cidade &&
-  cidade.tagName === "SELECT"
-) {
+  if (
+    cidade &&
+    cidade.tagName === "SELECT"
+  ) {
 
-  /*
-    Um imóvel pode ter localização cadastrada em:
-    regiaoPrincipal, cidade e/ou regiao.
-
-    O filtro precisa considerar os três campos.
-  */
-
-  const locais =
-    [
-      ...new Set(
-        lista
-          .flatMap(
-            item => [
-              item.regiaoPrincipal,
-              item.cidade,
-              item.regiao
-            ]
-          )
-          .filter(Boolean)
-      )
-    ]
-      .sort(
-        (a, b) =>
-          String(a).localeCompare(
-            String(b),
-            "pt-BR"
-          )
-      );
+    const locais =
+      [
+        ...new Set(
+          lista
+            .flatMap(
+              item => [
+                item.regiaoPrincipal,
+                item.cidade,
+                item.regiao
+              ]
+            )
+            .filter(Boolean)
+        )
+      ]
+        .sort(
+          (a, b) =>
+            String(a).localeCompare(
+              String(b),
+              "pt-BR"
+            )
+        );
 
 
-   locais.forEach(
-    valor =>
-      adicionarOpcao(
-        cidade,
-        valor
-      )
-  );
+    locais.forEach(
+      valor =>
+        adicionarOpcao(
+          cidade,
+          valor
+        )
+    );
 
   }
 
@@ -933,9 +878,7 @@ function aplicarFiltroDaURL() {
 
 
   if (!cidade) {
-
     return;
-
   }
 
 
@@ -944,9 +887,7 @@ function aplicarFiltroDaURL() {
 
 
   if (!campo) {
-
     return;
-
   }
 
 
@@ -981,42 +922,8 @@ function aplicarFiltroDaURL() {
         cidade
       );
 
-
       campo.value =
         cidade;
-
-    }
-
-
-    filtrar();
-
-  }
-
-}
-  if (
-    campo.tagName === "SELECT"
-  ) {
-
-
-    const cidadeNormalizada =
-      normalizarTexto(cidade);
-
-
-    const opcao =
-      [...campo.options]
-        .find(
-          item =>
-            normalizarTexto(
-              item.value
-            ) ===
-            cidadeNormalizada
-        );
-
-
-    if (opcao) {
-
-      campo.value =
-        opcao.value;
 
     }
 
@@ -1037,20 +944,13 @@ function renderInicial() {
   if (
     !$("#cards")
   ) {
-
     return;
-
   }
 
 
   let lista =
     [...PORTFOLIO];
 
-
-  /*
-    Não mostramos itens vendidos ou indisponíveis
-    nas listagens públicas.
-  */
 
   lista =
     lista.filter(
@@ -1102,13 +1002,10 @@ function renderInicial() {
         )
         .sort(
           (a, b) =>
-
             Number(
               a.ordemDestaque ?? 99
             )
-
             -
-
             Number(
               b.ordemDestaque ?? 99
             )
@@ -1145,9 +1042,7 @@ function render(lista) {
 
 
   if (!box) {
-
     return;
-
   }
 
 
@@ -1165,7 +1060,6 @@ function render(lista) {
 
       card.className =
         "card";
-
 
       card.tabIndex =
         0;
@@ -1226,57 +1120,40 @@ function render(lista) {
         <div class="card-body">
 
           <div class="meta">
-
             ${esc(
               localUnico.join(" • ")
             )}
-
           </div>
 
 
           <h3>
-
             ${esc(
               item.titulo ||
               "Oportunidade Piemonte"
             )}
-
           </h3>
 
 
           <p>
-
             ${esc(
               specs(item) ||
               item.descricao ||
               ""
             )}
-
           </p>
 
 
           <strong class="price">
-
             ${esc(
               item.precoTexto ||
               "Consulte"
             )}
-
           </strong>
 
         </div>
 
       `;
 
-
-      /*
-        IMPORTANTE:
-
-        Antes os cards abriam um modal.
-
-        Agora todos os imóveis e áreas abrem
-        a página individual propriedade.html.
-      */
 
       card.addEventListener(
         "click",
@@ -1297,7 +1174,6 @@ function render(lista) {
           ) {
 
             evento.preventDefault();
-
 
             abrirPropriedade(
               item
@@ -1375,7 +1251,6 @@ function abrirPropriedade(
       item
     );
 
-
     return;
 
   }
@@ -1396,14 +1271,6 @@ function abrirPropriedade(
 /* =========================================================
    COMPATIBILIDADE COM CÓDIGO ANTIGO
 ========================================================= */
-
-/*
-  Algumas partes antigas do site podem ainda
-  chamar a função abrir().
-
-  Mantemos esta função para evitar erro,
-  mas agora ela leva para propriedade.html.
-*/
 
 function abrir(
   item
@@ -1426,9 +1293,7 @@ function atendeFaixaPreco(
 ) {
 
   if (!faixa) {
-
     return true;
-
   }
 
 
@@ -1439,23 +1304,7 @@ function atendeFaixaPreco(
 
 
   if (!valor) {
-
     return false;
-
-  }
-
-
-  const limite =
-    Number(faixa);
-
-
-  if (
-    !Number.isNaN(limite) &&
-    limite > 0
-  ) {
-
-    return valor <= limite;
-
   }
 
 
@@ -1536,11 +1385,6 @@ function filtrar() {
     [...PORTFOLIO];
 
 
-  /*
-    Remove vendidos e indisponíveis
-    das listagens públicas.
-  */
-
   lista =
     lista.filter(
       item =>
@@ -1613,13 +1457,6 @@ function filtrar() {
   lista =
     lista.filter(
       item => {
-
-        /*
-          Para localização utilizamos os campos estruturados.
-
-          Isso evita depender apenas da descrição
-          e reduz resultados incorretos.
-        */
 
         const regiaoPrincipal =
           normalizarTexto(
@@ -1709,9 +1546,7 @@ function ativarFiltros() {
 
 
   if (!filtros) {
-
     return;
-
   }
 
 
@@ -1724,7 +1559,6 @@ function ativarFiltros() {
       evento => {
 
         evento.preventDefault();
-
 
         filtrar();
 
@@ -1766,28 +1600,10 @@ function ativarFiltros() {
 
   if (cidade) {
 
-    if (
-      cidade.tagName === "SELECT"
-    ) {
-
-      cidade.addEventListener(
-        "change",
-        filtrar
-      );
-
-    }
-
-
-    if (
-      cidade.tagName === "INPUT"
-    ) {
-
-      cidade.addEventListener(
-        "input",
-        filtrar
-      );
-
-    }
+    cidade.addEventListener(
+      "change",
+      filtrar
+    );
 
   }
 
@@ -1798,13 +1614,6 @@ function ativarFiltros() {
    MODAL ANTIGO
 ========================================================= */
 
-/*
-  O site agora utiliza propriedade.html.
-
-  Mantemos somente o fechamento do modal antigo
-  caso alguma página ainda possua o HTML legado.
-*/
-
 function fechar() {
 
   const modal =
@@ -1812,9 +1621,7 @@ function fechar() {
 
 
   if (!modal) {
-
     return;
-
   }
 
 
@@ -1839,7 +1646,7 @@ function fechar() {
 
 
 /* =========================================================
-   EVENTOS DO MODAL ANTIGO
+   EVENTOS DO MODAL
 ========================================================= */
 
 function ativarModal() {
@@ -1923,9 +1730,7 @@ function ativarMenu() {
     !menuBtn ||
     !menu
   ) {
-
     return;
-
   }
 
 
@@ -1979,11 +1784,6 @@ document.addEventListener(
 
     carregar();
 
-    /*
-      O WhatsApp é criado depois que SITE
-      for carregado. Como carregar é assíncrono,
-      aguardamos rapidamente.
-    */
 
     setTimeout(
       criarWhatsAppFlutuante,
