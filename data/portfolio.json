@@ -237,8 +237,8 @@
         "academia",
         "salao d efestas"
       ],
-      "destaque": false,
-      "ordemDestaque": 99
+      "destaque": true,
+      "ordemDestaque": 1
     }
   ]
 }
