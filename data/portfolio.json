@@ -2,6 +2,7 @@
   "itens": [
     {
       "id": "residencia-contemporanea-itu",
+      "codigo": "PB 0001",
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",
@@ -41,6 +42,7 @@
     },
     {
       "id": "casa-granja-viana",
+      "codigo": "PB 0002",
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",
@@ -80,11 +82,12 @@
     },
     {
       "id": "area-sorocaba",
+      "codigo": "PB 0003",
       "categoria": "Área",
       "status": "Disponível",
       "negocio": "Venda",
       "titulo": "Área para desenvolvimento imobiliário",
-      "regiaoPrincipal": "Itu & Região",
+      "regiaoPrincipal": "Áreas & Oportunidades",
       "cidade": "Sorocaba",
       "regiao": "Sorocaba/SP",
       "condominio": "",
@@ -119,6 +122,7 @@
     },
     {
       "id": "Casa Pallos verdes",
+      "codigo": "PB 0004",
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",
@@ -194,6 +198,7 @@
     },
     {
       "id": "Casa teste",
+      "codigo": "PB 0005",
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",

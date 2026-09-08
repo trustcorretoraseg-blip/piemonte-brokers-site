@@ -153,7 +153,7 @@ collections:
           - label: "Itens"
             name: "itens"
             widget: "list"
-            summary: "{{fields.titulo}}"
+            summary: "{{fields.codigo}} | {{fields.titulo}}"
 
             fields:
 
@@ -165,6 +165,12 @@ collections:
                 name: "id"
                 widget: "string"
                 hint: "Use um identificador único. Ex.: casa-palos-verdes"
+
+              - label: "Código Piemonte"
+                name: "codigo"
+                widget: "string"
+                required: false
+                hint: "Código interno e externo do imóvel. Use sempre o padrão PB 0001, PB 0002, PB 0003..."
 
               - label: "Categoria"
                 name: "categoria"

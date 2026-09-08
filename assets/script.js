@@ -7,7 +7,7 @@ const $$ = seletor => document.querySelectorAll(seletor);
 
 
 /* =========================================================
-   SEGURANÇA DE TEXTO
+   SEGURANÇA / TEXTO
 ========================================================= */
 
 const esc = valor =>
@@ -24,23 +24,17 @@ const esc = valor =>
   );
 
 
-/* =========================================================
-   NORMALIZAÇÃO DE TEXTO
-========================================================= */
-
 function normalizarTexto(valor) {
-
   return String(valor || "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
-
 }
 
 
 /* =========================================================
-   PÁGINA ATUAL
+   IDENTIFICAR PÁGINA
 ========================================================= */
 
 function paginaAtual() {
@@ -67,6 +61,14 @@ function paginaAtual() {
 
 
   if (
+    caminho.endsWith("/regioes") ||
+    caminho.endsWith("/regioes.html")
+  ) {
+    return "regioes";
+  }
+
+
+  if (
     caminho === "" ||
     caminho === "/" ||
     caminho.endsWith("/index") ||
@@ -77,12 +79,11 @@ function paginaAtual() {
 
 
   return "outra";
-
 }
 
 
 /* =========================================================
-   CARREGAMENTO DOS DADOS
+   CARREGAMENTO DOS ARQUIVOS JSON
 ========================================================= */
 
 async function carregar() {
@@ -97,23 +98,17 @@ async function carregar() {
 
       fetch(
         "/data/site.json",
-        {
-          cache: "no-store"
-        }
+        { cache: "no-store" }
       ),
 
       fetch(
         "/data/portfolio.json",
-        {
-          cache: "no-store"
-        }
+        { cache: "no-store" }
       ),
 
       fetch(
         "/data/regioes.json",
-        {
-          cache: "no-store"
-        }
+        { cache: "no-store" }
       )
 
     ]);
@@ -146,13 +141,20 @@ async function carregar() {
 
     if (regioesResp.ok) {
 
-      const dadosRegioes =
+      const dados =
         await regioesResp.json();
 
       REGIOES =
-        Array.isArray(dadosRegioes.itens)
-          ? dadosRegioes.itens
+        Array.isArray(dados.itens)
+          ? dados.itens
           : [];
+
+    } else {
+
+      console.error(
+        "Erro ao carregar regioes.json:",
+        regioesResp.status
+      );
 
     }
 
@@ -161,17 +163,19 @@ async function carregar() {
 
     prepararFiltros();
 
-    aplicarFiltroDaURL();
-
     renderInicial();
 
+    aplicarFiltroDaURL();
+
     renderRegioes();
+
+    criarWhatsAppFlutuante();
 
 
   } catch (erro) {
 
     console.error(
-      "Erro ao carregar o site:",
+      "Erro geral ao carregar site:",
       erro
     );
 
@@ -181,10 +185,8 @@ async function carregar() {
 
 
     if (contador) {
-
       contador.textContent =
         "Não foi possível carregar o portfólio.";
-
     }
 
   }
@@ -193,7 +195,7 @@ async function carregar() {
 
 
 /* =========================================================
-   DADOS GERAIS DO SITE
+   CONFIGURAÇÕES GERAIS
 ========================================================= */
 
 function aplicarSite() {
@@ -266,104 +268,98 @@ function montarContato() {
     $("#contatoLinks");
 
 
-  if (contatoLinks) {
+  if (
+    contatoLinks &&
+    SITE.whatsapp
+  ) {
 
-    const links = [];
-
-
-    if (SITE.whatsapp) {
-
-      const numero =
-        String(SITE.whatsapp)
-          .replace(/\D/g, "");
+    const numero =
+      String(SITE.whatsapp)
+        .replace(/\D/g, "");
 
 
-      links.push(`
-
-        <a
-          class="btn gold"
-          href="https://wa.me/${esc(numero)}"
-          target="_blank"
-          rel="noopener"
-        >
-          WhatsApp
-        </a>
-
-      `);
-
-    }
-
-
-    contatoLinks.innerHTML =
-      links.join(" ");
+    contatoLinks.innerHTML = `
+      <a
+        class="btn gold"
+        href="https://wa.me/${esc(numero)}"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+    `;
 
   }
 
 
-  $$("#footerContato")
-    .forEach(
-      footer => {
+  $$("#footerContato").forEach(
+    footer => {
 
-        const itens = [];
-
-
-        if (SITE.whatsapp) {
-
-          const numero =
-            String(SITE.whatsapp)
-              .replace(/\D/g, "");
+      const itens = [];
 
 
-          itens.push(`
+      if (SITE.whatsapp) {
 
-            <a
-              href="https://wa.me/${esc(numero)}"
-              target="_blank"
-              rel="noopener"
-            >
-              WhatsApp
-            </a>
-
-          `);
-
-        }
+        const numero =
+          String(SITE.whatsapp)
+            .replace(/\D/g, "");
 
 
-        if (SITE.instagram) {
-
-          itens.push(`
-
-            <a
-              href="${esc(SITE.instagram)}"
-              target="_blank"
-              rel="noopener"
-            >
-              Instagram
-            </a>
-
-          `);
-
-        }
-
-
-        if (SITE.cidadeBase) {
-
-          itens.push(`
-
-            <span>
-              ${esc(SITE.cidadeBase)}
-            </span>
-
-          `);
-
-        }
-
-
-        footer.innerHTML =
-          itens.join("");
+        itens.push(`
+          <a
+            href="https://wa.me/${esc(numero)}"
+            target="_blank"
+            rel="noopener"
+          >
+            WhatsApp
+          </a>
+        `);
 
       }
-    );
+
+
+      if (SITE.email) {
+
+        itens.push(`
+          <a href="mailto:${esc(SITE.email)}">
+            ${esc(SITE.email)}
+          </a>
+        `);
+
+      }
+
+
+      if (SITE.instagram) {
+
+        itens.push(`
+          <a
+            href="${esc(SITE.instagram)}"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+        `);
+
+      }
+
+
+      if (SITE.cidadeBase) {
+
+        itens.push(`
+          <span>
+            ${esc(SITE.cidadeBase)}
+          </span>
+        `);
+
+      }
+
+
+      footer.innerHTML =
+        itens.join("");
+
+    }
+  );
 
 }
 
@@ -374,14 +370,6 @@ function montarContato() {
 
 function criarWhatsAppFlutuante() {
 
-  const numeroWhatsApp =
-    String(
-      SITE.whatsapp ||
-      "5511933602204"
-    )
-      .replace(/\D/g, "");
-
-
   if (
     document.querySelector(
       ".whatsapp-float"
@@ -389,6 +377,18 @@ function criarWhatsAppFlutuante() {
   ) {
     return;
   }
+
+
+  const numero =
+    String(
+      SITE.whatsapp ||
+      "5511933602204"
+    )
+      .replace(/\D/g, "");
+
+
+  const mensagem =
+    "Olá! Vim pelo site da Piemonte Brokers e gostaria de mais informações.";
 
 
   const link =
@@ -399,12 +399,8 @@ function criarWhatsAppFlutuante() {
     "whatsapp-float";
 
 
-  const mensagem =
-    "Olá! Vim pelo site da Piemonte Brokers e gostaria de mais informações.";
-
-
   link.href =
-    `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
 
   link.target =
@@ -422,78 +418,13 @@ function criarWhatsAppFlutuante() {
 
 
   link.innerHTML = `
-
     <span class="whatsapp-float-icon">
-
-      <svg
-        viewBox="0 0 32 32"
-        aria-hidden="true"
-      >
-
-        <path
-          fill="currentColor"
-          d="
-            M19.11 17.21
-            c-.27-.14-1.61-.79-1.86-.88
-            -.25-.09-.43-.14-.61.14
-            -.18.27-.7.88-.86 1.06
-            -.16.18-.32.2-.59.07
-            -.27-.14-1.15-.42-2.19-1.34
-            -.81-.72-1.36-1.61-1.52-1.88
-            -.16-.27-.02-.42.12-.55
-            .12-.12.27-.32.41-.48
-            .14-.16.18-.27.27-.45
-            .09-.18.05-.34-.02-.48
-            -.07-.14-.61-1.47-.84-2.01
-            -.22-.53-.45-.46-.61-.47
-            -.16-.01-.34-.01-.52-.01
-            -.18 0-.48.07-.73.34
-            -.25.27-.95.93-.95 2.26
-            0 1.33.97 2.62 1.1 2.8
-            .14.18 1.91 2.92 4.63 4.09
-            .65.28 1.15.45 1.55.58
-            .65.21 1.24.18 1.71.11
-            .52-.08 1.61-.66 1.84-1.3
-            .23-.64.23-1.19.16-1.3
-            -.07-.11-.25-.18-.52-.32
-            z
-          "
-        />
-
-        <path
-          fill="currentColor"
-          d="
-            M16.02 3
-            C8.85 3 3 8.84 3 16
-            c0 2.53.74 4.99 2.14 7.1
-            L3 29
-            l6.08-2.01
-            A12.94 12.94 0 0 0 16.02 29
-            C23.18 29 29 23.16 29 16
-            S23.18 3 16.02 3
-            z
-
-            M16.02 26.64
-            c-2.03 0-4.01-.55-5.73-1.59
-            l-.41-.25-3.61 1.2
-            1.19-3.52-.27-.43
-            A10.56 10.56 0 0 1 5.37 16
-            c0-5.87 4.78-10.64 10.65-10.64
-            S26.65 10.13 26.65 16
-            21.88 26.64 16.02 26.64
-            z
-          "
-        />
-
-      </svg>
-
+      ☎
     </span>
-
 
     <span class="whatsapp-float-text">
       Fale com a Piemonte
     </span>
-
   `;
 
 
@@ -505,91 +436,50 @@ function criarWhatsAppFlutuante() {
 
 
 /* =========================================================
-   REGIÕES DA HOME
+   CÓDIGO PB
 ========================================================= */
 
-function renderRegioes() {
+function codigoPiemonte(item) {
 
-  const box =
-    $("#regioesCards");
+  if (
+    item &&
+    typeof item.codigo === "string" &&
+    item.codigo.trim()
+  ) {
+
+    let codigo =
+      item.codigo
+        .trim()
+        .toUpperCase();
 
 
-  if (!box) {
-    return;
+    if (
+      codigo.startsWith("PB")
+    ) {
+      return codigo;
+    }
+
+
+    return `PB ${codigo}`;
+
   }
 
 
-  const lista =
-    REGIOES.filter(
-      item =>
-        item.destaque !== false
+  const indice =
+    PORTFOLIO.findIndex(
+      registro =>
+        String(registro.id) ===
+        String(item?.id)
     );
 
 
-  box.innerHTML = "";
+  const numero =
+    indice >= 0
+      ? indice + 1
+      : 0;
 
 
-  lista.forEach(
-    item => {
-
-      const link =
-        document.createElement("a");
-
-
-      const cidadeFiltro =
-        item.cidadeFiltro || "";
-
-
-      link.href =
-        cidadeFiltro
-          ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
-          : "/regioes.html";
-
-
-      link.className =
-        "regiao-home-card";
-
-
-      const imagem =
-        item.imagem ||
-        "/assets/home-principal.jpeg";
-
-
-      link.innerHTML = `
-
-        <div class="regiao-home-img">
-
-          <img
-            src="${esc(imagem)}"
-            alt="${esc(item.nome || "Piemonte Brokers")}"
-            loading="lazy"
-          >
-
-        </div>
-
-
-        <div class="regiao-home-body">
-
-          <h3>
-            ${esc(item.nome || "")}
-          </h3>
-
-          <p>
-            ${esc(item.descricao || "")}
-          </p>
-
-        </div>
-
-      `;
-
-
-      box.appendChild(
-        link
-      );
-
-    }
-  );
-
+  return `PB ${String(numero).padStart(4, "0")}`;
 }
 
 
@@ -629,7 +519,9 @@ function specs(item) {
   const dados = [];
 
 
-  if (item.suites) {
+  if (
+    Number(item.suites) > 0
+  ) {
 
     dados.push(
       `${item.suites} ${
@@ -639,7 +531,11 @@ function specs(item) {
       }`
     );
 
-  } else if (item.quartos) {
+  }
+
+  else if (
+    Number(item.quartos) > 0
+  ) {
 
     dados.push(
       `${item.quartos} ${
@@ -652,7 +548,9 @@ function specs(item) {
   }
 
 
-  if (item.areaConstruida) {
+  if (
+    Number(item.areaConstruida) > 0
+  ) {
 
     dados.push(
       `${formatarNumero(
@@ -663,7 +561,9 @@ function specs(item) {
   }
 
 
-  if (item.areaTerreno) {
+  if (
+    Number(item.areaTerreno) > 0
+  ) {
 
     dados.push(
       `${formatarNumero(
@@ -680,7 +580,7 @@ function specs(item) {
 
 
 /* =========================================================
-   OPÇÕES DOS FILTROS
+   OPÇÃO DE SELECT
 ========================================================= */
 
 function adicionarOpcao(
@@ -701,7 +601,10 @@ function adicionarOpcao(
     [...campo.options]
       .some(
         opcao =>
-          opcao.value === valor
+          normalizarTexto(
+            opcao.value
+          ) ===
+          normalizarTexto(valor)
       );
 
 
@@ -718,6 +621,7 @@ function adicionarOpcao(
 
   option.value =
     valor;
+
 
   option.textContent =
     valor;
@@ -773,51 +677,61 @@ function prepararFiltros() {
   const categoria =
     $("#fCategoria");
 
+
   const tipo =
     $("#fTipo");
+
 
   const cidade =
     $("#fCidade");
 
 
-  [
-    ...new Set(
-      lista
-        .map(
-          item =>
-            item.categoria
-        )
-        .filter(Boolean)
-    )
-  ]
-    .sort()
-    .forEach(
-      valor =>
-        adicionarOpcao(
-          categoria,
-          valor
-        )
-    );
+  if (categoria) {
+
+    [
+      ...new Set(
+        lista
+          .map(
+            item =>
+              item.categoria
+          )
+          .filter(Boolean)
+      )
+    ]
+      .sort()
+      .forEach(
+        valor =>
+          adicionarOpcao(
+            categoria,
+            valor
+          )
+      );
+
+  }
 
 
-  [
-    ...new Set(
-      lista
-        .map(
-          item =>
-            item.tipo
-        )
-        .filter(Boolean)
-    )
-  ]
-    .sort()
-    .forEach(
-      valor =>
-        adicionarOpcao(
-          tipo,
-          valor
-        )
-    );
+  if (tipo) {
+
+    [
+      ...new Set(
+        lista
+          .map(
+            item =>
+              item.tipo
+          )
+          .filter(Boolean)
+      )
+    ]
+      .sort()
+      .forEach(
+        valor =>
+          adicionarOpcao(
+            tipo,
+            valor
+          )
+      );
+
+  }
 
 
   if (
@@ -833,7 +747,8 @@ function prepararFiltros() {
               item => [
                 item.regiaoPrincipal,
                 item.cidade,
-                item.regiao
+                item.regiao,
+                item.condominio
               ]
             )
             .filter(Boolean)
@@ -841,10 +756,11 @@ function prepararFiltros() {
       ]
         .sort(
           (a, b) =>
-            String(a).localeCompare(
-              String(b),
-              "pt-BR"
-            )
+            String(a)
+              .localeCompare(
+                String(b),
+                "pt-BR"
+              )
         );
 
 
@@ -862,7 +778,137 @@ function prepararFiltros() {
 
 
 /* =========================================================
-   FILTRO RECEBIDO PELA URL
+   REGIÕES
+========================================================= */
+
+function renderRegioes() {
+
+  const box =
+    $("#regioesCards");
+
+
+  if (!box) {
+    return;
+  }
+
+
+  const lista =
+    REGIOES.filter(
+      item =>
+        item.destaque !== false
+    );
+
+
+  box.innerHTML = "";
+
+
+  lista.forEach(
+    item => {
+
+      const link =
+        document.createElement("a");
+
+
+      link.className =
+        "regiao-home-card";
+
+
+      /*
+        IMPORTANTE:
+
+        O filtro de região usa exatamente o nome
+        que também deve existir em "regiaoPrincipal"
+        no cadastro do imóvel.
+      */
+
+      const regiaoFiltro =
+        item.nome ||
+        item.cidadeFiltro ||
+        "";
+
+
+      const idNormalizado =
+        normalizarTexto(
+          item.id
+        );
+
+
+      const nomeNormalizado =
+        normalizarTexto(
+          regiaoFiltro
+        );
+
+
+      const ehArea =
+        idNormalizado.includes("area") ||
+        nomeNormalizado.includes(
+          "areas & oportunidades"
+        ) ||
+        nomeNormalizado.includes(
+          "areas para"
+        );
+
+
+      const destino =
+        ehArea
+          ? "/areas.html"
+          : "/imoveis.html";
+
+
+      link.href =
+        regiaoFiltro
+          ? `${destino}?regiao=${encodeURIComponent(regiaoFiltro)}`
+          : destino;
+
+
+      const imagem =
+        item.imagem ||
+        "/assets/home-principal.jpeg";
+
+
+      link.innerHTML = `
+
+        <div class="regiao-home-img">
+
+          <img
+            src="${esc(imagem)}"
+            alt="${esc(
+              item.nome ||
+              "Piemonte Brokers"
+            )}"
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div class="regiao-home-body">
+
+          <h3>
+            ${esc(item.nome || "")}
+          </h3>
+
+          <p>
+            ${esc(item.descricao || "")}
+          </p>
+
+        </div>
+
+      `;
+
+
+      box.appendChild(
+        link
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   FILTRO POR URL
 ========================================================= */
 
 function aplicarFiltroDaURL() {
@@ -873,9 +919,121 @@ function aplicarFiltroDaURL() {
     );
 
 
+  const regiao =
+    params.get("regiao");
+
+
   const cidade =
     params.get("cidade");
 
+
+  /*
+    REGIÃO
+
+    Quando o clique vem dos cards de região,
+    filtramos EXCLUSIVAMENTE por regiaoPrincipal.
+
+    Exemplo:
+    regiaoPrincipal = "Granja Viana"
+
+    Assim uma casa de Itu nunca aparece
+    quando o cliente clicar em Granja Viana.
+  */
+
+  if (regiao) {
+
+    const regiaoNormalizada =
+      normalizarTexto(regiao);
+
+
+    let lista =
+      PORTFOLIO.filter(
+        item =>
+          item.status !== "Vendido" &&
+          item.status !== "Indisponível"
+      );
+
+
+    if (
+      paginaAtual() === "imoveis"
+    ) {
+
+      lista =
+        lista.filter(
+          item =>
+            item.categoria === "Imóvel"
+        );
+
+    }
+
+
+    if (
+      paginaAtual() === "areas"
+    ) {
+
+      lista =
+        lista.filter(
+          item =>
+            item.categoria === "Área"
+        );
+
+    }
+
+
+    lista =
+      lista.filter(
+        item =>
+          normalizarTexto(
+            item.regiaoPrincipal
+          ) ===
+          regiaoNormalizada
+      );
+
+
+    const campo =
+      $("#fCidade");
+
+
+    if (
+      campo &&
+      campo.tagName === "SELECT"
+    ) {
+
+      adicionarOpcao(
+        campo,
+        regiao
+      );
+
+
+      const opcao =
+        [...campo.options]
+          .find(
+            item =>
+              normalizarTexto(
+                item.value
+              ) ===
+              regiaoNormalizada
+          );
+
+
+      if (opcao) {
+        campo.value =
+          opcao.value;
+      }
+
+    }
+
+
+    render(lista);
+
+    return;
+
+  }
+
+
+  /*
+    COMPATIBILIDADE COM LINKS ANTIGOS ?cidade=
+  */
 
   if (!cidade) {
     return;
@@ -886,14 +1044,16 @@ function aplicarFiltroDaURL() {
     $("#fCidade");
 
 
-  if (!campo) {
-    return;
-  }
-
-
   if (
+    campo &&
     campo.tagName === "SELECT"
   ) {
+
+    adicionarOpcao(
+      campo,
+      cidade
+    );
+
 
     const cidadeNormalizada =
       normalizarTexto(cidade);
@@ -911,20 +1071,8 @@ function aplicarFiltroDaURL() {
 
 
     if (opcao) {
-
       campo.value =
         opcao.value;
-
-    } else {
-
-      adicionarOpcao(
-        campo,
-        cidade
-      );
-
-      campo.value =
-        cidade;
-
     }
 
 
@@ -936,7 +1084,7 @@ function aplicarFiltroDaURL() {
 
 
 /* =========================================================
-   RENDER INICIAL
+   LISTAGEM INICIAL
 ========================================================= */
 
 function renderInicial() {
@@ -964,6 +1112,12 @@ function renderInicial() {
     paginaAtual();
 
 
+  /*
+    PÁGINA IMÓVEIS
+
+    Nunca mostra itens cadastrados como Área.
+  */
+
   if (
     pagina === "imoveis"
   ) {
@@ -977,6 +1131,12 @@ function renderInicial() {
   }
 
 
+  /*
+    PÁGINA ÁREAS
+
+    Nunca mostra imóveis residenciais.
+  */
+
   if (
     pagina === "areas"
   ) {
@@ -989,6 +1149,13 @@ function renderInicial() {
 
   }
 
+
+  /*
+    HOME
+
+    Exibe somente imóveis/áreas marcados
+    como destaque.
+  */
 
   if (
     pagina === "home"
@@ -1014,14 +1181,8 @@ function renderInicial() {
 
     lista =
       destaques.length
-        ? destaques.slice(
-            0,
-            6
-          )
-        : lista.slice(
-            0,
-            6
-          );
+        ? destaques.slice(0, 6)
+        : lista.slice(0, 6);
 
   }
 
@@ -1032,7 +1193,7 @@ function renderInicial() {
 
 
 /* =========================================================
-   CARDS
+   RENDERIZAR CARDS
 ========================================================= */
 
 function render(lista) {
@@ -1060,6 +1221,7 @@ function render(lista) {
 
       card.className =
         "card";
+
 
       card.tabIndex =
         0;
@@ -1105,11 +1267,9 @@ function render(lista) {
           ${
             item.categoria
               ? `
-
                 <span class="badge">
                   ${esc(item.categoria)}
                 </span>
-
               `
               : ""
           }
@@ -1118,6 +1278,13 @@ function render(lista) {
 
 
         <div class="card-body">
+
+          <div class="property-code-card">
+            ${esc(
+              codigoPiemonte(item)
+            )}
+          </div>
+
 
           <div class="meta">
             ${esc(
@@ -1234,12 +1401,10 @@ function render(lista) {
 
 
 /* =========================================================
-   ABRIR PÁGINA INDIVIDUAL
+   ABRIR IMÓVEL
 ========================================================= */
 
-function abrirPropriedade(
-  item
-) {
+function abrirPropriedade(item) {
 
   if (
     !item ||
@@ -1256,35 +1421,23 @@ function abrirPropriedade(
   }
 
 
-  const id =
-    encodeURIComponent(
-      item.id
-    );
-
-
   window.location.href =
-    `/propriedade.html?id=${id}`;
+    `/propriedade.html?id=${encodeURIComponent(item.id)}`;
 
 }
 
 
-/* =========================================================
-   COMPATIBILIDADE COM CÓDIGO ANTIGO
-========================================================= */
+/*
+  Compatibilidade com versões antigas.
+*/
 
-function abrir(
-  item
-) {
-
-  abrirPropriedade(
-    item
-  );
-
+function abrir(item) {
+  abrirPropriedade(item);
 }
 
 
 /* =========================================================
-   FAIXAS DE PREÇO
+   FAIXA DE PREÇO
 ========================================================= */
 
 function atendeFaixaPreco(
@@ -1312,10 +1465,7 @@ function atendeFaixaPreco(
 
     case "ate-1m":
 
-      return (
-        valor <=
-        1000000
-      );
+      return valor <= 1000000;
 
 
     case "1m-3m":
@@ -1352,18 +1502,12 @@ function atendeFaixaPreco(
 
     case "acima-10m":
 
-      return (
-        valor >
-        10000000
-      );
+      return valor > 10000000;
 
 
     case "acima-30m":
 
-      return (
-        valor >
-        30000000
-      );
+      return valor > 30000000;
 
 
     default:
@@ -1376,7 +1520,7 @@ function atendeFaixaPreco(
 
 
 /* =========================================================
-   FILTRAGEM
+   FILTROS MANUAIS
 ========================================================= */
 
 function filtrar() {
@@ -1384,6 +1528,11 @@ function filtrar() {
   let lista =
     [...PORTFOLIO];
 
+
+  /*
+    Remove propriedades que não devem
+    aparecer publicamente.
+  */
 
   lista =
     lista.filter(
@@ -1433,7 +1582,7 @@ function filtrar() {
       ?.value || "";
 
 
-  const cidade =
+  const local =
     $("#fCidade")
       ?.value || "";
 
@@ -1448,10 +1597,8 @@ function filtrar() {
       ?.value || "";
 
 
-  const cidadeNormalizada =
-    normalizarTexto(
-      cidade
-    );
+  const localNormalizado =
+    normalizarTexto(local);
 
 
   lista =
@@ -1470,67 +1617,75 @@ function filtrar() {
           );
 
 
-        const regiao =
+        const regiaoItem =
           normalizarTexto(
             item.regiao
           );
 
 
+        const condominio =
+          normalizarTexto(
+            item.condominio
+          );
+
+
+        /*
+          No filtro manual o usuário pode escolher
+          região macro, cidade, bairro ou condomínio.
+        */
+
         const localCorresponde =
-          !cidadeNormalizada ||
+          !localNormalizado ||
 
           regiaoPrincipal ===
-            cidadeNormalizada ||
+            localNormalizado ||
 
           cidadeItem ===
-            cidadeNormalizada ||
+            localNormalizado ||
 
-          regiao ===
-            cidadeNormalizada;
+          regiaoItem ===
+            localNormalizado ||
+
+          condominio ===
+            localNormalizado;
 
 
-        return (
+        const categoriaCorresponde =
+          !categoria ||
+          item.categoria === categoria;
 
-          (
-            !categoria ||
-            item.categoria === categoria
-          )
 
-          &&
+        const negocioCorresponde =
+          !negocio ||
+          item.negocio === negocio ||
+          item.finalidade === negocio;
 
-          (
-            !negocio ||
-            item.negocio === negocio ||
-            item.finalidade === negocio
-          )
 
-          &&
+        const tipoCorresponde =
+          !tipo ||
+          item.tipo === tipo;
 
-          localCorresponde
 
-          &&
-
-          (
-            !tipo ||
-            item.tipo === tipo
-          )
-
-          &&
-
+        const precoCorresponde =
           atendeFaixaPreco(
             item,
             preco
-          )
+          );
 
+
+        return (
+          categoriaCorresponde &&
+          negocioCorresponde &&
+          localCorresponde &&
+          tipoCorresponde &&
+          precoCorresponde
         );
 
       }
     );
 
 
-  render(
-    lista
-  );
+  render(lista);
 
 }
 
@@ -1571,6 +1726,7 @@ function ativarFiltros() {
   [
     "#fCategoria",
     "#fNegocio",
+    "#fCidade",
     "#fTipo",
     "#fPreco"
   ]
@@ -1592,20 +1748,6 @@ function ativarFiltros() {
 
       }
     );
-
-
-  const cidade =
-    $("#fCidade");
-
-
-  if (cidade) {
-
-    cidade.addEventListener(
-      "change",
-      filtrar
-    );
-
-  }
 
 }
 
@@ -1698,8 +1840,7 @@ function ativarModal() {
     evento => {
 
       if (
-        evento.key ===
-        "Escape"
+        evento.key === "Escape"
       ) {
 
         fechar();
@@ -1783,12 +1924,6 @@ document.addEventListener(
     ativarModal();
 
     carregar();
-
-
-    setTimeout(
-      criarWhatsAppFlutuante,
-      500
-    );
 
   }
 );

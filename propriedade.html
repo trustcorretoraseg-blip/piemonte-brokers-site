@@ -49,6 +49,20 @@
       color: #a98642;
     }
 
+    .property-code {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 0 14px;
+      padding: 7px 10px;
+      border: 1px solid rgba(169,134,66,.42);
+      background: rgba(169,134,66,.08);
+      color: #82652f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
 
     /* =====================================================
        BREADCRUMB
@@ -230,13 +244,13 @@
     }
 
     .gallery-main > img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
       display: block;
-      object-fit: contain;
-      object-position: center;
+      object-fit: cover;
+      object-position: center center;
     }
 
     /* Fotos laterais continuam preenchendo os quadros. */
@@ -1523,6 +1537,13 @@ HEADER
           PIEMONTE BROKERS
         </p>
 
+        <div
+          class="property-code"
+          id="propertyCode"
+        >
+          PB 0000
+        </div>
+
         <h1 id="propertyTitle">
           Carregando propriedade...
         </h1>
@@ -1918,6 +1939,30 @@ const esc =
     );
 
 
+function codigoPiemonte(item) {
+
+  if (
+    item &&
+    typeof item.codigo === "string" &&
+    item.codigo.trim()
+  ) {
+    return item.codigo.trim();
+  }
+
+  const indice =
+    PORTFOLIO.findIndex(
+      registro =>
+        String(registro.id) ===
+        String(item?.id)
+    );
+
+  return `PB ${String(
+    indice >= 0 ? indice + 1 : 0
+  ).padStart(4, "0")}`;
+
+}
+
+
 /* =====================================================
    FORMATAÇÃO
 ===================================================== */
@@ -2237,6 +2282,13 @@ function montarPagina() {
       PROPRIEDADE.titulo ||
       "Propriedade"
     } | Piemonte Brokers`;
+
+
+  $("#propertyCode")
+    .textContent =
+      codigoPiemonte(
+        PROPRIEDADE
+      );
 
 
   $("#propertyTitle")
@@ -2748,7 +2800,7 @@ function montarWhatsApp() {
 
 
   const mensagem =
-    `Olá! Tenho interesse na propriedade "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
+    `Olá! Tenho interesse na propriedade ${codigoPiemonte(PROPRIEDADE)} — "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
 
 
   $("#propertyWhatsApp")
@@ -2918,6 +2970,12 @@ function montarSemelhantes() {
         </div>
 
         <div class="similar-body">
+
+          <div class="similar-meta">
+            ${esc(
+              codigoPiemonte(item)
+            )}
+          </div>
 
           <div class="similar-meta">
             ${esc(
