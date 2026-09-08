@@ -37,7 +37,7 @@
       "mobiliaEletros": [],
       "diferenciais": [],
       "destaque": true,
-      "ordemDestaque": 1
+      "ordemDestaque": 2
     },
     {
       "id": "casa-granja-viana",
@@ -115,7 +115,7 @@
       "mobiliaEletros": [],
       "diferenciais": [],
       "destaque": true,
-      "ordemDestaque": 1
+      "ordemDestaque": 2
     },
     {
       "id": "Casa Pallos verdes",
@@ -189,7 +189,7 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": false,
+      "destaque": true,
       "ordemDestaque": 2
     },
     {
