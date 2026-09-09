@@ -242,57 +242,6 @@
       "diferenciais": [],
       "destaque": false,
       "ordemDestaque": 99
-    },
-    {
-      "id": "casa terras 1",
-      "codigo": "PB1025",
-      "categoria": "Imóvel",
-      "status": "Disponível",
-      "negocio": "Venda",
-      "titulo": "Linda casa do terras 1",
-      "regiaoPrincipal": "Itu & Região",
-      "cidade": "itu",
-      "regiao": "terras de sao jose 1",
-      "condominio": "Terras de sao jose",
-      "tipo": "casa",
-      "preco": null,
-      "precoTexto": "15.000.000,00",
-      "valorCondominio": "4.500",
-      "iptu": "500 mes",
-      "quartos": 10,
-      "suites": 7,
-      "banheiros": 10,
-      "vagas": 5,
-      "areaConstruida": null,
-      "areaTerreno": 2500,
-      "anoConstrucao": 5000,
-      "imagemCapa": "/uploads/2AFE7676-ADC0-4C5A-9388-93CA3CC1826F.jpeg",
-      "galeria": [
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.16 (1).jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.16.jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.17 (1).jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.17 (2).jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.17 (3).jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.17 (4).jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.17 (5).jpeg",
-        "/uploads/WhatsApp Image 2026-06-10 at 11.59.17.jpeg"
-      ],
-      "descricao": "nbjfbehvjhcbdnsbjhabjhcdbwjh",
-      "descricaoLonga": "casa feita pelo arquinbgfi, ndsjhjhabj,dsq bdiqh fxhjda,cbhdjh cd",
-      "piscina": false,
-      "mobiliado": false,
-      "escritorio": false,
-      "areaGourmet": false,
-      "acabamentos": [
-        "casa feita toda em marmore tarbkdhwvwhcdj"
-      ],
-      "ambientesInterior": [],
-      "areasExternasLazer": [],
-      "tecnologiaConforto": [],
-      "mobiliaEletros": [],
-      "diferenciais": [],
-      "destaque": false,
-      "ordemDestaque": null
     }
   ]
 }
