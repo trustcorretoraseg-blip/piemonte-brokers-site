@@ -170,7 +170,7 @@ collections:
                 name: "codigo"
                 widget: "string"
                 required: false
-                hint: "Código interno e externo do imóvel. Use sempre o padrão PB 0001, PB 0002, PB 0003..."
+                hint: "Use sempre o padrão PB 0001, PB 0002, PB 0003..."
 
               - label: "Categoria"
                 name: "categoria"
@@ -331,17 +331,14 @@ collections:
                 name: "imagemCapa"
                 widget: "image"
                 required: false
+                hint: "Escolha a principal foto do imóvel."
 
               - label: "Galeria de fotos"
                 name: "galeria"
-                widget: "list"
+                widget: "image"
+                multiple: true
                 required: false
-                label_singular: "Foto"
-
-                field:
-                  label: "Foto"
-                  name: "foto"
-                  widget: "image"
+                hint: "Selecione várias fotos de uma vez para montar a galeria."
 
 
               # -------------------------------------------------
