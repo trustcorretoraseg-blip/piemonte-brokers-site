@@ -117,12 +117,12 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": true,
+      "destaque": false,
       "ordemDestaque": 2
     },
     {
       "id": "Casa Pallos verdes",
-      "codigo": "PB 0004",
+      "codigo": "PB 1205",
       "categoria": "Imóvel",
       "status": "Disponível",
       "negocio": "Venda",
