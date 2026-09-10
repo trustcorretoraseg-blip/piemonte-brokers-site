@@ -2361,76 +2361,71 @@ body .section-head p{
 
 }
 /* =========================================================
-   PADRÃO GLOBAL DE TÍTULOS — LUXURY EDITORIAL
+   PIEMONTE BROKERS — TIPOGRAFIA GLOBAL DEFINITIVA
 ========================================================= */
 
-h1,
-.hero h1,
-.page-hero h1,
-.property-heading h1,
-.avaliacao-hero h1 {
-  font-size: clamp(26px, 2.8vw, 36px) !important;
+html body h1,
+html body .hero h1,
+html body .page-hero h1,
+html body .property-heading h1,
+html body .avaliacao-hero h1 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 34px !important;
   line-height: 1.14 !important;
   font-weight: 400 !important;
   letter-spacing: -0.015em !important;
 }
 
-h2,
-.section h2,
-.avaliacao-feature-kicker h2,
-.avaliacao-intro h2,
-.avaliacao-method h2,
-.avaliacao-form-copy h2 {
-  font-size: clamp(22px, 2.2vw, 30px) !important;
+html body h2,
+html body .section h2,
+html body .areas-feature-content h2,
+html body .avaliacao-feature-kicker h2,
+html body .avaliacao-intro h2,
+html body .avaliacao-method h2,
+html body .avaliacao-form-copy h2 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 28px !important;
   line-height: 1.18 !important;
   font-weight: 400 !important;
   letter-spacing: -0.01em !important;
 }
 
-h3,
-.card h3,
-.avaliacao-feature-content h3,
-.avaliacao-card h3,
-.avaliacao-step h3 {
-  font-size: clamp(17px, 1.5vw, 21px) !important;
+html body h3,
+html body .card h3,
+html body .avaliacao-feature-content h3,
+html body .avaliacao-card h3,
+html body .avaliacao-step h3 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 20px !important;
   line-height: 1.28 !important;
-  font-weight: 500 !important;
-  letter-spacing: 0 !important;
-}
-
-.eyebrow,
-.property-eyebrow {
-  font-size: 10px !important;
-  letter-spacing: 0.18em !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 @media (max-width: 600px) {
 
-  h1,
-  .hero h1,
-  .page-hero h1,
-  .property-heading h1,
-  .avaliacao-hero h1 {
-    font-size: 25px !important;
-    line-height: 1.16 !important;
+  html body h1,
+  html body .hero h1,
+  html body .page-hero h1,
+  html body .property-heading h1,
+  html body .avaliacao-hero h1 {
+    font-size: 28px !important;
   }
 
-  h2,
-  .section h2,
-  .avaliacao-feature-kicker h2,
-  .avaliacao-intro h2,
-  .avaliacao-method h2,
-  .avaliacao-form-copy h2 {
-    font-size: 22px !important;
-    line-height: 1.2 !important;
+  html body h2,
+  html body .section h2,
+  html body .areas-feature-content h2,
+  html body .avaliacao-feature-kicker h2,
+  html body .avaliacao-intro h2,
+  html body .avaliacao-method h2,
+  html body .avaliacao-form-copy h2 {
+    font-size: 24px !important;
   }
 
-  h3,
-  .card h3,
-  .avaliacao-feature-content h3,
-  .avaliacao-card h3,
-  .avaliacao-step h3 {
+  html body h3,
+  html body .card h3,
+  html body .avaliacao-feature-content h3,
+  html body .avaliacao-card h3,
+  html body .avaliacao-step h3 {
     font-size: 18px !important;
   }
 
