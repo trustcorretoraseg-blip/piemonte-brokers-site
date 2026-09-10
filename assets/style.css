@@ -2360,3 +2360,61 @@ body .section-head p{
   }
 
 }
+/* =========================================================
+   PADRÃO GLOBAL DE TÍTULOS — PIEMONTE BROKERS
+========================================================= */
+
+h1,
+.hero h1,
+.page-hero h1,
+.property-heading h1,
+.avaliacao-hero h1 {
+  font-size: clamp(34px, 4.2vw, 52px) !important;
+  line-height: 1.08 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.025em !important;
+}
+
+h2,
+.section h2,
+.avaliacao-feature-kicker h2,
+.avaliacao-intro h2,
+.avaliacao-method h2,
+.avaliacao-form-copy h2 {
+  font-size: clamp(28px, 3vw, 40px) !important;
+  line-height: 1.12 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+}
+
+h3 {
+  font-size: clamp(20px, 2vw, 26px) !important;
+  line-height: 1.22 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+@media (max-width: 600px) {
+
+  h1,
+  .hero h1,
+  .page-hero h1,
+  .property-heading h1,
+  .avaliacao-hero h1 {
+    font-size: 32px !important;
+  }
+
+  h2,
+  .section h2,
+  .avaliacao-feature-kicker h2,
+  .avaliacao-intro h2,
+  .avaliacao-method h2,
+  .avaliacao-form-copy h2 {
+    font-size: 27px !important;
+  }
+
+  h3 {
+    font-size: 21px !important;
+  }
+
+}
