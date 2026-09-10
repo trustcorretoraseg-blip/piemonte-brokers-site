@@ -3,26 +3,41 @@ export default async (request: Request, context: any) => {
     const url = new URL(request.url);
     const id = url.searchParams.get("id");
 
-    // Deixa o Netlify carregar normalmente o propriedade.html
+    // Carrega normalmente o propriedade.html
     const response = await context.next();
 
-    // Se não houver ID, devolve a página normalmente
+    // Se não houver ID na URL, não altera nada
     if (!id) {
       return response;
     }
 
-    // Carrega o cadastro dos imóveis
-    const portfolioUrl = new URL("/data/portfolio.json", request.url);
+    /*
+    =====================================================
+    CARREGA O PORTFÓLIO
+    =====================================================
+    */
 
-    const portfolioResponse = await fetch(portfolioUrl);
+    const portfolioUrl = new URL(
+      "/data/portfolio.json",
+      request.url
+    );
+
+    const portfolioResponse =
+      await fetch(portfolioUrl);
 
     if (!portfolioResponse.ok) {
       return response;
     }
 
-    const dados = await portfolioResponse.json();
+    const dados =
+      await portfolioResponse.json();
 
-    // Aceita portfolio.json tanto como array quanto dentro de "itens"
+    /*
+    =====================================================
+    ACEITA FORMATOS DIFERENTES DE JSON
+    =====================================================
+    */
+
     const portfolio = Array.isArray(dados)
       ? dados
       : Array.isArray(dados.itens)
@@ -31,15 +46,58 @@ export default async (request: Request, context: any) => {
           ? dados.portfolio
           : [];
 
-    // Procura o imóvel pelo ID
-    const propriedade = portfolio.find((item: any) => {
-      return (
-        String(item.id || "") === String(id) ||
-        String(item.codigo || "") === String(id)
-      );
-    });
+    /*
+    =====================================================
+    NORMALIZA TEXTOS PARA LOCALIZAR O IMÓVEL
+    =====================================================
+    */
+
+    const normalizar = (valor: any) => {
+      return String(valor || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
+        .toLowerCase();
+    };
+
+    const idBuscado =
+      normalizar(id);
+
+    /*
+    =====================================================
+    LOCALIZA A PROPRIEDADE
+
+    Procura por:
+    - id
+    - codigo
+    - titulo
+    - nome
+    =====================================================
+    */
+
+    const propriedade =
+      portfolio.find((item: any) => {
+
+        const candidatos = [
+          item.id,
+          item.codigo,
+          item.titulo,
+          item.nome
+        ];
+
+        return candidatos.some(
+          valor =>
+            normalizar(valor) === idBuscado
+        );
+
+      });
 
     if (!propriedade) {
+      console.log(
+        "Imóvel não encontrado para compartilhamento:",
+        id
+      );
+
       return response;
     }
 
@@ -50,7 +108,13 @@ export default async (request: Request, context: any) => {
     */
 
     const limparTexto = (valor: any) => {
-      if (valor === null || valor === undefined) return "";
+
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+        return "";
+      }
 
       return String(valor)
         .replace(/<[^>]*>/g, "")
@@ -58,22 +122,39 @@ export default async (request: Request, context: any) => {
         .trim();
     };
 
+
     const escaparHtml = (valor: any) => {
+
       return limparTexto(valor)
         .replace(/&/g, "&amp;")
         .replace(/"/g, "&quot;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
+
     };
 
-    const tornarAbsoluta = (caminho: string) => {
-      if (!caminho) return "";
 
-      try {
-        return new URL(caminho, url.origin).href;
-      } catch {
+    const tornarAbsoluta = (
+      caminho: string
+    ) => {
+
+      if (!caminho) {
         return "";
       }
+
+      try {
+
+        return new URL(
+          caminho,
+          url.origin
+        ).href;
+
+      } catch {
+
+        return "";
+
+      }
+
     };
 
     /*
@@ -84,6 +165,7 @@ export default async (request: Request, context: any) => {
 
     const titulo =
       propriedade.titulo ||
+      propriedade.nome ||
       propriedade.condominio ||
       "Imóvel selecionado";
 
@@ -105,7 +187,8 @@ export default async (request: Request, context: any) => {
       .map(limparTexto);
 
     const localizacao =
-      [...new Set(partesLocalizacao)].join(" • ");
+      [...new Set(partesLocalizacao)]
+        .join(" • ");
 
     /*
     =====================================================
@@ -116,7 +199,36 @@ export default async (request: Request, context: any) => {
     let preco = "";
 
     if (propriedade.precoTexto) {
-      preco = limparTexto(propriedade.precoTexto);
+
+      preco =
+        limparTexto(
+          propriedade.precoTexto
+        );
+
+    }
+    else if (
+      propriedade.preco !== undefined &&
+      propriedade.preco !== null &&
+      propriedade.preco !== ""
+    ) {
+
+      const valorNumerico =
+        Number(propriedade.preco);
+
+      if (!isNaN(valorNumerico)) {
+
+        preco =
+          valorNumerico.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+              maximumFractionDigits: 0
+            }
+          );
+
+      }
+
     }
 
     /*
@@ -130,33 +242,60 @@ export default async (request: Request, context: any) => {
       propriedade.descricaoLonga ||
       "";
 
-    descricao = limparTexto(descricao);
+    descricao =
+      limparTexto(descricao);
 
-    // Evita descrições gigantes nas redes sociais
     if (descricao.length > 180) {
+
       descricao =
-        descricao.substring(0, 177).trim() + "...";
+        descricao
+          .substring(0, 177)
+          .trim() + "...";
+
     }
+
+    /*
+    =====================================================
+    DESCRIÇÃO SOCIAL
+    =====================================================
+    */
 
     let descricaoSocial = "";
 
     if (localizacao) {
-      descricaoSocial += localizacao;
+
+      descricaoSocial +=
+        localizacao;
+
     }
 
     if (preco) {
+
       descricaoSocial +=
-        `${descricaoSocial ? " | " : ""}${preco}`;
+        `${
+          descricaoSocial
+            ? " | "
+            : ""
+        }${preco}`;
+
     }
 
     if (descricao) {
+
       descricaoSocial +=
-        `${descricaoSocial ? " — " : ""}${descricao}`;
+        `${
+          descricaoSocial
+            ? " — "
+            : ""
+        }${descricao}`;
+
     }
 
     if (!descricaoSocial) {
+
       descricaoSocial =
         "Conheça esta oportunidade selecionada pela Piemonte Brokers.";
+
     }
 
     /*
@@ -167,15 +306,30 @@ export default async (request: Request, context: any) => {
 
     let imagem = "";
 
-    if (typeof propriedade.imagemCapa === "string") {
-      imagem = propriedade.imagemCapa;
+    /*
+    imagemCapa como texto
+    */
+
+    if (
+      typeof propriedade.imagemCapa ===
+      "string"
+    ) {
+
+      imagem =
+        propriedade.imagemCapa;
+
     }
 
-    // Caso imagemCapa seja um objeto
+    /*
+    imagemCapa como objeto
+    */
+
     if (
       propriedade.imagemCapa &&
-      typeof propriedade.imagemCapa === "object"
+      typeof propriedade.imagemCapa ===
+        "object"
     ) {
+
       imagem =
         propriedade.imagemCapa.foto ||
         propriedade.imagemCapa.imagem ||
@@ -183,19 +337,34 @@ export default async (request: Request, context: any) => {
         propriedade.imagemCapa.src ||
         propriedade.imagemCapa.path ||
         "";
+
     }
 
-    // Caso não tenha capa, tenta usar a primeira da galeria
+    /*
+    Caso não exista imagemCapa,
+    tenta primeira foto da galeria
+    */
+
     if (
       !imagem &&
       Array.isArray(propriedade.galeria) &&
       propriedade.galeria.length
     ) {
-      const primeira = propriedade.galeria[0];
 
-      if (typeof primeira === "string") {
-        imagem = primeira;
-      } else if (primeira) {
+      const primeira =
+        propriedade.galeria[0];
+
+      if (
+        typeof primeira ===
+        "string"
+      ) {
+
+        imagem =
+          primeira;
+
+      }
+      else if (primeira) {
+
         imagem =
           primeira.foto ||
           primeira.imagem ||
@@ -203,12 +372,20 @@ export default async (request: Request, context: any) => {
           primeira.src ||
           primeira.path ||
           "";
+
       }
+
     }
 
-    // Fallback para o logo Piemonte
+    /*
+    Último fallback
+    */
+
     if (!imagem) {
-      imagem = "/assets/logo-piemonte.png";
+
+      imagem =
+        "/assets/logo-piemonte.png";
+
     }
 
     const imagemAbsoluta =
@@ -216,15 +393,16 @@ export default async (request: Request, context: any) => {
 
     /*
     =====================================================
-    URL CANÔNICA
+    URL SOCIAL
     =====================================================
     */
 
-    const urlSocial = url.href;
+    const urlSocial =
+      url.href;
 
     /*
     =====================================================
-    META TAGS
+    META TAGS OPEN GRAPH
     =====================================================
     */
 
@@ -234,9 +412,14 @@ export default async (request: Request, context: any) => {
      COMPARTILHAMENTO SOCIAL - PIEMONTE BROKERS
 =================================================== -->
 
-<meta property="og:type" content="website">
+<meta property="og:type"
+content="website">
 
-<meta property="og:site_name" content="Piemonte Brokers">
+<meta property="og:site_name"
+content="Piemonte Brokers">
+
+<meta property="og:locale"
+content="pt_BR">
 
 <meta property="og:title"
 content="${escaparHtml(tituloSocial)}">
@@ -275,47 +458,115 @@ href="${escaparHtml(urlSocial)}">
 
     /*
     =====================================================
-    ALTERA O HTML ANTES DE ENTREGAR PARA A REDE SOCIAL
+    ALTERA O HTML ANTES DE ENTREGAR
     =====================================================
     */
 
-    const html = await response.text();
+    const html =
+      await response.text();
 
-    let htmlFinal = html;
+    let htmlFinal =
+      html;
 
-    if (html.includes("</head>")) {
-      htmlFinal = html.replace(
-        "</head>",
-        `${metaTags}</head>`
+    /*
+    Remove possíveis OG antigos
+    para evitar conflito
+    */
+
+    htmlFinal =
+      htmlFinal.replace(
+        /<meta[^>]+property=["']og:[^>]+>/gi,
+        ""
       );
+
+    htmlFinal =
+      htmlFinal.replace(
+        /<meta[^>]+name=["']twitter:[^>]+>/gi,
+        ""
+      );
+
+    htmlFinal =
+      htmlFinal.replace(
+        /<link[^>]+rel=["']canonical["'][^>]*>/gi,
+        ""
+      );
+
+    /*
+    Insere os novos metadados
+    */
+
+    if (
+      htmlFinal.includes("</head>")
+    ) {
+
+      htmlFinal =
+        htmlFinal.replace(
+          "</head>",
+          `${metaTags}</head>`
+        );
+
     }
 
+    /*
+    =====================================================
+    HEADERS
+    =====================================================
+    */
+
     const headers =
-      new Headers(response.headers);
+      new Headers(
+        response.headers
+      );
 
     headers.set(
       "content-type",
       "text/html; charset=utf-8"
     );
 
+    /*
+    Evita que uma prévia antiga
+    fique presa por muito tempo
+    */
+
+    headers.set(
+      "cache-control",
+      "public, max-age=0, must-revalidate"
+    );
+
+    /*
+    =====================================================
+    RETORNO
+    =====================================================
+    */
+
     return new Response(
       htmlFinal,
       {
-        status: response.status,
-        statusText: response.statusText,
+        status:
+          response.status,
+
+        statusText:
+          response.statusText,
+
         headers
       }
     );
 
-  } catch (erro) {
+  }
+
+  catch (erro) {
 
     console.error(
-      "Erro na função property-og:",
+      "Erro na Edge Function property-og:",
       erro
     );
 
-    // Se ocorrer qualquer erro,
-    // mantém o site funcionando normalmente
+    /*
+    Se der qualquer erro,
+    deixa a página normal funcionar
+    */
+
     return context.next();
+
   }
 };
