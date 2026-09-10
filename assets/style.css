@@ -2361,72 +2361,28 @@ body .section-head p{
 
 }
 /* =========================================================
-   PIEMONTE BROKERS — TIPOGRAFIA GLOBAL DEFINITIVA
+   TÍTULOS PRINCIPAIS DAS PÁGINAS — PIEMONTE
 ========================================================= */
 
-html body h1,
-html body .hero h1,
-html body .page-hero h1,
-html body .property-heading h1,
-html body .avaliacao-hero h1 {
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 34px !important;
-  line-height: 1.14 !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.015em !important;
-}
-
-html body h2,
-html body .section h2,
-html body .areas-feature-content h2,
-html body .avaliacao-feature-kicker h2,
-html body .avaliacao-intro h2,
-html body .avaliacao-method h2,
-html body .avaliacao-form-copy h2 {
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 28px !important;
-  line-height: 1.18 !important;
+body .page-hero h1,
+body .property-heading h1,
+body .avaliacao-hero h1,
+body .hero h1 {
+  font-size: 30px !important;
+  line-height: 1.15 !important;
   font-weight: 400 !important;
   letter-spacing: -0.01em !important;
 }
 
-html body h3,
-html body .card h3,
-html body .avaliacao-feature-content h3,
-html body .avaliacao-card h3,
-html body .avaliacao-step h3 {
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 20px !important;
-  line-height: 1.28 !important;
-  font-weight: 400 !important;
-}
-
+/* CELULAR */
 @media (max-width: 600px) {
 
-  html body h1,
-  html body .hero h1,
-  html body .page-hero h1,
-  html body .property-heading h1,
-  html body .avaliacao-hero h1 {
-    font-size: 28px !important;
-  }
-
-  html body h2,
-  html body .section h2,
-  html body .areas-feature-content h2,
-  html body .avaliacao-feature-kicker h2,
-  html body .avaliacao-intro h2,
-  html body .avaliacao-method h2,
-  html body .avaliacao-form-copy h2 {
-    font-size: 24px !important;
-  }
-
-  html body h3,
-  html body .card h3,
-  html body .avaliacao-feature-content h3,
-  html body .avaliacao-card h3,
-  html body .avaliacao-step h3 {
-    font-size: 18px !important;
+  body .page-hero h1,
+  body .property-heading h1,
+  body .avaliacao-hero h1,
+  body .hero h1 {
+    font-size: 25px !important;
+    line-height: 1.18 !important;
   }
 
 }
