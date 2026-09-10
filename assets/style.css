@@ -291,15 +291,8 @@ h3{
 
 
 h1{
-  font-size:
-    clamp(
-      46px,
-      6vw,
-      78px
-    );
-
-  line-height:1.02;
-
+  font-size:30px;
+  line-height:1.15;
   max-width:900px;
 }
 
@@ -339,13 +332,8 @@ h1{
 
 .page-hero h1{
   margin-top:12px;
-
-  font-size:
-    clamp(
-      42px,
-      6vw,
-      70px
-    );
+  font-size:28px;
+  line-height:1.15;
 }
 
 
@@ -502,14 +490,8 @@ h1{
 
 
 .section h2{
-  font-size:
-    clamp(
-      36px,
-      5vw,
-      58px
-    );
-
-  line-height:1.08;
+  font-size:24px;
+  line-height:1.2;
 }
 
 
@@ -925,21 +907,9 @@ h1{
 .regiao-home-img img{
   transform:scale(1.045);
 }
-
-
-.regiao-home-body{
-  padding:25px 24px 27px;
-}
-
-
-.regiao-home-body h3{
-  font-size:29px;
-
-  margin:0 0 11px;
-
-  color:var(--ink);
-}
-
+/* =====================================================
+   REGIÕES — CONTINUAÇÃO
+===================================================== */
 
 .regiao-home-body p{
   color:var(--muted);
@@ -1188,6 +1158,7 @@ footer{
 .modal-card > img,
 .modal-foto{
   width:100%;
+
   height:470px;
 
   object-fit:cover;
@@ -1200,7 +1171,7 @@ footer{
 
 
 .modal-body h2{
-  font-size:42px;
+  font-size:24px;
 }
 
 
@@ -1392,6 +1363,49 @@ footer{
 
 .whatsapp-float-text{
   white-space:nowrap;
+}
+
+
+/* =====================================================
+   DESKTOP — TÍTULOS MAIS ELEGANTES
+===================================================== */
+
+@media (min-width:981px){
+
+  h1,
+  .hero h1,
+  .page-hero h1,
+  .property-heading h1,
+  .avaliacao-hero h1{
+    font-size:30px !important;
+    line-height:1.15 !important;
+  }
+
+  h2,
+  .section h2,
+  .section-head h2,
+  .areas-feature-content h2,
+  .avaliacao-feature-kicker h2,
+  .avaliacao-intro h2,
+  .avaliacao-method h2,
+  .avaliacao-form-copy h2,
+  .dark-section h2,
+  .split h2,
+  .modal-body h2{
+    font-size:24px !important;
+    line-height:1.20 !important;
+  }
+
+  h3,
+  .card h3,
+  .regiao-home-body h3,
+  .avaliacao-feature-content h3,
+  .avaliacao-card h3,
+  .avaliacao-step h3{
+    font-size:18px !important;
+    line-height:1.28 !important;
+  }
+
 }
 
 
@@ -1666,6 +1680,25 @@ footer{
   }
 
 
+  .page-hero h1,
+  .hero h1,
+  .property-heading h1,
+  .avaliacao-hero h1{
+    font-size:27px !important;
+    line-height:1.16 !important;
+  }
+
+
+  .section h2,
+  .avaliacao-feature-kicker h2,
+  .avaliacao-intro h2,
+  .avaliacao-method h2,
+  .avaliacao-form-copy h2{
+    font-size:23px !important;
+    line-height:1.2 !important;
+  }
+
+
   .regiao-home-img{
     aspect-ratio:16/9;
   }
@@ -1676,8 +1709,9 @@ footer{
   }
 
 
-  .regiao-home-body h3{
-    font-size:27px;
+  .regiao-home-body h3,
+  .card h3{
+    font-size:19px !important;
   }
 
 
@@ -1704,7 +1738,7 @@ footer{
 
 
   .modal-body h2{
-    font-size:32px;
+    font-size:23px;
   }
 
 
@@ -1764,664 +1798,6 @@ footer{
 
   .whatsapp-float-text{
     white-space:nowrap;
-  }
-/* =====================================================
-   AJUSTES PIEMONTE
-   REGIÕES • CÓDIGO PB • PARCERIAS
-===================================================== */
-
-
-/* =====================================================
-   CÓDIGO PB NOS CARDS
-===================================================== */
-
-.property-code-card{
-  display:inline-flex;
-  align-items:center;
-
-  width:max-content;
-
-  margin:0 0 10px;
-
-  padding:5px 8px;
-
-  border:1px solid rgba(153,118,58,.32);
-
-  background:rgba(201,164,92,.08);
-
-  color:#8c6c34;
-
-  font-size:10px;
-  font-weight:700;
-
-  letter-spacing:.12em;
-
-  text-transform:uppercase;
-}
-
-
-/* =====================================================
-   PÁGINA DE REGIÕES
-===================================================== */
-
-.regioes-page{
-  background:#f7f5ef;
-}
-
-
-.regioes-page .section-head{
-  margin-bottom:38px;
-}
-
-
-.regioes-page-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,minmax(0,1fr));
-
-  gap:24px;
-}
-
-
-/* =====================================================
-   CARDS DAS REGIÕES
-===================================================== */
-
-.regiao-home-card{
-  display:block;
-
-  overflow:hidden;
-
-  background:#fff;
-
-  border:1px solid #e6e2da;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-
-.regiao-home-card:hover{
-  transform:translateY(-3px);
-
-  box-shadow:
-    0 18px 45px
-    rgba(0,0,0,.09);
-}
-
-
-.regiao-home-img{
-  width:100%;
-
-  aspect-ratio:16/10;
-
-  overflow:hidden;
-
-  background:#e7e3da;
-}
-
-
-.regiao-home-img img{
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-  object-position:center;
-
-  transition:
-    transform .4s ease;
-}
-
-
-.regiao-home-card:hover
-.regiao-home-img img{
-  transform:scale(1.035);
-}
-
-
-.regiao-home-body{
-  padding:25px;
-}
-
-
-.regiao-home-body h3{
-  margin:0 0 12px;
-
-  font-size:30px;
-
-  line-height:1.08;
-
-  color:var(--deep);
-}
-
-
-.regiao-home-body p{
-  margin:0;
-
-  color:var(--muted);
-
-  font-size:14px;
-
-  line-height:1.65;
-}
-
-
-/* =====================================================
-   PÁGINA PARCERIAS
-===================================================== */
-
-.partnership-page{
-  background:#f7f5ef;
-}
-
-
-.partnership-layout{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,.85fr)
-    minmax(0,1.15fr);
-
-  gap:70px;
-
-  align-items:start;
-}
-
-
-.partnership-copy h2{
-  margin:8px 0 24px;
-
-  font-size:
-    clamp(
-      38px,
-      4vw,
-      58px
-    );
-
-  line-height:1.05;
-}
-
-
-.partnership-copy
-> p:not(.eyebrow){
-  max-width:520px;
-
-  color:var(--muted);
-
-  font-size:16px;
-
-  line-height:1.8;
-}
-
-
-/* =====================================================
-   CARD DO FORMULÁRIO DE PARCERIAS
-===================================================== */
-
-.partnership-form-card{
-  padding:38px;
-
-  background:#fff;
-
-  border:1px solid var(--line);
-
-  box-shadow:
-    0 18px 50px
-    rgba(0,0,0,.06);
-}
-
-
-.partnership-form-card
-.form-grid{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:18px;
-}
-
-
-.partnership-form-card label{
-  display:block;
-
-  margin-bottom:8px;
-
-  color:#27312c;
-
-  font-size:13px;
-
-  font-weight:700;
-}
-
-
-.partnership-form-card input,
-.partnership-form-card select,
-.partnership-form-card textarea{
-  width:100%;
-
-  border:
-    1px solid #d9d5ca;
-
-  background:#fff;
-
-  color:var(--ink);
-
-  outline:none;
-}
-
-
-.partnership-form-card input,
-.partnership-form-card select{
-  min-height:50px;
-
-  padding:0 14px;
-}
-
-
-.partnership-form-card textarea{
-  padding:14px;
-
-  resize:vertical;
-}
-
-
-.partnership-form-card input:focus,
-.partnership-form-card select:focus,
-.partnership-form-card textarea:focus{
-  border-color:var(--gold);
-
-  box-shadow:
-    0 0 0 2px
-    rgba(201,164,92,.12);
-}
-
-
-.partnership-form-card
-.form-field{
-  margin-top:18px;
-}
-
-
-.partnership-submit{
-  margin-top:22px;
-}
-
-
-.form-privacy{
-  margin:14px 0 0;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  line-height:1.55;
-}
-
-
-/* =====================================================
-   GARANTIA DE ENQUADRAMENTO DOS CARDS
-===================================================== */
-
-.card-img{
-  overflow:hidden;
-}
-
-
-.card-img img{
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-  object-position:center;
-}
-
-
-/* =====================================================
-   RESPONSIVO — TABLET
-===================================================== */
-
-@media(max-width:900px){
-
-  .regioes-page-grid{
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-  }
-
-
-  .partnership-layout{
-    grid-template-columns:1fr;
-
-    gap:38px;
-  }
-
-}
-
-
-/* =====================================================
-   RESPONSIVO — CELULAR
-===================================================== */
-
-@media(max-width:620px){
-
-  .regioes-page-grid{
-    grid-template-columns:1fr;
-  }
-
-
-  .partnership-form-card{
-    padding:24px 20px;
-  }
-
-
-  .partnership-form-card
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-
-  .regiao-home-img{
-    aspect-ratio:16/9;
-  }
-
-
-  .regiao-home-body{
-    padding:22px;
-  }
-
-
-  .regiao-home-body h3{
-    font-size:27px;
-  }
-
-}
-/* =====================================================
-   CORREÇÃO — TÍTULO "ONDE ATUAMOS"
-===================================================== */
-
-.section-head{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
-  gap:40px;
-  align-items:end;
-}
-
-.section-head > div{
-  min-width:0;
-}
-
-.section-head h2{
-  margin:0;
-  white-space:normal;
-  word-break:normal;
-  overflow-wrap:normal;
-  line-height:1.08;
-}
-
-@media(max-width:800px){
-
-  .section-head{
-    grid-template-columns:1fr;
-    gap:18px;
-    align-items:start;
-  }
-
-}
-@media(min-width:801px){
-  .section-head h2{
-    white-space:nowrap;
-  }
-}
-/* =====================================================
-   CORREÇÃO DEFINITIVA — PÁGINA REGIÕES
-===================================================== */
-
-.regioes-page .section-head,
-body .section-head{
-  display:grid;
-  grid-template-columns:minmax(320px, 420px) minmax(0, 1fr);
-  gap:70px;
-  align-items:end;
-}
-
-.regioes-page .section-head > div,
-body .section-head > div{
-  min-width:0;
-}
-
-.regioes-page .section-head h2,
-body .section-head h2{
-  margin:0;
-  font-size:clamp(42px,4.2vw,64px);
-  line-height:1;
-  white-space:nowrap;
-  word-break:normal;
-  overflow-wrap:normal;
-}
-
-.regioes-page .section-head p,
-body .section-head p{
-  margin:0;
-  max-width:620px;
-  font-size:15px;
-  line-height:1.6;
-  color:var(--muted);
-}
-
-/* cards */
-.regioes-home-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:24px;
-  width:100%;
-}
-
-.regiao-home-card{
-  min-width:0;
-}
-
-/* tablet */
-@media(max-width:900px){
-
-  .regioes-page .section-head,
-  body .section-head{
-    grid-template-columns:1fr;
-    gap:18px;
-    align-items:start;
-  }
-
-  .regioes-page .section-head h2,
-  body .section-head h2{
-    white-space:normal;
-  }
-
-  .regioes-home-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-}
-
-/* celular */
-@media(max-width:620px){
-
-  .regioes-home-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-/* =====================================================
-   REGIÕES — CABEÇALHO "ONDE ATUAMOS"
-   CORREÇÃO ISOLADA
-===================================================== */
-
-.regioes-titulo-area{
-  width:100% !important;
-
-  display:flex !important;
-  flex-direction:row !important;
-
-  align-items:flex-end !important;
-  justify-content:space-between !important;
-
-  gap:80px !important;
-
-  margin:0 0 38px !important;
-}
-
-.regioes-titulo-esquerda{
-  display:block !important;
-
-  flex:0 0 auto !important;
-
-  width:auto !important;
-  min-width:max-content !important;
-  max-width:none !important;
-}
-
-.regioes-titulo-esquerda .eyebrow{
-  display:block !important;
-
-  margin:0 0 10px !important;
-}
-
-.regioes-titulo-esquerda h2{
-  display:block !important;
-
-  width:auto !important;
-  min-width:max-content !important;
-  max-width:none !important;
-
-  margin:0 !important;
-
-  font-size:clamp(44px,4.3vw,64px) !important;
-  line-height:1 !important;
-
-  white-space:nowrap !important;
-
-  word-break:keep-all !important;
-  overflow-wrap:normal !important;
-  hyphens:none !important;
-}
-
-.regioes-titulo-texto{
-  flex:1 1 auto !important;
-
-  width:auto !important;
-  max-width:620px !important;
-
-  margin-left:auto !important;
-}
-
-.regioes-titulo-texto p{
-  width:100% !important;
-
-  margin:0 !important;
-
-  font-size:15px !important;
-  line-height:1.6 !important;
-
-  white-space:normal !important;
-
-  word-break:normal !important;
-  overflow-wrap:normal !important;
-}
-
-
-/* TABLET / CELULAR */
-
-@media(max-width:800px){
-
-  .regioes-titulo-area{
-    display:block !important;
-
-    margin-bottom:30px !important;
-  }
-
-  .regioes-titulo-esquerda{
-    width:100% !important;
-    min-width:0 !important;
-  }
-
-  .regioes-titulo-esquerda h2{
-    width:100% !important;
-    min-width:0 !important;
-
-    white-space:normal !important;
-
-    font-size:42px !important;
-  }
-
-  .regioes-titulo-texto{
-    width:100% !important;
-    max-width:600px !important;
-
-    margin:20px 0 0 !important;
-  }
-
-}
-/* =========================================================
-   TÍTULOS PRINCIPAIS DAS PÁGINAS — PIEMONTE
-========================================================= */
-
-body .page-hero h1,
-body .property-heading h1,
-body .avaliacao-hero h1,
-body .hero h1 {
-  font-size: 30px !important;
-  line-height: 1.15 !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.01em !important;
-}
-
-/* CELULAR */
-@media (max-width: 600px) {
-
-  body .page-hero h1,
-  body .property-heading h1,
-  body .avaliacao-hero h1,
-  body .hero h1 {
-    font-size: 25px !important;
-    line-height: 1.18 !important;
-  }
-
-}
-/* =========================================================
-   TÍTULOS MENORES — DESKTOP
-========================================================= */
-
-@media (min-width: 769px) {
-
-  h1,
-  .hero h1,
-  .page-hero h1,
-  .property-heading h1,
-  .avaliacao-hero h1 {
-    font-size: 30px !important;
-    line-height: 1.16 !important;
-  }
-
-  h2,
-  .section h2,
-  .section-head h2,
-  .areas-feature-content h2,
-  .avaliacao-feature-kicker h2,
-  .avaliacao-intro h2,
-  .avaliacao-method h2,
-  .avaliacao-form-copy h2,
-  .dark-section h2,
-  .split h2 {
-    font-size: 24px !important;
-    line-height: 1.2 !important;
-  }
-
-  h3,
-  .card h3,
-  .avaliacao-feature-content h3,
-  .avaliacao-card h3,
-  .avaliacao-step h3 {
-    font-size: 18px !important;
-    line-height: 1.28 !important;
   }
 
 }
