@@ -2386,3 +2386,12 @@ body .hero h1 {
   }
 
 }
+
+/* TESTE PIEMONTE */
+.page-hero h1,
+.hero h1,
+.property-heading h1,
+.avaliacao-hero h1 {
+  font-size: 18px !important;
+  color: red !important;
+}
