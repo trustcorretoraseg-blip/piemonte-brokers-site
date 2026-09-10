@@ -1835,17 +1835,15 @@ function filtrar() {
           regiaoPrincipal do Admin.
         */
 
-        const regiaoItem =
-          normalizarTexto(
-            item.regiaoPrincipal
-          );
+       const regiaoPrincipalItem =
+  normalizarTexto(
+    item.regiaoPrincipal
+  );
 
-
-        const tipoItem =
-          normalizarTexto(
-            item.tipo
-          );
-
+const cidadeItem =
+  normalizarTexto(
+    item.cidade
+  );
 
         return (
 
@@ -1866,11 +1864,14 @@ function filtrar() {
           &&
 
           (
-            !regiaoNormalizada ||
-            regiaoItem ===
-              regiaoNormalizada
-          )
+  !regiaoNormalizada ||
 
+  regiaoPrincipalItem ===
+    regiaoNormalizada ||
+
+  cidadeItem ===
+    regiaoNormalizada
+)
           &&
 
           (
@@ -2325,6 +2326,118 @@ document.addEventListener(
     setTimeout(
       corrigirFiltrosPrincipais,
       1000
+    );
+
+  }
+);
+
+/* =========================================================
+   REGIÕES / CIDADES DINÂMICAS
+========================================================= */
+
+function atualizarRegioesCidades() {
+
+  const campo =
+    document.querySelector("#fCidade");
+
+  if (!campo) return;
+
+
+  campo.innerHTML = `
+    <option value="">
+      Regiões / Cidades
+    </option>
+  `;
+
+
+  const locais = [];
+
+
+  PORTFOLIO.forEach(
+    item => {
+
+      /*
+        Região principal
+      */
+
+      if (
+        item.regiaoPrincipal &&
+        !locais.includes(
+          item.regiaoPrincipal
+        )
+      ) {
+
+        locais.push(
+          item.regiaoPrincipal
+        );
+
+      }
+
+
+      /*
+        Cidade
+      */
+
+      if (
+        item.cidade &&
+        !locais.includes(
+          item.cidade
+        )
+      ) {
+
+        locais.push(
+          item.cidade
+        );
+
+      }
+
+    }
+  );
+
+
+  locais
+    .sort(
+      (a, b) =>
+        String(a).localeCompare(
+          String(b),
+          "pt-BR"
+        )
+    )
+    .forEach(
+      local => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          local;
+
+        option.textContent =
+          local;
+
+        campo.appendChild(
+          option
+        );
+
+      }
+    );
+
+}
+
+
+/*
+  Aguarda o portfolio.json ser carregado
+*/
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    setTimeout(
+      atualizarRegioesCidades,
+      1200
     );
 
   }
