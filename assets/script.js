@@ -2257,36 +2257,65 @@ document.addEventListener(
 );
 
 /* =========================================================
-   CORREÇÃO FINALIDADE - VENDA E LOCAÇÃO
+   CORREÇÃO DOS FILTROS - CATEGORIA E FINALIDADE
 ========================================================= */
 
-function corrigirFinalidades() {
+function corrigirFiltrosPrincipais() {
 
-  const campo =
+  const categoria =
+    document.querySelector("#fCategoria");
+
+  const finalidade =
     document.querySelector("#fNegocio");
 
-  if (!campo) return;
 
-  campo.innerHTML = `
-    <option value="">
-      Finalidade
-    </option>
+  /* CATEGORIA */
 
-    <option value="Venda">
-      Venda
-    </option>
+  if (categoria) {
 
-    <option value="Locação">
-      Locação
-    </option>
-  `;
+    categoria.innerHTML = `
+      <option value="">
+        Categoria
+      </option>
+
+      <option value="Imóvel">
+        Imóvel
+      </option>
+
+      <option value="Área">
+        Área
+      </option>
+    `;
+
+  }
+
+
+  /* FINALIDADE */
+
+  if (finalidade) {
+
+    finalidade.innerHTML = `
+      <option value="">
+        Finalidade
+      </option>
+
+      <option value="Venda">
+        Venda
+      </option>
+
+      <option value="Locação">
+        Locação
+      </option>
+    `;
+
+  }
 
 }
 
 
 /*
-  Executa novamente depois que os dados
-  do portfólio forem carregados.
+  Executa depois que o portfólio
+  terminar de carregar.
 */
 
 document.addEventListener(
@@ -2294,9 +2323,11 @@ document.addEventListener(
   () => {
 
     setTimeout(
-      corrigirFinalidades,
+      corrigirFiltrosPrincipais,
       1000
     );
 
   }
 );
+
+
