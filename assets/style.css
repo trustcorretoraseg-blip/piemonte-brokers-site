@@ -2387,11 +2387,35 @@ body .hero h1 {
 
 }
 
-/* TESTE PIEMONTE */
-.page-hero h1,
-.hero h1,
-.property-heading h1,
-.avaliacao-hero h1 {
-  font-size: 18px !important;
-  color: red !important;
+/* =========================================================
+   TÍTULOS DAS PÁGINAS — CORREÇÃO DEFINITIVA
+========================================================= */
+
+html body main .page-hero h1,
+html body main .property-heading h1,
+html body main .avaliacao-hero h1,
+html body main .hero h1,
+html body .page-hero .container h1,
+html body .property-heading h1,
+html body .avaliacao-hero .container h1,
+html body .hero .hero-content h1 {
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+}
+
+@media (max-width: 600px) {
+
+  html body main .page-hero h1,
+  html body main .property-heading h1,
+  html body main .avaliacao-hero h1,
+  html body main .hero h1,
+  html body .page-hero .container h1,
+  html body .property-heading h1,
+  html body .avaliacao-hero .container h1,
+  html body .hero .hero-content h1 {
+    font-size: 24px !important;
+  }
+
 }
