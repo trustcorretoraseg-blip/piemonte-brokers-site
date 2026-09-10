@@ -1519,12 +1519,15 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 18px 0 24px;
-      border-bottom: 1px solid rgba(21,43,36,.12);
+      margin: 18px 0 8px;
+      padding: 18px 20px;
+      border: 1px solid rgba(21,43,36,.14);
+      background: #ffffff;
+      box-shadow: 0 8px 26px rgba(21,43,36,.05);
     }
 
     .property-share > span {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -1542,8 +1545,8 @@
       border: 1px solid rgba(21,43,36,.18);
       background: transparent;
       color: #152b24;
-      padding: 9px 12px;
-      font-size: 11px;
+      padding: 10px 13px;
+      font-size: 12px;
       cursor: pointer;
       transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
@@ -1765,13 +1768,13 @@ HEADER
     <!-- COMPARTILHAR -->
 
     <section class="property-share" aria-label="Compartilhar imóvel">
-      <span>Compartilhar</span>
+      <span>Compartilhar este imóvel</span>
       <div class="property-share-actions">
-        <button type="button" id="shareWhatsApp">WhatsApp</button>
-        <button type="button" id="shareFacebook">Facebook</button>
-        <button type="button" id="shareLinkedIn">LinkedIn</button>
-        <button type="button" id="shareNative">Mais opções</button>
-        <button type="button" id="shareCopy">Copiar link</button>
+        <button type="button" id="shareWhatsApp" aria-label="Compartilhar no WhatsApp">WhatsApp</button>
+        <button type="button" id="shareFacebook" aria-label="Compartilhar no Facebook">Facebook</button>
+        <button type="button" id="shareLinkedIn" aria-label="Compartilhar no LinkedIn">LinkedIn</button>
+        <button type="button" id="shareNative" aria-label="Abrir opções de compartilhamento">Compartilhar</button>
+        <button type="button" id="shareCopy" aria-label="Copiar link do imóvel">Copiar link</button>
       </div>
     </section>
 
@@ -2661,15 +2664,15 @@ function montarHighlights() {
 
   const dados = [
     [PROPRIEDADE.quartos, "Quartos"],
+    [PROPRIEDADE.suites, "Suítes"],
     [PROPRIEDADE.banheiros, "Banheiros"],
+    [PROPRIEDADE.vagas, "Vagas"],
     [
       PROPRIEDADE.areaConstruida
         ? `${formatarNumero(PROPRIEDADE.areaConstruida)} m²`
         : "",
       "Área construída"
-    ],
-    [PROPRIEDADE.vagas, "Vagas"],
-    [PROPRIEDADE.suites, "Suítes"]
+    ]
   ].filter(item => item[0] !== undefined && item[0] !== null && item[0] !== "");
 
   const container = $("#propertyHighlightsGrid");
