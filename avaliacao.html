@@ -12,11 +12,11 @@
 
   <meta
     name="description"
-    content="Avaliação, perícia e precificação de imóveis pela Piemonte Brokers. Análise mercadológica para decisões de venda, compra, locação e patrimônio."
+    content="Avaliação e perícia imobiliária pela Piemonte Brokers. Análise técnica e mercadológica para imóveis residenciais, comerciais, rurais, terrenos, áreas e ativos imobiliários."
   >
 
   <title>
-    Avaliação, Perícia e Precificação | Piemonte Brokers
+    Avaliação e Perícia Imobiliária | Piemonte Brokers
   </title>
 
   <link
@@ -47,10 +47,10 @@
       max-width: 850px;
       margin: 14px 0 24px;
       color: #fff;
-      font-size: clamp(42px, 6vw, 76px);
-      line-height: 1.02;
+      font-size: 30px;
+      line-height: 1.15;
       font-weight: 400;
-      letter-spacing: -.035em;
+      letter-spacing: -.025em;
     }
 
     .avaliacao-hero-copy {
@@ -95,18 +95,22 @@
 
     .avaliacao-intro h2,
     .avaliacao-method h2,
-    .avaliacao-form-copy h2 {
+    .avaliacao-form-copy h2,
+    .avaliacao-criterios h2,
+    .avaliacao-finalidades h2 {
       margin: 8px 0 22px;
       color: #17372f;
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 1.08;
+      font-size: 24px;
+      line-height: 1.2;
       font-weight: 400;
-      letter-spacing: -.025em;
+      letter-spacing: -.02em;
     }
 
     .avaliacao-intro-text p,
     .avaliacao-method p,
-    .avaliacao-form-copy p {
+    .avaliacao-form-copy p,
+    .avaliacao-criterios p,
+    .avaliacao-finalidades p {
       color: #626861;
       line-height: 1.8;
       margin: 0 0 18px;
@@ -138,7 +142,7 @@
     .avaliacao-card h3 {
       margin: 0 0 13px;
       color: #17372f;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 500;
       line-height: 1.25;
     }
@@ -148,6 +152,79 @@
       color: #6b706b;
       line-height: 1.7;
       font-size: 14px;
+    }
+
+    .avaliacao-criterios {
+      background: #17372f;
+      color: #fff;
+    }
+
+    .avaliacao-criterios .eyebrow {
+      color: #d2ad62;
+    }
+
+    .avaliacao-criterios h2 {
+      color: #fff;
+    }
+
+    .avaliacao-criterios > .container > p {
+      max-width: 760px;
+      color: rgba(255,255,255,.72);
+    }
+
+    .criterios-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 38px;
+    }
+
+    .criterio-card {
+      border-top: 1px solid rgba(210,173,98,.55);
+      padding: 24px 0 0;
+    }
+
+    .criterio-card h3 {
+      color: #fff;
+      font-size: 18px;
+      margin: 0 0 12px;
+      font-weight: 500;
+    }
+
+    .criterio-card p {
+      color: rgba(255,255,255,.70);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .avaliacao-finalidades {
+      background: #f7f5ef;
+    }
+
+    .finalidades-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .finalidade-item {
+      background: #fff;
+      border: 1px solid rgba(23,55,47,.10);
+      padding: 24px;
+    }
+
+    .finalidade-item strong {
+      display: block;
+      color: #17372f;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .finalidade-item p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
     }
 
     .avaliacao-method {
@@ -183,7 +260,7 @@
     .avaliacao-step h3 {
       margin: 0 0 8px;
       color: #17372f;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
     }
 
@@ -282,8 +359,13 @@
         gap: 38px;
       }
 
-      .avaliacao-cards {
+      .avaliacao-cards,
+      .finalidades-grid {
         grid-template-columns: 1fr;
+      }
+
+      .criterios-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
     }
@@ -295,7 +377,11 @@
       }
 
       .avaliacao-hero h1 {
-        font-size: 42px;
+        font-size: 27px;
+      }
+
+      .criterios-grid {
+        grid-template-columns: 1fr;
       }
 
       .avaliacao-form-card {
@@ -390,6 +476,10 @@
 <main>
 
 
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="avaliacao-hero">
 
   <div class="container avaliacao-hero-grid">
@@ -397,16 +487,17 @@
     <div>
 
       <p class="eyebrow">
-        AVALIAÇÃO IMOBILIÁRIA
+        AVALIAÇÃO E PERÍCIA IMOBILIÁRIA
       </p>
 
       <h1>
-        Avaliação, perícia e precificação de imóveis.
+        Avaliação e perícia imobiliária.
       </h1>
 
       <p class="avaliacao-hero-copy">
-        Referências de valor construídas com leitura de mercado,
-        análise do ativo e compreensão do contexto de cada decisão.
+        Análises técnicas e mercadológicas para apoiar decisões
+        relacionadas a imóveis residenciais, comerciais, rurais,
+        terrenos, áreas e ativos imobiliários.
       </p>
 
     </div>
@@ -415,8 +506,8 @@
 
       <p>
         Para proprietários, compradores, investidores e empresas
-        que precisam entender o valor de um imóvel com mais clareza,
-        critério e fundamentação.
+        que precisam compreender o valor e as características
+        de um imóvel com clareza, critério e fundamentação.
       </p>
 
       <div class="avaliacao-hero-actions">
@@ -429,7 +520,7 @@
         </a>
 
         <a
-          href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%2C%20per%C3%ADcia%20ou%20precifica%C3%A7%C3%A3o%20de%20um%20im%C3%B3vel."
+          href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%20ou%20per%C3%ADcia%20imobili%C3%A1ria."
           class="btn ghost"
           target="_blank"
           rel="noopener"
@@ -446,6 +537,10 @@
 </section>
 
 
+<!-- =====================================================
+     O SERVIÇO
+===================================================== -->
+
 <section class="section avaliacao-intro">
 
   <div class="container">
@@ -455,11 +550,11 @@
       <div>
 
         <p class="eyebrow dark">
-          O SERVIÇO
+          AVALIAÇÃO IMOBILIÁRIA
         </p>
 
         <h2>
-          Precificar bem é entender o imóvel além do anúncio.
+          Segurança e precisão na definição do valor de mercado.
         </h2>
 
       </div>
@@ -467,18 +562,24 @@
       <div class="avaliacao-intro-text">
 
         <p>
-          O valor de mercado de um imóvel não deve ser definido
-          apenas pela média de anúncios da região. Localização,
-          padrão construtivo, conservação, terreno, liquidez,
-          oferta concorrente e características particulares
-          interferem diretamente na precificação.
+          A avaliação imobiliária é um procedimento técnico destinado
+          à determinação do valor de mercado de um imóvel, considerando
+          suas características individuais, localização, padrão
+          construtivo, estado de conservação, infraestrutura da região
+          e comportamento do mercado imobiliário.
         </p>
 
         <p>
-          A Piemonte Brokers combina leitura mercadológica,
-          análise comparativa e experiência de negociação
-          para construir uma referência de valor adequada
-          ao objetivo apresentado pelo cliente.
+          A análise é realizada a partir de critérios técnicos,
+          pesquisa de mercado e comparação com imóveis semelhantes,
+          buscando estabelecer uma referência de valor coerente com
+          a realidade mercadológica no momento da avaliação.
+        </p>
+
+        <p>
+          Conforme a finalidade e o tipo de avaliação, podem ser
+          observadas as diretrizes técnicas aplicáveis da série
+          ABNT NBR 14653, referência nacional para avaliação de bens.
         </p>
 
       </div>
@@ -497,8 +598,9 @@
         </h3>
 
         <p>
-          Estimativa de valor de mercado com base no imóvel,
-          sua localização, características e referências comparáveis.
+          Determinação de referência de valor de mercado com base
+          nas características do imóvel, localização e imóveis
+          comparáveis.
         </p>
 
       </article>
@@ -509,12 +611,12 @@
         <small>02</small>
 
         <h3>
-          Precificação estratégica
+          Perícia imobiliária
         </h3>
 
         <p>
-          Definição de faixa de preço para venda ou locação
-          considerando posicionamento, concorrência e liquidez.
+          Análise técnica do imóvel de acordo com a natureza da
+          demanda, finalidade e documentação disponível.
         </p>
 
       </article>
@@ -525,13 +627,13 @@
         <small>03</small>
 
         <h3>
-          Perícia e análise técnica
+          Análise para tomada de decisão
         </h3>
 
         <p>
-          Análise conforme a natureza da demanda e o escopo
-          solicitado, observando a habilitação profissional
-          aplicável a cada finalidade.
+          Informações e fundamentos para apoiar decisões de compra,
+          venda, locação, investimento, patrimônio e outras situações
+          imobiliárias.
         </p>
 
       </article>
@@ -542,6 +644,209 @@
 
 </section>
 
+
+<!-- =====================================================
+     CRITÉRIOS
+===================================================== -->
+
+<section class="section avaliacao-criterios">
+
+  <div class="container">
+
+    <p class="eyebrow">
+      CRITÉRIOS DE ANÁLISE
+    </p>
+
+    <h2>
+      Cada imóvel é analisado de forma individual.
+    </h2>
+
+    <p>
+      A formação do valor depende de um conjunto de características
+      próprias do ativo e do mercado em que ele está inserido.
+    </p>
+
+
+    <div class="criterios-grid">
+
+      <article class="criterio-card">
+
+        <h3>
+          Localização
+        </h3>
+
+        <p>
+          Região, condomínio, acessibilidade, infraestrutura,
+          entorno, posição e características específicas da
+          localização.
+        </p>
+
+      </article>
+
+
+      <article class="criterio-card">
+
+        <h3>
+          Características do imóvel
+        </h3>
+
+        <p>
+          Área de terreno, área construída, padrão construtivo,
+          idade, conservação, arquitetura, acabamentos,
+          benfeitorias e diferenciais.
+        </p>
+
+      </article>
+
+
+      <article class="criterio-card">
+
+        <h3>
+          Mercado imobiliário
+        </h3>
+
+        <p>
+          Pesquisa de imóveis comparáveis, ofertas disponíveis,
+          referências de mercado e comportamento dos preços
+          na região.
+        </p>
+
+      </article>
+
+
+      <article class="criterio-card">
+
+        <h3>
+          Vocação e liquidez
+        </h3>
+
+        <p>
+          Potencial de comercialização, perfil de demanda,
+          público comprador e posicionamento do ativo perante
+          imóveis concorrentes.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINALIDADES
+===================================================== -->
+
+<section class="section avaliacao-finalidades">
+
+  <div class="container">
+
+    <p class="eyebrow dark">
+      QUANDO REALIZAR UMA AVALIAÇÃO
+    </p>
+
+    <h2>
+      Diferentes decisões exigem uma leitura adequada do imóvel.
+    </h2>
+
+
+    <div class="finalidades-grid">
+
+      <div class="finalidade-item">
+
+        <strong>
+          Compra e venda
+        </strong>
+
+        <p>
+          Apoio para compreender o valor de mercado antes de
+          negociar um imóvel.
+        </p>
+
+      </div>
+
+
+      <div class="finalidade-item">
+
+        <strong>
+          Locação
+        </strong>
+
+        <p>
+          Referência para definição ou revisão do valor de
+          locação de um ativo.
+        </p>
+
+      </div>
+
+
+      <div class="finalidade-item">
+
+        <strong>
+          Inventário e patrimônio
+        </strong>
+
+        <p>
+          Apoio na identificação do valor de ativos imobiliários
+          para organização patrimonial.
+        </p>
+
+      </div>
+
+
+      <div class="finalidade-item">
+
+        <strong>
+          Investimentos
+        </strong>
+
+        <p>
+          Análise do imóvel e de seu posicionamento dentro do
+          mercado para decisões de investimento.
+        </p>
+
+      </div>
+
+
+      <div class="finalidade-item">
+
+        <strong>
+          Imóveis comerciais e industriais
+        </strong>
+
+        <p>
+          Avaliação de ativos corporativos, comerciais,
+          industriais e logísticos.
+        </p>
+
+      </div>
+
+
+      <div class="finalidade-item">
+
+        <strong>
+          Áreas e imóveis rurais
+        </strong>
+
+        <p>
+          Análise de terrenos, glebas, propriedades rurais e
+          outros ativos com características específicas.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     METODOLOGIA
+===================================================== -->
 
 <section class="section avaliacao-method">
 
@@ -558,14 +863,16 @@
       </h2>
 
       <p>
-        O nível de profundidade e a documentação necessária
-        variam conforme o tipo de imóvel e a finalidade da análise.
+        O nível de profundidade, a metodologia e a documentação
+        necessária variam conforme o tipo de imóvel e a finalidade
+        da avaliação ou perícia.
       </p>
 
       <div class="avaliacao-nota">
-        Em demandas judiciais, bancárias ou que exijam laudo técnico
-        com atribuição profissional específica, o atendimento é
-        condicionado ao escopo e à habilitação técnica exigida.
+        Em demandas judiciais, bancárias ou situações que exijam
+        laudo técnico com atribuição profissional específica,
+        o atendimento depende do escopo, da finalidade e da
+        habilitação profissional exigida para o serviço.
       </div>
 
     </div>
@@ -578,11 +885,16 @@
         <strong>01</strong>
 
         <div>
-          <h3>Entendimento da finalidade</h3>
+
+          <h3>
+            Entendimento da finalidade
+          </h3>
+
           <p>
-            Identificamos o objetivo: venda, compra, locação,
-            patrimônio, inventário, investimento ou outra demanda.
+            Identificamos o objetivo da análise e a necessidade
+            apresentada pelo cliente.
           </p>
+
         </div>
 
       </div>
@@ -593,11 +905,17 @@
         <strong>02</strong>
 
         <div>
-          <h3>Levantamento do imóvel</h3>
+
+          <h3>
+            Levantamento do imóvel
+          </h3>
+
           <p>
-            Reunimos dados do ativo, áreas, padrão, condição,
-            localização e informações relevantes para a análise.
+            Reunimos informações sobre áreas, padrão construtivo,
+            conservação, localização, documentação e características
+            relevantes do ativo.
           </p>
+
         </div>
 
       </div>
@@ -608,11 +926,16 @@
         <strong>03</strong>
 
         <div>
-          <h3>Pesquisa e comparação</h3>
+
+          <h3>
+            Pesquisa e comparação
+          </h3>
+
           <p>
-            Analisamos ofertas, transações e imóveis comparáveis,
-            além de fatores que influenciam liquidez e percepção de valor.
+            Analisamos o mercado, imóveis comparáveis e fatores
+            que influenciam valor, demanda e liquidez.
           </p>
+
         </div>
 
       </div>
@@ -623,11 +946,16 @@
         <strong>04</strong>
 
         <div>
-          <h3>Conclusão e orientação</h3>
+
+          <h3>
+            Conclusão da análise
+          </h3>
+
           <p>
             Apresentamos a referência de valor e os principais
-            fundamentos que sustentam a precificação proposta.
+            fundamentos considerados na avaliação.
           </p>
+
         </div>
 
       </div>
@@ -638,6 +966,10 @@
 
 </section>
 
+
+<!-- =====================================================
+     FORMULÁRIO
+===================================================== -->
 
 <section
   class="section avaliacao-form-section"
@@ -653,17 +985,17 @@
       </p>
 
       <h2>
-        Solicite uma análise do seu imóvel.
+        Solicite uma avaliação ou perícia imobiliária.
       </h2>
 
       <p>
-        Envie as informações principais. Nossa equipe entra
-        em contato para entender o imóvel, a finalidade
-        da avaliação e o nível de análise necessário.
+        Envie as principais informações do imóvel. Nossa equipe
+        entrará em contato para compreender a finalidade da análise
+        e o nível de serviço necessário.
       </p>
 
       <a
-        href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20de%20im%C3%B3vel."
+        href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20ou%20per%C3%ADcia%20imobili%C3%A1ria."
         class="btn gold avaliacao-whatsapp"
         target="_blank"
         rel="noopener"
@@ -693,18 +1025,22 @@
         <input
           type="hidden"
           name="origem"
-          value="Página Avaliação Imobiliária"
+          value="Página Avaliação e Perícia Imobiliária"
         >
 
         <p style="display:none;">
+
           <label>
             Não preencher:
+
             <input
               name="bot-field"
               tabindex="-1"
               autocomplete="off"
             >
+
           </label>
+
         </p>
 
 
@@ -771,9 +1107,11 @@
               name="tipo_imovel"
               required
             >
+
               <option value="">
                 Selecione
               </option>
+
               <option>Casa</option>
               <option>Apartamento</option>
               <option>Terreno</option>
@@ -782,6 +1120,7 @@
               <option>Galpão / Industrial</option>
               <option>Imóvel rural</option>
               <option>Outro</option>
+
             </select>
 
           </div>
@@ -814,15 +1153,19 @@
               name="finalidade"
               required
             >
+
               <option value="">
                 Selecione
               </option>
+
               <option>Venda</option>
               <option>Compra</option>
               <option>Locação</option>
               <option>Inventário / Patrimônio</option>
               <option>Investimento</option>
+              <option>Perícia imobiliária</option>
               <option>Outra</option>
+
             </select>
 
           </div>
@@ -837,7 +1180,7 @@
             <textarea
               id="avaliacaoMensagem"
               name="mensagem"
-              placeholder="Ex.: localização, área aproximada, condomínio, finalidade da avaliação e outras informações relevantes."
+              placeholder="Ex.: localização, área aproximada, condomínio, finalidade da avaliação ou perícia e outras informações relevantes."
             ></textarea>
 
           </div>
