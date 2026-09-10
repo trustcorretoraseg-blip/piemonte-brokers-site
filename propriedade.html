@@ -1516,45 +1516,78 @@
 
     .property-share {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin: 18px 0 8px;
-      padding: 18px 20px;
-      border: 1px solid rgba(21,43,36,.14);
-      background: #ffffff;
-      box-shadow: 0 8px 26px rgba(21,43,36,.05);
-    }
-
-    .property-share > span {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(21,43,36,.58);
-    }
-
-    .property-share-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
       justify-content: flex-end;
+      margin: 18px 0 8px;
+      position: relative;
+      z-index: 35;
     }
 
-    .property-share-actions button {
-      border: 1px solid rgba(21,43,36,.18);
+    .share-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .share-main-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border: 1px solid rgba(21,43,36,.22);
+      background: #fff;
+      color: #152b24;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .25s ease, color .25s ease, border-color .25s ease;
+    }
+
+    .share-main-button:hover,
+    .share-main-button[aria-expanded="true"] {
+      background: #152b24;
+      color: #fff;
+      border-color: #152b24;
+    }
+
+    .share-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .share-fallback-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      min-width: 210px;
+      padding: 8px;
+      background: #fff;
+      border: 1px solid rgba(21,43,36,.12);
+      box-shadow: 0 14px 36px rgba(21,43,36,.16);
+      z-index: 60;
+    }
+
+    .share-fallback-menu[hidden] {
+      display: none !important;
+    }
+
+    .share-fallback-menu a,
+    .share-fallback-menu button {
+      display: block;
+      width: 100%;
+      padding: 11px 12px;
+      border: 0;
       background: transparent;
       color: #152b24;
-      padding: 10px 13px;
-      font-size: 12px;
+      text-align: left;
+      text-decoration: none;
+      font: inherit;
+      font-size: 13px;
       cursor: pointer;
-      transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
 
-    .property-share-actions button:hover {
-      background: #12372d;
-      border-color: #12372d;
-      color: #fff;
+    .share-fallback-menu a:hover,
+    .share-fallback-menu button:hover {
+      background: #f4f2ec;
     }
 
     @media (max-width: 900px) {
@@ -1576,8 +1609,10 @@
       .gallery-arrow-right { right: 5px; }
       .property-gallery-premium .gallery-button { bottom: 12px; padding: 9px 11px; }
       .gallery-counter { right: 8px; bottom: 12px; }
-      .property-share { align-items: flex-start; flex-direction: column; }
-      .property-share-actions { justify-content: flex-start; }
+      .property-share { justify-content: stretch; }
+      .share-wrapper { width: 100%; }
+      .share-main-button { width: 100%; }
+      .share-fallback-menu { left: 0; right: 0; min-width: 0; }
     }
 
   </style>
@@ -1768,13 +1803,29 @@ HEADER
     <!-- COMPARTILHAR -->
 
     <section class="property-share" aria-label="Compartilhar imóvel">
-      <span>Compartilhar este imóvel</span>
-      <div class="property-share-actions">
-        <button type="button" id="shareWhatsApp" aria-label="Compartilhar no WhatsApp">WhatsApp</button>
-        <button type="button" id="shareFacebook" aria-label="Compartilhar no Facebook">Facebook</button>
-        <button type="button" id="shareLinkedIn" aria-label="Compartilhar no LinkedIn">LinkedIn</button>
-        <button type="button" id="shareNative" aria-label="Abrir opções de compartilhamento">Compartilhar</button>
-        <button type="button" id="shareCopy" aria-label="Copiar link do imóvel">Copiar link</button>
+      <div class="share-wrapper">
+        <button
+          type="button"
+          class="share-main-button"
+          id="shareButton"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="share-icon" aria-hidden="true">↗</span>
+          Compartilhar
+        </button>
+
+        <div
+          class="share-fallback-menu"
+          id="shareFallbackMenu"
+          hidden
+        >
+          <a id="shareWhatsApp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a id="shareEmail">E-mail</a>
+          <a id="shareFacebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a id="shareLinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <button type="button" id="shareCopy">Copiar link</button>
+        </div>
       </div>
     </section>
 
@@ -2884,60 +2935,92 @@ function montarWhatsApp() {
 ===================================================== */
 
 function montarCompartilhamento() {
-  const url = window.location.href;
-  const titulo = PROPRIEDADE.titulo || "Imóvel Piemonte Brokers";
-  const texto = `${titulo}${PROPRIEDADE.precoTexto ? ` — ${PROPRIEDADE.precoTexto}` : ""}`;
-
-  const whats = $("#shareWhatsApp");
-  const face = $("#shareFacebook");
+  const botao = $("#shareButton");
+  const menu = $("#shareFallbackMenu");
+  const whatsapp = $("#shareWhatsApp");
+  const email = $("#shareEmail");
+  const facebook = $("#shareFacebook");
   const linkedin = $("#shareLinkedIn");
-  const nativeBtn = $("#shareNative");
-  const copy = $("#shareCopy");
+  const copiar = $("#shareCopy");
 
-  if (whats) {
-    whats.onclick = () => {
-      window.open(`https://wa.me/?text=${encodeURIComponent(texto + "\n" + url)}`, "_blank", "noopener");
-    };
+  if (!botao || !menu || !PROPRIEDADE) {
+    return;
   }
 
-  if (face) {
-    face.onclick = () => {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, "_blank", "noopener,noreferrer,width=700,height=600");
-    };
+  const url = window.location.href;
+  const titulo = PROPRIEDADE.titulo || "Imóvel Piemonte Brokers";
+  const local = montarLocalizacao(PROPRIEDADE);
+  const preco = PROPRIEDADE.precoTexto || "Consulte";
+  const textoCurto = [titulo, local, preco].filter(Boolean).join(" — ");
+  const textoCompleto = `${textoCurto}\n${url}`;
+
+  function abrirMenuFallback() {
+    menu.hidden = false;
+    botao.setAttribute("aria-expanded", "true");
+  }
+
+  function fecharMenuFallback() {
+    menu.hidden = true;
+    botao.setAttribute("aria-expanded", "false");
+  }
+
+  botao.onclick = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: titulo,
+          text: textoCurto,
+          url
+        });
+        return;
+      } catch (erro) {
+        if (erro && erro.name === "AbortError") {
+          return;
+        }
+      }
+    }
+
+    if (menu.hidden) {
+      abrirMenuFallback();
+    } else {
+      fecharMenuFallback();
+    }
+  };
+
+  if (whatsapp) {
+    whatsapp.href = `https://wa.me/?text=${encodeURIComponent(textoCompleto)}`;
+  }
+
+  if (email) {
+    email.href = `mailto:?subject=${encodeURIComponent(titulo)}&body=${encodeURIComponent(textoCompleto)}`;
+  }
+
+  if (facebook) {
+    facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
   }
 
   if (linkedin) {
-    linkedin.onclick = () => {
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, "_blank", "noopener,noreferrer,width=700,height=600");
-    };
+    linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
   }
 
-  if (nativeBtn) {
-    if (navigator.share) {
-      nativeBtn.onclick = async () => {
-        try {
-          await navigator.share({ title: titulo, text: texto, url });
-        } catch (erro) {
-          if (erro && erro.name !== "AbortError") console.error(erro);
-        }
-      };
-    } else {
-      nativeBtn.style.display = "none";
-    }
-  }
-
-  if (copy) {
-    copy.onclick = async () => {
+  if (copiar) {
+    copiar.onclick = async () => {
       try {
         await navigator.clipboard.writeText(url);
-        const original = copy.textContent;
-        copy.textContent = "Link copiado";
-        setTimeout(() => { copy.textContent = original; }, 1800);
+        copiar.textContent = "Link copiado";
+        setTimeout(() => { copiar.textContent = "Copiar link"; }, 1800);
       } catch (erro) {
         window.prompt("Copie o link deste imóvel:", url);
       }
     };
   }
+
+  document.addEventListener("click", evento => {
+    const wrapper = botao.closest(".share-wrapper");
+    if (wrapper && !wrapper.contains(evento.target)) {
+      fecharMenuFallback();
+    }
+  });
 }
 
 
