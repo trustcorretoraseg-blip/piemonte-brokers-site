@@ -2386,9 +2386,8 @@ body .hero h1 {
   }
 
 }
-
 /* =========================================================
-   REDUÇÃO GLOBAL DOS TÍTULOS — DESKTOP
+   TÍTULOS MENORES — DESKTOP
 ========================================================= */
 
 @media (min-width: 769px) {
@@ -2398,8 +2397,8 @@ body .hero h1 {
   .page-hero h1,
   .property-heading h1,
   .avaliacao-hero h1 {
-    font-size: 32px !important;
-    line-height: 1.14 !important;
+    font-size: 30px !important;
+    line-height: 1.16 !important;
   }
 
   h2,
@@ -2412,8 +2411,8 @@ body .hero h1 {
   .avaliacao-form-copy h2,
   .dark-section h2,
   .split h2 {
-    font-size: 26px !important;
-    line-height: 1.18 !important;
+    font-size: 24px !important;
+    line-height: 1.2 !important;
   }
 
   h3,
@@ -2421,8 +2420,8 @@ body .hero h1 {
   .avaliacao-feature-content h3,
   .avaliacao-card h3,
   .avaliacao-step h3 {
-    font-size: 19px !important;
-    line-height: 1.25 !important;
+    font-size: 18px !important;
+    line-height: 1.28 !important;
   }
 
 }
