@@ -1321,37 +1321,121 @@ function renderInicial() {
 
 
   if (
-    pagina === "home"
-  ) {
+  pagina === "home"
+) {
 
-    const destaques =
-      lista
-        .filter(
-          item =>
-            item.destaque === true
+  /*
+    SELEÇÃO PIEMONTE
+
+    - Imóveis marcados como destaque continuam aparecendo.
+    - ordemDestaque define quem vem primeiro.
+    - Se houver números repetidos, nenhum imóvel desaparece.
+    - Quem não tiver número vai para o final.
+    - A lista se reorganiza automaticamente.
+  */
+
+  const destaques =
+    lista
+      .filter(
+        item =>
+          item.destaque === true
+      )
+      .map(
+        (item, indice) => {
+
+          const ordemInformada =
+            Number(
+              item.ordemDestaque
+            );
+
+
+          return {
+
+            ...item,
+
+            _ordemPiemonte:
+              Number.isFinite(
+                ordemInformada
+              ) &&
+              ordemInformada > 0
+                ? ordemInformada
+                : 9999,
+
+            _indiceOriginal:
+              indice
+
+          };
+
+        }
+      )
+      .sort(
+        (a, b) => {
+
+          /*
+            Primeiro respeita o número
+            informado no Admin.
+          */
+
+          if (
+            a._ordemPiemonte !==
+            b._ordemPiemonte
+          ) {
+
+            return (
+              a._ordemPiemonte -
+              b._ordemPiemonte
+            );
+
+          }
+
+
+          /*
+            Se dois imóveis estiverem
+            com o mesmo número,
+            ambos continuam aparecendo.
+          */
+
+          return (
+            a._indiceOriginal -
+            b._indiceOriginal
+          );
+
+        }
+      )
+      .map(
+        (item, indice) => {
+
+          /*
+            Cria uma nova ordem apenas
+            para exibição:
+            1, 2, 3, 4...
+          */
+
+          return {
+
+            ...item,
+
+            ordemExibicao:
+              indice + 1
+
+          };
+
+        }
+      );
+
+
+  lista =
+    destaques.length
+      ? destaques.slice(
+          0,
+          6
         )
-        .sort(
-          (a, b) =>
-            Number(
-              a.ordemDestaque ?? 99
-            )
-            -
-            Number(
-              b.ordemDestaque ?? 99
-            )
+      : lista.slice(
+          0,
+          6
         );
 
-
-    lista =
-      destaques.length
-        ? destaques.slice(
-            0,
-            6
-          )
-        : lista.slice(
-            0,
-            6
-          );
+}
 
   }
 
