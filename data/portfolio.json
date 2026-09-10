@@ -972,8 +972,8 @@
       "negocio": "Venda",
       "titulo": "Belíssima casa no Condomínio Palos Verdes | Granja Viana",
       "regiaoPrincipal": "Granja Viana",
-      "cidade": "Cotia",
-      "regiao": "Granja Viana",
+      "cidade": "Granja Viana",
+      "regiao": "",
       "condominio": "Condomínio Palos Verdes",
       "tipo": "Casa",
       "preco": null,
@@ -1024,7 +1024,7 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": false,
+      "destaque": true,
       "ordemDestaque": 99
     }
   ]
