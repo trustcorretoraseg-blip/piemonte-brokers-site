@@ -1,2 +1,6 @@
 [build]
   publish = "."
+
+[[edge_functions]]
+  function = "property-og"
+  path = "/propriedade.html"
