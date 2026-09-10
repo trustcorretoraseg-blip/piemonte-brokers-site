@@ -3,39 +3,39 @@
     {
       "id": "itu-regiao",
       "nome": "Itu & Região",
-      "descricao": "Condomínios, residências, terrenos e oportunidades selecionadas em Itu e região.",
+      "descricao": "Casas, condomínios e oportunidades selecionadas em uma das regiões mais desejadas do interior paulista.",
       "imagem": "/uploads/WhatsApp Image 2026-08-28 at 20.58.06.jpeg",
-      "cidadeFiltro": "Itu e Região",
+      "cidadeFiltro": "Itu & Região",
       "destaque": true
     },
     {
       "id": "porto-feliz-regiao",
       "nome": "Porto Feliz & Região",
-      "descricao": "Imóveis e áreas em Porto Feliz e em seus principais destinos de alto padrão.",
+      "descricao": "Propriedades exclusivas em destinos que unem sofisticação, natureza e qualidade de vida.",
       "imagem": "/uploads/casa-de-luxo-7-1-1024x576.jpg",
-      "cidadeFiltro": "Porto Feliz e Região",
+      "cidadeFiltro": "Porto Feliz & Região",
       "destaque": true
     },
     {
       "id": "granja-viana",
       "nome": "Granja Viana & Alphaville",
-      "descricao": "Residências e oportunidades selecionadas na Granja Viana.",
+      "descricao": "Residencias de alto padrão em endereços consagrados, com localização e estilo de vida privilegiados.",
       "imagem": "/uploads/WhatsApp Image 2026-06-10 at 12.59.24 (4).jpeg",
-      "cidadeFiltro": "Granja Viana",
+      "cidadeFiltro": "",
       "destaque": true
     },
     {
       "id": "São Paulo",
       "nome": "São Paulo",
-      "descricao": "Casas, terrenos e oportunidades nos principais residenciais de Alphaville.",
+      "descricao": "Imóveis e oportunidades únicas nas regiões mais nobres e valorizadas de São Paulo.",
       "imagem": "/uploads/WhatsApp Image 2026-08-28 at 20.11.39.jpeg",
       "cidadeFiltro": "Alphaville",
       "destaque": true
     },
     {
       "id": "Áreas & Oportunidades",
-      "nome": "Áreas para Incorporadores e investidores.",
-      "descricao": "",
+      "nome": "Áreas, Ativos & Oportunidades",
+      "descricao": "Ativos e áreas selecionadas com alto potencial para incorporadores, investidores e desenvolvimento imobiliário.",
       "imagem": "/uploads/WhatsApp Image 2026-08-28 at 21.10.05.jpeg",
       "cidadeFiltro": "Áreas & Oportunidades",
       "destaque": true
