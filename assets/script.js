@@ -130,13 +130,9 @@ async function carregar() {
         await portfolioResp.json();
 
       PORTFOLIO =
-        Array.isArray(dados)
-          ? dados
-          : Array.isArray(dados.itens)
-            ? dados.itens
-            : Array.isArray(dados.portfolio)
-              ? dados.portfolio
-              : [];
+        Array.isArray(dados.itens)
+          ? dados.itens
+          : [];
 
     } else {
 
@@ -154,11 +150,9 @@ async function carregar() {
         await regioesResp.json();
 
       REGIOES =
-        Array.isArray(dadosRegioes)
-          ? dadosRegioes
-          : Array.isArray(dadosRegioes.itens)
-            ? dadosRegioes.itens
-            : [];
+        Array.isArray(dadosRegioes.itens)
+          ? dadosRegioes.itens
+          : [];
 
     }
 
@@ -511,6 +505,37 @@ function criarWhatsAppFlutuante() {
 
 
 /* =========================================================
+   CÓDIGO PIEMONTE
+========================================================= */
+
+function codigoPiemonte(item) {
+
+  if (
+    item &&
+    typeof item.codigo === "string" &&
+    item.codigo.trim()
+  ) {
+    return item.codigo.trim();
+  }
+
+  const indice =
+    PORTFOLIO.findIndex(
+      registro =>
+        String(registro.id) ===
+        String(item?.id)
+    );
+
+  const numero =
+    indice >= 0
+      ? indice + 1
+      : 0;
+
+  return `PB ${String(numero).padStart(4, "0")}`;
+
+}
+
+
+/* =========================================================
    REGIÕES DA HOME
 ========================================================= */
 
@@ -542,13 +567,26 @@ function renderRegioes() {
         document.createElement("a");
 
 
-      const cidadeFiltro =
-        item.cidadeFiltro || "";
+      const regiaoFiltro =
+        item.nome ||
+        item.cidadeFiltro ||
+        "";
+
+
+      const destino =
+        normalizarTexto(
+          item.id
+        ).includes("areas") ||
+        normalizarTexto(
+          regiaoFiltro
+        ).includes("areas & oportunidades")
+          ? "/areas.html"
+          : "/imoveis.html";
 
 
       link.href =
-        cidadeFiltro
-          ? `/imoveis.html?cidade=${encodeURIComponent(cidadeFiltro)}`
+        regiaoFiltro
+          ? `${destino}?regiao=${encodeURIComponent(regiaoFiltro)}`
           : "/regioes.html";
 
 
@@ -635,19 +673,6 @@ function specs(item) {
   const dados = [];
 
 
-  if (item.quartos) {
-
-    dados.push(
-      `${item.quartos} ${
-        Number(item.quartos) === 1
-          ? "dormitório"
-          : "dormitórios"
-      }`
-    );
-
-  }
-
-
   if (item.suites) {
 
     dados.push(
@@ -655,6 +680,16 @@ function specs(item) {
         Number(item.suites) === 1
           ? "suíte"
           : "suítes"
+      }`
+    );
+
+  } else if (item.quartos) {
+
+    dados.push(
+      `${item.quartos} ${
+        Number(item.quartos) === 1
+          ? "dormitório"
+          : "dormitórios"
       }`
     );
 
@@ -710,8 +745,7 @@ function adicionarOpcao(
     [...campo.options]
       .some(
         opcao =>
-          normalizarTexto(opcao.value) ===
-          normalizarTexto(valor)
+          opcao.value === valor
       );
 
 
@@ -728,7 +762,6 @@ function adicionarOpcao(
 
   option.value =
     valor;
-
 
   option.textContent =
     valor;
@@ -747,38 +780,31 @@ function adicionarOpcao(
 
 function prepararFiltros() {
 
-  let lista =
-    [...PORTFOLIO];
+  let lista = [...PORTFOLIO];
+
+  const pagina = paginaAtual();
 
 
-  const pagina =
-    paginaAtual();
+  if (pagina === "imoveis") {
 
-
-  if (
-    pagina === "imoveis"
-  ) {
-
-    lista =
-      lista.filter(
-        item =>
-          normalizarTexto(item.categoria) ===
-          "imovel"
-      );
+    lista = lista.filter(
+      item =>
+        normalizarTexto(
+          item.categoria
+        ) === "imovel"
+    );
 
   }
 
 
-  if (
-    pagina === "areas"
-  ) {
+  if (pagina === "areas") {
 
-    lista =
-      lista.filter(
-        item =>
-          normalizarTexto(item.categoria) ===
-          "area"
-      );
+    lista = lista.filter(
+      item =>
+        normalizarTexto(
+          item.categoria
+        ) === "area"
+    );
 
   }
 
@@ -786,71 +812,451 @@ function prepararFiltros() {
   const categoria =
     $("#fCategoria");
 
-  const cidade =
+  const negocio =
+    $("#fNegocio");
+
+  const regiao =
     $("#fCidade");
 
   const tipo =
     $("#fTipo");
 
 
-  const categorias =
-    [...new Set(
-      lista
-        .map(item => item.categoria)
-        .filter(Boolean)
-    )]
-      .sort();
+  /* =====================================================
+     CATEGORIA
+     MESMO CAMPO DO ADMIN
+  ===================================================== */
+
+  if (
+    categoria &&
+    categoria.tagName === "SELECT"
+  ) {
+
+    categoria.innerHTML =
+      '<option value="">Categoria</option>';
 
 
-  categorias.forEach(
-    valor =>
-      adicionarOpcao(
-        categoria,
-        valor
+    [
+      ...new Set(
+        lista
+          .map(
+            item =>
+              item.categoria
+          )
+          .filter(Boolean)
       )
-  );
+    ]
+      .sort(
+        (a, b) =>
+          String(a).localeCompare(
+            String(b),
+            "pt-BR"
+          )
+      )
+      .forEach(
+        valor =>
+          adicionarOpcao(
+            categoria,
+            valor
+          )
+      );
+
+  }
 
 
-  const regioes =
-    [...new Set(
+  /* =====================================================
+     FINALIDADE
+     MESMO CAMPO NEGÓCIO DO ADMIN
+  ===================================================== */
+
+  if (
+    negocio &&
+    negocio.tagName === "SELECT"
+  ) {
+
+    negocio.innerHTML =
+      '<option value="">Finalidade</option>';
+
+
+    [
+      ...new Set(
+        lista
+          .map(
+            item =>
+              item.negocio ||
+              item.finalidade
+          )
+          .filter(Boolean)
+      )
+    ]
+      .sort(
+        (a, b) =>
+          String(a).localeCompare(
+            String(b),
+            "pt-BR"
+          )
+      )
+      .forEach(
+        valor =>
+          adicionarOpcao(
+            negocio,
+            valor
+          )
+      );
+
+  }
+
+
+  /* =====================================================
+     REGIÃO PRINCIPAL
+     NÃO MISTURA CIDADE OU CONDOMÍNIO
+  ===================================================== */
+
+  if (
+    regiao &&
+    regiao.tagName === "SELECT"
+  ) {
+
+    regiao.innerHTML =
+      '<option value="">Região</option>';
+
+
+    let regioesPrincipais = [];
+
+
+    if (
+      Array.isArray(REGIOES) &&
+      REGIOES.length
+    ) {
+
+      regioesPrincipais =
+        REGIOES
+          .map(
+            item =>
+              item.nome ||
+              item.cidadeFiltro
+          )
+          .filter(Boolean)
+          .filter(
+            valor => {
+
+              if (
+                pagina !== "imoveis"
+              ) {
+                return true;
+              }
+
+
+              return !normalizarTexto(
+                valor
+              ).includes(
+                "areas & oportunidades"
+              );
+
+            }
+          );
+
+    }
+
+
+    const regioesDoPortfolio =
       lista
-        .flatMap(
-          item => [
-            item.regiaoPrincipal,
-            item.cidade,
-            item.regiao
-          ]
+        .map(
+          item =>
+            item.regiaoPrincipal
         )
-        .filter(Boolean)
-    )]
-      .sort();
+        .filter(Boolean);
 
 
-  regioes.forEach(
-    valor =>
-      adicionarOpcao(
-        cidade,
-        valor
+    const unicas = [];
+
+
+    [
+      ...regioesPrincipais,
+      ...regioesDoPortfolio
+    ]
+      .forEach(
+        valor => {
+
+          const existe =
+            unicas.some(
+              item =>
+                normalizarTexto(item) ===
+                normalizarTexto(valor)
+            );
+
+
+          if (!existe) {
+
+            unicas.push(
+              valor
+            );
+
+          }
+
+        }
+      );
+
+
+    unicas.forEach(
+      valor =>
+        adicionarOpcao(
+          regiao,
+          valor
+        )
+    );
+
+  }
+
+
+  /* =====================================================
+     TIPO
+  ===================================================== */
+
+  if (
+    tipo &&
+    tipo.tagName === "SELECT"
+  ) {
+
+    tipo.innerHTML =
+      '<option value="">Tipo</option>';
+
+
+    [
+      ...new Set(
+        lista
+          .map(
+            item =>
+              item.tipo
+          )
+          .filter(Boolean)
       )
-  );
-
-
-  const tipos =
-    [...new Set(
-      lista
-        .map(item => item.tipo)
-        .filter(Boolean)
-    )]
-      .sort();
-
-
-  tipos.forEach(
-    valor =>
-      adicionarOpcao(
-        tipo,
-        valor
+    ]
+      .sort(
+        (a, b) =>
+          String(a).localeCompare(
+            String(b),
+            "pt-BR"
+          )
       )
-  );
+      .forEach(
+        valor =>
+          adicionarOpcao(
+            tipo,
+            valor
+          )
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   FILTRO RECEBIDO PELA URL
+========================================================= */
+
+function aplicarFiltroDaURL() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const regiao =
+    params.get("regiao");
+  const cidade =
+    params.get("cidade");
+
+  const negocio =
+    params.get("negocio");
+
+
+  let aplicouFiltro =
+    false;
+
+
+  /* =====================================================
+     FILTRO POR REGIÃO PRINCIPAL
+  ===================================================== */
+
+  if (regiao) {
+
+    const campoRegiao =
+      $("#fCidade");
+
+
+    if (
+      campoRegiao &&
+      campoRegiao.tagName === "SELECT"
+    ) {
+
+      const regiaoNormalizada =
+        normalizarTexto(
+          regiao
+        );
+
+
+      const opcaoRegiao =
+        [...campoRegiao.options]
+          .find(
+            item =>
+              normalizarTexto(
+                item.value
+              ) ===
+              regiaoNormalizada
+          );
+
+
+      if (opcaoRegiao) {
+
+        campoRegiao.value =
+          opcaoRegiao.value;
+
+      } else {
+
+        adicionarOpcao(
+          campoRegiao,
+          regiao
+        );
+
+
+        campoRegiao.value =
+          regiao;
+
+      }
+
+
+      aplicouFiltro =
+        true;
+
+    }
+
+  }
+
+
+  /* =====================================================
+     COMPATIBILIDADE COM LINKS ANTIGOS ?cidade=
+  ===================================================== */
+
+  if (
+    cidade &&
+    !regiao
+  ) {
+
+    const campoRegiao =
+      $("#fCidade");
+
+
+    if (
+      campoRegiao &&
+      campoRegiao.tagName === "SELECT"
+    ) {
+
+      const cidadeNormalizada =
+        normalizarTexto(
+          cidade
+        );
+
+
+      const opcaoCidade =
+        [...campoRegiao.options]
+          .find(
+            item =>
+              normalizarTexto(
+                item.value
+              ) ===
+              cidadeNormalizada
+          );
+
+
+      if (opcaoCidade) {
+
+        campoRegiao.value =
+          opcaoCidade.value;
+
+        aplicouFiltro =
+          true;
+
+      }
+
+    }
+
+  }
+
+
+  /* =====================================================
+     FILTRO POR FINALIDADE
+  ===================================================== */
+
+  if (negocio) {
+
+    const campoNegocio =
+      $("#fNegocio");
+
+
+    if (
+      campoNegocio &&
+      campoNegocio.tagName === "SELECT"
+    ) {
+
+      let negocioNormalizado =
+        normalizarTexto(
+          negocio
+        );
+
+
+      /*
+        Aceita links como:
+        ?negocio=alugar
+        ?negocio=aluguel
+        ?negocio=locacao
+      */
+
+      if (
+        negocioNormalizado === "alugar" ||
+        negocioNormalizado === "aluguel" ||
+        negocioNormalizado === "locacao"
+      ) {
+
+        negocioNormalizado =
+          "locacao";
+
+      }
+
+
+      const opcaoNegocio =
+        [...campoNegocio.options]
+          .find(
+            item =>
+              normalizarTexto(
+                item.value
+              ) ===
+              negocioNormalizado
+          );
+
+
+      if (opcaoNegocio) {
+
+        campoNegocio.value =
+          opcaoNegocio.value;
+
+        aplicouFiltro =
+          true;
+
+      }
+
+    }
+
+  }
+
+
+  if (aplicouFiltro) {
+
+    filtrar();
+
+  }
 
 }
 
@@ -875,8 +1281,8 @@ function renderInicial() {
   lista =
     lista.filter(
       item =>
-        normalizarTexto(item.status) !== "vendido" &&
-        normalizarTexto(item.status) !== "indisponivel"
+        item.status !== "Vendido" &&
+        item.status !== "Indisponível"
     );
 
 
@@ -891,8 +1297,9 @@ function renderInicial() {
     lista =
       lista.filter(
         item =>
-          normalizarTexto(item.categoria) ===
-          "imovel"
+          normalizarTexto(
+            item.categoria
+          ) === "imovel"
       );
 
   }
@@ -905,8 +1312,9 @@ function renderInicial() {
     lista =
       lista.filter(
         item =>
-          normalizarTexto(item.categoria) ===
-          "area"
+          normalizarTexto(
+            item.categoria
+          ) === "area"
       );
 
   }
@@ -968,7 +1376,8 @@ function render(lista) {
   }
 
 
-  box.innerHTML = "";
+  box.innerHTML =
+    "";
 
 
   lista.forEach(
@@ -982,7 +1391,6 @@ function render(lista) {
 
       card.className =
         "card";
-
 
       card.tabIndex =
         0;
@@ -1028,9 +1436,11 @@ function render(lista) {
           ${
             item.categoria
               ? `
+
                 <span class="badge">
                   ${esc(item.categoria)}
                 </span>
+
               `
               : ""
           }
@@ -1039,6 +1449,12 @@ function render(lista) {
 
 
         <div class="card-body">
+
+          <div class="property-code-card">
+            ${esc(
+              codigoPiemonte(item)
+            )}
+          </div>
 
           <div class="meta">
             ${esc(
@@ -1309,8 +1725,8 @@ function filtrar() {
   lista =
     lista.filter(
       item =>
-        normalizarTexto(item.status) !== "vendido" &&
-        normalizarTexto(item.status) !== "indisponivel"
+        item.status !== "Vendido" &&
+        item.status !== "Indisponível"
     );
 
 
@@ -1325,8 +1741,9 @@ function filtrar() {
     lista =
       lista.filter(
         item =>
-          normalizarTexto(item.categoria) ===
-          "imovel"
+          normalizarTexto(
+            item.categoria
+          ) === "imovel"
       );
 
   }
@@ -1339,8 +1756,9 @@ function filtrar() {
     lista =
       lista.filter(
         item =>
-          normalizarTexto(item.categoria) ===
-          "area"
+          normalizarTexto(
+            item.categoria
+          ) === "area"
       );
 
   }
@@ -1356,7 +1774,7 @@ function filtrar() {
       ?.value || "";
 
 
-  const cidade =
+  const regiao =
     $("#fCidade")
       ?.value || "";
 
@@ -1371,9 +1789,9 @@ function filtrar() {
       ?.value || "";
 
 
-  const cidadeNormalizada =
+  const categoriaNormalizada =
     normalizarTexto(
-      cidade
+      categoria
     );
 
 
@@ -1383,25 +1801,25 @@ function filtrar() {
     );
 
 
+  const regiaoNormalizada =
+    normalizarTexto(
+      regiao
+    );
+
+
+  const tipoNormalizado =
+    normalizarTexto(
+      tipo
+    );
+
+
   lista =
     lista.filter(
       item => {
 
-        const regiaoPrincipal =
+        const categoriaItem =
           normalizarTexto(
-            item.regiaoPrincipal
-          );
-
-
-        const cidadeItem =
-          normalizarTexto(
-            item.cidade
-          );
-
-
-        const regiao =
-          normalizarTexto(
-            item.regiao
+            item.categoria
           );
 
 
@@ -1412,44 +1830,53 @@ function filtrar() {
           );
 
 
-        const localCorresponde =
-          !cidadeNormalizada ||
+        /*
+          REGIÃO considera somente
+          regiaoPrincipal do Admin.
+        */
 
-          regiaoPrincipal ===
-            cidadeNormalizada ||
+        const regiaoItem =
+          normalizarTexto(
+            item.regiaoPrincipal
+          );
 
-          cidadeItem ===
-            cidadeNormalizada ||
 
-          regiao ===
-            cidadeNormalizada;
+        const tipoItem =
+          normalizarTexto(
+            item.tipo
+          );
 
 
         return (
 
           (
-            !categoria ||
-            normalizarTexto(item.categoria) ===
-            normalizarTexto(categoria)
+            !categoriaNormalizada ||
+            categoriaItem ===
+              categoriaNormalizada
           )
 
           &&
 
           (
             !negocioNormalizado ||
-            negocioItem === negocioNormalizado
+            negocioItem ===
+              negocioNormalizado
           )
 
           &&
 
-          localCorresponde
+          (
+            !regiaoNormalizada ||
+            regiaoItem ===
+              regiaoNormalizada
+          )
 
           &&
 
           (
-            !tipo ||
-            normalizarTexto(item.tipo) ===
-            normalizarTexto(tipo)
+            !tipoNormalizado ||
+            tipoItem ===
+              tipoNormalizado
           )
 
           &&
@@ -1468,154 +1895,6 @@ function filtrar() {
   render(
     lista
   );
-
-}
-
-
-/* =========================================================
-   FILTROS DA URL
-========================================================= */
-
-function aplicarFiltroDaURL() {
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-
-  const cidade =
-    params.get("cidade");
-
-
-  const negocio =
-    params.get("negocio");
-
-
-  let aplicouFiltro =
-    false;
-
-
-  /* =========================
-     REGIÃO
-  ========================= */
-
-  if (cidade) {
-
-    const campoCidade =
-      $("#fCidade");
-
-
-    if (
-      campoCidade &&
-      campoCidade.tagName === "SELECT"
-    ) {
-
-      const cidadeNormalizada =
-        normalizarTexto(cidade);
-
-
-      const opcaoCidade =
-        [...campoCidade.options]
-          .find(
-            item =>
-              normalizarTexto(
-                item.value
-              ) ===
-              cidadeNormalizada
-          );
-
-
-      if (opcaoCidade) {
-
-        campoCidade.value =
-          opcaoCidade.value;
-
-      } else {
-
-        adicionarOpcao(
-          campoCidade,
-          cidade
-        );
-
-        campoCidade.value =
-          cidade;
-
-      }
-
-
-      aplicouFiltro =
-        true;
-
-    }
-
-  }
-
-
-  /* =========================
-     NEGÓCIO / LOCAÇÃO
-  ========================= */
-
-  if (negocio) {
-
-    const campoNegocio =
-      $("#fNegocio");
-
-
-    if (
-      campoNegocio &&
-      campoNegocio.tagName === "SELECT"
-    ) {
-
-      let negocioNormalizado =
-        normalizarTexto(
-          negocio
-        );
-
-
-      if (
-        negocioNormalizado === "alugar" ||
-        negocioNormalizado === "aluguel" ||
-        negocioNormalizado === "locacao"
-      ) {
-
-        negocioNormalizado =
-          "locacao";
-
-      }
-
-
-      const opcaoNegocio =
-        [...campoNegocio.options]
-          .find(
-            item =>
-              normalizarTexto(
-                item.value
-              ) ===
-              negocioNormalizado
-          );
-
-
-      if (opcaoNegocio) {
-
-        campoNegocio.value =
-          opcaoNegocio.value;
-
-        aplicouFiltro =
-          true;
-
-      }
-
-    }
-
-  }
-
-
-  if (aplicouFiltro) {
-
-    filtrar();
-
-  }
 
 }
 
@@ -1656,6 +1935,7 @@ function ativarFiltros() {
   [
     "#fCategoria",
     "#fNegocio",
+    "#fCidade",
     "#fTipo",
     "#fPreco"
   ]
@@ -1677,20 +1957,6 @@ function ativarFiltros() {
 
       }
     );
-
-
-  const cidade =
-    $("#fCidade");
-
-
-  if (cidade) {
-
-    cidade.addEventListener(
-      "change",
-      filtrar
-    );
-
-  }
 
 }
 
@@ -1854,89 +2120,95 @@ function ativarMenu() {
 
 
 /* =========================================================
-   INICIALIZAÇÃO
-========================================================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    ativarMenu();
-
-    ativarFiltros();
-
-    ativarModal();
-
-    carregar();
-
-
-    setTimeout(
-      criarWhatsAppFlutuante,
-      500
-    );
-
-  }
-);
-
-/* =========================================================
-   GARANTE "AVALIAÇÃO" EM TODOS OS MENUS
+   GARANTIR AVALIAÇÃO NO MENU
 ========================================================= */
 
 function garantirAvaliacaoNoMenu() {
 
-  const menu = document.querySelector("#menu");
-
-  if (!menu) return;
-
-  const links = Array.from(menu.querySelectorAll("a"));
-
-  const jaExiste = links.some(link => {
-
-    try {
-
-      const url = new URL(link.href, window.location.origin);
-
-      return (
-        url.pathname === "/avaliacao.html" ||
-        url.pathname === "/avaliacao"
-      );
-
-    } catch {
-
-      return false;
-
-    }
-
-  });
-
-  if (jaExiste) return;
+  const menu =
+    $("#menu");
 
 
-  const novoLink = document.createElement("a");
-
-  novoLink.href = "/avaliacao.html";
-
-  novoLink.textContent = "Avaliação";
+  if (!menu) {
+    return;
+  }
 
 
-  const linkContato = links.find(link => {
+  const links =
+    [...menu.querySelectorAll("a")];
 
-    try {
 
-      const url = new URL(link.href, window.location.origin);
+  const jaExiste =
+    links.some(
+      link => {
 
-      return (
-        url.pathname === "/contato.html" ||
-        url.pathname === "/contato"
-      );
+        try {
 
-    } catch {
+          const url =
+            new URL(
+              link.href,
+              window.location.origin
+            );
 
-      return false;
 
-    }
+          return (
+            url.pathname === "/avaliacao.html" ||
+            url.pathname === "/avaliacao"
+          );
 
-  });
+        } catch {
+
+          return false;
+
+        }
+
+      }
+    );
+
+
+  if (jaExiste) {
+    return;
+  }
+
+
+  const novoLink =
+    document.createElement("a");
+
+
+  novoLink.href =
+    "/avaliacao.html";
+
+
+  novoLink.textContent =
+    "Avaliação";
+
+
+  const linkContato =
+    links.find(
+      link => {
+
+        try {
+
+          const url =
+            new URL(
+              link.href,
+              window.location.origin
+            );
+
+
+          return (
+            url.pathname === "/contato.html" ||
+            url.pathname === "/contato"
+          );
+
+        } catch {
+
+          return false;
+
+        }
+
+      }
+    );
 
 
   if (linkContato) {
@@ -1957,15 +2229,29 @@ function garantirAvaliacaoNoMenu() {
 }
 
 
-if (document.readyState === "loading") {
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    garantirAvaliacaoNoMenu
-  );
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-} else {
+    garantirAvaliacaoNoMenu();
 
-  garantirAvaliacaoNoMenu();
+    ativarMenu();
 
-}
+    ativarFiltros();
+
+    ativarModal();
+
+    carregar();
+
+
+    setTimeout(
+      criarWhatsAppFlutuante,
+      500
+    );
+
+  }
+);
