@@ -1877,3 +1877,95 @@ document.addEventListener(
 
   }
 );
+
+/* =========================================================
+   GARANTE "AVALIAÇÃO" EM TODOS OS MENUS
+========================================================= */
+
+function garantirAvaliacaoNoMenu() {
+
+  const menu = document.querySelector("#menu");
+
+  if (!menu) return;
+
+  const links = Array.from(menu.querySelectorAll("a"));
+
+  const jaExiste = links.some(link => {
+
+    try {
+
+      const url = new URL(link.href, window.location.origin);
+
+      return (
+        url.pathname === "/avaliacao.html" ||
+        url.pathname === "/avaliacao"
+      );
+
+    } catch {
+
+      return false;
+
+    }
+
+  });
+
+  if (jaExiste) return;
+
+
+  const novoLink = document.createElement("a");
+
+  novoLink.href = "/avaliacao.html";
+
+  novoLink.textContent = "Avaliação";
+
+
+  const linkContato = links.find(link => {
+
+    try {
+
+      const url = new URL(link.href, window.location.origin);
+
+      return (
+        url.pathname === "/contato.html" ||
+        url.pathname === "/contato"
+      );
+
+    } catch {
+
+      return false;
+
+    }
+
+  });
+
+
+  if (linkContato) {
+
+    menu.insertBefore(
+      novoLink,
+      linkContato
+    );
+
+  } else {
+
+    menu.appendChild(
+      novoLink
+    );
+
+  }
+
+}
+
+
+if (document.readyState === "loading") {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    garantirAvaliacaoNoMenu
+  );
+
+} else {
+
+  garantirAvaliacaoNoMenu();
+
+}
