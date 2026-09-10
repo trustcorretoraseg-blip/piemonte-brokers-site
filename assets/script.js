@@ -824,7 +824,6 @@ function prepararFiltros() {
 
   /* =====================================================
      CATEGORIA
-     MESMO CAMPO DO ADMIN
   ===================================================== */
 
   if (
@@ -832,41 +831,17 @@ function prepararFiltros() {
     categoria.tagName === "SELECT"
   ) {
 
-    categoria.innerHTML =
-      '<option value="">Categoria</option>';
-
-
-    [
-      ...new Set(
-        lista
-          .map(
-            item =>
-              item.categoria
-          )
-          .filter(Boolean)
-      )
-    ]
-      .sort(
-        (a, b) =>
-          String(a).localeCompare(
-            String(b),
-            "pt-BR"
-          )
-      )
-      .forEach(
-        valor =>
-          adicionarOpcao(
-            categoria,
-            valor
-          )
-      );
+    categoria.innerHTML = `
+      <option value="">Categoria</option>
+      <option value="Imóvel">Imóvel</option>
+      <option value="Área">Área</option>
+    `;
 
   }
 
 
   /* =====================================================
      FINALIDADE
-     MESMO CAMPO NEGÓCIO DO ADMIN
   ===================================================== */
 
   if (
@@ -874,42 +849,18 @@ function prepararFiltros() {
     negocio.tagName === "SELECT"
   ) {
 
-    negocio.innerHTML =
-      '<option value="">Finalidade</option>';
-
-
-    [
-      ...new Set(
-        lista
-          .map(
-            item =>
-              item.negocio ||
-              item.finalidade
-          )
-          .filter(Boolean)
-      )
-    ]
-      .sort(
-        (a, b) =>
-          String(a).localeCompare(
-            String(b),
-            "pt-BR"
-          )
-      )
-      .forEach(
-        valor =>
-          adicionarOpcao(
-            negocio,
-            valor
-          )
-      );
+    negocio.innerHTML = `
+      <option value="">Finalidade</option>
+      <option value="Venda">Venda</option>
+      <option value="Locação">Locação</option>
+    `;
 
   }
 
 
   /* =====================================================
-     REGIÃO PRINCIPAL
-     NÃO MISTURA CIDADE OU CONDOMÍNIO
+     REGIÕES / CIDADES
+     ATUALIZA AUTOMATICAMENTE PELO PORTFÓLIO
   ===================================================== */
 
   if (
@@ -918,93 +869,59 @@ function prepararFiltros() {
   ) {
 
     regiao.innerHTML =
-      '<option value="">Região</option>';
+      '<option value="">Regiões / Cidades</option>';
 
 
-    let regioesPrincipais = [];
+    const locais = [];
 
 
-    if (
-      Array.isArray(REGIOES) &&
-      REGIOES.length
-    ) {
+    lista.forEach(
+      item => {
 
-      regioesPrincipais =
-        REGIOES
-          .map(
-            item =>
-              item.nome ||
-              item.cidadeFiltro
-          )
+        [
+          item.regiaoPrincipal,
+          item.cidade
+        ]
           .filter(Boolean)
-          .filter(
+          .forEach(
             valor => {
 
-              if (
-                pagina !== "imoveis"
-              ) {
-                return true;
+              const jaExiste =
+                locais.some(
+                  local =>
+                    normalizarTexto(local) ===
+                    normalizarTexto(valor)
+                );
+
+
+              if (!jaExiste) {
+
+                locais.push(valor);
+
               }
-
-
-              return !normalizarTexto(
-                valor
-              ).includes(
-                "areas & oportunidades"
-              );
 
             }
           );
 
-    }
-
-
-    const regioesDoPortfolio =
-      lista
-        .map(
-          item =>
-            item.regiaoPrincipal
-        )
-        .filter(Boolean);
-
-
-    const unicas = [];
-
-
-    [
-      ...regioesPrincipais,
-      ...regioesDoPortfolio
-    ]
-      .forEach(
-        valor => {
-
-          const existe =
-            unicas.some(
-              item =>
-                normalizarTexto(item) ===
-                normalizarTexto(valor)
-            );
-
-
-          if (!existe) {
-
-            unicas.push(
-              valor
-            );
-
-          }
-
-        }
-      );
-
-
-    unicas.forEach(
-      valor =>
-        adicionarOpcao(
-          regiao,
-          valor
-        )
+      }
     );
+
+
+    locais
+      .sort(
+        (a, b) =>
+          String(a).localeCompare(
+            String(b),
+            "pt-BR"
+          )
+      )
+      .forEach(
+        valor =>
+          adicionarOpcao(
+            regiao,
+            valor
+          )
+      );
 
   }
 
@@ -1050,8 +967,6 @@ function prepararFiltros() {
   }
 
 }
-
-
 /* =========================================================
    FILTRO RECEBIDO PELA URL
 ========================================================= */
@@ -1066,6 +981,7 @@ function aplicarFiltroDaURL() {
 
   const regiao =
     params.get("regiao");
+
   const cidade =
     params.get("cidade");
 
@@ -1078,7 +994,7 @@ function aplicarFiltroDaURL() {
 
 
   /* =====================================================
-     FILTRO POR REGIÃO PRINCIPAL
+     FILTRO POR REGIÃO
   ===================================================== */
 
   if (regiao) {
@@ -1207,13 +1123,6 @@ function aplicarFiltroDaURL() {
         );
 
 
-      /*
-        Aceita links como:
-        ?negocio=alugar
-        ?negocio=aluguel
-        ?negocio=locacao
-      */
-
       if (
         negocioNormalizado === "alugar" ||
         negocioNormalizado === "aluguel" ||
@@ -1324,21 +1233,76 @@ function renderInicial() {
     pagina === "home"
   ) {
 
+    /*
+      SELEÇÃO PIEMONTE
+
+      A ordem digitada no Admin define a prioridade.
+
+      Se dois imóveis tiverem o mesmo número,
+      nenhum deles desaparece.
+
+      Os demais continuam na sequência.
+
+      A Home mostra até 6 imóveis.
+    */
+
     const destaques =
       lista
         .filter(
           item =>
             item.destaque === true
         )
+        .map(
+          (item, indiceOriginal) => {
+
+            const ordem =
+              Number(
+                item.ordemDestaque
+              );
+
+
+            return {
+
+              item,
+
+              indiceOriginal,
+
+              ordem:
+                Number.isFinite(ordem) &&
+                ordem > 0
+                  ? ordem
+                  : 9999
+
+            };
+
+          }
+        )
         .sort(
-          (a, b) =>
-            Number(
-              a.ordemDestaque ?? 99
-            )
-            -
-            Number(
-              b.ordemDestaque ?? 99
-            )
+          (a, b) => {
+
+            if (
+              a.ordem !==
+              b.ordem
+            ) {
+
+              return (
+                a.ordem -
+                b.ordem
+              );
+
+            }
+
+
+            return (
+              a.indiceOriginal -
+              b.indiceOriginal
+            );
+
+          }
+        )
+        .map(
+          registro =>
+            registro.item
         );
 
 
@@ -1734,20 +1698,12 @@ function filtrar() {
     paginaAtual();
 
 
-  if (
-    pagina === "imoveis"
-  ) {
+  /*
+    Na página Áreas mantemos somente Áreas.
 
-    lista =
-      lista.filter(
-        item =>
-          normalizarTexto(
-            item.categoria
-          ) === "imovel"
-      );
-
-  }
-
+    Na página Imóveis deixamos o filtro Categoria
+    decidir entre Imóvel e Área.
+  */
 
   if (
     pagina === "areas"
@@ -1830,20 +1786,23 @@ function filtrar() {
           );
 
 
-        /*
-          REGIÃO considera somente
-          regiaoPrincipal do Admin.
-        */
+        const regiaoPrincipalItem =
+          normalizarTexto(
+            item.regiaoPrincipal
+          );
 
-       const regiaoPrincipalItem =
-  normalizarTexto(
-    item.regiaoPrincipal
-  );
 
-const cidadeItem =
-  normalizarTexto(
-    item.cidade
-  );
+        const cidadeItem =
+          normalizarTexto(
+            item.cidade
+          );
+
+
+        const tipoItem =
+          normalizarTexto(
+            item.tipo
+          );
+
 
         return (
 
@@ -1865,7 +1824,9 @@ const cidadeItem =
 
           (
             !regiaoNormalizada ||
-            regiaoItem ===
+            regiaoPrincipalItem ===
+              regiaoNormalizada ||
+            cidadeItem ===
               regiaoNormalizada
           )
 
@@ -1895,8 +1856,6 @@ const cidadeItem =
   );
 
 }
-
-
 /* =========================================================
    EVENTOS DOS FILTROS
 ========================================================= */
@@ -2253,191 +2212,3 @@ document.addEventListener(
 
   }
 );
-
-/* =========================================================
-   CORREÇÃO DOS FILTROS - CATEGORIA E FINALIDADE
-========================================================= */
-
-function corrigirFiltrosPrincipais() {
-
-  const categoria =
-    document.querySelector("#fCategoria");
-
-  const finalidade =
-    document.querySelector("#fNegocio");
-
-
-  /* CATEGORIA */
-
-  if (categoria) {
-
-    categoria.innerHTML = `
-      <option value="">
-        Categoria
-      </option>
-
-      <option value="Imóvel">
-        Imóvel
-      </option>
-
-      <option value="Área">
-        Área
-      </option>
-    `;
-
-  }
-
-
-  /* FINALIDADE */
-
-  if (finalidade) {
-
-    finalidade.innerHTML = `
-      <option value="">
-        Finalidade
-      </option>
-
-      <option value="Venda">
-        Venda
-      </option>
-
-      <option value="Locação">
-        Locação
-      </option>
-    `;
-
-  }
-
-}
-
-
-/*
-  Executa depois que o portfólio
-  terminar de carregar.
-*/
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    setTimeout(
-      corrigirFiltrosPrincipais,
-      1000
-    );
-
-  }
-);
-
-/* =========================================================
-   REGIÕES / CIDADES DINÂMICAS
-========================================================= */
-
-function atualizarRegioesCidades() {
-
-  const campo =
-    document.querySelector("#fCidade");
-
-  if (!campo) return;
-
-
-  campo.innerHTML = `
-    <option value="">
-      Regiões / Cidades
-    </option>
-  `;
-
-
-  const locais = [];
-
-
-  PORTFOLIO.forEach(
-    item => {
-
-      /*
-        Região principal
-      */
-
-      if (
-        item.regiaoPrincipal &&
-        !locais.includes(
-          item.regiaoPrincipal
-        )
-      ) {
-
-        locais.push(
-          item.regiaoPrincipal
-        );
-
-      }
-
-
-      /*
-        Cidade
-      */
-
-      if (
-        item.cidade &&
-        !locais.includes(
-          item.cidade
-        )
-      ) {
-
-        locais.push(
-          item.cidade
-        );
-
-      }
-
-    }
-  );
-
-
-  locais
-    .sort(
-      (a, b) =>
-        String(a).localeCompare(
-          String(b),
-          "pt-BR"
-        )
-    )
-    .forEach(
-      local => {
-
-        const option =
-          document.createElement(
-            "option"
-          );
-
-        option.value =
-          local;
-
-        option.textContent =
-          local;
-
-        campo.appendChild(
-          option
-        );
-
-      }
-    );
-
-}
-
-
-/*
-  Aguarda o portfolio.json ser carregado
-*/
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    setTimeout(
-      atualizarRegioesCidades,
-      1200
-    );
-
-  }
-);
-
-
