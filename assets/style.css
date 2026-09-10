@@ -2362,6 +2362,7 @@ body .section-head p{
 }
 /* =========================================================
    PADRÃO GLOBAL DE TÍTULOS — PIEMONTE BROKERS
+   VERSÃO MAIS ELEGANTE E MENOR
 ========================================================= */
 
 h1,
@@ -2369,10 +2370,10 @@ h1,
 .page-hero h1,
 .property-heading h1,
 .avaliacao-hero h1 {
-  font-size: clamp(34px, 4.2vw, 52px) !important;
-  line-height: 1.08 !important;
+  font-size: clamp(28px, 3.2vw, 42px) !important;
+  line-height: 1.1 !important;
   font-weight: 400 !important;
-  letter-spacing: -0.025em !important;
+  letter-spacing: -0.02em !important;
 }
 
 h2,
@@ -2381,15 +2382,19 @@ h2,
 .avaliacao-intro h2,
 .avaliacao-method h2,
 .avaliacao-form-copy h2 {
-  font-size: clamp(28px, 3vw, 40px) !important;
-  line-height: 1.12 !important;
+  font-size: clamp(24px, 2.5vw, 34px) !important;
+  line-height: 1.14 !important;
   font-weight: 400 !important;
-  letter-spacing: -0.02em !important;
+  letter-spacing: -0.015em !important;
 }
 
-h3 {
-  font-size: clamp(20px, 2vw, 26px) !important;
-  line-height: 1.22 !important;
+h3,
+.card h3,
+.avaliacao-feature-content h3,
+.avaliacao-card h3,
+.avaliacao-step h3 {
+  font-size: clamp(18px, 1.7vw, 23px) !important;
+  line-height: 1.25 !important;
   font-weight: 500 !important;
   letter-spacing: -0.01em !important;
 }
@@ -2401,7 +2406,8 @@ h3 {
   .page-hero h1,
   .property-heading h1,
   .avaliacao-hero h1 {
-    font-size: 32px !important;
+    font-size: 27px !important;
+    line-height: 1.12 !important;
   }
 
   h2,
@@ -2410,11 +2416,16 @@ h3 {
   .avaliacao-intro h2,
   .avaliacao-method h2,
   .avaliacao-form-copy h2 {
-    font-size: 27px !important;
+    font-size: 23px !important;
+    line-height: 1.16 !important;
   }
 
-  h3 {
-    font-size: 21px !important;
+  h3,
+  .card h3,
+  .avaliacao-feature-content h3,
+  .avaliacao-card h3,
+  .avaliacao-step h3 {
+    font-size: 19px !important;
   }
 
 }
