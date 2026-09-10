@@ -49,20 +49,6 @@
       color: #a98642;
     }
 
-    .property-code {
-      display: inline-flex;
-      align-items: center;
-      margin: 0 0 14px;
-      padding: 7px 10px;
-      border: 1px solid rgba(169,134,66,.42);
-      background: rgba(169,134,66,.08);
-      color: #82652f;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
 
     /* =====================================================
        BREADCRUMB
@@ -244,13 +230,13 @@
     }
 
     .gallery-main > img {
-      width: 100%;
-      height: 100%;
-      max-width: none;
-      max-height: none;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
       display: block;
-      object-fit: cover;
-      object-position: center center;
+      object-fit: contain;
+      object-position: center;
     }
 
     /* Fotos laterais continuam preenchendo os quadros. */
@@ -1416,6 +1402,181 @@
       }
     }
 
+
+
+    /* =====================================================
+       GALERIA PREMIUM — PADRÃO PIEMONTE
+    ===================================================== */
+
+    .property-gallery-premium {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      height: clamp(420px, 42vw, 610px);
+      overflow: hidden;
+      background: #f1f1ed;
+    }
+
+    .gallery-track {
+      display: grid;
+      grid-template-columns: 26% 48% 26%;
+      width: 100%;
+      height: 100%;
+      gap: 3px;
+      align-items: stretch;
+    }
+
+    .gallery-center,
+    .gallery-preview {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      background: #ebe9e2;
+    }
+
+    .gallery-center img,
+    .gallery-preview img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      cursor: pointer;
+    }
+
+    .gallery-center img {
+      transition: opacity .25s ease, transform .55s ease;
+    }
+
+    .gallery-preview img {
+      opacity: .24;
+      filter: grayscale(18%) brightness(1.18);
+      transition: opacity .35s ease, transform .55s ease, filter .35s ease;
+    }
+
+    .gallery-preview-left img { object-position: right center; }
+    .gallery-preview-right img { object-position: left center; }
+
+    .gallery-preview:hover img {
+      opacity: .42;
+      filter: grayscale(5%) brightness(1.08);
+      transform: scale(1.015);
+    }
+
+    .gallery-center:hover img { transform: scale(1.008); }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 54px;
+      border: 0;
+      background: rgba(9,31,27,.88);
+      color: #fff;
+      font-family: Arial,sans-serif;
+      font-size: 31px;
+      font-weight: 300;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 15;
+      transition: background .25s ease;
+    }
+
+    .gallery-arrow:hover { background: #a98642; }
+    .gallery-arrow-left { left: 12px; }
+    .gallery-arrow-right { right: 12px; }
+
+    .property-gallery-premium .gallery-button {
+      left: 50%;
+      right: auto;
+      bottom: 17px;
+      transform: translateX(-50%);
+    }
+
+    .gallery-counter {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      z-index: 20;
+      padding: 8px 11px;
+      background: rgba(8,29,24,.78);
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: .09em;
+    }
+
+    .gallery-center.piemonte-foto::after {
+      width: clamp(140px,24%,260px);
+      opacity: .38;
+    }
+
+    .property-share {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0 24px;
+      border-bottom: 1px solid rgba(21,43,36,.12);
+    }
+
+    .property-share > span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(21,43,36,.58);
+    }
+
+    .property-share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .property-share-actions button {
+      border: 1px solid rgba(21,43,36,.18);
+      background: transparent;
+      color: #152b24;
+      padding: 9px 12px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .property-share-actions button:hover {
+      background: #12372d;
+      border-color: #12372d;
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .property-gallery-premium { height: clamp(380px,58vw,520px); }
+      .gallery-track { grid-template-columns: 18% 64% 18%; }
+    }
+
+    @media (max-width: 680px) {
+      .property-gallery-premium {
+        width: 100vw;
+        height: 350px;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+      }
+      .gallery-track { grid-template-columns: 9% 82% 9%; gap: 2px; }
+      .gallery-preview img { opacity: .30; }
+      .gallery-arrow { width: 32px; height: 48px; font-size: 27px; }
+      .gallery-arrow-left { left: 5px; }
+      .gallery-arrow-right { right: 5px; }
+      .property-gallery-premium .gallery-button { bottom: 12px; padding: 9px 11px; }
+      .gallery-counter { right: 8px; bottom: 12px; }
+      .property-share { align-items: flex-start; flex-direction: column; }
+      .property-share-actions { justify-content: flex-start; }
+    }
+
   </style>
 
 </head>
@@ -1537,13 +1698,6 @@ HEADER
           PIEMONTE BROKERS
         </p>
 
-        <div
-          class="property-code"
-          id="propertyCode"
-        >
-          PB 0000
-        </div>
-
         <h1 id="propertyTitle">
           Carregando propriedade...
         </h1>
@@ -1573,51 +1727,53 @@ HEADER
 
 
 
-    <!-- GALERIA -->
+    <!-- GALERIA PREMIUM -->
 
-    <section
-      class="property-gallery"
-      id="propertyGallery"
-    >
+    <section class="property-gallery-premium" id="propertyGallery">
 
-      <div class="gallery-main piemonte-foto">
+      <button class="gallery-arrow gallery-arrow-left" id="galleryPrev" type="button" aria-label="Foto anterior">‹</button>
 
-        <img
-          id="galleryMain"
-          src="/assets/logo-piemonte.png"
-          alt="Piemonte Brokers"
-        >
+      <div class="gallery-track">
+        <div class="gallery-preview gallery-preview-left" id="galleryPreviewLeft">
+          <img id="galleryPrevImage" src="" alt="">
+        </div>
 
+        <div class="gallery-center piemonte-foto">
+          <img id="galleryMain" src="/assets/logo-piemonte.png" alt="Piemonte Brokers">
+        </div>
+
+        <div class="gallery-preview gallery-preview-right" id="galleryPreviewRight">
+          <img id="galleryNextImage" src="" alt="">
+        </div>
       </div>
 
+      <button class="gallery-arrow gallery-arrow-right" id="galleryNext" type="button" aria-label="Próxima foto">›</button>
 
-      <div
-        class="gallery-side"
-        id="gallerySide"
-      >
-      </div>
-
-
-      <button
-        class="gallery-button"
-        id="galleryButton"
-        type="button"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.7"
-          aria-hidden="true"
-        >
+      <button class="gallery-button" id="galleryButton" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
           <path d="M8 7l1.4-2h5.2L16 7h2.2A2.8 2.8 0 0 1 21 9.8v6.4A2.8 2.8 0 0 1 18.2 19H5.8A2.8 2.8 0 0 1 3 16.2V9.8A2.8 2.8 0 0 1 5.8 7H8z"/>
           <circle cx="12" cy="13" r="3.2"/>
         </svg>
         <span id="galleryButtonText">Ver fotos</span>
       </button>
 
+      <div class="gallery-counter" id="galleryCounter">1 / 1</div>
+
     </section>
 
+
+    <!-- COMPARTILHAR -->
+
+    <section class="property-share" aria-label="Compartilhar imóvel">
+      <span>Compartilhar</span>
+      <div class="property-share-actions">
+        <button type="button" id="shareWhatsApp">WhatsApp</button>
+        <button type="button" id="shareFacebook">Facebook</button>
+        <button type="button" id="shareLinkedIn">LinkedIn</button>
+        <button type="button" id="shareNative">Mais opções</button>
+        <button type="button" id="shareCopy">Copiar link</button>
+      </div>
+    </section>
 
 
     <!-- MINIATURAS -->
@@ -1937,30 +2093,6 @@ const esc =
           "'": "&#039;"
         }[caractere])
     );
-
-
-function codigoPiemonte(item) {
-
-  if (
-    item &&
-    typeof item.codigo === "string" &&
-    item.codigo.trim()
-  ) {
-    return item.codigo.trim();
-  }
-
-  const indice =
-    PORTFOLIO.findIndex(
-      registro =>
-        String(registro.id) ===
-        String(item?.id)
-    );
-
-  return `PB ${String(
-    indice >= 0 ? indice + 1 : 0
-  ).padStart(4, "0")}`;
-
-}
 
 
 /* =====================================================
@@ -2284,13 +2416,6 @@ function montarPagina() {
     } | Piemonte Brokers`;
 
 
-  $("#propertyCode")
-    .textContent =
-      codigoPiemonte(
-        PROPRIEDADE
-      );
-
-
   $("#propertyTitle")
     .textContent =
       PROPRIEDADE.titulo ||
@@ -2377,6 +2502,7 @@ function montarPagina() {
   montarFichaTecnica();
 
   montarWhatsApp();
+  montarCompartilhamento();
 
   montarSemelhantes();
 
@@ -2389,133 +2515,71 @@ function montarPagina() {
 
 function montarGaleria() {
 
-  FOTOS =
-    obterFotos(
-      PROPRIEDADE
-    );
+  FOTOS = obterFotos(PROPRIEDADE);
+  FOTO_ATUAL = 0;
 
+  const principal = $("#galleryMain");
+  const anterior = $("#galleryPrevImage");
+  const proxima = $("#galleryNextImage");
+  const botao = $("#galleryButton");
+  const botaoTexto = $("#galleryButtonText");
+  const setaAnterior = $("#galleryPrev");
+  const setaProxima = $("#galleryNext");
+  const previewLeft = $("#galleryPreviewLeft");
+  const previewRight = $("#galleryPreviewRight");
+  const track = $(".gallery-track");
 
-  const principal =
-    $("#galleryMain");
+  function atualizarGaleria() {
+    if (!FOTOS.length) return;
 
+    const indiceAnterior = (FOTO_ATUAL - 1 + FOTOS.length) % FOTOS.length;
+    const indiceProximo = (FOTO_ATUAL + 1) % FOTOS.length;
 
-  principal.src =
-    FOTOS[0];
+    principal.src = FOTOS[FOTO_ATUAL];
+    principal.alt = PROPRIEDADE.titulo || "Piemonte Brokers";
 
+    if (FOTOS.length > 1) {
+      anterior.src = FOTOS[indiceAnterior];
+      anterior.alt = PROPRIEDADE.titulo || "Foto anterior";
+      proxima.src = FOTOS[indiceProximo];
+      proxima.alt = PROPRIEDADE.titulo || "Próxima foto";
+    }
 
-  principal.alt =
-    PROPRIEDADE.titulo ||
-    "Piemonte Brokers";
-
-
-  principal.onclick =
-    () =>
-      abrirLightbox(0);
-
-
-  const botao =
-    $("#galleryButton");
-
-
-  const botaoTexto =
-    $("#galleryButtonText");
-
-
-  botaoTexto.textContent =
-    FOTOS.length === 1
-      ? "Ver foto"
-      : `Ver ${FOTOS.length} fotos`;
-
-
-  botao.onclick =
-    () =>
-      abrirLightbox(0);
-
-
-  const lateral =
-    $("#gallerySide");
-
-
-  lateral.innerHTML =
-    "";
-
-
-  FOTOS
-    .slice(1,3)
-    .forEach(
-      (foto,indice) => {
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-
-        div.className =
-          "gallery-side-item piemonte-foto";
-
-
-        div.innerHTML = `
-
-          <img
-            src="${esc(foto)}"
-            alt="${esc(
-              PROPRIEDADE.titulo ||
-              ""
-            )}"
-          >
-
-        `;
-
-
-        div
-          .querySelector("img")
-          .onclick =
-            () =>
-              abrirLightbox(
-                indice + 1
-              );
-
-
-        lateral.appendChild(
-          div
-        );
-
-      }
-    );
-
-
-  if (
-    FOTOS.length === 1
-  ) {
-
-    $("#propertyGallery")
-      .style.gridTemplateColumns =
-        "1fr";
-
-
-    lateral.style.display =
-      "none";
-
+    const contador = $("#galleryCounter");
+    if (contador) contador.textContent = `${FOTO_ATUAL + 1} / ${FOTOS.length}`;
   }
 
-
-  else {
-
-    lateral.style.display =
-      "grid";
-
-
-    lateral.style.gridTemplateRows =
-      FOTOS.length === 2
-        ? "1fr"
-        : "1fr 1fr";
-
+  function irAnterior() {
+    if (FOTOS.length <= 1) return;
+    FOTO_ATUAL = (FOTO_ATUAL - 1 + FOTOS.length) % FOTOS.length;
+    atualizarGaleria();
   }
 
+  function irProxima() {
+    if (FOTOS.length <= 1) return;
+    FOTO_ATUAL = (FOTO_ATUAL + 1) % FOTOS.length;
+    atualizarGaleria();
+  }
 
+  principal.onclick = () => abrirLightbox(FOTO_ATUAL);
+  anterior.onclick = irAnterior;
+  proxima.onclick = irProxima;
+  setaAnterior.onclick = irAnterior;
+  setaProxima.onclick = irProxima;
+
+  botaoTexto.textContent = FOTOS.length === 1 ? "Ver foto" : `Ver ${FOTOS.length} fotos`;
+  botao.onclick = () => abrirLightbox(FOTO_ATUAL);
+
+  if (FOTOS.length <= 1) {
+    previewLeft.style.display = "none";
+    previewRight.style.display = "none";
+    setaAnterior.style.display = "none";
+    setaProxima.style.display = "none";
+    track.style.gridTemplateColumns = "1fr";
+  }
+
+  atualizarGaleria();
   montarMiniaturas();
-
 }
 
 
@@ -2800,7 +2864,7 @@ function montarWhatsApp() {
 
 
   const mensagem =
-    `Olá! Tenho interesse na propriedade ${codigoPiemonte(PROPRIEDADE)} — "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
+    `Olá! Tenho interesse na propriedade "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
 
 
   $("#propertyWhatsApp")
@@ -2809,6 +2873,68 @@ function montarWhatsApp() {
         mensagem
       )}`;
 
+}
+
+
+/* =====================================================
+   COMPARTILHAMENTO
+===================================================== */
+
+function montarCompartilhamento() {
+  const url = window.location.href;
+  const titulo = PROPRIEDADE.titulo || "Imóvel Piemonte Brokers";
+  const texto = `${titulo}${PROPRIEDADE.precoTexto ? ` — ${PROPRIEDADE.precoTexto}` : ""}`;
+
+  const whats = $("#shareWhatsApp");
+  const face = $("#shareFacebook");
+  const linkedin = $("#shareLinkedIn");
+  const nativeBtn = $("#shareNative");
+  const copy = $("#shareCopy");
+
+  if (whats) {
+    whats.onclick = () => {
+      window.open(`https://wa.me/?text=${encodeURIComponent(texto + "\n" + url)}`, "_blank", "noopener");
+    };
+  }
+
+  if (face) {
+    face.onclick = () => {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, "_blank", "noopener,noreferrer,width=700,height=600");
+    };
+  }
+
+  if (linkedin) {
+    linkedin.onclick = () => {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, "_blank", "noopener,noreferrer,width=700,height=600");
+    };
+  }
+
+  if (nativeBtn) {
+    if (navigator.share) {
+      nativeBtn.onclick = async () => {
+        try {
+          await navigator.share({ title: titulo, text: texto, url });
+        } catch (erro) {
+          if (erro && erro.name !== "AbortError") console.error(erro);
+        }
+      };
+    } else {
+      nativeBtn.style.display = "none";
+    }
+  }
+
+  if (copy) {
+    copy.onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        const original = copy.textContent;
+        copy.textContent = "Link copiado";
+        setTimeout(() => { copy.textContent = original; }, 1800);
+      } catch (erro) {
+        window.prompt("Copie o link deste imóvel:", url);
+      }
+    };
+  }
 }
 
 
@@ -2970,12 +3096,6 @@ function montarSemelhantes() {
         </div>
 
         <div class="similar-body">
-
-          <div class="similar-meta">
-            ${esc(
-              codigoPiemonte(item)
-            )}
-          </div>
 
           <div class="similar-meta">
             ${esc(
