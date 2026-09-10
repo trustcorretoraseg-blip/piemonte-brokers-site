@@ -2361,8 +2361,7 @@ body .section-head p{
 
 }
 /* =========================================================
-   PADRÃO GLOBAL DE TÍTULOS — PIEMONTE BROKERS
-   VERSÃO MAIS ELEGANTE E MENOR
+   PADRÃO GLOBAL DE TÍTULOS — LUXURY EDITORIAL
 ========================================================= */
 
 h1,
@@ -2370,10 +2369,10 @@ h1,
 .page-hero h1,
 .property-heading h1,
 .avaliacao-hero h1 {
-  font-size: clamp(28px, 3.2vw, 42px) !important;
-  line-height: 1.1 !important;
+  font-size: clamp(26px, 2.8vw, 36px) !important;
+  line-height: 1.14 !important;
   font-weight: 400 !important;
-  letter-spacing: -0.02em !important;
+  letter-spacing: -0.015em !important;
 }
 
 h2,
@@ -2382,10 +2381,10 @@ h2,
 .avaliacao-intro h2,
 .avaliacao-method h2,
 .avaliacao-form-copy h2 {
-  font-size: clamp(24px, 2.5vw, 34px) !important;
-  line-height: 1.14 !important;
+  font-size: clamp(22px, 2.2vw, 30px) !important;
+  line-height: 1.18 !important;
   font-weight: 400 !important;
-  letter-spacing: -0.015em !important;
+  letter-spacing: -0.01em !important;
 }
 
 h3,
@@ -2393,10 +2392,17 @@ h3,
 .avaliacao-feature-content h3,
 .avaliacao-card h3,
 .avaliacao-step h3 {
-  font-size: clamp(18px, 1.7vw, 23px) !important;
-  line-height: 1.25 !important;
+  font-size: clamp(17px, 1.5vw, 21px) !important;
+  line-height: 1.28 !important;
   font-weight: 500 !important;
-  letter-spacing: -0.01em !important;
+  letter-spacing: 0 !important;
+}
+
+.eyebrow,
+.property-eyebrow {
+  font-size: 10px !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 600 !important;
 }
 
 @media (max-width: 600px) {
@@ -2406,8 +2412,8 @@ h3,
   .page-hero h1,
   .property-heading h1,
   .avaliacao-hero h1 {
-    font-size: 27px !important;
-    line-height: 1.12 !important;
+    font-size: 25px !important;
+    line-height: 1.16 !important;
   }
 
   h2,
@@ -2416,8 +2422,8 @@ h3,
   .avaliacao-intro h2,
   .avaliacao-method h2,
   .avaliacao-form-copy h2 {
-    font-size: 23px !important;
-    line-height: 1.16 !important;
+    font-size: 22px !important;
+    line-height: 1.2 !important;
   }
 
   h3,
@@ -2425,7 +2431,7 @@ h3,
   .avaliacao-feature-content h3,
   .avaliacao-card h3,
   .avaliacao-step h3 {
-    font-size: 19px !important;
+    font-size: 18px !important;
   }
 
 }
