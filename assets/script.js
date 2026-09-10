@@ -1696,68 +1696,6 @@ function ativarFiltros() {
 
 
 /* =========================================================
-   LINK AVALIAÇÃO NO MENU
-========================================================= */
-
-function garantirLinkAvaliacaoMenu() {
-
-  const menu =
-    $("#menu");
-
-
-  if (!menu) {
-    return;
-  }
-
-
-  if (
-    menu.querySelector(
-      'a[href="/avaliacao.html"]'
-    )
-  ) {
-    return;
-  }
-
-
-  const link =
-    document.createElement(
-      "a"
-    );
-
-
-  link.href =
-    "/avaliacao.html";
-
-
-  link.textContent =
-    "Avaliação";
-
-
-  const contato =
-    menu.querySelector(
-      'a[href="/contato.html"]'
-    );
-
-
-  if (contato) {
-
-    menu.insertBefore(
-      link,
-      contato
-    );
-
-  } else {
-
-    menu.appendChild(
-      link
-    );
-
-  }
-
-}
-
-
-/* =========================================================
    MODAL ANTIGO
 ========================================================= */
 
@@ -1922,8 +1860,6 @@ function ativarMenu() {
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-
-    garantirLinkAvaliacaoMenu();
 
     ativarMenu();
 
