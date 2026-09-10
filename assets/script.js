@@ -2255,3 +2255,48 @@ document.addEventListener(
 
   }
 );
+
+/* =========================================================
+   CORREÇÃO FINALIDADE - VENDA E LOCAÇÃO
+========================================================= */
+
+function corrigirFinalidades() {
+
+  const campo =
+    document.querySelector("#fNegocio");
+
+  if (!campo) return;
+
+  campo.innerHTML = `
+    <option value="">
+      Finalidade
+    </option>
+
+    <option value="Venda">
+      Venda
+    </option>
+
+    <option value="Locação">
+      Locação
+    </option>
+  `;
+
+}
+
+
+/*
+  Executa novamente depois que os dados
+  do portfólio forem carregados.
+*/
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    setTimeout(
+      corrigirFinalidades,
+      1000
+    );
+
+  }
+);
