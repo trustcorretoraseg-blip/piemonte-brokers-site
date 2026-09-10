@@ -90,6 +90,10 @@
         Trabalhe Conosco
       </a>
 
+      <a href="/avaliacao.html">
+        Avaliação
+      </a>
+
       <a href="/contato.html">
         Contato
       </a>
@@ -135,28 +139,30 @@
 
     <div class="hero-actions">
 
-  <a
-    href="/imoveis.html"
-    class="btn gold"
-  >
-    Quero comprar
-  </a>
+      <a
+        href="/imoveis.html"
+        class="btn gold"
+      >
+        Quero comprar
+      </a>
 
-  <a
-    href="/imoveis.html?negocio=Loca%C3%A7%C3%A3o"
-    class="btn ghost"
-  >
-    Quero alugar
-  </a>
 
-  <a
-    href="/anuncie.html"
-    class="btn ghost"
-  >
-    Quero vender
-  </a>
+      <a
+        href="/imoveis.html?negocio=Loca%C3%A7%C3%A3o"
+        class="btn ghost"
+      >
+        Quero alugar
+      </a>
 
-</div>
+
+      <a
+        href="/anuncie.html"
+        class="btn ghost"
+      >
+        Quero vender
+      </a>
+
+    </div>
 
   </div>
 
@@ -340,194 +346,375 @@
      ÁREAS & OPORTUNIDADES
 ===================================================== -->
 
-
-<section
-  id="areas-oportunidades-home"
-  style="
-    display:block !important;
-    visibility:visible !important;
-    opacity:1 !important;
-    position:relative !important;
-    z-index:2 !important;
-    width:100%;
-    padding:90px 0;
-    background:#f4efe5;
-  "
->
-
-  <div
-    class="container"
-    style="
-      display:block !important;
-      visibility:visible !important;
-    "
-  >
-
-    <a
-      href="/areas.html"
-      style="
-        display:grid !important;
-        grid-template-columns:1.08fr .92fr;
-        min-height:480px;
-        width:100%;
-        overflow:hidden;
-        background:#12372d;
-        text-decoration:none;
-        color:#ffffff;
-      "
-    >
-
-      <!-- FOTO -->
-
-      <div
-        style="
-          position:relative;
-          min-height:480px;
-          overflow:hidden;
-          background:#ded9cf;
-        "
-      >
-
-        <img
-          src="/assets/areas-oportunidades.jpg"
-          alt="Áreas e oportunidades Piemonte Brokers"
-          style="
-            width:100%;
-            height:100%;
-            position:absolute;
-            inset:0;
-            object-fit:cover;
-            display:block;
-          "
-        >
-
-      </div>
-
-
-      <!-- TEXTO -->
-
-      <div
-        style="
-          display:flex;
-          flex-direction:column;
-          justify-content:center;
-          padding:65px 70px;
-          background:#12372d;
-        "
-      >
-
-        <p
-          style="
-            margin:0 0 20px;
-            color:#d2ad62;
-            font-size:11px;
-            font-weight:700;
-            letter-spacing:.18em;
-            text-transform:uppercase;
-          "
-        >
-          ÁREAS & OPORTUNIDADES
-        </p>
-
-
-        <h2
-          style="
-            margin:0 0 25px;
-            max-width:520px;
-            color:#ffffff;
-            font-family:Georgia,'Times New Roman',serif;
-            font-size:clamp(36px,4vw,54px);
-            line-height:1.05;
-            font-weight:400;
-          "
-        >
-          Terrenos, glebas e ativos estratégicos.
-        </h2>
-
-
-        <p
-          style="
-            margin:0 0 18px;
-            max-width:510px;
-            color:rgba(255,255,255,.78);
-            font-size:16px;
-            line-height:1.8;
-          "
-        >
-          Selecionamos áreas para desenvolvimento residencial,
-          comercial, industrial, logístico e oportunidades
-          imobiliárias de diferentes perfis.
-        </p>
-
-
-        <p
-          style="
-            margin:0 0 28px;
-            max-width:510px;
-            color:rgba(255,255,255,.78);
-            font-size:16px;
-            line-height:1.8;
-          "
-        >
-          Cada ativo é apresentado de forma objetiva,
-          respeitando as particularidades da negociação
-          e o perfil do investidor.
-        </p>
-
-
-        <span
-          style="
-            display:inline-block;
-            width:max-content;
-            color:#d2ad62;
-            font-size:14px;
-            font-weight:700;
-            border-bottom:1px solid #d2ad62;
-            padding-bottom:5px;
-          "
-        >
-          Conheça nossas áreas →
-        </span>
-
-      </div>
-
-    </a>
-
-  </div>
-
+<section class="section warm areas-feature">
 
   <style>
 
-    @media (max-width:850px) {
+    .areas-feature-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      min-height: 520px;
+      overflow: hidden;
+      background: #17372f;
+    }
 
-      #areas-oportunidades-home > .container > a {
-        grid-template-columns:1fr !important;
+    .areas-feature-image {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      background: #d8d4ca;
+    }
+
+    .areas-feature-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .areas-feature-grid:hover .areas-feature-image img {
+      transform: scale(1.025);
+    }
+
+    .areas-feature-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 65px 70px;
+      color: white;
+    }
+
+    .areas-feature-content .eyebrow {
+      color: #d2ad62;
+    }
+
+    .areas-feature-content h2 {
+      max-width: 520px;
+      margin: 10px 0 25px;
+      font-size: clamp(36px, 4vw, 54px);
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: -.025em;
+      color: white;
+    }
+
+    .areas-feature-content p {
+      max-width: 510px;
+      margin: 0 0 18px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.76);
+    }
+
+    .areas-feature-content .text-link {
+      display: inline-block;
+      margin-top: 13px;
+      color: #d2ad62;
+    }
+
+    @media (max-width: 850px) {
+
+      .areas-feature-grid {
+        grid-template-columns: 1fr;
       }
 
-      #areas-oportunidades-home > .container > a > div:first-child {
-        min-height:340px !important;
+      .areas-feature-image {
+        min-height: 360px;
+      }
+
+      .areas-feature-content {
+        padding: 48px 35px;
       }
 
     }
 
+    @media (max-width: 550px) {
 
-    @media (max-width:550px) {
-
-      #areas-oportunidades-home {
-        padding:65px 0 !important;
+      .areas-feature-image {
+        min-height: 290px;
       }
 
-      #areas-oportunidades-home > .container > a > div:first-child {
-        min-height:270px !important;
+      .areas-feature-content {
+        padding: 40px 25px;
       }
 
-      #areas-oportunidades-home > .container > a > div:last-child {
-        padding:40px 26px !important;
+      .areas-feature-content h2 {
+        font-size: 34px;
       }
 
     }
 
   </style>
+
+  <div class="container">
+
+    <div class="areas-feature-grid">
+
+      <div class="areas-feature-image">
+
+        <img
+          src="/assets/home-principal.jpeg"
+          alt="Áreas e oportunidades Piemonte Brokers"
+        >
+
+      </div>
+
+      <div class="areas-feature-content">
+
+        <p class="eyebrow">
+          ÁREAS & OPORTUNIDADES
+        </p>
+
+        <h2>
+          Terrenos, glebas e ativos estratégicos.
+        </h2>
+
+        <p>
+          Selecionamos áreas para desenvolvimento residencial,
+          comercial, industrial, logístico e oportunidades
+          imobiliárias de diferentes perfis.
+        </p>
+
+        <p>
+          Cada ativo é apresentado de forma objetiva,
+          respeitando as particularidades da negociação
+          e o perfil do investidor.
+        </p>
+
+        <a
+          href="/areas.html"
+          class="text-link light"
+        >
+          Conheça nossas áreas →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AVALIAÇÃO, PERÍCIA E PRECIFICAÇÃO
+===================================================== -->
+
+<section class="section avaliacao-feature">
+
+  <style>
+
+    .avaliacao-feature {
+      background: #f4f1e9;
+    }
+
+    .avaliacao-feature-grid {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 0;
+      background: #ffffff;
+      border: 1px solid rgba(23,55,47,.10);
+      box-shadow: 0 18px 45px rgba(23,55,47,.06);
+    }
+
+    .avaliacao-feature-kicker {
+      padding: 66px 62px;
+      background: #17372f;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 430px;
+    }
+
+    .avaliacao-feature-kicker .eyebrow {
+      color: #d2ad62;
+    }
+
+    .avaliacao-feature-kicker h2 {
+      margin: 12px 0 22px;
+      max-width: 520px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.06;
+      font-weight: 400;
+      letter-spacing: -.025em;
+      color: #fff;
+    }
+
+    .avaliacao-feature-kicker p {
+      max-width: 520px;
+      margin: 0;
+      color: rgba(255,255,255,.76);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .avaliacao-feature-content {
+      padding: 66px 62px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .avaliacao-feature-content h3 {
+      margin: 0 0 18px;
+      color: #17372f;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .avaliacao-feature-content p {
+      margin: 0 0 16px;
+      color: #626861;
+      line-height: 1.75;
+    }
+
+    .avaliacao-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 18px;
+      margin: 10px 0 26px;
+    }
+
+    .avaliacao-points span {
+      padding-top: 12px;
+      border-top: 1px solid rgba(23,55,47,.14);
+      color: #17372f;
+      font-size: 14px;
+    }
+
+    .avaliacao-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 850px) {
+
+      .avaliacao-feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .avaliacao-feature-kicker,
+      .avaliacao-feature-content {
+        padding: 46px 34px;
+      }
+
+      .avaliacao-feature-kicker {
+        min-height: auto;
+      }
+
+    }
+
+    @media (max-width: 550px) {
+
+      .avaliacao-points {
+        grid-template-columns: 1fr;
+      }
+
+      .avaliacao-feature-kicker,
+      .avaliacao-feature-content {
+        padding: 38px 24px;
+      }
+
+      .avaliacao-feature-kicker h2 {
+        font-size: 33px;
+      }
+
+    }
+
+  </style>
+
+
+  <div class="container">
+
+    <div class="avaliacao-feature-grid">
+
+
+      <div class="avaliacao-feature-kicker">
+
+        <p class="eyebrow">
+          AVALIAÇÃO IMOBILIÁRIA
+        </p>
+
+        <h2>
+          Valor de mercado com análise, método e contexto.
+        </h2>
+
+        <p>
+          Avaliação, perícia e precificação de imóveis para apoiar
+          decisões patrimoniais, comerciais e de investimento.
+        </p>
+
+      </div>
+
+
+      <div class="avaliacao-feature-content">
+
+        <h3>
+          Uma leitura técnica e estratégica do ativo.
+        </h3>
+
+        <p>
+          Analisamos características do imóvel, localização,
+          comparáveis de mercado, liquidez, padrão construtivo
+          e contexto da negociação para chegar a uma referência
+          de valor consistente.
+        </p>
+
+
+        <div class="avaliacao-points">
+
+          <span>
+            Venda e aquisição
+          </span>
+
+          <span>
+            Locação e revisão de preço
+          </span>
+
+          <span>
+            Patrimônio e inventário
+          </span>
+
+          <span>
+            Ativos residenciais, rurais e comerciais
+          </span>
+
+        </div>
+
+
+        <div class="avaliacao-actions">
+
+          <a
+            href="/avaliacao.html"
+            class="btn gold"
+          >
+            Conheça o serviço
+          </a>
+
+
+          <a
+            href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%2C%20per%C3%ADcia%20ou%20precifica%C3%A7%C3%A3o%20de%20um%20im%C3%B3vel."
+            class="btn ghost"
+            target="_blank"
+            rel="noopener"
+          >
+            Falar pelo WhatsApp
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1002,6 +1189,10 @@
 
     <div>
 
+      <a href="/avaliacao.html">
+        Avaliação
+      </a>
+
       <a href="/anuncie.html">
         Anuncie conosco
       </a>
@@ -1041,4 +1232,3 @@
 </body>
 
 </html>
-

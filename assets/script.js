@@ -130,9 +130,13 @@ async function carregar() {
         await portfolioResp.json();
 
       PORTFOLIO =
-        Array.isArray(dados.itens)
-          ? dados.itens
-          : [];
+        Array.isArray(dados)
+          ? dados
+          : Array.isArray(dados.itens)
+            ? dados.itens
+            : Array.isArray(dados.portfolio)
+              ? dados.portfolio
+              : [];
 
     } else {
 
@@ -150,9 +154,11 @@ async function carregar() {
         await regioesResp.json();
 
       REGIOES =
-        Array.isArray(dadosRegioes.itens)
-          ? dadosRegioes.itens
-          : [];
+        Array.isArray(dadosRegioes)
+          ? dadosRegioes
+          : Array.isArray(dadosRegioes.itens)
+            ? dadosRegioes.itens
+            : [];
 
     }
 
@@ -429,6 +435,7 @@ function criarWhatsAppFlutuante() {
         viewBox="0 0 32 32"
         aria-hidden="true"
       >
+
         <path
           fill="currentColor"
           d="
@@ -458,6 +465,7 @@ function criarWhatsAppFlutuante() {
             z
           "
         />
+
         <path
           fill="currentColor"
           d="
@@ -482,6 +490,7 @@ function criarWhatsAppFlutuante() {
             z
           "
         />
+
       </svg>
 
     </span>
@@ -626,6 +635,19 @@ function specs(item) {
   const dados = [];
 
 
+  if (item.quartos) {
+
+    dados.push(
+      `${item.quartos} ${
+        Number(item.quartos) === 1
+          ? "dormitório"
+          : "dormitórios"
+      }`
+    );
+
+  }
+
+
   if (item.suites) {
 
     dados.push(
@@ -633,16 +655,6 @@ function specs(item) {
         Number(item.suites) === 1
           ? "suíte"
           : "suítes"
-      }`
-    );
-
-  } else if (item.quartos) {
-
-    dados.push(
-      `${item.quartos} ${
-        Number(item.quartos) === 1
-          ? "dormitório"
-          : "dormitórios"
       }`
     );
 
@@ -698,7 +710,8 @@ function adicionarOpcao(
     [...campo.options]
       .some(
         opcao =>
-          opcao.value === valor
+          normalizarTexto(opcao.value) ===
+          normalizarTexto(valor)
       );
 
 
@@ -749,7 +762,8 @@ function prepararFiltros() {
     lista =
       lista.filter(
         item =>
-          item.categoria === "Imóvel"
+          normalizarTexto(item.categoria) ===
+          "imovel"
       );
 
   }
@@ -762,7 +776,8 @@ function prepararFiltros() {
     lista =
       lista.filter(
         item =>
-          item.categoria === "Área"
+          normalizarTexto(item.categoria) ===
+          "area"
       );
 
   }
@@ -860,8 +875,8 @@ function renderInicial() {
   lista =
     lista.filter(
       item =>
-        item.status !== "Vendido" &&
-        item.status !== "Indisponível"
+        normalizarTexto(item.status) !== "vendido" &&
+        normalizarTexto(item.status) !== "indisponivel"
     );
 
 
@@ -876,7 +891,8 @@ function renderInicial() {
     lista =
       lista.filter(
         item =>
-          item.categoria === "Imóvel"
+          normalizarTexto(item.categoria) ===
+          "imovel"
       );
 
   }
@@ -889,7 +905,8 @@ function renderInicial() {
     lista =
       lista.filter(
         item =>
-          item.categoria === "Área"
+          normalizarTexto(item.categoria) ===
+          "area"
       );
 
   }
@@ -965,6 +982,7 @@ function render(lista) {
 
       card.className =
         "card";
+
 
       card.tabIndex =
         0;
@@ -1291,8 +1309,8 @@ function filtrar() {
   lista =
     lista.filter(
       item =>
-        item.status !== "Vendido" &&
-        item.status !== "Indisponível"
+        normalizarTexto(item.status) !== "vendido" &&
+        normalizarTexto(item.status) !== "indisponivel"
     );
 
 
@@ -1307,7 +1325,8 @@ function filtrar() {
     lista =
       lista.filter(
         item =>
-          item.categoria === "Imóvel"
+          normalizarTexto(item.categoria) ===
+          "imovel"
       );
 
   }
@@ -1320,7 +1339,8 @@ function filtrar() {
     lista =
       lista.filter(
         item =>
-          item.categoria === "Área"
+          normalizarTexto(item.categoria) ===
+          "area"
       );
 
   }
@@ -1409,7 +1429,8 @@ function filtrar() {
 
           (
             !categoria ||
-            item.categoria === categoria
+            normalizarTexto(item.categoria) ===
+            normalizarTexto(categoria)
           )
 
           &&
@@ -1427,7 +1448,8 @@ function filtrar() {
 
           (
             !tipo ||
-            item.tipo === tipo
+            normalizarTexto(item.tipo) ===
+            normalizarTexto(tipo)
           )
 
           &&
@@ -1674,6 +1696,68 @@ function ativarFiltros() {
 
 
 /* =========================================================
+   LINK AVALIAÇÃO NO MENU
+========================================================= */
+
+function garantirLinkAvaliacaoMenu() {
+
+  const menu =
+    $("#menu");
+
+
+  if (!menu) {
+    return;
+  }
+
+
+  if (
+    menu.querySelector(
+      'a[href="/avaliacao.html"]'
+    )
+  ) {
+    return;
+  }
+
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+
+  link.href =
+    "/avaliacao.html";
+
+
+  link.textContent =
+    "Avaliação";
+
+
+  const contato =
+    menu.querySelector(
+      'a[href="/contato.html"]'
+    );
+
+
+  if (contato) {
+
+    menu.insertBefore(
+      link,
+      contato
+    );
+
+  } else {
+
+    menu.appendChild(
+      link
+    );
+
+  }
+
+}
+
+
+/* =========================================================
    MODAL ANTIGO
 ========================================================= */
 
@@ -1838,6 +1922,8 @@ function ativarMenu() {
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+
+    garantirLinkAvaliacaoMenu();
 
     ativarMenu();
 

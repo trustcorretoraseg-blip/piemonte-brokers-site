@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Avaliação, perícia e precificação de imóveis pela Piemonte Brokers. Análise mercadológica para decisões de venda, compra, locação e patrimônio."
+  >
+
+  <title>
+    Avaliação, Perícia e Precificação | Piemonte Brokers
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="/assets/style.css"
+  >
+
+  <style>
+
+    .avaliacao-hero {
+      background: #17372f;
+      color: #fff;
+      padding: 92px 0 82px;
+    }
+
+    .avaliacao-hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 72px;
+      align-items: end;
+    }
+
+    .avaliacao-hero .eyebrow {
+      color: #d2ad62;
+    }
+
+    .avaliacao-hero h1 {
+      max-width: 850px;
+      margin: 14px 0 24px;
+      color: #fff;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.02;
+      font-weight: 400;
+      letter-spacing: -.035em;
+    }
+
+    .avaliacao-hero-copy {
+      max-width: 690px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.76);
+    }
+
+    .avaliacao-hero-side {
+      padding: 30px 0 4px;
+      border-top: 1px solid rgba(210,173,98,.55);
+    }
+
+    .avaliacao-hero-side p {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,.74);
+      line-height: 1.7;
+    }
+
+    .avaliacao-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .avaliacao-hero .btn.ghost {
+      border-color: rgba(255,255,255,.55);
+      color: #fff;
+    }
+
+    .avaliacao-intro {
+      background: #f4f1e9;
+    }
+
+    .avaliacao-intro-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .avaliacao-intro h2,
+    .avaliacao-method h2,
+    .avaliacao-form-copy h2 {
+      margin: 8px 0 22px;
+      color: #17372f;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.08;
+      font-weight: 400;
+      letter-spacing: -.025em;
+    }
+
+    .avaliacao-intro-text p,
+    .avaliacao-method p,
+    .avaliacao-form-copy p {
+      color: #626861;
+      line-height: 1.8;
+      margin: 0 0 18px;
+    }
+
+    .avaliacao-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .avaliacao-card {
+      background: #fff;
+      border: 1px solid rgba(23,55,47,.10);
+      padding: 30px 28px;
+      min-height: 230px;
+    }
+
+    .avaliacao-card small {
+      display: block;
+      margin-bottom: 22px;
+      color: #a98642;
+      letter-spacing: .12em;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .avaliacao-card h3 {
+      margin: 0 0 13px;
+      color: #17372f;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    .avaliacao-card p {
+      margin: 0;
+      color: #6b706b;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .avaliacao-method {
+      background: #fff;
+    }
+
+    .avaliacao-method-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 78px;
+      align-items: start;
+    }
+
+    .avaliacao-steps {
+      border-top: 1px solid rgba(23,55,47,.16);
+    }
+
+    .avaliacao-step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(23,55,47,.12);
+    }
+
+    .avaliacao-step strong {
+      color: #a98642;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+
+    .avaliacao-step h3 {
+      margin: 0 0 8px;
+      color: #17372f;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .avaliacao-step p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .avaliacao-nota {
+      margin-top: 28px;
+      padding: 18px 20px;
+      background: #f4f1e9;
+      color: #686d67;
+      font-size: 13px;
+      line-height: 1.65;
+      border-left: 3px solid #a98642;
+    }
+
+    .avaliacao-form-section {
+      background: #17372f;
+      color: #fff;
+    }
+
+    .avaliacao-form-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .avaliacao-form-copy .eyebrow {
+      color: #d2ad62;
+    }
+
+    .avaliacao-form-copy h2 {
+      color: #fff;
+    }
+
+    .avaliacao-form-copy p {
+      color: rgba(255,255,255,.74);
+    }
+
+    .avaliacao-whatsapp {
+      display: inline-flex;
+      margin-top: 12px;
+    }
+
+    .avaliacao-form-card {
+      background: #fff;
+      padding: 34px;
+      color: #17372f;
+    }
+
+    .avaliacao-form-card .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .avaliacao-form-card label {
+      display: block;
+      margin-bottom: 7px;
+      color: #17372f;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .avaliacao-form-card input,
+    .avaliacao-form-card select,
+    .avaliacao-form-card textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(23,55,47,.18);
+      background: #fff;
+      padding: 12px 13px;
+      color: #17372f;
+      font: inherit;
+    }
+
+    .avaliacao-form-card textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .avaliacao-full {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 900px) {
+
+      .avaliacao-hero-grid,
+      .avaliacao-intro-grid,
+      .avaliacao-method-grid,
+      .avaliacao-form-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+      }
+
+      .avaliacao-cards {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 620px) {
+
+      .avaliacao-hero {
+        padding: 70px 0 60px;
+      }
+
+      .avaliacao-hero h1 {
+        font-size: 42px;
+      }
+
+      .avaliacao-form-card {
+        padding: 24px;
+      }
+
+      .avaliacao-form-card .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .avaliacao-full {
+        grid-column: auto;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+  <div class="container nav">
+
+    <a
+      href="/index.html"
+      class="logo"
+    >
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
+    </a>
+
+    <button
+      id="menuBtn"
+      class="menu-btn"
+      aria-label="Abrir menu"
+    >
+      ☰
+    </button>
+
+    <nav id="menu">
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/trabalhe-conosco.html">
+        Trabalhe Conosco
+      </a>
+
+      <a href="/avaliacao.html">
+        Avaliação
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<section class="avaliacao-hero">
+
+  <div class="container avaliacao-hero-grid">
+
+    <div>
+
+      <p class="eyebrow">
+        AVALIAÇÃO IMOBILIÁRIA
+      </p>
+
+      <h1>
+        Avaliação, perícia e precificação de imóveis.
+      </h1>
+
+      <p class="avaliacao-hero-copy">
+        Referências de valor construídas com leitura de mercado,
+        análise do ativo e compreensão do contexto de cada decisão.
+      </p>
+
+    </div>
+
+    <div class="avaliacao-hero-side">
+
+      <p>
+        Para proprietários, compradores, investidores e empresas
+        que precisam entender o valor de um imóvel com mais clareza,
+        critério e fundamentação.
+      </p>
+
+      <div class="avaliacao-hero-actions">
+
+        <a
+          href="#solicitar-avaliacao"
+          class="btn gold"
+        >
+          Solicitar avaliação
+        </a>
+
+        <a
+          href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%2C%20per%C3%ADcia%20ou%20precifica%C3%A7%C3%A3o%20de%20um%20im%C3%B3vel."
+          class="btn ghost"
+          target="_blank"
+          rel="noopener"
+        >
+          Falar pelo WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section avaliacao-intro">
+
+  <div class="container">
+
+    <div class="avaliacao-intro-grid">
+
+      <div>
+
+        <p class="eyebrow dark">
+          O SERVIÇO
+        </p>
+
+        <h2>
+          Precificar bem é entender o imóvel além do anúncio.
+        </h2>
+
+      </div>
+
+      <div class="avaliacao-intro-text">
+
+        <p>
+          O valor de mercado de um imóvel não deve ser definido
+          apenas pela média de anúncios da região. Localização,
+          padrão construtivo, conservação, terreno, liquidez,
+          oferta concorrente e características particulares
+          interferem diretamente na precificação.
+        </p>
+
+        <p>
+          A Piemonte Brokers combina leitura mercadológica,
+          análise comparativa e experiência de negociação
+          para construir uma referência de valor adequada
+          ao objetivo apresentado pelo cliente.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="avaliacao-cards">
+
+      <article class="avaliacao-card">
+
+        <small>01</small>
+
+        <h3>
+          Avaliação mercadológica
+        </h3>
+
+        <p>
+          Estimativa de valor de mercado com base no imóvel,
+          sua localização, características e referências comparáveis.
+        </p>
+
+      </article>
+
+
+      <article class="avaliacao-card">
+
+        <small>02</small>
+
+        <h3>
+          Precificação estratégica
+        </h3>
+
+        <p>
+          Definição de faixa de preço para venda ou locação
+          considerando posicionamento, concorrência e liquidez.
+        </p>
+
+      </article>
+
+
+      <article class="avaliacao-card">
+
+        <small>03</small>
+
+        <h3>
+          Perícia e análise técnica
+        </h3>
+
+        <p>
+          Análise conforme a natureza da demanda e o escopo
+          solicitado, observando a habilitação profissional
+          aplicável a cada finalidade.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section avaliacao-method">
+
+  <div class="container avaliacao-method-grid">
+
+    <div>
+
+      <p class="eyebrow dark">
+        COMO TRABALHAMOS
+      </p>
+
+      <h2>
+        Uma análise organizada em quatro etapas.
+      </h2>
+
+      <p>
+        O nível de profundidade e a documentação necessária
+        variam conforme o tipo de imóvel e a finalidade da análise.
+      </p>
+
+      <div class="avaliacao-nota">
+        Em demandas judiciais, bancárias ou que exijam laudo técnico
+        com atribuição profissional específica, o atendimento é
+        condicionado ao escopo e à habilitação técnica exigida.
+      </div>
+
+    </div>
+
+
+    <div class="avaliacao-steps">
+
+      <div class="avaliacao-step">
+
+        <strong>01</strong>
+
+        <div>
+          <h3>Entendimento da finalidade</h3>
+          <p>
+            Identificamos o objetivo: venda, compra, locação,
+            patrimônio, inventário, investimento ou outra demanda.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="avaliacao-step">
+
+        <strong>02</strong>
+
+        <div>
+          <h3>Levantamento do imóvel</h3>
+          <p>
+            Reunimos dados do ativo, áreas, padrão, condição,
+            localização e informações relevantes para a análise.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="avaliacao-step">
+
+        <strong>03</strong>
+
+        <div>
+          <h3>Pesquisa e comparação</h3>
+          <p>
+            Analisamos ofertas, transações e imóveis comparáveis,
+            além de fatores que influenciam liquidez e percepção de valor.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="avaliacao-step">
+
+        <strong>04</strong>
+
+        <div>
+          <h3>Conclusão e orientação</h3>
+          <p>
+            Apresentamos a referência de valor e os principais
+            fundamentos que sustentam a precificação proposta.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section avaliacao-form-section"
+  id="solicitar-avaliacao"
+>
+
+  <div class="container avaliacao-form-grid">
+
+    <div class="avaliacao-form-copy">
+
+      <p class="eyebrow">
+        FALE COM A PIEMONTE
+      </p>
+
+      <h2>
+        Solicite uma análise do seu imóvel.
+      </h2>
+
+      <p>
+        Envie as informações principais. Nossa equipe entra
+        em contato para entender o imóvel, a finalidade
+        da avaliação e o nível de análise necessário.
+      </p>
+
+      <a
+        href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20de%20im%C3%B3vel."
+        class="btn gold avaliacao-whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        Solicitar pelo WhatsApp
+      </a>
+
+    </div>
+
+
+    <div class="avaliacao-form-card">
+
+      <form
+        name="avaliacao-imobiliaria"
+        method="POST"
+        action="/obrigado.html"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+
+        <input
+          type="hidden"
+          name="form-name"
+          value="avaliacao-imobiliaria"
+        >
+
+        <input
+          type="hidden"
+          name="origem"
+          value="Página Avaliação Imobiliária"
+        >
+
+        <p style="display:none;">
+          <label>
+            Não preencher:
+            <input
+              name="bot-field"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </label>
+        </p>
+
+
+        <div class="form-grid">
+
+          <div>
+
+            <label for="avaliacaoNome">
+              Nome
+            </label>
+
+            <input
+              id="avaliacaoNome"
+              type="text"
+              name="nome"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label for="avaliacaoTelefone">
+              Telefone / WhatsApp
+            </label>
+
+            <input
+              id="avaliacaoTelefone"
+              type="tel"
+              name="telefone"
+              autocomplete="tel"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label for="avaliacaoEmail">
+              E-mail
+            </label>
+
+            <input
+              id="avaliacaoEmail"
+              type="email"
+              name="email"
+              autocomplete="email"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label for="avaliacaoTipo">
+              Tipo de imóvel
+            </label>
+
+            <select
+              id="avaliacaoTipo"
+              name="tipo_imovel"
+              required
+            >
+              <option value="">
+                Selecione
+              </option>
+              <option>Casa</option>
+              <option>Apartamento</option>
+              <option>Terreno</option>
+              <option>Área / Gleba</option>
+              <option>Imóvel comercial</option>
+              <option>Galpão / Industrial</option>
+              <option>Imóvel rural</option>
+              <option>Outro</option>
+            </select>
+
+          </div>
+
+
+          <div>
+
+            <label for="avaliacaoCidade">
+              Cidade / Região
+            </label>
+
+            <input
+              id="avaliacaoCidade"
+              type="text"
+              name="cidade_regiao"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label for="avaliacaoFinalidade">
+              Finalidade
+            </label>
+
+            <select
+              id="avaliacaoFinalidade"
+              name="finalidade"
+              required
+            >
+              <option value="">
+                Selecione
+              </option>
+              <option>Venda</option>
+              <option>Compra</option>
+              <option>Locação</option>
+              <option>Inventário / Patrimônio</option>
+              <option>Investimento</option>
+              <option>Outra</option>
+            </select>
+
+          </div>
+
+
+          <div class="avaliacao-full">
+
+            <label for="avaliacaoMensagem">
+              Conte um pouco sobre o imóvel e sua necessidade
+            </label>
+
+            <textarea
+              id="avaliacaoMensagem"
+              name="mensagem"
+              placeholder="Ex.: localização, área aproximada, condomínio, finalidade da avaliação e outras informações relevantes."
+            ></textarea>
+
+          </div>
+
+
+          <div class="avaliacao-full">
+
+            <button
+              type="submit"
+              class="btn gold"
+            >
+              Enviar solicitação
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  <div class="container footer">
+
+    <div>
+
+      <img
+        src="/assets/logo-piemonte.png"
+        alt="Piemonte Brokers"
+      >
+
+    </div>
+
+
+    <div>
+
+      <a href="/imoveis.html">
+        Imóveis
+      </a>
+
+      <a href="/areas.html">
+        Áreas
+      </a>
+
+      <a href="/regioes.html">
+        Regiões
+      </a>
+
+      <a href="/sobre.html">
+        Sobre Nós
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <a href="/avaliacao.html">
+        Avaliação
+      </a>
+
+      <a href="/anuncie.html">
+        Anuncie conosco
+      </a>
+
+      <a href="/parcerias.html">
+        Parcerias
+      </a>
+
+      <a href="/contato.html">
+        Contato
+      </a>
+
+      <div id="footerContato">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="container copyright">
+    © 2026 Piemonte Brokers. Todos os direitos reservados.
+  </div>
+
+</footer>
+
+
+<script src="/assets/script.js"></script>
+
+
+</body>
+
+</html>
