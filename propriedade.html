@@ -2930,9 +2930,13 @@ function montarWhatsApp() {
       );
 
 
-  const mensagem =
-    `Olá! Tenho interesse na propriedade "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
+  const codigo =
+  PROPRIEDADE.codigo
+    ? `código ${PROPRIEDADE.codigo} – `
+    : "";
 
+const mensagem =
+  `Olá! Tenho interesse no imóvel ${codigo}${PROPRIEDADE.titulo}. Gostaria de receber mais informações.`;
 
   $("#propertyWhatsApp")
     .href =
@@ -2962,9 +2966,17 @@ function montarCompartilhamento() {
 
   const url = window.location.href;
   const titulo = PROPRIEDADE.titulo || "Imóvel Piemonte Brokers";
+const codigo = PROPRIEDADE.codigo || "";
   const local = montarLocalizacao(PROPRIEDADE);
   const preco = PROPRIEDADE.precoTexto || "Consulte";
-  const textoCurto = [titulo, local, preco].filter(Boolean).join(" — ");
+const textoCurto = [
+  codigo ? `Código ${codigo}` : "",
+  titulo,
+  local,
+  preco
+]
+  .filter(Boolean)
+  .join(" — ");
   const textoCompleto = `${textoCurto}\n${url}`;
 
   function abrirMenuFallback() {
@@ -3005,8 +3017,13 @@ function montarCompartilhamento() {
   }
 
   if (email) {
-    email.href = `mailto:?subject=${encodeURIComponent(titulo)}&body=${encodeURIComponent(textoCompleto)}`;
-  }
+    const assuntoEmail =
+  codigo
+    ? `Interesse no imóvel ${codigo} – Piemonte Brokers`
+    : `Interesse em imóvel – Piemonte Brokers`;
+
+email.href =
+  `mailto:?subject=${encodeURIComponent(assuntoEmail)}&body=${encodeURIComponent(textoCompleto)}`;
 
   if (facebook) {
     facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
