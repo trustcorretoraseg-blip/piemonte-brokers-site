@@ -8,7 +8,6 @@ locale: "pt"
 media_folder: "uploads"
 public_folder: "/uploads"
 
-
 collections:
 
   # =========================================================
@@ -118,13 +117,13 @@ collections:
               - label: "Região usada no filtro"
                 name: "cidadeFiltro"
                 widget: "select"
-                required: false
+                required: true
 
                 options:
                   - "Itu & Região"
                   - "Porto Feliz & Região"
-                  - "Granja Viana"
-                  - "São Paulo & Alphaville"
+                  - "Granja Viana & Alphaville"
+                  - "São Paulo"
                   - "Áreas & Oportunidades"
 
               - label: "Exibir na Home"
@@ -214,14 +213,14 @@ collections:
               - label: "Região principal"
                 name: "regiaoPrincipal"
                 widget: "select"
-                required: false
-                hint: "Escolha a região macro onde este imóvel será exibido."
+                required: true
+                hint: "Escolha uma das regiões oficiais de atuação da Piemonte Brokers."
 
                 options:
                   - "Itu & Região"
                   - "Porto Feliz & Região"
-                  - "Granja Viana"
-                  - "São Paulo & Alphaville"
+                  - "Granja Viana & Alphaville"
+                  - "São Paulo"
                   - "Áreas & Oportunidades"
 
               - label: "Cidade"

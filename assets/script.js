@@ -2,6 +2,14 @@ let SITE = {};
 let PORTFOLIO = [];
 let REGIOES = [];
 
+/* =========================================================
+   PAGINAÇÃO DO PORTFÓLIO
+========================================================= */
+
+const ITENS_POR_PAGINA = 9;
+let PAGINA_ATUAL_PORTFOLIO = 1;
+let ULTIMA_LISTA_PORTFOLIO = [];
+
 const $ = seletor => document.querySelector(seletor);
 const $$ = seletor => document.querySelectorAll(seletor);
 
@@ -29,13 +37,11 @@ const esc = valor =>
 ========================================================= */
 
 function normalizarTexto(valor) {
-
   return String(valor || "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
-
 }
 
 
@@ -49,7 +55,6 @@ function paginaAtual() {
     .toLowerCase()
     .replace(/\/+$/, "");
 
-
   if (
     caminho.endsWith("/imoveis") ||
     caminho.endsWith("/imoveis.html")
@@ -57,14 +62,12 @@ function paginaAtual() {
     return "imoveis";
   }
 
-
   if (
     caminho.endsWith("/areas") ||
     caminho.endsWith("/areas.html")
   ) {
     return "areas";
   }
-
 
   if (
     caminho === "" ||
@@ -75,9 +78,7 @@ function paginaAtual() {
     return "home";
   }
 
-
   return "outra";
-
 }
 
 
@@ -118,11 +119,9 @@ async function carregar() {
 
     ]);
 
-
     if (siteResp.ok) {
       SITE = await siteResp.json();
     }
-
 
     if (portfolioResp.ok) {
 
@@ -140,9 +139,7 @@ async function carregar() {
         "Erro ao carregar portfolio.json:",
         portfolioResp.status
       );
-
     }
-
 
     if (regioesResp.ok) {
 
@@ -153,20 +150,13 @@ async function carregar() {
         Array.isArray(dadosRegioes.itens)
           ? dadosRegioes.itens
           : [];
-
     }
 
-
     aplicarSite();
-
     prepararFiltros();
-
     renderInicial();
-
     aplicarFiltroDaURL();
-
     renderRegioes();
-
 
   } catch (erro) {
 
@@ -175,20 +165,14 @@ async function carregar() {
       erro
     );
 
-
     const contador =
       $("#contador");
 
-
     if (contador) {
-
       contador.textContent =
         "Não foi possível carregar o portfólio.";
-
     }
-
   }
-
 }
 
 
@@ -201,58 +185,41 @@ function aplicarSite() {
   const tituloHome =
     $("#tituloHome");
 
-
   if (tituloHome) {
-
     tituloHome.textContent =
       SITE.tituloHome ||
       "Imóveis, áreas e oportunidades com visão estratégica.";
-
   }
-
 
   const subtituloHome =
     $("#subtituloHome");
 
-
   if (subtituloHome) {
-
     subtituloHome.textContent =
       SITE.subtituloHome ||
       "Curadoria imobiliária de alto padrão.";
-
   }
-
 
   const textoSobre =
     $("#textoSobre");
 
-
   if (textoSobre) {
-
     textoSobre.textContent =
       SITE.textoSobre || "";
-
   }
-
 
   const hero =
     $(".hero");
-
 
   if (
     hero &&
     SITE.imagemHome
   ) {
-
     hero.style.backgroundImage =
       `url("${SITE.imagemHome}")`;
-
   }
 
-
   montarContato();
-
 }
 
 
@@ -265,11 +232,9 @@ function montarContato() {
   const contatoLinks =
     $("#contatoLinks");
 
-
   if (contatoLinks) {
 
     const links = [];
-
 
     if (SITE.whatsapp) {
 
@@ -277,9 +242,7 @@ function montarContato() {
         String(SITE.whatsapp)
           .replace(/\D/g, "");
 
-
       links.push(`
-
         <a
           class="btn gold"
           href="https://wa.me/${esc(numero)}"
@@ -288,17 +251,12 @@ function montarContato() {
         >
           WhatsApp
         </a>
-
       `);
-
     }
-
 
     contatoLinks.innerHTML =
       links.join(" ");
-
   }
-
 
   $$("#footerContato")
     .forEach(
@@ -306,16 +264,13 @@ function montarContato() {
 
         const itens = [];
 
-
         if (SITE.whatsapp) {
 
           const numero =
             String(SITE.whatsapp)
               .replace(/\D/g, "");
 
-
           itens.push(`
-
             <a
               href="https://wa.me/${esc(numero)}"
               target="_blank"
@@ -323,16 +278,12 @@ function montarContato() {
             >
               WhatsApp
             </a>
-
           `);
-
         }
-
 
         if (SITE.instagram) {
 
           itens.push(`
-
             <a
               href="${esc(SITE.instagram)}"
               target="_blank"
@@ -340,31 +291,22 @@ function montarContato() {
             >
               Instagram
             </a>
-
           `);
-
         }
-
 
         if (SITE.cidadeBase) {
 
           itens.push(`
-
             <span>
               ${esc(SITE.cidadeBase)}
             </span>
-
           `);
-
         }
-
 
         footer.innerHTML =
           itens.join("");
-
       }
     );
-
 }
 
 
@@ -381,7 +323,6 @@ function criarWhatsAppFlutuante() {
     )
       .replace(/\D/g, "");
 
-
   if (
     document.querySelector(
       ".whatsapp-float"
@@ -390,39 +331,30 @@ function criarWhatsAppFlutuante() {
     return;
   }
 
-
   const link =
     document.createElement("a");
-
 
   link.className =
     "whatsapp-float";
 
-
   const mensagem =
     "Olá! Vim pelo site da Piemonte Brokers e gostaria de mais informações.";
-
 
   link.href =
     `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 
-
   link.target =
     "_blank";
 
-
   link.rel =
     "noopener noreferrer";
-
 
   link.setAttribute(
     "aria-label",
     "Falar com a Piemonte Brokers pelo WhatsApp"
   );
 
-
   link.innerHTML = `
-
     <span class="whatsapp-float-icon">
 
       <svg
@@ -489,18 +421,14 @@ function criarWhatsAppFlutuante() {
 
     </span>
 
-
     <span class="whatsapp-float-text">
       Fale com a Piemonte
     </span>
-
   `;
-
 
   document.body.appendChild(
     link
   );
-
 }
 
 
@@ -531,7 +459,6 @@ function codigoPiemonte(item) {
       : 0;
 
   return `PB ${String(numero).padStart(4, "0")}`;
-
 }
 
 
@@ -544,11 +471,9 @@ function renderRegioes() {
   const box =
     $("#regioesCards");
 
-
   if (!box) {
     return;
   }
-
 
   const lista =
     REGIOES.filter(
@@ -556,9 +481,7 @@ function renderRegioes() {
         item.destaque !== false
     );
 
-
   box.innerHTML = "";
-
 
   lista.forEach(
     item => {
@@ -566,12 +489,10 @@ function renderRegioes() {
       const link =
         document.createElement("a");
 
-
       const regiaoFiltro =
         item.nome ||
         item.cidadeFiltro ||
         "";
-
 
       const destino =
         normalizarTexto(
@@ -583,24 +504,19 @@ function renderRegioes() {
           ? "/areas.html"
           : "/imoveis.html";
 
-
       link.href =
         regiaoFiltro
           ? `${destino}?regiao=${encodeURIComponent(regiaoFiltro)}`
           : "/regioes.html";
 
-
       link.className =
         "regiao-home-card";
-
 
       const imagem =
         item.imagem ||
         "/assets/home-principal.jpeg";
 
-
       link.innerHTML = `
-
         <div class="regiao-home-img">
 
           <img
@@ -610,7 +526,6 @@ function renderRegioes() {
           >
 
         </div>
-
 
         <div class="regiao-home-body">
 
@@ -623,17 +538,13 @@ function renderRegioes() {
           </p>
 
         </div>
-
       `;
-
 
       box.appendChild(
         link
       );
-
     }
   );
-
 }
 
 
@@ -646,13 +557,11 @@ function formatarNumero(valor) {
   const numero =
     Number(valor);
 
-
   if (
     Number.isNaN(numero)
   ) {
     return valor;
   }
-
 
   return numero.toLocaleString(
     "pt-BR",
@@ -660,7 +569,6 @@ function formatarNumero(valor) {
       maximumFractionDigits: 2
     }
   );
-
 }
 
 
@@ -671,7 +579,6 @@ function formatarNumero(valor) {
 function specs(item) {
 
   const dados = [];
-
 
   if (item.suites) {
 
@@ -692,9 +599,7 @@ function specs(item) {
           : "dormitórios"
       }`
     );
-
   }
-
 
   if (item.areaConstruida) {
 
@@ -703,9 +608,7 @@ function specs(item) {
         item.areaConstruida
       )} m² construídos`
     );
-
   }
-
 
   if (item.areaTerreno) {
 
@@ -714,12 +617,9 @@ function specs(item) {
         item.areaTerreno
       )} m² de terreno`
     );
-
   }
 
-
   return dados.join(" • ");
-
 }
 
 
@@ -740,7 +640,6 @@ function adicionarOpcao(
     return;
   }
 
-
   const existe =
     [...campo.options]
       .some(
@@ -748,17 +647,14 @@ function adicionarOpcao(
           opcao.value === valor
       );
 
-
   if (existe) {
     return;
   }
-
 
   const option =
     document.createElement(
       "option"
     );
-
 
   option.value =
     valor;
@@ -766,11 +662,9 @@ function adicionarOpcao(
   option.textContent =
     valor;
 
-
   campo.appendChild(
     option
   );
-
 }
 
 
@@ -784,7 +678,6 @@ function prepararFiltros() {
 
   const pagina = paginaAtual();
 
-
   if (pagina === "imoveis") {
 
     lista = lista.filter(
@@ -793,9 +686,7 @@ function prepararFiltros() {
           item.categoria
         ) === "imovel"
     );
-
   }
-
 
   if (pagina === "areas") {
 
@@ -805,9 +696,7 @@ function prepararFiltros() {
           item.categoria
         ) === "area"
     );
-
   }
-
 
   const categoria =
     $("#fCategoria");
@@ -822,9 +711,7 @@ function prepararFiltros() {
     $("#fTipo");
 
 
-  /* =====================================================
-     CATEGORIA
-  ===================================================== */
+  /* CATEGORIA */
 
   if (
     categoria &&
@@ -836,13 +723,10 @@ function prepararFiltros() {
       <option value="Imóvel">Imóvel</option>
       <option value="Área">Área</option>
     `;
-
   }
 
 
-  /* =====================================================
-     FINALIDADE
-  ===================================================== */
+  /* FINALIDADE */
 
   if (
     negocio &&
@@ -854,14 +738,10 @@ function prepararFiltros() {
       <option value="Venda">Venda</option>
       <option value="Locação">Locação</option>
     `;
-
   }
 
 
-  /* =====================================================
-     REGIÕES / CIDADES
-     ATUALIZA AUTOMATICAMENTE PELO PORTFÓLIO
-  ===================================================== */
+  /* REGIÕES / CIDADES */
 
   if (
     regiao &&
@@ -871,9 +751,7 @@ function prepararFiltros() {
     regiao.innerHTML =
       '<option value="">Regiões / Cidades</option>';
 
-
     const locais = [];
-
 
     lista.forEach(
       item => {
@@ -893,19 +771,13 @@ function prepararFiltros() {
                     normalizarTexto(valor)
                 );
 
-
               if (!jaExiste) {
-
                 locais.push(valor);
-
               }
-
             }
           );
-
       }
     );
-
 
     locais
       .sort(
@@ -922,13 +794,10 @@ function prepararFiltros() {
             valor
           )
       );
-
   }
 
 
-  /* =====================================================
-     TIPO
-  ===================================================== */
+  /* TIPO */
 
   if (
     tipo &&
@@ -937,7 +806,6 @@ function prepararFiltros() {
 
     tipo.innerHTML =
       '<option value="">Tipo</option>';
-
 
     [
       ...new Set(
@@ -963,10 +831,10 @@ function prepararFiltros() {
             valor
           )
       );
-
   }
-
 }
+
+
 /* =========================================================
    FILTRO RECEBIDO PELA URL
 ========================================================= */
@@ -978,7 +846,6 @@ function aplicarFiltroDaURL() {
       window.location.search
     );
 
-
   const regiao =
     params.get("regiao");
 
@@ -988,20 +855,14 @@ function aplicarFiltroDaURL() {
   const negocio =
     params.get("negocio");
 
-
   let aplicouFiltro =
     false;
 
-
-  /* =====================================================
-     FILTRO POR REGIÃO
-  ===================================================== */
 
   if (regiao) {
 
     const campoRegiao =
       $("#fCidade");
-
 
     if (
       campoRegiao &&
@@ -1013,7 +874,6 @@ function aplicarFiltroDaURL() {
           regiao
         );
 
-
       const opcaoRegiao =
         [...campoRegiao.options]
           .find(
@@ -1023,7 +883,6 @@ function aplicarFiltroDaURL() {
               ) ===
               regiaoNormalizada
           );
-
 
       if (opcaoRegiao) {
 
@@ -1037,24 +896,15 @@ function aplicarFiltroDaURL() {
           regiao
         );
 
-
         campoRegiao.value =
           regiao;
-
       }
-
 
       aplicouFiltro =
         true;
-
     }
-
   }
 
-
-  /* =====================================================
-     COMPATIBILIDADE COM LINKS ANTIGOS ?cidade=
-  ===================================================== */
 
   if (
     cidade &&
@@ -1063,7 +913,6 @@ function aplicarFiltroDaURL() {
 
     const campoRegiao =
       $("#fCidade");
-
 
     if (
       campoRegiao &&
@@ -1075,7 +924,6 @@ function aplicarFiltroDaURL() {
           cidade
         );
 
-
       const opcaoCidade =
         [...campoRegiao.options]
           .find(
@@ -1086,7 +934,6 @@ function aplicarFiltroDaURL() {
               cidadeNormalizada
           );
 
-
       if (opcaoCidade) {
 
         campoRegiao.value =
@@ -1094,23 +941,15 @@ function aplicarFiltroDaURL() {
 
         aplicouFiltro =
           true;
-
       }
-
     }
-
   }
 
-
-  /* =====================================================
-     FILTRO POR FINALIDADE
-  ===================================================== */
 
   if (negocio) {
 
     const campoNegocio =
       $("#fNegocio");
-
 
     if (
       campoNegocio &&
@@ -1122,18 +961,14 @@ function aplicarFiltroDaURL() {
           negocio
         );
 
-
       if (
         negocioNormalizado === "alugar" ||
         negocioNormalizado === "aluguel" ||
         negocioNormalizado === "locacao"
       ) {
-
         negocioNormalizado =
           "locacao";
-
       }
-
 
       const opcaoNegocio =
         [...campoNegocio.options]
@@ -1145,7 +980,6 @@ function aplicarFiltroDaURL() {
               negocioNormalizado
           );
 
-
       if (opcaoNegocio) {
 
         campoNegocio.value =
@@ -1153,20 +987,13 @@ function aplicarFiltroDaURL() {
 
         aplicouFiltro =
           true;
-
       }
-
     }
-
   }
-
 
   if (aplicouFiltro) {
-
     filtrar();
-
   }
-
 }
 
 
@@ -1182,10 +1009,8 @@ function renderInicial() {
     return;
   }
 
-
   let lista =
     [...PORTFOLIO];
-
 
   lista =
     lista.filter(
@@ -1194,10 +1019,8 @@ function renderInicial() {
         item.status !== "Indisponível"
     );
 
-
   const pagina =
     paginaAtual();
-
 
   if (
     pagina === "imoveis"
@@ -1210,9 +1033,7 @@ function renderInicial() {
             item.categoria
           ) === "imovel"
       );
-
   }
-
 
   if (
     pagina === "areas"
@@ -1225,26 +1046,11 @@ function renderInicial() {
             item.categoria
           ) === "area"
       );
-
   }
-
 
   if (
     pagina === "home"
   ) {
-
-    /*
-      SELEÇÃO PIEMONTE
-
-      A ordem digitada no Admin define a prioridade.
-
-      Se dois imóveis tiverem o mesmo número,
-      nenhum deles desaparece.
-
-      Os demais continuam na sequência.
-
-      A Home mostra até 6 imóveis.
-    */
 
     const destaques =
       lista
@@ -1260,7 +1066,6 @@ function renderInicial() {
                 item.ordemDestaque
               );
 
-
             return {
 
               item,
@@ -1272,9 +1077,7 @@ function renderInicial() {
                 ordem > 0
                   ? ordem
                   : 9999
-
             };
-
           }
         )
         .sort(
@@ -1284,27 +1087,22 @@ function renderInicial() {
               a.ordem !==
               b.ordem
             ) {
-
               return (
                 a.ordem -
                 b.ordem
               );
-
             }
-
 
             return (
               a.indiceOriginal -
               b.indiceOriginal
             );
-
           }
         )
         .map(
           registro =>
             registro.item
         );
-
 
     lista =
       destaques.length
@@ -1316,12 +1114,215 @@ function renderInicial() {
             0,
             6
           );
-
   }
 
-
   render(lista);
+}
 
+
+/* =========================================================
+   PAGINAÇÃO — 9 IMÓVEIS POR PÁGINA
+========================================================= */
+
+function renderPaginacao(totalItens) {
+
+  let paginacao =
+    $("#paginacaoPortfolio");
+
+  const cards =
+    $("#cards");
+
+  if (!cards) {
+    return;
+  }
+
+  if (!paginacao) {
+
+    paginacao =
+      document.createElement("nav");
+
+    paginacao.id =
+      "paginacaoPortfolio";
+
+    paginacao.setAttribute(
+      "aria-label",
+      "Paginação de imóveis"
+    );
+
+    paginacao.style.display =
+      "flex";
+
+    paginacao.style.flexWrap =
+      "wrap";
+
+    paginacao.style.justifyContent =
+      "center";
+
+    paginacao.style.alignItems =
+      "center";
+
+    paginacao.style.gap =
+      "8px";
+
+    paginacao.style.marginTop =
+      "32px";
+
+    cards.insertAdjacentElement(
+      "afterend",
+      paginacao
+    );
+  }
+
+  if (
+    paginaAtual() !== "imoveis" ||
+    totalItens <= ITENS_POR_PAGINA
+  ) {
+
+    paginacao.innerHTML = "";
+    paginacao.style.display = "none";
+    return;
+  }
+
+  paginacao.style.display =
+    "flex";
+
+  const totalPaginas =
+    Math.ceil(
+      totalItens /
+      ITENS_POR_PAGINA
+    );
+
+  PAGINA_ATUAL_PORTFOLIO =
+    Math.min(
+      Math.max(
+        PAGINA_ATUAL_PORTFOLIO,
+        1
+      ),
+      totalPaginas
+    );
+
+  paginacao.innerHTML = "";
+
+
+  function criarBotao(
+    texto,
+    pagina,
+    ativo = false,
+    desabilitado = false
+  ) {
+
+    const botao =
+      document.createElement("button");
+
+    botao.type =
+      "button";
+
+    botao.textContent =
+      texto;
+
+    botao.disabled =
+      desabilitado;
+
+    botao.style.minWidth =
+      "42px";
+
+    botao.style.height =
+      "42px";
+
+    botao.style.padding =
+      "0 12px";
+
+    botao.style.border =
+      ativo
+        ? "1px solid #17372f"
+        : "1px solid #c8c8c8";
+
+    botao.style.background =
+      ativo
+        ? "#17372f"
+        : "#ffffff";
+
+    botao.style.color =
+      ativo
+        ? "#ffffff"
+        : "#17372f";
+
+    botao.style.cursor =
+      desabilitado
+        ? "default"
+        : "pointer";
+
+    botao.style.opacity =
+      desabilitado
+        ? "0.45"
+        : "1";
+
+    botao.style.borderRadius =
+      "2px";
+
+    if (!desabilitado) {
+
+      botao.addEventListener(
+        "click",
+        () => {
+
+          PAGINA_ATUAL_PORTFOLIO =
+            pagina;
+
+          render(
+            ULTIMA_LISTA_PORTFOLIO
+          );
+
+          const topo =
+            $("#cards");
+
+          if (topo) {
+
+            topo.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }
+      );
+    }
+
+    return botao;
+  }
+
+  paginacao.appendChild(
+    criarBotao(
+      "Anterior",
+      PAGINA_ATUAL_PORTFOLIO - 1,
+      false,
+      PAGINA_ATUAL_PORTFOLIO === 1
+    )
+  );
+
+  for (
+    let numero = 1;
+    numero <= totalPaginas;
+    numero += 1
+  ) {
+
+    paginacao.appendChild(
+      criarBotao(
+        String(numero),
+        numero,
+        numero === PAGINA_ATUAL_PORTFOLIO,
+        false
+      )
+    );
+  }
+
+  paginacao.appendChild(
+    criarBotao(
+      "Próxima",
+      PAGINA_ATUAL_PORTFOLIO + 1,
+      false,
+      PAGINA_ATUAL_PORTFOLIO === totalPaginas
+    )
+  );
 }
 
 
@@ -1334,17 +1335,55 @@ function render(lista) {
   const box =
     $("#cards");
 
-
   if (!box) {
     return;
   }
 
-
   box.innerHTML =
     "";
 
+  let listaParaExibir =
+    lista;
 
-  lista.forEach(
+  if (
+    paginaAtual() === "imoveis"
+  ) {
+
+    ULTIMA_LISTA_PORTFOLIO =
+      [...lista];
+
+    const totalPaginas =
+      Math.max(
+        1,
+        Math.ceil(
+          lista.length /
+          ITENS_POR_PAGINA
+        )
+      );
+
+    PAGINA_ATUAL_PORTFOLIO =
+      Math.min(
+        Math.max(
+          PAGINA_ATUAL_PORTFOLIO,
+          1
+        ),
+        totalPaginas
+      );
+
+    const inicio =
+      (
+        PAGINA_ATUAL_PORTFOLIO - 1
+      ) *
+      ITENS_POR_PAGINA;
+
+    listaParaExibir =
+      lista.slice(
+        inicio,
+        inicio + ITENS_POR_PAGINA
+      );
+  }
+
+  listaParaExibir.forEach(
     item => {
 
       const card =
@@ -1352,24 +1391,20 @@ function render(lista) {
           "article"
         );
 
-
       card.className =
         "card";
 
       card.tabIndex =
         0;
 
-
       card.setAttribute(
         "role",
         "link"
       );
 
-
       const imagem =
         item.imagemCapa ||
         "/assets/logo-piemonte.png";
-
 
       const localCard =
         [
@@ -1379,13 +1414,10 @@ function render(lista) {
         ]
           .filter(Boolean);
 
-
       const localUnico =
         [...new Set(localCard)];
 
-
       card.innerHTML = `
-
         <div class="card-img">
 
           <img
@@ -1400,17 +1432,14 @@ function render(lista) {
           ${
             item.categoria
               ? `
-
                 <span class="badge">
                   ${esc(item.categoria)}
                 </span>
-
               `
               : ""
           }
 
         </div>
-
 
         <div class="card-body">
 
@@ -1426,14 +1455,12 @@ function render(lista) {
             )}
           </div>
 
-
           <h3>
             ${esc(
               item.titulo ||
               "Oportunidade Piemonte"
             )}
           </h3>
-
 
           <p>
             ${esc(
@@ -1443,7 +1470,6 @@ function render(lista) {
             )}
           </p>
 
-
           <strong class="price">
             ${esc(
               item.precoTexto ||
@@ -1452,9 +1478,7 @@ function render(lista) {
           </strong>
 
         </div>
-
       `;
-
 
       card.addEventListener(
         "click",
@@ -1463,7 +1487,6 @@ function render(lista) {
             item
           )
       );
-
 
       card.addEventListener(
         "keydown",
@@ -1479,24 +1502,18 @@ function render(lista) {
             abrirPropriedade(
               item
             );
-
           }
-
         }
       );
-
 
       box.appendChild(
         card
       );
-
     }
   );
 
-
   const contador =
     $("#contador");
-
 
   if (contador) {
 
@@ -1506,31 +1523,28 @@ function render(lista) {
           ? "oportunidade"
           : "oportunidades"
       }`;
-
   }
-
 
   const vazio =
     $("#vazio");
-
 
   if (vazio) {
 
     const semResultados =
       lista.length === 0;
 
-
     vazio.hidden =
       !semResultados;
-
 
     vazio.style.display =
       semResultados
         ? "block"
         : "none";
-
   }
 
+  renderPaginacao(
+    lista.length
+  );
 }
 
 
@@ -1553,19 +1567,15 @@ function abrirPropriedade(
     );
 
     return;
-
   }
-
 
   const id =
     encodeURIComponent(
       item.id
     );
 
-
   window.location.href =
     `/propriedade.html?id=${id}`;
-
 }
 
 
@@ -1580,7 +1590,6 @@ function abrir(
   abrirPropriedade(
     item
   );
-
 }
 
 
@@ -1597,17 +1606,14 @@ function atendeFaixaPreco(
     return true;
   }
 
-
   const valor =
     Number(
       item.preco || 0
     );
 
-
   if (!valor) {
     return false;
   }
-
 
   switch (faixa) {
 
@@ -1618,14 +1624,12 @@ function atendeFaixaPreco(
         1000000
       );
 
-
     case "1m-3m":
 
       return (
         valor > 1000000 &&
         valor <= 3000000
       );
-
 
     case "3m-5m":
 
@@ -1634,14 +1638,12 @@ function atendeFaixaPreco(
         valor <= 5000000
       );
 
-
     case "5m-10m":
 
       return (
         valor > 5000000 &&
         valor <= 10000000
       );
-
 
     case "10m-30m":
 
@@ -1650,14 +1652,12 @@ function atendeFaixaPreco(
         valor <= 30000000
       );
 
-
     case "acima-10m":
 
       return (
         valor >
         10000000
       );
-
 
     case "acima-30m":
 
@@ -1666,13 +1666,9 @@ function atendeFaixaPreco(
         30000000
       );
 
-
     default:
-
       return true;
-
   }
-
 }
 
 
@@ -1685,7 +1681,6 @@ function filtrar() {
   let lista =
     [...PORTFOLIO];
 
-
   lista =
     lista.filter(
       item =>
@@ -1693,17 +1688,8 @@ function filtrar() {
         item.status !== "Indisponível"
     );
 
-
   const pagina =
     paginaAtual();
-
-
-  /*
-    Na página Áreas mantemos somente Áreas.
-
-    Na página Imóveis deixamos o filtro Categoria
-    decidir entre Imóvel e Área.
-  */
 
   if (
     pagina === "areas"
@@ -1716,58 +1702,47 @@ function filtrar() {
             item.categoria
           ) === "area"
       );
-
   }
-
 
   const categoria =
     $("#fCategoria")
       ?.value || "";
 
-
   const negocio =
     $("#fNegocio")
       ?.value || "";
-
 
   const regiao =
     $("#fCidade")
       ?.value || "";
 
-
   const tipo =
     $("#fTipo")
       ?.value || "";
 
-
   const preco =
     $("#fPreco")
       ?.value || "";
-
 
   const categoriaNormalizada =
     normalizarTexto(
       categoria
     );
 
-
   const negocioNormalizado =
     normalizarTexto(
       negocio
     );
-
 
   const regiaoNormalizada =
     normalizarTexto(
       regiao
     );
 
-
   const tipoNormalizado =
     normalizarTexto(
       tipo
     );
-
 
   lista =
     lista.filter(
@@ -1778,31 +1753,26 @@ function filtrar() {
             item.categoria
           );
 
-
         const negocioItem =
           normalizarTexto(
             item.negocio ||
             item.finalidade
           );
 
-
         const regiaoPrincipalItem =
           normalizarTexto(
             item.regiaoPrincipal
           );
-
 
         const cidadeItem =
           normalizarTexto(
             item.cidade
           );
 
-
         const tipoItem =
           normalizarTexto(
             item.tipo
           );
-
 
         return (
 
@@ -1844,18 +1814,19 @@ function filtrar() {
             item,
             preco
           )
-
         );
-
       }
     );
 
+  PAGINA_ATUAL_PORTFOLIO =
+    1;
 
   render(
     lista
   );
-
 }
+
+
 /* =========================================================
    EVENTOS DOS FILTROS
 ========================================================= */
@@ -1865,11 +1836,9 @@ function ativarFiltros() {
   const filtros =
     $("#filtros");
 
-
   if (!filtros) {
     return;
   }
-
 
   if (
     filtros.tagName === "FORM"
@@ -1882,12 +1851,9 @@ function ativarFiltros() {
         evento.preventDefault();
 
         filtrar();
-
       }
     );
-
   }
-
 
   [
     "#fCategoria",
@@ -1902,19 +1868,15 @@ function ativarFiltros() {
         const elemento =
           $(seletor);
 
-
         if (elemento) {
 
           elemento.addEventListener(
             "change",
             filtrar
           );
-
         }
-
       }
     );
-
 }
 
 
@@ -1927,29 +1889,23 @@ function fechar() {
   const modal =
     $("#modal");
 
-
   if (!modal) {
     return;
   }
 
-
   modal.hidden =
     true;
-
 
   modal.setAttribute(
     "aria-hidden",
     "true"
   );
 
-
   modal.style.display =
     "none";
 
-
   document.body.style.overflow =
     "";
-
 }
 
 
@@ -1962,10 +1918,8 @@ function ativarModal() {
   const botaoNovo =
     $("#modalClose");
 
-
   const botaoAntigo =
     $("#fecharModal");
-
 
   if (botaoNovo) {
 
@@ -1973,9 +1927,7 @@ function ativarModal() {
       "click",
       fechar
     );
-
   }
-
 
   if (botaoAntigo) {
 
@@ -1983,13 +1935,10 @@ function ativarModal() {
       "click",
       fechar
     );
-
   }
-
 
   const overlay =
     $(".modal-overlay");
-
 
   if (overlay) {
 
@@ -1997,9 +1946,7 @@ function ativarModal() {
       "click",
       fechar
     );
-
   }
-
 
   document.addEventListener(
     "keydown",
@@ -2009,14 +1956,10 @@ function ativarModal() {
         evento.key ===
         "Escape"
       ) {
-
         fechar();
-
       }
-
     }
   );
-
 }
 
 
@@ -2029,10 +1972,8 @@ function ativarMenu() {
   const menuBtn =
     $("#menuBtn");
 
-
   const menu =
     $("#menu");
-
 
   if (
     !menuBtn ||
@@ -2041,7 +1982,6 @@ function ativarMenu() {
     return;
   }
 
-
   menuBtn.addEventListener(
     "click",
     () => {
@@ -2049,10 +1989,8 @@ function ativarMenu() {
       menu.classList.toggle(
         "open"
       );
-
     }
   );
-
 
   menu
     .querySelectorAll("a")
@@ -2066,13 +2004,10 @@ function ativarMenu() {
             menu.classList.remove(
               "open"
             );
-
           }
         );
-
       }
     );
-
 }
 
 
@@ -2085,15 +2020,12 @@ function garantirAvaliacaoNoMenu() {
   const menu =
     $("#menu");
 
-
   if (!menu) {
     return;
   }
 
-
   const links =
     [...menu.querySelectorAll("a")];
-
 
   const jaExiste =
     links.some(
@@ -2107,7 +2039,6 @@ function garantirAvaliacaoNoMenu() {
               window.location.origin
             );
 
-
           return (
             url.pathname === "/avaliacao.html" ||
             url.pathname === "/avaliacao"
@@ -2116,29 +2047,22 @@ function garantirAvaliacaoNoMenu() {
         } catch {
 
           return false;
-
         }
-
       }
     );
-
 
   if (jaExiste) {
     return;
   }
 
-
   const novoLink =
     document.createElement("a");
-
 
   novoLink.href =
     "/avaliacao.html";
 
-
   novoLink.textContent =
     "Avaliação";
-
 
   const linkContato =
     links.find(
@@ -2152,7 +2076,6 @@ function garantirAvaliacaoNoMenu() {
               window.location.origin
             );
 
-
           return (
             url.pathname === "/contato.html" ||
             url.pathname === "/contato"
@@ -2161,12 +2084,9 @@ function garantirAvaliacaoNoMenu() {
         } catch {
 
           return false;
-
         }
-
       }
     );
-
 
   if (linkContato) {
 
@@ -2180,9 +2100,7 @@ function garantirAvaliacaoNoMenu() {
     menu.appendChild(
       novoLink
     );
-
   }
-
 }
 
 
@@ -2204,11 +2122,9 @@ document.addEventListener(
 
     carregar();
 
-
     setTimeout(
       criarWhatsAppFlutuante,
       500
     );
-
   }
 );
