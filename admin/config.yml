@@ -210,10 +210,10 @@ collections:
               # LOCALIZAÇÃO
               # -------------------------------------------------
 
-              - label: "Região principal"
+                            - label: "Região principal"
                 name: "regiaoPrincipal"
                 widget: "select"
-                required: true
+                required: false
                 hint: "Escolha uma das regiões oficiais de atuação da Piemonte Brokers."
 
                 options:
@@ -222,6 +222,8 @@ collections:
                   - "Granja Viana & Alphaville"
                   - "São Paulo"
                   - "Áreas & Oportunidades"
+                  - "Granja Viana"
+                  - "São Paulo & Alphaville"
 
               - label: "Cidade"
                 name: "cidade"
