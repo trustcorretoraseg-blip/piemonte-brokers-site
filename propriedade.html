@@ -3016,16 +3016,20 @@ const textoCurto = [
     whatsapp.href = `https://wa.me/?text=${encodeURIComponent(textoCompleto)}`;
   }
 
-  if (email) {
-    const assuntoEmail =
-  codigo
-    ? `Interesse no imóvel ${codigo} – Piemonte Brokers`
-    : `Interesse em imóvel – Piemonte Brokers`;
+  
+if (email) {
+  const assuntoEmail =
+    codigo
+      ? `Interesse no imóvel ${codigo} – Piemonte Brokers`
+      : `Interesse em imóvel – Piemonte Brokers`;
 
-email.href =
-  `mailto:?subject=${encodeURIComponent(assuntoEmail)}&body=${encodeURIComponent(textoCompleto)}`;
+  email.href =
+    `mailto:?subject=${encodeURIComponent(assuntoEmail)}&body=${encodeURIComponent(textoCompleto)}`;
+}
 
-  if (facebook) {
+if (facebook) {
+
+
     facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
   }
 
