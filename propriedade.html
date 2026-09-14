@@ -1940,13 +1940,22 @@ HEADER
             Consulte
           </strong>
 
-        <a
-  href="#"
-  class="secondary-contact"
-  id="propertyEmail"
->
-  Enviar e-mail
-</a>
+          <a
+            href="#"
+            class="btn gold"
+            id="propertyWhatsApp"
+            target="_blank"
+            rel="noopener"
+          >
+            Falar pelo WhatsApp
+          </a>
+
+          <a
+            href="/contato.html"
+            class="secondary-contact"
+          >
+            Enviar uma mensagem
+          </a>
 
         </div>
 
@@ -2920,26 +2929,10 @@ function montarWhatsApp() {
         ""
       );
 
-  const codigo =
-    String(
-      PROPRIEDADE.codigo ||
-      ""
-    ).trim();
-
-  const titulo =
-    PROPRIEDADE.titulo ||
-    "Imóvel Piemonte Brokers";
-
-  const url =
-    window.location.href;
-
-  const referencia =
-    codigo
-      ? `código ${codigo} – ${titulo}`
-      : titulo;
 
   const mensagem =
-    `Olá! Tenho interesse no imóvel ${referencia}. Gostaria de receber mais informações.\n\n${url}`;
+    `Olá! Tenho interesse na propriedade "${PROPRIEDADE.titulo}". Gostaria de receber mais informações.`;
+
 
   $("#propertyWhatsApp")
     .href =
@@ -2947,35 +2940,9 @@ function montarWhatsApp() {
         mensagem
       )}`;
 
-  const emailDestino =
-    String(
-      SITE.email ||
-      ""
-    ).trim();
-
-  const assuntoEmail =
-    codigo
-      ? `Interesse no imóvel ${codigo} – Piemonte Brokers`
-      : `Interesse em imóvel – Piemonte Brokers`;
-
-  const corpoEmail =
-    `Olá! Tenho interesse no imóvel ${referencia}. Gostaria de receber mais informações.\n\nLink da propriedade:\n${url}`;
-
-  const botaoEmail =
-    $("#propertyEmail");
-
-  if (botaoEmail) {
-
-    botaoEmail.href =
-      `mailto:${emailDestino}?subject=${encodeURIComponent(
-        assuntoEmail
-      )}&body=${encodeURIComponent(
-        corpoEmail
-      )}`;
-
-  }
-
 }
+
+
 /* =====================================================
    COMPARTILHAMENTO
 ===================================================== */
