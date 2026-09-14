@@ -117,7 +117,7 @@ collections:
               - label: "Região usada no filtro"
                 name: "cidadeFiltro"
                 widget: "select"
-                required: true
+                required: false
 
                 options:
                   - "Itu & Região"
@@ -125,6 +125,8 @@ collections:
                   - "Granja Viana & Alphaville"
                   - "São Paulo"
                   - "Áreas & Oportunidades"
+                  - "Granja Viana"
+                  - "São Paulo & Alphaville"
 
               - label: "Exibir na Home"
                 name: "destaque"
@@ -210,11 +212,11 @@ collections:
               # LOCALIZAÇÃO
               # -------------------------------------------------
 
-                            - label: "Região principal"
+              - label: "Região principal"
                 name: "regiaoPrincipal"
                 widget: "select"
                 required: false
-                hint: "Escolha uma das regiões oficiais de atuação da Piemonte Brokers."
+                hint: "Escolha a região macro onde este imóvel será exibido."
 
                 options:
                   - "Itu & Região"
