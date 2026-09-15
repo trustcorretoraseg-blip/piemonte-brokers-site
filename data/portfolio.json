@@ -1173,7 +1173,7 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": true,
+      "destaque": false,
       "ordemDestaque": 1
     },
     {
@@ -2061,8 +2061,8 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": false,
-      "ordemDestaque": 99
+      "destaque": true,
+      "ordemDestaque": 1
     },
     {
       "id": "casa-condominio-haraslarissa-daniel5886",
