@@ -1802,3 +1802,43 @@ footer{
   }
 
 }
+
+/* =====================================================
+   CORRECAO: BUSCA COM 8 CAMPOS (setembro/2026)
+   Mantem a busca em duas linhas no desktop, duas colunas
+   em tablets e uma coluna em telas pequenas.
+===================================================== */
+.search-section .search-box {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+.search-section .search-box > select,
+.search-section .search-box > input,
+.search-section .search-box > button {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+}
+.search-section .search-box > select,
+.search-section .search-box > input {
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+}
+.search-section .search-box > button {
+  grid-column: auto;
+  white-space: nowrap;
+}
+@media (max-width: 980px) {
+  .search-section .search-box {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .search-section .search-box > button { grid-column: auto; }
+}
+@media (max-width: 680px) {
+  .search-section .search-box {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .search-section .search-box > button { grid-column: auto; }
+}
