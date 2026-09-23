@@ -67,12 +67,12 @@ function modalidades(item) {
   if (negocio.includes("venda") && (negocio.includes("loca") || negocio.includes("alug"))) return ["Venda", "Locação"];
   if (negocio.includes("loca") || negocio.includes("alug")) return ["Locação"];
   if (negocio.includes("venda")) return ["Venda"];
-  if (numeroPreco(item.precoVenda || item.precoVendaTexto) && numeroPreco(item.precoLocacao || item.precoLocacaoTexto)) return ["Venda", "Locação"];
+  if (numeroPreco(item.precoVenda || item.precoVendaTexto) && numeroPreco(item.precoLocacaoTexto || item.precoLocacao)) return ["Venda", "Locação"];
   return ["Venda"];
 }
 function precoModalidade(item, modalidade) {
   const venda = modalidade === "Venda";
-  const novo = numeroPreco(venda ? (item.precoVenda || item.precoVendaTexto) : (item.precoLocacao || item.precoLocacaoTexto));
+  const novo = numeroPreco(venda ? (item.precoVenda || item.precoVendaTexto) : (item.precoLocacaoTexto || item.precoLocacao));
   if (novo) return novo;
   return modalidades(item).length === 1 && modalidades(item)[0] === modalidade
     ? numeroPreco(item.preco || item.precoTexto) : 0;
