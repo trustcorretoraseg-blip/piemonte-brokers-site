@@ -45,6 +45,72 @@ function normalizarTexto(valor) {
 }
 
 
+
+/* Modalidades e valores: mantém compatibilidade com anúncios antigos. */
+function numeroPreco(valor) {
+  if (typeof valor === "number") return Number.isFinite(valor) && valor > 0 ? valor : 0;
+  let texto = String(valor ?? "").trim();
+  if (!texto || /consulte|sob consulta|a combinar/i.test(texto)) return 0;
+  texto = texto.replace(/[^\d.,]/g, "");
+  if (!texto) return 0;
+  const ultimoPonto = texto.lastIndexOf(".");
+  const ultimaVirgula = texto.lastIndexOf(",");
+  const separador = Math.max(ultimoPonto, ultimaVirgula);
+  if (separador >= 0 && texto.length - separador - 1 <= 2) {
+    texto = texto.slice(0, separador).replace(/[.,]/g, "") + "." + texto.slice(separador + 1);
+  } else texto = texto.replace(/[.,]/g, "");
+  const numero = Number(texto);
+  return Number.isFinite(numero) && numero > 0 ? numero : 0;
+}
+function modalidades(item) {
+  const negocio = normalizarTexto(item.negocio || item.finalidade);
+  if (negocio.includes("venda") && (negocio.includes("loca") || negocio.includes("alug"))) return ["Venda", "Locação"];
+  if (negocio.includes("loca") || negocio.includes("alug")) return ["Locação"];
+  if (negocio.includes("venda")) return ["Venda"];
+  if (numeroPreco(item.precoVenda || item.precoVendaTexto) && numeroPreco(item.precoLocacao || item.precoLocacaoTexto)) return ["Venda", "Locação"];
+  return ["Venda"];
+}
+function precoModalidade(item, modalidade) {
+  const venda = modalidade === "Venda";
+  const novo = numeroPreco(venda ? (item.precoVenda || item.precoVendaTexto) : (item.precoLocacao || item.precoLocacaoTexto));
+  if (novo) return novo;
+  return modalidades(item).length === 1 && modalidades(item)[0] === modalidade
+    ? numeroPreco(item.preco || item.precoTexto) : 0;
+}
+function textoPreco(item) {
+  const formatar = (tipo, numero, texto) => {
+    if (numero) return `${tipo}: ${numero.toLocaleString("pt-BR", {style:"currency",currency:"BRL",maximumFractionDigits:2})}${tipo === "Locação" ? "/mês" : ""}`;
+    return texto && /consulte/i.test(texto) ? `${tipo}: Consulte` : "";
+  };
+  const modos = modalidades(item);
+  if (modos.length === 1 && !item.precoVenda && !item.precoLocacao && !item.precoVendaTexto && !item.precoLocacaoTexto) {
+    return item.precoTexto || (precoModalidade(item, modos[0]) ? formatar(modos[0], precoModalidade(item, modos[0]), "").replace(`${modos[0]}: `, "") : "Consulte");
+  }
+  const linhas = modos.map(tipo => formatar(tipo, precoModalidade(item,tipo), tipo === "Venda" ? item.precoVendaTexto : item.precoLocacaoTexto)).filter(Boolean);
+  return linhas.join(" • ") || item.precoTexto || "Consulte";
+}
+function condominioImovel(item) {
+  const nome = String(item.condominio || "").trim();
+  if (nome) return nome;
+  const regiao = String(item.regiao || "").trim();
+  return /^condom[ií]nio\s+/i.test(regiao) ? regiao.replace(/^condom[ií]nio\s+/i, "").trim() : "";
+}
+function normalizarLocal(valor) {
+  return normalizarTexto(valor).replace(/^condominio\s+/, "").replace(/\s+/g, " ");
+}
+function opcoesUnicas(campo, valores, titulo, chave = normalizarTexto) {
+  if (!campo || campo.tagName !== "SELECT") return;
+  const selecionado = campo.value;
+  const mapa = new Map();
+  valores.forEach(valor => {const exibicao = String(valor || "").trim().replace(/\s+/g," "); const id = chave(exibicao); if (id && !mapa.has(id)) mapa.set(id,exibicao);});
+  campo.innerHTML = "";
+  const inicial = new Option(titulo, ""); campo.add(inicial);
+  [...mapa.values()].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(valor => campo.add(new Option(valor,valor)));
+  const atual = [...campo.options].find(op => chave(op.value) === chave(selecionado));
+  if (atual) campo.value = atual.value;
+}
+function estaDisponivel(item) { return !["vendido","indisponivel"].includes(normalizarTexto(item.status)); }
+
 /* =========================================================
    PÁGINA ATUAL
 ========================================================= */
@@ -741,61 +807,11 @@ function prepararFiltros() {
   }
 
 
-  /* REGIÕES / CIDADES */
-
-  if (
-    regiao &&
-    regiao.tagName === "SELECT"
-  ) {
-
-    regiao.innerHTML =
-      '<option value="">Regiões / Cidades</option>';
-
-    const locais = [];
-
-    lista.forEach(
-      item => {
-
-        [
-          item.regiaoPrincipal,
-          item.cidade
-        ]
-          .filter(Boolean)
-          .forEach(
-            valor => {
-
-              const jaExiste =
-                locais.some(
-                  local =>
-                    normalizarTexto(local) ===
-                    normalizarTexto(valor)
-                );
-
-              if (!jaExiste) {
-                locais.push(valor);
-              }
-            }
-          );
-      }
-    );
-
-    locais
-      .sort(
-        (a, b) =>
-          String(a).localeCompare(
-            String(b),
-            "pt-BR"
-          )
-      )
-      .forEach(
-        valor =>
-          adicionarOpcao(
-            regiao,
-            valor
-          )
-      );
-  }
-
+  /* Região, cidade e condomínio vindos dos imóveis publicados. */
+  lista = lista.filter(estaDisponivel);
+  opcoesUnicas(regiao, lista.map(item => item.regiaoPrincipal), "Todas as regiões");
+  opcoesUnicas($("#fCidadeMunicipio"), lista.map(item => item.cidade), "Todas as cidades");
+  opcoesUnicas($("#fCondominio"), lista.map(condominioImovel), "Todos os condomínios", normalizarLocal);
 
   /* TIPO */
 
@@ -912,7 +928,7 @@ function aplicarFiltroDaURL() {
   ) {
 
     const campoRegiao =
-      $("#fCidade");
+      $("#fCidadeMunicipio") || $("#fCidade");
 
     if (
       campoRegiao &&
@@ -1472,8 +1488,7 @@ function render(lista) {
 
           <strong class="price">
             ${esc(
-              item.precoTexto ||
-              "Consulte"
+              textoPreco(item)
             )}
           </strong>
 
@@ -1599,21 +1614,20 @@ function abrir(
 
 function atendeFaixaPreco(
   item,
-  faixa
+  faixa,
+  negocio = ""
 ) {
 
   if (!faixa) {
     return true;
   }
 
-  const valor =
-    Number(
-      item.preco || 0
-    );
+  const modos = negocio ? [negocio] : modalidades(item);
+  return modos.some(modo => atendePrecoNumero(precoModalidade(item, modo), faixa));
+}
 
-  if (!valor) {
-    return false;
-  }
+function atendePrecoNumero(valor, faixa) {
+  if (!valor) return false;
 
   switch (faixa) {
 
@@ -1719,6 +1733,8 @@ function filtrar() {
   const tipo =
     $("#fTipo")
       ?.value || "";
+  const municipio = $("#fCidadeMunicipio")?.value || "";
+  const condominio = $("#fCondominio")?.value || "";
 
   const preco =
     $("#fPreco")
@@ -1753,11 +1769,7 @@ function filtrar() {
             item.categoria
           );
 
-        const negocioItem =
-          normalizarTexto(
-            item.negocio ||
-            item.finalidade
-          );
+        const negocioItem = modalidades(item).map(normalizarTexto);
 
         const regiaoPrincipalItem =
           normalizarTexto(
@@ -1786,8 +1798,7 @@ function filtrar() {
 
           (
             !negocioNormalizado ||
-            negocioItem ===
-              negocioNormalizado
+            negocioItem.includes(negocioNormalizado)
           )
 
           &&
@@ -1799,6 +1810,8 @@ function filtrar() {
             cidadeItem ===
               regiaoNormalizada
           )
+          && (!municipio || cidadeItem === normalizarTexto(municipio))
+          && (!condominio || normalizarLocal(condominioImovel(item)) === normalizarLocal(condominio))
 
           &&
 
@@ -1812,7 +1825,8 @@ function filtrar() {
 
           atendeFaixaPreco(
             item,
-            preco
+            preco,
+            negocioNormalizado === "locacao" ? "Locação" : negocioNormalizado === "venda" ? "Venda" : ""
           )
         );
       }
@@ -1859,6 +1873,8 @@ function ativarFiltros() {
     "#fCategoria",
     "#fNegocio",
     "#fCidade",
+    "#fCidadeMunicipio",
+    "#fCondominio",
     "#fTipo",
     "#fPreco"
   ]
