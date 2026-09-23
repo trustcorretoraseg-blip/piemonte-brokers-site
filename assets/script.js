@@ -89,6 +89,12 @@ function textoPreco(item) {
   const linhas = modos.map(tipo => formatar(tipo, precoModalidade(item,tipo), tipo === "Venda" ? item.precoVendaTexto : item.precoLocacaoTexto)).filter(Boolean);
   return linhas.join(" • ") || item.precoTexto || "Consulte";
 }
+/* Exibe venda e locação em linhas separadas nos cards, mantendo os valores originais. */
+function htmlPrecoCard(item) {
+  const texto = textoPreco(item);
+  const linhas = modalidades(item).length > 1 ? texto.split(" • ") : [texto];
+  return linhas.map(linha => `<span class="price-line">${esc(linha)}</span>`).join("");
+}
 function condominioImovel(item) {
   const nome = String(item.condominio || "").trim();
   if (nome) return nome;
@@ -1504,9 +1510,7 @@ function render(lista) {
           </p>
 
           <strong class="price">
-            ${esc(
-              textoPreco(item)
-            )}
+            ${htmlPrecoCard(item)}
           </strong>
 
         </div>
