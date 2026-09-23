@@ -1842,3 +1842,25 @@ footer{
   }
   .search-section .search-box > button { grid-column: auto; }
 }
+
+/* Piemonte Brokers — tipografia institucional da pagina inicial.
+   Escopo restrito: nao altera barra de busca, cards nem paginas internas. */
+@media (min-width: 981px) {
+  .piemonte-home .hero .eyebrow,
+  .piemonte-home .section .eyebrow { font-size: 13px; line-height: 1.5; letter-spacing: .13em; }
+  .piemonte-home .hero h1 { font-size: 38px !important; line-height: 1.19 !important; }
+  .piemonte-home .hero #subtituloHome { font-size: 19px; line-height: 1.65; }
+  .piemonte-home .section .section-head h2,
+  .piemonte-home .section .split h2 { font-size: 30px !important; line-height: 1.23 !important; }
+}
+@media (min-width: 681px) and (max-width: 980px) {
+  .piemonte-home .hero h1 { font-size: 30px !important; }
+  .piemonte-home .section .eyebrow { font-size: 12px; }
+}
+@media (max-width: 680px) {
+  .piemonte-home .hero h1 { font-size: 29px !important; line-height: 1.2 !important; }
+  .piemonte-home .hero #subtituloHome { font-size: 17px; }
+  .piemonte-home .section .eyebrow { font-size: 11px; }
+  .piemonte-home .section .section-head h2,
+  .piemonte-home .section .split h2 { font-size: 24px !important; line-height: 1.24 !important; }
+}
