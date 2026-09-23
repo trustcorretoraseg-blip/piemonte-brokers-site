@@ -234,6 +234,12 @@ collections:
                 required: false
                 hint: "Ex.: Itu, Cotia, Porto Feliz, Barueri."
 
+              - label: "Bairro (para integração com portais)"
+                name: "bairro"
+                widget: "string"
+                required: false
+                hint: "Informe o bairro real do imóvel. Não utilize apenas o nome do condomínio."
+
               - label: "Bairro / Condomínio / Região"
                 name: "regiao"
                 widget: "string"
