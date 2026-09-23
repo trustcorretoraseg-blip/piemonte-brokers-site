@@ -202,6 +202,7 @@ collections:
                 options:
                   - "Venda"
                   - "Locação"
+                  - "Venda e Locação"
 
               - label: "Título"
                 name: "titulo"
@@ -261,6 +262,20 @@ collections:
                 widget: "number"
                 required: false
                 value_type: "float"
+
+              - label: "Valor de venda (R$)"
+                name: "precoVenda"
+                widget: "number"
+                value_type: "float"
+                required: false
+                hint: "Para anúncio de venda ou venda e locação. Informe somente números, sem R$."
+
+              - label: "Valor de locação mensal (R$)"
+                name: "precoLocacao"
+                widget: "number"
+                value_type: "float"
+                required: false
+                hint: "Para anúncio de locação ou venda e locação. Informe somente números, sem R$."
 
               - label: "Preço exibido"
                 name: "precoTexto"
