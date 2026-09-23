@@ -735,6 +735,18 @@ h1{
 }
 
 
+/* Valor de venda e locação: uma linha para cada modalidade no card. */
+.card .price .price-line {
+  display: block;
+  font: inherit;
+  color: inherit;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.card .price .price-line + .price-line {
+  margin-top: 4px;
+}
+
 .price.big{
   font-size:28px;
 }
