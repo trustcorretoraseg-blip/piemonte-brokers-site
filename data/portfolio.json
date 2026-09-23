@@ -284,7 +284,7 @@
       "regiao": "Xapada",
       "condominio": "",
       "tipo": "Casa",
-      "preco": 4.8,
+      "preco": null,
       "precoTexto": "R$4.800.000",
       "valorCondominio": "1.249",
       "iptu": "2.500",
