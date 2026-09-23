@@ -111,6 +111,22 @@ function opcoesUnicas(campo, valores, titulo, chave = normalizarTexto) {
 }
 function estaDisponivel(item) { return !["vendido","indisponivel"].includes(normalizarTexto(item.status)); }
 
+/* Os condomínios são derivados dos imóveis da cidade escolhida, sem alterar os cadastros. */
+function atualizarCondominiosPorCidade() {
+  const campo = $("#fCondominio");
+  if (!campo || campo.tagName !== "SELECT") return;
+  const cidade = normalizarTexto($("#fCidadeMunicipio")?.value || "");
+  const pagina = paginaAtual();
+  const lista = PORTFOLIO.filter(item => {
+    if (!estaDisponivel(item)) return false;
+    if (pagina === "imoveis" && normalizarTexto(item.categoria) !== "imovel") return false;
+    if (pagina === "areas" && normalizarTexto(item.categoria) !== "area") return false;
+    return !cidade || normalizarTexto(item.cidade) === cidade;
+  });
+  opcoesUnicas(campo, lista.map(condominioImovel), "Todos os condomínios", normalizarLocal);
+}
+
+
 /* =========================================================
    PÁGINA ATUAL
 ========================================================= */
@@ -811,7 +827,7 @@ function prepararFiltros() {
   lista = lista.filter(estaDisponivel);
   opcoesUnicas(regiao, lista.map(item => item.regiaoPrincipal), "Todas as regiões");
   opcoesUnicas($("#fCidadeMunicipio"), lista.map(item => item.cidade), "Todas as cidades");
-  opcoesUnicas($("#fCondominio"), lista.map(condominioImovel), "Todos os condomínios", normalizarLocal);
+  atualizarCondominiosPorCidade();
 
   /* TIPO */
 
@@ -954,6 +970,7 @@ function aplicarFiltroDaURL() {
 
         campoRegiao.value =
           opcaoCidade.value;
+        atualizarCondominiosPorCidade();
 
         aplicouFiltro =
           true;
@@ -1888,7 +1905,10 @@ function ativarFiltros() {
 
           elemento.addEventListener(
             "change",
-            filtrar
+            () => {
+              if (seletor === "#fCidadeMunicipio") atualizarCondominiosPorCidade();
+              filtrar();
+            }
           );
         }
       }
