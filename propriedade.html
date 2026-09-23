@@ -2538,17 +2538,31 @@ function montarPagina() {
       );
 
 
+function valorMonetarioImovel(valor) {
+  if (typeof valor === "number") return Number.isFinite(valor) && valor > 0 ? valor : 0;
+  let texto = String(valor ?? "").trim().replace(/[^\d.,]/g, "");
+  if (!texto) return 0;
+  const ponto = texto.lastIndexOf(".");
+  const virgula = texto.lastIndexOf(",");
+  const sep = Math.max(ponto, virgula);
+  if (sep >= 0 && texto.length - sep - 1 <= 2) {
+    texto = texto.slice(0, sep).replace(/[.,]/g, "") + "." + texto.slice(sep + 1);
+  } else texto = texto.replace(/[.,]/g, "");
+  const numero = Number(texto);
+  return Number.isFinite(numero) && numero > 0 ? numero : 0;
+}
 function formatarPrecoImovel(item) {
-  const modos = String(item.negocio || item.finalidade || "Venda").toLowerCase();
-  if (!modos.includes("venda") || !(modos.includes("loca") || modos.includes("alug"))) {
-    const unico = modos.includes("loca") ? item.precoLocacao : item.precoVenda;
-    if (unico != null && Number(unico) > 0) return Number(unico).toLocaleString("pt-BR", {style:"currency",currency:"BRL"}) + (modos.includes("loca") ? "/mês" : "");
-    return item.precoTexto || "Consulte";
-  }
-  const venda = Number(item.precoVenda) || Number(item.preco) || 0;
-  const aluguel = Number(item.precoLocacao) || 0;
-  const moeda = n => n.toLocaleString("pt-BR", {style:"currency",currency:"BRL"});
-  return [`Venda: ${venda ? moeda(venda) : "Consulte"}`, `Locação: ${aluguel ? moeda(aluguel)+"/mês" : "Consulte"}`].join(" • ");
+  const modo = String(item.negocio || item.finalidade || "Venda").toLowerCase();
+  const temVenda = modo.includes("venda");
+  const temLocacao = modo.includes("loca") || modo.includes("alug");
+  const venda = valorMonetarioImovel(item.precoVenda) ||
+    (!temLocacao ? valorMonetarioImovel(item.preco) || valorMonetarioImovel(item.precoTexto) : 0);
+  const aluguel = valorMonetarioImovel(item.precoLocacaoTexto) || valorMonetarioImovel(item.precoLocacao) ||
+    (!temVenda && temLocacao ? valorMonetarioImovel(item.preco) || valorMonetarioImovel(item.precoTexto) : 0);
+  const moeda = n => n.toLocaleString("pt-BR", {style:"currency",currency:"BRL",minimumFractionDigits:2,maximumFractionDigits:2});
+  if (temVenda && temLocacao) return ["Venda: " + (venda ? moeda(venda) : "Consulte"), "Locação: " + (aluguel ? moeda(aluguel) + "/mês" : "Consulte")].join(" • ");
+  if (temLocacao) return aluguel ? moeda(aluguel) + "/mês" : "Consulte";
+  return venda ? moeda(venda) : item.precoTexto || "Consulte";
 }
   const preco = formatarPrecoImovel(PROPRIEDADE);
 
