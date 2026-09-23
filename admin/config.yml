@@ -276,12 +276,18 @@ collections:
                 required: false
                 hint: "Para anúncio de venda ou venda e locação. Informe somente números, sem R$."
 
-              - label: "Valor de locação mensal (R$)"
+              - label: "Locação mensal — VALOR EXIBIDO (R$)"
+                name: "precoLocacaoTexto"
+                widget: "string"
+                required: false
+                hint: "Digite exatamente como deseja ver no site: R$ 18.500,00. Este valor também será usado no filtro de locação e na integração XML. Se deixar vazio, será usado o valor numérico antigo."
+
+              - label: "Locação — valor numérico antigo (opcional)"
                 name: "precoLocacao"
                 widget: "number"
                 value_type: "float"
                 required: false
-                hint: "Para anúncio de locação ou venda e locação. Informe somente números, sem R$."
+                hint: "Campo mantido para cadastros anteriores. Para novos anúncios ou alterações, preencha preferencialmente o campo 'Locação mensal — VALOR EXIBIDO'."
 
               - label: "Preço exibido"
                 name: "precoTexto"
