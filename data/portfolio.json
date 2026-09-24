@@ -595,7 +595,7 @@
       "ordemDestaque": 99
     },
     {
-      "id": "Haras Alto Padrão - Tatuí",
+      "id": "Haras Alto Padrão - Tatuí - P. Roberto",
       "codigo": "PB1001",
       "categoria": "Área",
       "status": "Disponível",
@@ -605,7 +605,7 @@
       "cidade": "Tatuí",
       "bairro": "",
       "regiao": "Tatuí",
-      "condominio": "P. Roberto",
+      "condominio": "",
       "tipo": "Haras",
       "preco": 40000000,
       "precoVenda": null,
