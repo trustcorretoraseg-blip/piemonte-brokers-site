@@ -254,7 +254,7 @@ collections:
                 name: "regiao"
                 widget: "string"
                 required: false
-                hint: "Ex.: Terras de São José, Palos Verdes, Fazenda Boa Vista."
+                hint: "Para o filtro do site, comece com Condomínio ou Bairro. Ex.: Condomínio Terras de São José II; Bairro Jardim Europa. O campo Bairro (para integração com portais) permanece independente."
 
               - label: "Condomínio"
                 name: "condominio"
