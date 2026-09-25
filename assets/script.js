@@ -95,14 +95,38 @@ function htmlPrecoCard(item) {
   const linhas = modalidades(item).length > 1 ? texto.split(" • ") : [texto];
   return linhas.map(linha => `<span class="price-line">${esc(linha)}</span>`).join("");
 }
-function condominioImovel(item) {
-  const nome = String(item.condominio || "").trim();
-  if (nome) return nome;
+/* O campo "Bairro / Condomínio / Região" alimenta os filtros pelo prefixo.
+   O campo "bairro" permanece reservado à integração com portais e não
+   cria, sozinho, opções no filtro público quando a região é um condomínio. */
+function localDoCadastro(item) {
   const regiao = String(item.regiao || "").trim();
-  return /^condom[ií]nio\s+/i.test(regiao) ? regiao.replace(/^condom[ií]nio\s+/i, "").trim() : "";
+  const normalizada = normalizarTexto(regiao);
+  const condominio = /^(?:condomin\S*|cond\.)\s+/i.test(normalizada);
+  const bairro = /^bairro\s+/i.test(normalizada);
+  if (condominio || bairro) {
+    const nome = regiao.replace(/^\S+\s+/, "").trim();
+    return { tipo: condominio ? "condominio" : "bairro", nome };
+  }
+  return { tipo: "", nome: regiao };
+}
+function condominioImovel(item) {
+  const local = localDoCadastro(item);
+  if (local.tipo === "condominio") return local.nome;
+  if (local.tipo === "bairro") return "";
+  return String(item.condominio || "").trim();
+}
+function bairroImovel(item) {
+  const local = localDoCadastro(item);
+  if (local.tipo === "bairro") return local.nome;
+  if (local.tipo === "condominio") return "";
+  // Cadastros antigos sem prefixo: preservar bairros informados no campo próprio,
+  // sem confundir nomes de condomínios com bairros.
+  const bairro = String(item.bairro || "").trim();
+  if (/^(?:condomin\S*|cond\.)\s+/i.test(normalizarTexto(bairro))) return "";
+  return bairro;
 }
 function normalizarLocal(valor) {
-  return normalizarTexto(valor).replace(/^condominio\s+/, "").replace(/\s+/g, " ");
+  return normalizarTexto(valor).replace(/^(?:condomin\S*|cond\.|bairro)\s+/, "").replace(/\s+/g, " ");
 }
 function opcoesUnicas(campo, valores, titulo, chave = normalizarTexto) {
   if (!campo || campo.tagName !== "SELECT") return;
@@ -131,7 +155,7 @@ function atualizarCondominiosPorCidade() {
     return !cidade || normalizarTexto(item.cidade) === cidade;
   });
   opcoesUnicas(campo, lista.map(condominioImovel), "Todos os condomínios", normalizarLocal);
-  opcoesUnicas($("#fBairro"), lista.map(item => item.bairro), "Todos os bairros");
+  opcoesUnicas($("#fBairro"), lista.map(bairroImovel), "Todos os bairros");
 }
 
 /* Os selects originais continuam responsáveis pela filtragem. O menu acrescenta busca por texto. */
@@ -1905,7 +1929,7 @@ function filtrar() {
           )
           && (!municipio || cidadeItem === normalizarTexto(municipio))
           && (!condominio || normalizarLocal(condominioImovel(item)) === normalizarLocal(condominio))
-          && (!bairro || normalizarTexto(item.bairro) === normalizarTexto(bairro))
+          && (!bairro || normalizarLocal(bairroImovel(item)) === normalizarLocal(bairro))
 
           &&
 
