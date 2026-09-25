@@ -193,6 +193,16 @@ collections:
                   - "Vendido"
                   - "Indisponível"
 
+              - label: "Publicar no Chaves na Mão?"
+                name: "publicarChavesNaMao"
+                widget: "select"
+                required: false
+                default: "Não"
+                options:
+                  - "Não"
+                  - "Sim"
+                hint: "Selecione Sim para incluir o imóvel no XML do Chaves na Mão. Não altera a publicação no site Piemonte Brokers."
+
               - label: "Negócio"
                 name: "negocio"
                 widget: "select"
