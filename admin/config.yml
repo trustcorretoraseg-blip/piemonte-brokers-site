@@ -254,6 +254,23 @@ collections:
 
 
               # -------------------------------------------------
+              # ORGANIZAÇÃO INTERNA — não renderizar na página pública
+              # Atenção: estes dados permanecem no JSON público do site.
+              # -------------------------------------------------
+
+              - label: "Endereço completo — uso interno"
+                name: "endereco_interno"
+                widget: "string"
+                required: false
+                hint: "Para organização interna. Não será exibido nos anúncios, mas estará no JSON público; não inclua dados sigilosos."
+
+              - label: "Observações — uso interno"
+                name: "observacoes_internas"
+                widget: "text"
+                required: false
+                hint: "Notas de organização da equipe. Não serão exibidas nos anúncios, mas estarão no JSON público; não inclua dados sigilosos."
+
+              # -------------------------------------------------
               # TIPO E VALORES
               # -------------------------------------------------
 
@@ -370,6 +387,31 @@ collections:
                 required: false
                 hint: "Selecione várias fotos de uma vez para montar a galeria."
 
+
+              # -------------------------------------------------
+              # VÍDEOS — upload direto do computador (publicação no GitHub)
+              # -------------------------------------------------
+
+              - label: "Vídeos do imóvel"
+                name: "videos"
+                widget: "list"
+                required: false
+                summary: "{{fields.titulo}}"
+                hint: "Adicione um vídeo por item, diretamente do computador. Prefira MP4 (H.264), arquivos curtos e compactados, até 20 MB por vídeo. O GitHub não aceita arquivos com 100 MB ou mais."
+                fields:
+                  - label: "Título do vídeo"
+                    name: "titulo"
+                    widget: "string"
+                    required: false
+                  - label: "Enviar vídeo do computador"
+                    name: "arquivo"
+                    widget: "file"
+                    required: true
+                    media_folder: "/uploads/videos"
+                    public_folder: "/uploads/videos"
+                    media_library:
+                      config:
+                        multiple: false
 
               # -------------------------------------------------
               # DESCRIÇÕES
