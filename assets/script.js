@@ -114,6 +114,7 @@ function opcoesUnicas(campo, valores, titulo, chave = normalizarTexto) {
   [...mapa.values()].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(valor => campo.add(new Option(valor,valor)));
   const atual = [...campo.options].find(op => chave(op.value) === chave(selecionado));
   if (atual) campo.value = atual.value;
+  atualizarDropdownPesquisavel(campo);
 }
 function estaDisponivel(item) { return !["vendido","indisponivel"].includes(normalizarTexto(item.status)); }
 
@@ -130,6 +131,76 @@ function atualizarCondominiosPorCidade() {
     return !cidade || normalizarTexto(item.cidade) === cidade;
   });
   opcoesUnicas(campo, lista.map(condominioImovel), "Todos os condomínios", normalizarLocal);
+  opcoesUnicas($("#fBairro"), lista.map(item => item.bairro), "Todos os bairros");
+}
+
+/* Os selects originais continuam responsáveis pela filtragem. O menu acrescenta busca por texto. */
+function atualizarDropdownPesquisavel(campo) {
+  if (!campo) return;
+  const wrapper = campo.closest(".filtro-pesquisavel");
+  if (!wrapper) return;
+  const detalhes = wrapper.querySelector("details");
+  const resumo = wrapper.querySelector("summary");
+  const pesquisa = wrapper.querySelector('input[type="search"]');
+  const resultados = wrapper.querySelector(".filtro-resultados");
+  if (!detalhes || !resumo || !pesquisa || !resultados) return;
+  resumo.textContent = campo.selectedOptions[0]?.textContent || campo.options[0]?.textContent || "Selecionar";
+  const termo = normalizarTexto(pesquisa.value);
+  resultados.replaceChildren();
+  let quantidade = 0;
+  [...campo.options].forEach(opcao => {
+    if (opcao.value && !normalizarTexto(opcao.textContent).includes(termo)) return;
+    const botao = document.createElement("button");
+    botao.type = "button";
+    botao.className = "filtro-opcao";
+    botao.textContent = opcao.textContent;
+    botao.setAttribute("aria-pressed", String(campo.value === opcao.value));
+    botao.addEventListener("click", () => {
+      campo.value = opcao.value;
+      detalhes.open = false;
+      pesquisa.value = "";
+      campo.dispatchEvent(new Event("change", { bubbles: true }));
+      atualizarDropdownPesquisavel(campo);
+    });
+    resultados.append(botao);
+    quantidade++;
+  });
+  if (!quantidade) {
+    const vazio = document.createElement("p");
+    vazio.className = "filtro-sem-resultado";
+    vazio.textContent = "Nenhuma opção encontrada";
+    resultados.append(vazio);
+  }
+}
+function ativarDropdownsPesquisaveis() {
+  document.querySelectorAll(".filtro-pesquisavel").forEach(wrapper => {
+    const campo = wrapper.querySelector("select");
+    const detalhes = wrapper.querySelector("details");
+    const pesquisa = wrapper.querySelector('input[type="search"]');
+    if (!campo || !detalhes || !pesquisa) return;
+    pesquisa.addEventListener("input", () => atualizarDropdownPesquisavel(campo));
+    pesquisa.addEventListener("keydown", evento => {
+      if (evento.key === "Escape") { detalhes.open = false; detalhes.querySelector("summary").focus(); }
+      if (evento.key === "Enter") {
+        evento.preventDefault();
+        wrapper.querySelector(".filtro-resultados button")?.click();
+      }
+    });
+    detalhes.addEventListener("toggle", () => {
+      if (detalhes.open) {
+        document.querySelectorAll(".filtro-dropdown").forEach(outro => { if (outro !== detalhes) outro.open = false; });
+        pesquisa.focus();
+        atualizarDropdownPesquisavel(campo);
+      } else { pesquisa.value = ""; atualizarDropdownPesquisavel(campo); }
+    });
+    campo.addEventListener("change", () => atualizarDropdownPesquisavel(campo));
+    atualizarDropdownPesquisavel(campo);
+  });
+  document.addEventListener("click", evento => {
+    document.querySelectorAll(".filtro-dropdown[open]").forEach(detalhes => {
+      if (!detalhes.contains(evento.target)) detalhes.open = false;
+    });
+  });
 }
 
 
@@ -1756,6 +1827,7 @@ function filtrar() {
       ?.value || "";
   const municipio = $("#fCidadeMunicipio")?.value || "";
   const condominio = $("#fCondominio")?.value || "";
+  const bairro = $("#fBairro")?.value || "";
 
   const preco =
     $("#fPreco")
@@ -1833,6 +1905,7 @@ function filtrar() {
           )
           && (!municipio || cidadeItem === normalizarTexto(municipio))
           && (!condominio || normalizarLocal(condominioImovel(item)) === normalizarLocal(condominio))
+          && (!bairro || normalizarTexto(item.bairro) === normalizarTexto(bairro))
 
           &&
 
@@ -1896,6 +1969,7 @@ function ativarFiltros() {
     "#fCidade",
     "#fCidadeMunicipio",
     "#fCondominio",
+    "#fBairro",
     "#fTipo",
     "#fPreco"
   ]
@@ -1917,6 +1991,7 @@ function ativarFiltros() {
         }
       }
     );
+  ativarDropdownsPesquisaveis();
 }
 
 
