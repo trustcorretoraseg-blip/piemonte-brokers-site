@@ -1846,6 +1846,15 @@ HEADER
     </section>
 
 
+    <!-- VÍDEOS DO IMÓVEL: exibidos somente quando cadastrados -->
+    <section class="property-videos" id="propertyVideos" hidden aria-label="Vídeos do imóvel">
+      <div class="property-videos-inner">
+        <p class="property-eyebrow">CONHEÇA O IMÓVEL</p>
+        <h2>Vídeos do imóvel</h2>
+        <div class="property-videos-grid" id="propertyVideosGrid"></div>
+      </div>
+    </section>
+
     <!-- COMPARTILHAR -->
 
     <section class="property-share" aria-label="Compartilhar imóvel">
@@ -2040,6 +2049,16 @@ HEADER
   </section>
 
 
+<style>
+.property-videos[hidden] { display: none !important; }
+.property-videos { background: #f7f6f2; padding: 44px 20px; }
+.property-videos-inner { max-width: 1220px; margin: 0 auto; }
+.property-videos-inner h2 { color: #182a38; margin: 6px 0 22px; font-size: clamp(1.4rem, 2.4vw, 2rem); }
+.property-videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px; }
+.property-video-item { background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 14px #00000012; }
+.property-video-item video { width: 100%; display: block; background: #000; aspect-ratio: 16 / 9; border-radius: 5px; }
+.property-video-item p { padding: 8px 4px 2px; margin: 0; color: #182a38; }
+</style>
 </main>
 
 
@@ -2626,6 +2645,8 @@ function formatarPrecoImovel(item) {
 
   montarGaleria();
 
+  montarVideos();
+
   montarHighlights();
 
   montarDiferenciais();
@@ -2639,6 +2660,43 @@ function formatarPrecoImovel(item) {
 
 }
 
+
+/* =====================================================
+   VÍDEOS DO IMÓVEL — URLs locais; sem HTML não confiável
+===================================================== */
+function montarVideos() {
+  const secao = document.getElementById("propertyVideos");
+  const grade = document.getElementById("propertyVideosGrid");
+  grade.replaceChildren();
+  const lista = Array.isArray(PROPRIEDADE.videos) ? PROPRIEDADE.videos : [];
+  lista.forEach((entrada, indice) => {
+    const caminho = typeof entrada === "string" ? entrada : entrada?.arquivo;
+    if (typeof caminho !== "string") return;
+    // Somente vídeos locais da pasta pública destinada a vídeos.
+    let url;
+    try { url = new URL(caminho, window.location.origin); } catch (_) { return; }
+    if (url.origin !== window.location.origin ||
+        !url.pathname.startsWith("/uploads/videos/") ||
+        !/\.(mp4|webm|ogg)$/i.test(url.pathname)) return;
+    const item = document.createElement("div");
+    item.className = "property-video-item";
+    const player = document.createElement("video");
+    player.controls = true;
+    player.preload = "metadata";
+    player.playsInline = true;
+    player.setAttribute("controlsList", "nodownload");
+    player.src = url.pathname;
+    player.setAttribute("aria-label", (typeof entrada === "object" && entrada?.titulo) || `Vídeo ${indice + 1}`);
+    item.appendChild(player);
+    if (typeof entrada === "object" && entrada?.titulo) {
+      const titulo = document.createElement("p");
+      titulo.textContent = entrada.titulo;
+      item.appendChild(titulo);
+    }
+    grade.appendChild(item);
+  });
+  secao.hidden = grade.childElementCount === 0;
+}
 
 /* =====================================================
    GALERIA
