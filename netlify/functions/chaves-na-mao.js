@@ -72,6 +72,9 @@ function buildXml(items) {
   const seen = new Set();
   const entries = [];
   for (const p of items) {
+    // Apenas imóveis aprovados individualmente no cadastro do Sveltia entram no portal.
+    // Imóveis antigos sem o campo ficam de fora até serem marcados como Sim.
+    if (p.publicarChavesNaMao !== 'Sim') continue;
     if (!/dispon[ií]vel/i.test(String(p.status || '')) || p.publicado === false) continue;
     const key=String(p.codigo || p.id || '').trim();
     if (!key || seen.has(key)) continue;
