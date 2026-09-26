@@ -5,8 +5,186 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Painel | Piemonte Brokers</title>
+
+  <style>
+    #piemonte-admin-search {
+      position: fixed;
+      top: 12px;
+      right: 70px;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      padding: 6px 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.18);
+      font-family: Arial, sans-serif;
+    }
+
+    #piemonte-admin-search input {
+      width: 190px;
+      height: 34px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0 10px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    #piemonte-admin-search input:focus {
+      border-color: #b18a42;
+    }
+
+    #piemonte-admin-search button {
+      height: 34px;
+      border: 0;
+      border-radius: 6px;
+      padding: 0 12px;
+      cursor: pointer;
+      background: #111;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    #piemonte-search-message {
+      position: fixed;
+      top: 62px;
+      right: 70px;
+      z-index: 999999;
+      background: #111;
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font: 13px Arial, sans-serif;
+      display: none;
+    }
+
+    .piemonte-search-highlight {
+      outline: 3px solid #c9a45c !important;
+      outline-offset: 3px !important;
+      border-radius: 4px;
+    }
+  </style>
 </head>
+
 <body>
+
+  <div id="piemonte-admin-search">
+    <span>🔎</span>
+    <input
+      id="piemonte-search-input"
+      type="text"
+      placeholder="Buscar código: PB1010"
+      autocomplete="off"
+    >
+    <button id="piemonte-search-button" type="button">Buscar</button>
+  </div>
+
+  <div id="piemonte-search-message"></div>
+
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+  <script>
+    (() => {
+      const input = document.getElementById('piemonte-search-input');
+      const button = document.getElementById('piemonte-search-button');
+      const message = document.getElementById('piemonte-search-message');
+
+      const showMessage = (text) => {
+        message.textContent = text;
+        message.style.display = 'block';
+
+        clearTimeout(window.piemonteMessageTimer);
+
+        window.piemonteMessageTimer = setTimeout(() => {
+          message.style.display = 'none';
+        }, 3000);
+      };
+
+      const removeHighlights = () => {
+        document
+          .querySelectorAll('.piemonte-search-highlight')
+          .forEach(el => el.classList.remove('piemonte-search-highlight'));
+      };
+
+      const searchProperty = () => {
+        removeHighlights();
+
+        let query = input.value.trim().toUpperCase();
+
+        if (!query) {
+          showMessage('Digite o código do imóvel.');
+          input.focus();
+          return;
+        }
+
+        if (/^\d+$/.test(query)) {
+          query = 'PB' + query;
+        }
+
+        const allElements = Array.from(
+          document.querySelectorAll(
+            'button, [role="button"], [role="listitem"], details, summary, label, div, span'
+          )
+        );
+
+        const matches = allElements
+          .filter(el => {
+            if (el.closest('#piemonte-admin-search')) return false;
+
+            const text = (el.innerText || el.textContent || '')
+              .replace(/\s+/g, ' ')
+              .trim()
+              .toUpperCase();
+
+            return text.includes(query);
+          })
+          .sort((a, b) => {
+            const aText = (a.innerText || a.textContent || '').length;
+            const bText = (b.innerText || b.textContent || '').length;
+            return aText - bText;
+          });
+
+        if (!matches.length) {
+          showMessage('Imóvel ' + query + ' não encontrado.');
+          return;
+        }
+
+        let target = matches[0];
+
+        const clickable = target.closest(
+          'button, [role="button"], summary, [role="listitem"]'
+        );
+
+        if (clickable) {
+          target = clickable;
+        }
+
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+
+        target.classList.add('piemonte-search-highlight');
+
+        setTimeout(() => {
+          target.classList.remove('piemonte-search-highlight');
+        }, 5000);
+
+        showMessage('Imóvel ' + query + ' localizado.');
+      };
+
+      button.addEventListener('click', searchProperty);
+
+      input.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          searchProperty();
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
