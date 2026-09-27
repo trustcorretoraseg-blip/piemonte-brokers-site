@@ -346,213 +346,398 @@
 
 
 <!-- =====================================================
-     ÁREAS & OPORTUNIDADES
+     REGIÕES — HOME
 ===================================================== -->
 
-<section class="section warm areas-feature">
+<section class="section regioes-home regioes-home-redesign">
 
   <style>
+    .regioes-home-redesign {
+      padding: 64px 0 54px;
+      background: #fff;
+    }
 
-    .areas-feature-grid {
+    .regioes-home-redesign .section-head {
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .regioes-home-redesign .section-head h2 {
+      margin: 6px 0 7px;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    .regioes-home-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .regioes-home-redesign .section-head .text-link {
+      margin-top: 0;
+      white-space: nowrap;
+    }
+
+    .regioes-feature-grid {
       display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      min-height: 520px;
-      overflow: hidden;
-      background: #17372f;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
 
-    .areas-feature-image {
+    .regioes-feature-card {
       position: relative;
-      min-height: 520px;
+      display: block;
+      min-height: 230px;
       overflow: hidden;
-      background: #d8d4ca;
+      background: #0b2a2b;
+      isolation: isolate;
     }
 
-    .areas-feature-image img {
+    .regioes-feature-card img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
-      transition: transform .6s ease;
+      transition: transform .5s ease;
+      z-index: -2;
     }
 
-    .areas-feature-grid:hover .areas-feature-image img {
-      transform: scale(1.025);
+    .regioes-feature-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        to top,
+        rgba(4, 28, 38, .94) 0%,
+        rgba(4, 28, 38, .72) 29%,
+        rgba(4, 28, 38, .12) 68%,
+        rgba(4, 28, 38, .03) 100%
+      );
     }
 
-    .areas-feature-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 65px 70px;
-      color: white;
+    .regioes-feature-card:hover img {
+      transform: scale(1.035);
     }
 
-    .areas-feature-content .eyebrow {
-      color: #d2ad62;
+    .regioes-feature-copy {
+      position: absolute;
+      left: 16px;
+      right: 54px;
+      bottom: 14px;
+      color: #fff;
     }
 
-    .areas-feature-content h2 {
-      max-width: 520px;
-      margin: 10px 0 25px;
-      font-size: clamp(36px, 4vw, 54px);
-      line-height: 1.05;
+    .regioes-feature-copy h3 {
+      margin: 0 0 6px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.12;
       font-weight: 400;
-      letter-spacing: -.025em;
-      color: white;
     }
 
-    .areas-feature-content p {
-      max-width: 510px;
-      margin: 0 0 18px;
-      font-size: 16px;
-      line-height: 1.8;
-      color: rgba(255,255,255,.76);
+    .regioes-feature-copy p {
+      margin: 0;
+      color: rgba(255,255,255,.84);
+      font-size: 12px;
+      line-height: 1.35;
     }
 
-    .areas-feature-content .text-link {
-      display: inline-block;
-      margin-top: 13px;
+    .regioes-feature-arrow {
+      position: absolute;
+      right: 14px;
+      bottom: 16px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 21px;
+      line-height: 1;
+      background: rgba(4, 28, 38, .42);
+    }
+
+    .outras-oportunidades-home {
+      display: grid;
+      grid-template-columns: auto 1px minmax(0,1fr) auto;
+      align-items: center;
+      gap: 24px;
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: #103452;
+      color: #fff;
+    }
+
+    .outras-oportunidades-icon {
       color: #d2ad62;
+      font-size: 31px;
+      line-height: 1;
     }
 
-    @media (max-width: 850px) {
+    .outras-oportunidades-divider {
+      width: 1px;
+      height: 46px;
+      background: rgba(210,173,98,.78);
+    }
 
-      .areas-feature-grid {
+    .outras-oportunidades-copy h3 {
+      margin: 0 0 4px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .outras-oportunidades-copy p {
+      margin: 0;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .outras-oportunidades-home .btn {
+      min-height: 44px;
+      padding: 0 22px;
+      border: 1px solid #d2ad62;
+      color: #fff;
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .outras-oportunidades-home .btn:hover {
+      background: #d2ad62;
+      color: #102638;
+    }
+
+    @media (max-width: 980px) {
+      .regioes-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .outras-oportunidades-home {
+        grid-template-columns: auto 1px minmax(0,1fr);
+      }
+
+      .outras-oportunidades-home .btn {
+        grid-column: 3;
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .regioes-home-redesign {
+        padding: 52px 0 44px;
+      }
+
+      .regioes-feature-grid {
         grid-template-columns: 1fr;
       }
 
-      .areas-feature-image {
-        min-height: 360px;
+      .regioes-feature-card {
+        min-height: 240px;
       }
 
-      .areas-feature-content {
-        padding: 48px 35px;
+      .outras-oportunidades-home {
+        grid-template-columns: auto 1px 1fr;
+        gap: 16px;
+        padding: 18px;
       }
 
+      .outras-oportunidades-home .btn {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
     }
-
-    @media (max-width: 550px) {
-
-      .areas-feature-image {
-        min-height: 290px;
-      }
-
-      .areas-feature-content {
-        padding: 40px 25px;
-      }
-
-      .areas-feature-content h2 {
-        font-size: 34px;
-      }
-
-    }
-
   </style>
 
   <div class="container">
 
-    <div class="areas-feature-grid">
-
-      <div class="areas-feature-image">
-
-        <img
-          src="/assets/areas-oportunidades.jpg"
-          alt="Áreas e oportunidades Piemonte Brokers"
-style="
-    width:100%;
-    height:100%;
-    position:absolute;
-    inset:0;
-    object-fit:cover;
-    display:block;
-  "
-        >
-
+    <div class="section-head">
+      <div>
+        <p class="eyebrow dark">REGIÕES</p>
+        <h2>Atuação estratégica em mercados selecionados.</h2>
+        <p class="regioes-home-subtitle">
+          Imóveis, áreas e oportunidades com curadoria e visão estratégica.
+        </p>
       </div>
 
-      <div class="areas-feature-content">
-
-        <p class="eyebrow">
-          ÁREAS & OPORTUNIDADES
-        </p>
-
-        <h2>
-          Terrenos, glebas e ativos estratégicos.
-        </h2>
-
-        <p>
-          Selecionamos áreas para desenvolvimento residencial,
-          comercial, industrial, logístico e oportunidades
-          imobiliárias de diferentes perfis.
-        </p>
-
-        <p>
-          Cada ativo é apresentado de forma objetiva,
-          respeitando as particularidades da negociação
-          e o perfil do investidor.
-        </p>
-
-        <a
-          href="/areas.html"
-          class="text-link light"
-        >
-          Conheça nossas áreas →
-        </a>
-
-      </div>
-
+      <a href="/regioes.html" class="text-link">
+        Todas as regiões
+      </a>
     </div>
 
-  </div>
+    <div class="regioes-feature-grid">
 
-</section>
+      <a class="regioes-feature-card" href="/imoveis.html?regiao=Granja%20Viana%20%26%20Alphaville">
+        <img src="/uploads/WhatsApp Image 2026-06-10 at 12.59.24 (4).jpeg" alt="Granja Viana e Alphaville" loading="lazy">
+        <div class="regioes-feature-copy">
+          <h3>Granja Viana &amp; Alphaville</h3>
+          <p>Residências, terrenos e oportunidades selecionadas.</p>
+        </div>
+        <span class="regioes-feature-arrow" aria-hidden="true">→</span>
+      </a>
 
-<!-- =====================================================
-     REGIÕES
-===================================================== -->
+      <a class="regioes-feature-card" href="/imoveis.html?grupoRegiao=itu-porto-feliz">
+        <img src="/uploads/casa-de-luxo-7-1-1024x576.jpg" alt="Itu, Porto Feliz e Região" loading="lazy">
+        <div class="regioes-feature-copy">
+          <h3>Itu, Porto Feliz e Região</h3>
+          <p>Condomínios, fazendas, áreas e residências de alto padrão.</p>
+        </div>
+        <span class="regioes-feature-arrow" aria-hidden="true">→</span>
+      </a>
 
-<section class="section regioes-home">
+      <a class="regioes-feature-card" href="/imoveis.html?regiao=S%C3%A3o%20Paulo">
+        <img src="/uploads/WhatsApp Image 2026-08-28 at 20.11.39.jpeg" alt="São Paulo" loading="lazy">
+        <div class="regioes-feature-copy">
+          <h3>São Paulo</h3>
+          <p>Imóveis e oportunidades nas áreas nobres da capital.</p>
+        </div>
+        <span class="regioes-feature-arrow" aria-hidden="true">→</span>
+      </a>
 
-  <div class="container">
-
-
-    <div class="section-head">
-
-      <div>
-
-        <p class="eyebrow dark">
-          REGIÕES
-        </p>
-
-        <h2>
-          Atuação estratégica em mercados selecionados.
-        </h2>
-
-      </div>
-
-
-      <a
-        href="/regioes.html"
-        class="text-link"
-      >
-        Todas as regiões
+      <a class="regioes-feature-card" href="/imoveis.html?grupoRegiao=salto-indaiatuba">
+        <img src="/uploads/WhatsApp Image 2026-09-21 at 14.52.04 (2).jpeg" alt="Salto e Indaiatuba" loading="lazy">
+        <div class="regioes-feature-copy">
+          <h3>Salto e Indaiatuba</h3>
+          <p>Residências, terrenos e áreas com excelente potencial.</p>
+        </div>
+        <span class="regioes-feature-arrow" aria-hidden="true">→</span>
       </a>
 
     </div>
 
-
-    <div
-      id="regioesCards"
-      class="regioes-home-grid"
-    >
+    <div class="outras-oportunidades-home">
+      <div class="outras-oportunidades-icon" aria-hidden="true">⌖</div>
+      <div class="outras-oportunidades-divider" aria-hidden="true"></div>
+      <div class="outras-oportunidades-copy">
+        <h3>Oportunidades além dos nossos mercados principais.</h3>
+        <p>Atuamos em outras cidades e regiões do Brasil com imóveis e oportunidades selecionadas.</p>
+      </div>
+      <a class="btn" href="/imoveis.html">Ver oportunidades →</a>
     </div>
 
-
   </div>
-
 </section>
 
+
+<!-- =====================================================
+     ÁREAS & OPORTUNIDADES — HOME
+===================================================== -->
+
+<section class="areas-feature-compact">
+
+  <style>
+    .areas-feature-compact {
+      padding: 52px 0;
+      background: #f0f0ee;
+    }
+
+    .areas-feature-compact-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .areas-feature-compact-image {
+      height: 285px;
+      overflow: hidden;
+      background: #d8d4ca;
+    }
+
+    .areas-feature-compact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .areas-feature-compact-grid:hover .areas-feature-compact-image img {
+      transform: scale(1.02);
+    }
+
+    .areas-feature-compact-content .eyebrow {
+      color: #b88932;
+      margin-bottom: 10px;
+    }
+
+    .areas-feature-compact-content h2 {
+      margin: 0 0 15px;
+      max-width: 520px;
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .areas-feature-compact-content p {
+      max-width: 570px;
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    .areas-feature-compact-content .text-link {
+      margin-top: 5px;
+      color: #b88932;
+    }
+
+    @media (max-width: 850px) {
+      .areas-feature-compact-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .areas-feature-compact-image {
+        height: 310px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .areas-feature-compact {
+        padding: 42px 0;
+      }
+
+      .areas-feature-compact-image {
+        height: 240px;
+      }
+
+      .areas-feature-compact-content h2 {
+        font-size: 25px;
+      }
+    }
+  </style>
+
+  <div class="container">
+    <div class="areas-feature-compact-grid">
+
+      <div class="areas-feature-compact-image">
+        <img src="/assets/areas-oportunidades.jpg" alt="Áreas e oportunidades Piemonte Brokers" loading="lazy">
+      </div>
+
+      <div class="areas-feature-compact-content">
+        <p class="eyebrow">ÁREAS &amp; OPORTUNIDADES</p>
+        <h2>Terrenos, glebas e ativos estratégicos.</h2>
+        <p>
+          Selecionamos áreas para desenvolvimento residencial, comercial, industrial,
+          logístico e oportunidades imobiliárias de diferentes perfis, sempre com análise
+          criteriosa e foco em valor de longo prazo.
+        </p>
+        <a href="/areas.html" class="text-link">Conheça nossas áreas →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 <!-- =====================================================
