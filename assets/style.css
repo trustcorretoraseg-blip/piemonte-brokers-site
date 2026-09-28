@@ -4109,3 +4109,346 @@ footer{
   }
 
 }
+/* =====================================================
+   AVALIAÇÃO IMOBILIÁRIA — VISUAL PREMIUM
+   ALTERA SOMENTE ESTA SEÇÃO
+===================================================== */
+
+.avaliacao-feature {
+  background: #E8E0D3 !important;
+  padding-top: 58px !important;
+  padding-bottom: 58px !important;
+}
+
+
+.avaliacao-feature-grid {
+  display: block !important;
+
+  background: transparent !important;
+
+  border: 0 !important;
+
+  box-shadow: none !important;
+}
+
+
+/* REMOVE OS DOIS BLOCOS SEPARADOS */
+.avaliacao-feature-kicker,
+.avaliacao-feature-content {
+  min-height: 0 !important;
+
+  padding: 0 !important;
+
+  background: transparent !important;
+
+  color: inherit !important;
+}
+
+
+/* EYEBROW */
+.avaliacao-feature-kicker .eyebrow {
+  margin-bottom: 12px !important;
+
+  color: #B88932 !important;
+
+  font-size: 12px !important;
+
+  font-weight: 700 !important;
+
+  letter-spacing: .16em !important;
+}
+
+
+/* TÍTULO PRINCIPAL */
+.avaliacao-feature-kicker h2 {
+  max-width: 980px !important;
+
+  margin:
+    0 0 16px !important;
+
+  color: #17372F !important;
+
+  font-size:
+    36px !important;
+
+  line-height:
+    1.15 !important;
+
+  font-weight:
+    400 !important;
+}
+
+
+/* PRIMEIRO TEXTO */
+.avaliacao-feature-kicker p {
+  max-width: 980px !important;
+
+  margin:
+    0 0 26px !important;
+
+  color: #494C47 !important;
+
+  font-size:
+    15px !important;
+
+  line-height:
+    1.7 !important;
+}
+
+
+/* SUBTÍTULO */
+.avaliacao-feature-content h3 {
+  margin:
+    0 0 12px !important;
+
+  color: #27362F !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size:
+    27px !important;
+
+  line-height:
+    1.2 !important;
+
+  font-weight:
+    400 !important;
+}
+
+
+/* TEXTO DESCRITIVO */
+.avaliacao-feature-content > p {
+  max-width: 1120px !important;
+
+  margin:
+    0 0 28px !important;
+
+  color: #4D504B !important;
+
+  font-size:
+    15px !important;
+
+  line-height:
+    1.65 !important;
+}
+
+
+/* =====================================================
+   4 ITENS
+===================================================== */
+
+.avaliacao-points {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(4, 1fr) !important;
+
+  gap: 0 !important;
+
+  margin:
+    0 0 28px !important;
+
+  border-top:
+    1px solid
+    rgba(184,137,50,.28) !important;
+
+  border-bottom:
+    1px solid
+    rgba(184,137,50,.28) !important;
+}
+
+
+.avaliacao-points span {
+  position: relative !important;
+
+  min-height: 78px !important;
+
+  padding:
+    26px
+    22px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  text-align: center !important;
+
+  border-top:
+    0 !important;
+
+  color: #2D332F !important;
+
+  font-size:
+    14px !important;
+
+  line-height:
+    1.4 !important;
+}
+
+
+/* DIVISORES VERTICAIS */
+.avaliacao-points span:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  top: 20px;
+  right: 0;
+  bottom: 20px;
+
+  width: 1px;
+
+  background:
+    rgba(184,137,50,.36);
+}
+
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.avaliacao-actions {
+  display: flex !important;
+
+  flex-wrap: wrap !important;
+
+  gap: 12px !important;
+
+  margin-top: 0 !important;
+}
+
+
+.avaliacao-actions .btn.gold {
+  min-height: 48px !important;
+
+  padding:
+    0 24px !important;
+
+  background: #D2A951 !important;
+
+  border:
+    1px solid
+    #D2A951 !important;
+
+  color: #151913 !important;
+
+  font-weight:
+    700 !important;
+}
+
+
+/* ESCONDE SOMENTE O SEGUNDO BOTÃO
+   PARA FICAR COMO NO MODELO VISUAL */
+.avaliacao-actions .btn.ghost {
+  display: none !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 850px) {
+
+  .avaliacao-feature {
+    padding-top:
+      44px !important;
+
+    padding-bottom:
+      44px !important;
+  }
+
+
+  .avaliacao-feature-kicker h2 {
+    font-size:
+      30px !important;
+  }
+
+
+  .avaliacao-feature-content h3 {
+    font-size:
+      24px !important;
+  }
+
+
+  .avaliacao-points {
+    grid-template-columns:
+      1fr 1fr !important;
+  }
+
+
+  .avaliacao-points span:nth-child(2)::after {
+    display: none;
+  }
+
+
+  .avaliacao-points span {
+    min-height:
+      72px !important;
+
+    padding:
+      20px 14px !important;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .avaliacao-feature {
+    padding-top:
+      38px !important;
+
+    padding-bottom:
+      38px !important;
+  }
+
+
+  .avaliacao-feature-kicker h2 {
+    font-size:
+      27px !important;
+  }
+
+
+  .avaliacao-feature-content h3 {
+    font-size:
+      22px !important;
+  }
+
+
+  .avaliacao-points {
+    grid-template-columns:
+      1fr !important;
+  }
+
+
+  .avaliacao-points span {
+    justify-content:
+      flex-start !important;
+
+    text-align:
+      left !important;
+
+    min-height:
+      58px !important;
+
+    padding:
+      16px 4px !important;
+
+    border-bottom:
+      1px solid
+      rgba(184,137,50,.20) !important;
+  }
+
+
+  .avaliacao-points span::after {
+    display:
+      none !important;
+  }
+
+}
