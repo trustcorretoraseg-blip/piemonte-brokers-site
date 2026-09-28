@@ -182,7 +182,6 @@
 
 <!-- =====================================================
      BUSCA PREMIUM
-     AGORA FICA FORA DA FOTO
 ===================================================== -->
 
 <div
@@ -678,7 +677,7 @@
 
 
 <!-- =====================================================
-     REGIÕES — HOME
+     REGIÕES
 ===================================================== -->
 
 <section
@@ -688,239 +687,6 @@
     regioes-home-redesign
   "
 >
-
-  <style>
-
-    .regioes-home-redesign {
-      padding: 30px 0 54px;
-      margin-top: -20px;
-      background: #fff;
-    }
-
-    .regioes-home-redesign .section-head {
-      align-items: end;
-      margin-bottom: 28px;
-    }
-
-    .regioes-home-redesign .section-head h2 {
-      margin: 6px 0 7px;
-      font-size: 24px;
-      line-height: 1.2;
-      font-weight: 400;
-    }
-
-    .regioes-home-subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .regioes-home-redesign .section-head .text-link {
-      margin-top: 0;
-      white-space: nowrap;
-    }
-
-    .regioes-feature-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .regioes-feature-card {
-      position: relative;
-      display: block;
-      min-height: 230px;
-      overflow: hidden;
-      background: #0b2a2b;
-      isolation: isolate;
-    }
-
-    .regioes-feature-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s ease;
-      z-index: -2;
-    }
-
-    .regioes-feature-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(
-          to top,
-          rgba(4, 28, 38, .94) 0%,
-          rgba(4, 28, 38, .72) 29%,
-          rgba(4, 28, 38, .12) 68%,
-          rgba(4, 28, 38, .03) 100%
-        );
-    }
-
-    .regioes-feature-card:hover img {
-      transform: scale(1.035);
-    }
-
-    .regioes-feature-copy {
-      position: absolute;
-      left: 16px;
-      right: 54px;
-      bottom: 14px;
-      color: #fff;
-    }
-
-    .regioes-feature-copy h3 {
-      margin: 0 0 6px;
-      color: #fff;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 18px;
-      line-height: 1.12;
-      font-weight: 400;
-    }
-
-    .regioes-feature-copy p {
-      margin: 0;
-      color: rgba(255,255,255,.84);
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    .regioes-feature-arrow {
-      position: absolute;
-      right: 14px;
-      bottom: 16px;
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      color: var(--gold);
-      font-size: 21px;
-      line-height: 1;
-      background: rgba(4, 28, 38, .42);
-    }
-
-    .outras-oportunidades-home {
-      display: grid;
-      grid-template-columns:
-        auto
-        1px
-        minmax(0,1fr)
-        auto;
-      align-items: center;
-      gap: 24px;
-      margin-top: 16px;
-      padding: 20px 24px;
-      background: #103452;
-      color: #fff;
-    }
-
-    .outras-oportunidades-icon {
-      color: #d2ad62;
-      font-size: 31px;
-      line-height: 1;
-    }
-
-    .outras-oportunidades-divider {
-      width: 1px;
-      height: 46px;
-      background:
-        rgba(210,173,98,.78);
-    }
-
-    .outras-oportunidades-copy h3 {
-      margin: 0 0 4px;
-      color: #fff;
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-      font-size: 20px;
-      line-height: 1.15;
-      font-weight: 400;
-    }
-
-    .outras-oportunidades-copy p {
-      margin: 0;
-      color:
-        rgba(255,255,255,.72);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .outras-oportunidades-home .btn {
-      min-height: 44px;
-      padding: 0 22px;
-      border:
-        1px solid #d2ad62;
-      color: #fff;
-      background: transparent;
-      white-space: nowrap;
-    }
-
-    .outras-oportunidades-home .btn:hover {
-      background: #d2ad62;
-      color: #102638;
-    }
-
-    @media (max-width: 980px) {
-
-      .regioes-feature-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .outras-oportunidades-home {
-        grid-template-columns:
-          auto
-          1px
-          minmax(0,1fr);
-      }
-
-      .outras-oportunidades-home .btn {
-        grid-column: 3;
-        justify-self: start;
-      }
-
-    }
-
-    @media (max-width: 680px) {
-
-      .regioes-home-redesign {
-        padding: 52px 0 44px;
-      }
-
-      .regioes-feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .regioes-feature-card {
-        min-height: 240px;
-      }
-
-      .outras-oportunidades-home {
-        grid-template-columns:
-          auto
-          1px
-          1fr;
-        gap: 16px;
-        padding: 18px;
-      }
-
-      .outras-oportunidades-home .btn {
-        grid-column: 1 / -1;
-        width: 100%;
-      }
-
-    }
-
-  </style>
-
 
   <div class="container">
 
@@ -942,6 +708,7 @@
         </p>
 
       </div>
+
 
       <a
         href="/regioes.html"
@@ -1105,11 +872,13 @@
         ⌖
       </div>
 
+
       <div
         class="outras-oportunidades-divider"
         aria-hidden="true"
       >
       </div>
+
 
       <div class="outras-oportunidades-copy">
 
@@ -1122,6 +891,7 @@
         </p>
 
       </div>
+
 
       <a
         class="btn"
@@ -1167,15 +937,18 @@
           ÁREAS &amp; OPORTUNIDADES
         </p>
 
+
         <h2>
           Terrenos, glebas e ativos estratégicos.
         </h2>
 
+
         <p>
-          Selecionamos áreas para desenvolvimento residencial, comercial, industrial,
-          logístico e oportunidades imobiliárias de diferentes perfis, sempre com análise
-          criteriosa e foco em valor de longo prazo.
+          Selecionamos áreas para desenvolvimento residencial, comercial,
+          industrial, logístico e oportunidades imobiliárias de diferentes
+          perfis, sempre com análise criteriosa e foco em valor de longo prazo.
         </p>
+
 
         <a
           href="/areas.html"
@@ -1196,15 +969,645 @@
 
 
 <!-- =====================================================
-     AVALIAÇÃO
+     AVALIAÇÃO IMOBILIÁRIA — VERSÃO REFINADA
 ===================================================== -->
 
-<section class="section avaliacao-feature">
+<section class="section avaliacao-feature avaliacao-final">
+
+  <style>
+
+    /* =====================================================
+       SOMENTE A SEÇÃO DE AVALIAÇÃO
+    ===================================================== */
+
+    .avaliacao-final {
+      background: #E8E0D3 !important;
+      padding: 34px 0 32px !important;
+    }
+
+
+    .avaliacao-final .avaliacao-feature-grid {
+      display: block !important;
+
+      background: transparent !important;
+
+      border: 0 !important;
+
+      box-shadow: none !important;
+    }
+
+
+    .avaliacao-final .avaliacao-feature-kicker,
+    .avaliacao-final .avaliacao-feature-content {
+      min-height: 0 !important;
+
+      padding: 0 !important;
+
+      background: transparent !important;
+
+      color: inherit !important;
+    }
+
+
+    /* EYEBROW */
+
+    .avaliacao-final
+    .avaliacao-feature-kicker
+    .eyebrow {
+
+      margin:
+        0 0 7px !important;
+
+      color:
+        #B88932 !important;
+
+      font-size:
+        12px !important;
+
+      font-weight:
+        700 !important;
+
+      line-height:
+        1.3 !important;
+
+      letter-spacing:
+        .16em !important;
+    }
+
+
+    /* TÍTULO PRINCIPAL */
+
+    .avaliacao-final
+    .avaliacao-feature-kicker
+    h2 {
+
+      max-width:
+        980px !important;
+
+      margin:
+        0 0 9px !important;
+
+      color:
+        #17372F !important;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif !important;
+
+      font-size:
+        33px !important;
+
+      line-height:
+        1.14 !important;
+
+      font-weight:
+        400 !important;
+
+      letter-spacing:
+        -.015em !important;
+    }
+
+
+    /* TEXTO SUPERIOR */
+
+    .avaliacao-final
+    .avaliacao-feature-kicker
+    p {
+
+      max-width:
+        980px !important;
+
+      margin:
+        0 0 14px !important;
+
+      color:
+        #4C504A !important;
+
+      font-size:
+        15px !important;
+
+      line-height:
+        1.6 !important;
+    }
+
+
+    /* SUBTÍTULO */
+
+    .avaliacao-final
+    .avaliacao-feature-content
+    h3 {
+
+      margin:
+        0 0 7px !important;
+
+      color:
+        #27362F !important;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif !important;
+
+      font-size:
+        24px !important;
+
+      line-height:
+        1.2 !important;
+
+      font-weight:
+        400 !important;
+    }
+
+
+    /* TEXTO */
+
+    .avaliacao-final
+    .avaliacao-feature-content
+    > p {
+
+      max-width:
+        1120px !important;
+
+      margin:
+        0 0 17px !important;
+
+      color:
+        #4D504B !important;
+
+      font-size:
+        15px !important;
+
+      line-height:
+        1.58 !important;
+    }
+
+
+    /* =====================================================
+       QUATRO ITENS
+    ===================================================== */
+
+    .avaliacao-final
+    .avaliacao-points {
+
+      display:
+        grid !important;
+
+      grid-template-columns:
+        repeat(
+          4,
+          minmax(0,1fr)
+        ) !important;
+
+      gap:
+        0 !important;
+
+      margin:
+        0 0 16px !important;
+
+      border-top:
+        1px solid
+        rgba(
+          184,
+          137,
+          50,
+          .30
+        ) !important;
+
+      border-bottom:
+        1px solid
+        rgba(
+          184,
+          137,
+          50,
+          .30
+        ) !important;
+    }
+
+
+    .avaliacao-final
+    .avaliacao-points
+    > span {
+
+      position:
+        relative !important;
+
+      min-width:
+        0 !important;
+
+      min-height:
+        68px !important;
+
+      padding:
+        16px
+        18px !important;
+
+      display:
+        flex !important;
+
+      align-items:
+        center !important;
+
+      justify-content:
+        flex-start !important;
+
+      gap:
+        14px !important;
+
+      text-align:
+        left !important;
+
+      border:
+        0 !important;
+
+      color:
+        #29322E !important;
+    }
+
+
+    /* DIVISORES */
+
+    .avaliacao-final
+    .avaliacao-points
+    > span:not(:last-child)::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      top:
+        14px;
+
+      right:
+        0;
+
+      bottom:
+        14px;
+
+      width:
+        1px;
+
+      background:
+        rgba(
+          184,
+          137,
+          50,
+          .35
+        );
+    }
+
+
+    /* ÍCONES */
+
+    .avaliacao-final
+    .icone-item {
+
+      width:
+        32px !important;
+
+      height:
+        32px !important;
+
+      flex:
+        0 0 32px !important;
+
+      color:
+        #C99C43 !important;
+
+      display:
+        block !important;
+    }
+
+
+    /* TEXTO DOS ITENS */
+
+    .avaliacao-final
+    .avaliacao-points
+    strong {
+
+      color:
+        #29322E !important;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif !important;
+
+      font-size:
+        14px !important;
+
+      line-height:
+        1.35 !important;
+
+      font-weight:
+        500 !important;
+    }
+
+
+    /* =====================================================
+       BOTÃO
+    ===================================================== */
+
+    .avaliacao-final
+    .avaliacao-actions {
+
+      display:
+        flex !important;
+
+      align-items:
+        center !important;
+
+      margin:
+        0 !important;
+    }
+
+
+    .avaliacao-final
+    .avaliacao-actions
+    .btn.gold {
+
+      min-height:
+        44px !important;
+
+      padding:
+        0 22px !important;
+
+      display:
+        inline-flex !important;
+
+      align-items:
+        center !important;
+
+      justify-content:
+        center !important;
+
+      gap:
+        12px !important;
+
+      background:
+        #D2A951 !important;
+
+      border:
+        1px solid
+        #D2A951 !important;
+
+      color:
+        #151913 !important;
+
+      font-size:
+        14px !important;
+
+      font-weight:
+        700 !important;
+
+      text-decoration:
+        none !important;
+    }
+
+
+    .avaliacao-final
+    .avaliacao-actions
+    .btn.gold:hover {
+
+      background:
+        #C79B43 !important;
+
+      border-color:
+        #C79B43 !important;
+
+      color:
+        #111 !important;
+    }
+
+
+    .avaliacao-final
+    .avaliacao-actions
+    .btn.gold
+    span {
+
+      font-size:
+        18px !important;
+
+      line-height:
+        1 !important;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      .avaliacao-final {
+        padding:
+          34px 0 !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-feature-kicker
+      h2 {
+
+        font-size:
+          30px !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points {
+
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0,1fr)
+          ) !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points
+      > span:nth-child(2)::after {
+
+        display:
+          none !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points
+      > span:nth-child(3),
+
+      .avaliacao-final
+      .avaliacao-points
+      > span:nth-child(4) {
+
+        border-top:
+          1px solid
+          rgba(
+            184,
+            137,
+            50,
+            .22
+          ) !important;
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .avaliacao-final {
+
+        padding:
+          30px 0 !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-feature-kicker
+      .eyebrow {
+
+        font-size:
+          11px !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-feature-kicker
+      h2 {
+
+        font-size:
+          26px !important;
+
+        line-height:
+          1.16 !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-feature-kicker
+      p {
+
+        font-size:
+          14px !important;
+
+        line-height:
+          1.55 !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-feature-content
+      h3 {
+
+        font-size:
+          21px !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-feature-content
+      > p {
+
+        font-size:
+          14px !important;
+
+        line-height:
+          1.55 !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points {
+
+        grid-template-columns:
+          1fr !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points
+      > span {
+
+        min-height:
+          56px !important;
+
+        padding:
+          13px 4px !important;
+
+        gap:
+          13px !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points
+      > span::after {
+
+        display:
+          none !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-points
+      > span:not(:first-child) {
+
+        border-top:
+          1px solid
+          rgba(
+            184,
+            137,
+            50,
+            .20
+          ) !important;
+      }
+
+
+      .avaliacao-final
+      .icone-item {
+
+        width:
+          27px !important;
+
+        height:
+          27px !important;
+
+        flex:
+          0 0 27px !important;
+      }
+
+
+      .avaliacao-final
+      .avaliacao-actions
+      .btn.gold {
+
+        min-height:
+          43px !important;
+
+        padding:
+          0 19px !important;
+      }
+
+    }
+
+  </style>
+
+
 
   <div class="container">
 
     <div class="avaliacao-feature-grid">
 
+
+      <!-- INTRODUÇÃO -->
 
       <div class="avaliacao-feature-kicker">
 
@@ -1212,9 +1615,11 @@
           AVALIAÇÃO IMOBILIÁRIA
         </p>
 
+
         <h2>
           Valor de mercado com análise, método e contexto.
         </h2>
+
 
         <p>
           Avaliação e perícia imobiliária para apoiar decisões
@@ -1224,11 +1629,15 @@
       </div>
 
 
+
+      <!-- CONTEÚDO -->
+
       <div class="avaliacao-feature-content">
 
         <h3>
           Uma leitura técnica e estratégica do ativo.
         </h3>
+
 
         <p>
           Analisamos características do imóvel, localização,
@@ -1238,26 +1647,211 @@
         </p>
 
 
+
+        <!-- SERVIÇOS -->
+
         <div class="avaliacao-points">
 
-          <span>
-            Venda e aquisição
-          </span>
+
+          <!-- VENDA -->
 
           <span>
-            Locação e revisão de preço
+
+            <svg
+              class="icone-item"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+
+              <path
+                d="M4 10l4-4 4 4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M12 10l4-4 4 4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M5 11l3 3 4-4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M12 10l4 4 3-3"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+            <strong>
+              Venda e aquisição
+            </strong>
+
           </span>
 
-          <span>
-            Patrimônio e inventário
-          </span>
+
+
+          <!-- LOCAÇÃO -->
 
           <span>
-            Ativos residenciais, rurais e comerciais
+
+            <svg
+              class="icone-item"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+
+              <path
+                d="M3 10.5L12 3l9 7.5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M5 9.5V20h14V9.5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M9 20v-5h6v5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+            <strong>
+              Locação e revisão de preço
+            </strong>
+
           </span>
+
+
+
+          <!-- PATRIMÔNIO -->
+
+          <span>
+
+            <svg
+              class="icone-item"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+
+              <path
+                d="M6 3h9l4 4v14H6z"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M15 3v5h5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M9 12h7"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+
+              <path
+                d="M9 16h7"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+
+            </svg>
+
+            <strong>
+              Patrimônio e inventário
+            </strong>
+
+          </span>
+
+
+
+          <!-- ATIVOS -->
+
+          <span>
+
+            <svg
+              class="icone-item"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+
+              <path
+                d="M4 20V13h4v7"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M10 20V9h4v11"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M16 20V5h4v15"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M11 6l3-3 2 2 4-4"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+            <strong>
+              Ativos residenciais, rurais e comerciais
+            </strong>
+
+          </span>
+
 
         </div>
 
+
+
+        <!-- BOTÃO -->
 
         <div class="avaliacao-actions">
 
@@ -1266,21 +1860,16 @@
             class="btn gold"
           >
             Conheça o serviço
-          </a>
 
-          <a
-            href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%2C%20per%C3%ADcia%20ou%20precifica%C3%A7%C3%A3o%20de%20um%20im%C3%B3vel."
-            class="btn ghost"
-            target="_blank"
-            rel="noopener"
-          >
-            Falar pelo WhatsApp
+            <span aria-hidden="true">
+              →
+            </span>
           </a>
 
         </div>
 
-      </div>
 
+      </div>
 
     </div>
 
@@ -1291,12 +1880,13 @@
 
 
 <!-- =====================================================
-     SOBRE
+     SOBRE / RELAÇÕES IMOBILIÁRIAS
 ===================================================== -->
 
 <section class="section dark-section">
 
   <div class="container split">
+
 
     <div>
 
@@ -1319,6 +1909,7 @@
         com atendimento próximo, apresentação profissional
         e seleção criteriosa de oportunidades.
       </p>
+
 
       <a
         href="/sobre.html"
@@ -1343,6 +1934,7 @@
 
   <div class="container split">
 
+
     <div>
 
       <p class="eyebrow dark">
@@ -1364,11 +1956,13 @@
         terrenos e áreas selecionadas.
       </p>
 
+
       <p>
         Nossa atuação busca conectar cada oportunidade
         ao público adequado, com estratégia comercial
         e atendimento personalizado.
       </p>
+
 
       <a
         href="/anuncie.html"
@@ -1393,6 +1987,7 @@
 
   <div class="container split">
 
+
     <div>
 
       <p class="eyebrow dark">
@@ -1414,11 +2009,13 @@
         do mercado imobiliário.
       </p>
 
+
       <p>
         Acreditamos em parcerias estruturadas,
         transparência nas negociações
         e construção de relações de longo prazo.
       </p>
+
 
       <a
         href="/parcerias.html"
@@ -1443,6 +2040,7 @@
 
   <div class="container split">
 
+
     <div>
 
       <p class="eyebrow dark">
@@ -1465,11 +2063,13 @@
         com uma experiência de alto nível.
       </p>
 
+
       <p>
         Corretores, profissionais comerciais
         e talentos de outras áreas podem
         apresentar seu perfil para nossa equipe.
       </p>
+
 
       <a
         href="/trabalhe-conosco.html"
@@ -1494,6 +2094,7 @@
 
   <div class="container split">
 
+
     <div>
 
       <p class="eyebrow">
@@ -1516,8 +2117,10 @@
         uma negociação imobiliária.
       </p>
 
+
       <div id="contatoLinks">
       </div>
+
 
       <a
         href="/contato.html"
@@ -1650,6 +2253,7 @@
 
   <div class="container footer">
 
+
     <div>
 
       <img
@@ -1707,6 +2311,7 @@
       </div>
 
     </div>
+
 
   </div>
 
