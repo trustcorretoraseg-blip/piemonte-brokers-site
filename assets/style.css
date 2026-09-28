@@ -3935,3 +3935,26 @@ footer{
   }
 
 }
+/* AJUSTE LEVE DO TEXTO DA HOME */
+
+@media (min-width: 769px) {
+
+  .piemonte-home
+  .hero-title-premium {
+
+    font-size:
+      42px !important;
+
+    line-height:
+      1.08 !important;
+  }
+
+
+  .piemonte-home
+  .hero-subtitle-premium {
+
+    font-size:
+      16px !important;
+  }
+
+}
