@@ -927,7 +927,16 @@ function prepararFiltros() {
 
   /* Região, cidade e condomínio vindos dos imóveis publicados. */
   lista = lista.filter(estaDisponivel);
-  opcoesUnicas(regiao, lista.map(item => item.regiaoPrincipal), "Todas as regiões");
+  opcoesUnicas(
+  regiao,
+  [
+    "Itu, Porto Feliz e Região",
+    "Granja Viana & Alphaville",
+    "São Paulo",
+    "Salto e Indaiatuba"
+  ],
+  "Todas as regiões"
+);
   opcoesUnicas($("#fCidadeMunicipio"), lista.map(item => item.cidade), "Todas as cidades");
   atualizarCondominiosPorCidade();
 
@@ -1912,22 +1921,23 @@ function filtrar() {
 
         let atendeGrupoRegiao = true;
 
-        if (grupoRegiao === "itu-porto-feliz") {
-          atendeGrupoRegiao =
-            (
-              regiaoPrincipalItem === "itu & regiao" ||
-              regiaoPrincipalItem === "porto feliz & regiao"
-            ) &&
-            cidadeItem !== "salto" &&
-            cidadeItem !== "indaiatuba";
-        }
+       if (grupoRegiao === "itu-porto-feliz") {
+  atendeGrupoRegiao =
+    (
+      regiaoPrincipalItem === "itu, porto feliz e regiao" ||
+      regiaoPrincipalItem === "itu & regiao" ||
+      regiaoPrincipalItem === "porto feliz & regiao"
+    ) &&
+    cidadeItem !== "salto" &&
+    cidadeItem !== "indaiatuba";
+}
 
-        if (grupoRegiao === "salto-indaiatuba") {
-          atendeGrupoRegiao =
-            cidadeItem === "salto" ||
-            cidadeItem === "indaiatuba";
-        }
-
+if (grupoRegiao === "salto-indaiatuba") {
+  atendeGrupoRegiao =
+    regiaoPrincipalItem === "salto e indaiatuba" ||
+    cidadeItem === "salto" ||
+    cidadeItem === "indaiatuba";
+}
         const tipoItem =
           normalizarTexto(
             item.tipo
@@ -1954,13 +1964,12 @@ function filtrar() {
 
           &&
 
-          (
-            !regiaoNormalizada ||
-            regiaoPrincipalItem ===
-              regiaoNormalizada ||
-            cidadeItem ===
-              regiaoNormalizada
-          )
+         (
+  grupoRegiao ||
+  !regiaoNormalizada ||
+  regiaoPrincipalItem === regiaoNormalizada ||
+  cidadeItem === regiaoNormalizada
+)
           && (!municipio || cidadeItem === normalizarTexto(municipio))
           && (!condominio || normalizarLocal(condominioImovel(item)) === normalizarLocal(condominio))
           && (!bairro || normalizarLocal(bairroImovel(item)) === normalizarLocal(bairro))
