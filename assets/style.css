@@ -3958,3 +3958,154 @@ footer{
   }
 
 }
+/* =====================================================
+   RESTAURA ÁREAS & OPORTUNIDADES — HOME
+===================================================== */
+
+.areas-feature-compact {
+  padding: 52px 0 !important;
+  background: #f0f0ee !important;
+}
+
+
+.areas-feature-compact-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    1.08fr
+    .92fr !important;
+
+  gap: 46px !important;
+
+  align-items: center !important;
+}
+
+
+/* FOTO PEQUENA NA LATERAL */
+
+.areas-feature-compact-image {
+  width: 100% !important;
+
+  height: 285px !important;
+
+  overflow: hidden !important;
+
+  background: #d8d4ca !important;
+}
+
+
+.areas-feature-compact-image img {
+  width: 100% !important;
+
+  height: 100% !important;
+
+  object-fit: cover !important;
+
+  display: block !important;
+
+  transition:
+    transform .6s ease;
+}
+
+
+.areas-feature-compact-grid:hover
+.areas-feature-compact-image img {
+  transform: scale(1.02);
+}
+
+
+/* TEXTO À DIREITA */
+
+.areas-feature-compact-content {
+  display: block !important;
+}
+
+
+.areas-feature-compact-content
+.eyebrow {
+  margin-bottom: 10px !important;
+
+  color: #b88932 !important;
+}
+
+
+.areas-feature-compact-content h2 {
+  max-width: 520px !important;
+
+  margin:
+    0 0 15px !important;
+
+  color: var(--ink) !important;
+
+  font-size: 28px !important;
+
+  line-height: 1.15 !important;
+
+  font-weight: 400 !important;
+}
+
+
+.areas-feature-compact-content p {
+  max-width: 570px !important;
+
+  margin:
+    0 0 16px !important;
+
+  color: var(--muted) !important;
+
+  font-size: 15px !important;
+
+  line-height: 1.62 !important;
+}
+
+
+.areas-feature-compact-content
+.text-link {
+  margin-top: 5px !important;
+
+  color: #b88932 !important;
+}
+
+
+/* =====================================================
+   TABLET / MOBILE
+===================================================== */
+
+@media (max-width: 850px) {
+
+  .areas-feature-compact-grid {
+    grid-template-columns:
+      1fr !important;
+
+    gap: 28px !important;
+  }
+
+
+  .areas-feature-compact-image {
+    height:
+      310px !important;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+
+  .areas-feature-compact {
+    padding:
+      42px 0 !important;
+  }
+
+
+  .areas-feature-compact-image {
+    height:
+      240px !important;
+  }
+
+
+  .areas-feature-compact-content h2 {
+    font-size:
+      25px !important;
+  }
+
+}
