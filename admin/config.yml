@@ -114,7 +114,7 @@ collections:
                 widget: "image"
                 required: false
 
-              - label: "Região usada no filtro"
+            - label: "Região usada no filtro"
             name: "cidadeFiltro"
             widget: "select"
             required: false
