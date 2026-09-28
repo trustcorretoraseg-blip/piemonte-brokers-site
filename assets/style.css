@@ -4452,3 +4452,402 @@ footer{
   }
 
 }
+/* =====================================================
+   RESTAURA REGIÕES DE ATUAÇÃO — HOME
+   NÃO ALTERA OUTRAS ÁREAS DO SITE
+===================================================== */
+
+.regioes-home-redesign {
+  padding: 30px 0 54px !important;
+  margin-top: -20px !important;
+  background: #ffffff !important;
+}
+
+
+.regioes-home-redesign .section-head {
+  align-items: end !important;
+  margin-bottom: 28px !important;
+}
+
+
+.regioes-home-redesign .section-head h2 {
+  margin: 6px 0 7px !important;
+
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+
+  font-weight: 400 !important;
+}
+
+
+.regioes-home-subtitle {
+  margin: 0 !important;
+
+  color: var(--muted) !important;
+
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+
+.regioes-home-redesign
+.section-head
+.text-link {
+  margin-top: 0 !important;
+  white-space: nowrap !important;
+}
+
+
+/* =====================================================
+   GRID DAS 4 REGIÕES
+===================================================== */
+
+.regioes-feature-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr)) !important;
+
+  gap: 14px !important;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.regioes-feature-card {
+  position: relative !important;
+
+  display: block !important;
+
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  height: 230px !important;
+
+  min-height: 230px !important;
+
+  max-height: 230px !important;
+
+  overflow: hidden !important;
+
+  background: #0b2a2b !important;
+
+  isolation: isolate !important;
+
+  text-decoration: none !important;
+}
+
+
+/* =====================================================
+   FOTO
+===================================================== */
+
+.regioes-feature-card img {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  max-width: none !important;
+
+  object-fit: cover !important;
+
+  display: block !important;
+
+  z-index: -2 !important;
+
+  transition:
+    transform .5s ease !important;
+}
+
+
+.regioes-feature-card:hover img {
+  transform: scale(1.035) !important;
+}
+
+
+/* =====================================================
+   SOMBRA SOBRE A FOTO
+===================================================== */
+
+.regioes-feature-card::after {
+  content: "" !important;
+
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  z-index: -1 !important;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(4,28,38,.94) 0%,
+      rgba(4,28,38,.72) 29%,
+      rgba(4,28,38,.12) 68%,
+      rgba(4,28,38,.03) 100%
+    ) !important;
+}
+
+
+/* =====================================================
+   TEXTO
+===================================================== */
+
+.regioes-feature-copy {
+  position: absolute !important;
+
+  left: 16px !important;
+  right: 54px !important;
+  bottom: 14px !important;
+
+  color: #ffffff !important;
+}
+
+
+.regioes-feature-copy h3 {
+  margin: 0 0 6px !important;
+
+  color: #ffffff !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size: 18px !important;
+
+  line-height: 1.12 !important;
+
+  font-weight: 400 !important;
+}
+
+
+.regioes-feature-copy p {
+  margin: 0 !important;
+
+  color:
+    rgba(255,255,255,.84) !important;
+
+  font-size: 12px !important;
+
+  line-height: 1.35 !important;
+}
+
+
+/* =====================================================
+   SETA
+===================================================== */
+
+.regioes-feature-arrow {
+  position: absolute !important;
+
+  right: 14px !important;
+  bottom: 16px !important;
+
+  width: 38px !important;
+  height: 38px !important;
+
+  display: grid !important;
+
+  place-items: center !important;
+
+  border:
+    1px solid var(--gold) !important;
+
+  border-radius: 50% !important;
+
+  color: var(--gold) !important;
+
+  font-size: 21px !important;
+
+  line-height: 1 !important;
+
+  background:
+    rgba(4,28,38,.42) !important;
+}
+
+
+/* =====================================================
+   BARRA OUTRAS OPORTUNIDADES
+===================================================== */
+
+.outras-oportunidades-home {
+  display: grid !important;
+
+  grid-template-columns:
+    auto
+    1px
+    minmax(0,1fr)
+    auto !important;
+
+  align-items: center !important;
+
+  gap: 24px !important;
+
+  margin-top: 16px !important;
+
+  padding: 20px 24px !important;
+
+  background: #103452 !important;
+
+  color: #ffffff !important;
+}
+
+
+.outras-oportunidades-icon {
+  color: #d2ad62 !important;
+
+  font-size: 31px !important;
+
+  line-height: 1 !important;
+}
+
+
+.outras-oportunidades-divider {
+  width: 1px !important;
+
+  height: 46px !important;
+
+  background:
+    rgba(210,173,98,.78) !important;
+}
+
+
+.outras-oportunidades-copy h3 {
+  margin: 0 0 4px !important;
+
+  color: #ffffff !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size: 20px !important;
+
+  line-height: 1.15 !important;
+
+  font-weight: 400 !important;
+}
+
+
+.outras-oportunidades-copy p {
+  margin: 0 !important;
+
+  color:
+    rgba(255,255,255,.72) !important;
+
+  font-size: 13px !important;
+
+  line-height: 1.45 !important;
+}
+
+
+.outras-oportunidades-home .btn {
+  min-height: 44px !important;
+
+  padding: 0 22px !important;
+
+  border:
+    1px solid #d2ad62 !important;
+
+  color: #ffffff !important;
+
+  background: transparent !important;
+
+  white-space: nowrap !important;
+}
+
+
+.outras-oportunidades-home .btn:hover {
+  background: #d2ad62 !important;
+
+  color: #102638 !important;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 980px) {
+
+  .regioes-feature-grid {
+    grid-template-columns:
+      repeat(2, minmax(0,1fr)) !important;
+  }
+
+
+  .outras-oportunidades-home {
+    grid-template-columns:
+      auto
+      1px
+      minmax(0,1fr) !important;
+  }
+
+
+  .outras-oportunidades-home .btn {
+    grid-column: 3 !important;
+
+    justify-self: start !important;
+  }
+
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 680px) {
+
+  .regioes-home-redesign {
+    padding:
+      52px 0 44px !important;
+
+    margin-top: 0 !important;
+  }
+
+
+  .regioes-feature-grid {
+    grid-template-columns:
+      1fr !important;
+  }
+
+
+  .regioes-feature-card {
+    height: 240px !important;
+
+    min-height: 240px !important;
+
+    max-height: 240px !important;
+  }
+
+
+  .outras-oportunidades-home {
+    grid-template-columns:
+      auto
+      1px
+      1fr !important;
+
+    gap: 16px !important;
+
+    padding: 18px !important;
+  }
+
+
+  .outras-oportunidades-home .btn {
+    grid-column:
+      1 / -1 !important;
+
+    width: 100% !important;
+  }
+
+}
