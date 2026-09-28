@@ -120,14 +120,11 @@ collections:
                 required: false
 
                 options:
-                  - "Itu & Região"
-                  - "Porto Feliz & Região"
-                  - "Granja Viana & Alphaville"
-                  - "São Paulo"
-                  - "Áreas & Oportunidades"
-                  - "Granja Viana"
-                  - "São Paulo & Alphaville"
-
+  - "Itu, Porto Feliz e Região"
+  - "Granja Viana & Alphaville"
+  - "São Paulo"
+  - "Salto e Indaiatuba"
+  
               - label: "Exibir na Home"
                 name: "destaque"
                 widget: "boolean"
@@ -230,14 +227,11 @@ collections:
                 hint: "Escolha a região macro onde este imóvel será exibido."
 
                 options:
-                  - "Itu & Região"
-                  - "Porto Feliz & Região"
-                  - "Granja Viana & Alphaville"
-                  - "São Paulo"
-                  - "Áreas & Oportunidades"
-                  - "Granja Viana"
-                  - "São Paulo & Alphaville"
-
+  - "Itu, Porto Feliz e Região"
+  - "Granja Viana & Alphaville"
+  - "São Paulo"
+  - "Salto e Indaiatuba"
+  
               - label: "Cidade"
                 name: "cidade"
                 widget: "string"
