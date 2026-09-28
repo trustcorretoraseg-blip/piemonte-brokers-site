@@ -115,21 +115,20 @@ collections:
                 required: false
 
               - label: "Região usada no filtro"
-                name: "cidadeFiltro"
-                widget: "select"
-                required: false
+            name: "cidadeFiltro"
+            widget: "select"
+            required: false
+            options:
+              - "Itu, Porto Feliz e Região"
+              - "Granja Viana & Alphaville"
+              - "São Paulo"
+              - "Salto e Indaiatuba"
 
-                options:
-  - "Itu, Porto Feliz e Região"
-  - "Granja Viana & Alphaville"
-  - "São Paulo"
-  - "Salto e Indaiatuba"
-  
-              - label: "Exibir na Home"
-                name: "destaque"
-                widget: "boolean"
-                default: true
-                required: false
+          - label: "Exibir na Home"
+            name: "destaque"
+            widget: "boolean"
+            default: true
+            required: false
 
 
   # =========================================================
@@ -220,19 +219,19 @@ collections:
               # LOCALIZAÇÃO
               # -------------------------------------------------
 
-              - label: "Região principal"
-                name: "regiaoPrincipal"
-                widget: "select"
-                required: false
-                hint: "Escolha a região macro onde este imóvel será exibido."
+            - label: "Região principal"
+            name: "regiaoPrincipal"
+            widget: "select"
+            required: false
+            hint: "Escolha a região macro onde este imóvel será exibido."
 
-                options:
-  - "Itu, Porto Feliz e Região"
-  - "Granja Viana & Alphaville"
-  - "São Paulo"
-  - "Salto e Indaiatuba"
-  
-              - label: "Cidade"
+            options:
+              - "Itu, Porto Feliz e Região"
+              - "Granja Viana & Alphaville"
+              - "São Paulo"
+              - "Salto e Indaiatuba"
+
+          - label: "Cidade"
                 name: "cidade"
                 widget: "string"
                 required: false
