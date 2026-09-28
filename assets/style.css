@@ -3789,3 +3789,149 @@ footer{
   }
 
 }
+/* =========================================================
+   HOME MOBILE — PROPORÇÃO FINAL DA FOTO
+   Mantém desktop intacto
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /*
+    Reduz a altura exagerada da foto.
+    Isso diminui o zoom do background e mostra
+    muito mais da casa e da piscina.
+  */
+  .piemonte-home .hero {
+
+    height: 610px !important;
+
+    min-height: 610px !important;
+
+    max-height: 610px !important;
+
+    overflow: hidden !important;
+
+    background-size: cover !important;
+
+    /*
+      Um pouco para a direita e para baixo:
+      privilegia casa + piscina e reduz o céu.
+    */
+    background-position:
+      58% 64% !important;
+
+    background-repeat:
+      no-repeat !important;
+  }
+
+
+  /*
+    O conteúdo ocupa exatamente a mesma
+    altura da fotografia.
+  */
+  .piemonte-home
+  .hero-content-premium {
+
+    height: 610px !important;
+
+    min-height: 610px !important;
+
+    box-sizing: border-box !important;
+
+    padding:
+      0
+      24px !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    justify-content: center !important;
+
+    align-items: flex-start !important;
+
+    position: relative !important;
+
+    z-index: 3 !important;
+  }
+
+
+  /*
+    Mantém o bloco de texto aproximadamente
+    no centro da fotografia.
+  */
+  .piemonte-home
+  .hero-content-premium
+  .eyebrow {
+
+    margin:
+      0 0 12px !important;
+  }
+
+
+  .piemonte-home
+  .hero-title-premium {
+
+    margin:
+      0 !important;
+
+    max-width:
+      100% !important;
+
+    font-size:
+      31px !important;
+
+    line-height:
+      1.12 !important;
+  }
+
+
+  .piemonte-home
+  .hero-subtitle-premium {
+
+    margin:
+      24px 0 0 !important;
+
+    max-width:
+      100% !important;
+
+    font-size:
+      15px !important;
+
+    line-height:
+      1.55 !important;
+  }
+
+
+  /*
+    Os botões continuam escondidos no celular.
+  */
+  .piemonte-home
+  .hero-content-premium
+  .hero-actions {
+
+    display:
+      none !important;
+  }
+
+
+  /*
+    A barra continua FORA da fotografia.
+  */
+  .piemonte-home
+  .hero-search-after-photo {
+
+    position:
+      static !important;
+
+    margin:
+      0 !important;
+
+    padding:
+      14px 0 16px !important;
+
+    background:
+      #ffffff !important;
+  }
+
+}
