@@ -2955,3 +2955,39 @@ footer{
   }
 
 }
+@media (max-width:680px) {
+
+  .piemonte-home .hero {
+    min-height: 690px;
+    padding-bottom: 0;
+  }
+
+  .piemonte-home .hero-content-premium {
+    padding-top: 42px;
+    padding-bottom: 40px;
+  }
+
+  .hero-search-premium {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+
+    margin-top: 0;
+
+    transform: none;
+
+    background: #ffffff;
+
+    padding: 14px 0 18px;
+  }
+
+  .hero-search-premium .container {
+    width: calc(100% - 24px);
+  }
+
+  .search-box-premium {
+    margin: 0 auto;
+  }
+
+}
