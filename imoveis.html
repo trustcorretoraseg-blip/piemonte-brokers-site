@@ -10,7 +10,9 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Imóveis | Piemonte Brokers</title>
+  <title>
+    Imóveis | Piemonte Brokers
+  </title>
 
   <meta
     name="description"
@@ -84,6 +86,10 @@
         Trabalhe Conosco
       </a>
 
+      <a href="/avaliacao.html">
+        Avaliação
+      </a>
+
       <a href="/contato.html">
         Contato
       </a>
@@ -98,6 +104,10 @@
 
 <main>
 
+
+<!-- =====================================================
+     HERO DA PÁGINA
+===================================================== -->
 
 <section class="page-hero">
 
@@ -122,95 +132,455 @@
 
 
 
+<!-- =====================================================
+     PORTFÓLIO
+===================================================== -->
+
 <section class="portfolio-section">
 
   <div class="container">
 
 
-    <div
-      id="filtros"
-      class="filtros"
-    >
+    <!-- =================================================
+         BUSCA PREMIUM
+    ================================================= -->
+
+    <div class="portfolio-search-premium">
+
+      <form
+        id="filtros"
+        class="search-box search-box-premium"
+      >
 
 
-      <select id="fCategoria">
+        <!-- FINALIDADE -->
 
-        <option value="">
-          Categoria
-        </option>
+        <div class="search-field search-field-select">
 
-      </select>
-
-
-      <select id="fNegocio">
-
-        <option value="">
-          Finalidade
-        </option>
-
-        <option value="Venda">
-          Venda
-        </option>
-
-        <option value="Locação">
-          Locação
-        </option>
-
-      </select>
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ◇
+          </span>
 
 
-      <select id="fCidade">
+          <select
+            id="fNegocio"
+            aria-label="Finalidade"
+          >
 
-        <option value="">
-          Região
-        </option>
+            <option value="">
+              Finalidade
+            </option>
 
-      </select>
-      <select id="fCidadeMunicipio" aria-label="Cidade"><option value="">Todas as cidades</option></select>
-      <div class="filtro-pesquisavel" data-select="fCondominio"><select id="fCondominio" aria-label="Condomínio"><option value="">Todos os condomínios</option></select><details class="filtro-dropdown"><summary aria-label="Escolher condomínio">Todos os condomínios</summary><div class="filtro-menu"><input type="search" autocomplete="off" aria-label="Pesquisar condomínio" placeholder="Digite o condomínio..."><div class="filtro-resultados" role="group" aria-label="Condomínios disponíveis"></div></div></details></div>
-      <div class="filtro-pesquisavel" data-select="fBairro"><select id="fBairro" aria-label="Bairro"><option value="">Todos os bairros</option></select><details class="filtro-dropdown"><summary aria-label="Escolher bairro">Todos os bairros</summary><div class="filtro-menu"><input type="search" autocomplete="off" aria-label="Pesquisar bairro" placeholder="Digite o bairro..."><div class="filtro-resultados" role="group" aria-label="Bairros disponíveis"></div></div></details></div>
+            <option value="Venda">
+              Venda
+            </option>
 
+            <option value="Locação">
+              Locação
+            </option>
 
-      <select id="fTipo">
+          </select>
 
-        <option value="">
-          Tipo
-        </option>
-
-      </select>
+        </div>
 
 
-      <select id="fPreco">
 
-        <option value="">
-          Faixa de preço
-        </option>
+        <!-- CATEGORIA -->
 
-        <option value="ate-1m">
-          Até R$ 1 milhão
-        </option>
+        <div class="search-field search-field-select">
 
-        <option value="1m-3m">
-          R$ 1 a 3 milhões
-        </option>
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ▦
+          </span>
 
-        <option value="3m-5m">
-          R$ 3 a 5 milhões
-        </option>
 
-        <option value="5m-10m">
-          R$ 5 a 10 milhões
-        </option>
+          <select
+            id="fCategoria"
+            aria-label="Categoria"
+          >
 
-        <option value="acima-10m">
-          Acima de R$ 10 milhões
-        </option>
+            <option value="">
+              Categoria
+            </option>
 
-      </select>
+          </select>
 
+        </div>
+
+
+
+        <!-- REGIÃO OU CIDADE -->
+
+        <div
+          class="
+            search-field
+            search-field-location
+          "
+        >
+
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ⌖
+          </span>
+
+
+          <details
+            class="
+              filtro-dropdown
+              localizacao-dropdown
+            "
+            id="localizacaoDropdown"
+          >
+
+            <summary
+              aria-label="Escolher região ou cidade"
+            >
+              Região ou cidade
+            </summary>
+
+
+            <div
+              class="
+                filtro-menu
+                localizacao-menu
+              "
+            >
+
+              <input
+                type="search"
+                autocomplete="off"
+                aria-label="Pesquisar região ou cidade"
+                placeholder="Buscar região ou cidade..."
+                id="localizacaoBusca"
+              >
+
+
+              <!-- REGIÕES -->
+
+              <div class="localizacao-grupo">
+
+                <div class="localizacao-titulo">
+                  REGIÕES
+                </div>
+
+
+                <div
+                  id="fRegiaoResultados"
+                  class="filtro-resultados"
+                  role="group"
+                  aria-label="Regiões disponíveis"
+                >
+                </div>
+
+              </div>
+
+
+              <div
+                class="localizacao-divisor"
+              >
+              </div>
+
+
+              <!-- CIDADES -->
+
+              <div class="localizacao-grupo">
+
+                <div class="localizacao-titulo">
+                  CIDADES
+                </div>
+
+
+                <div
+                  id="fCidadeResultados"
+                  class="filtro-resultados"
+                  role="group"
+                  aria-label="Cidades disponíveis"
+                >
+                </div>
+
+              </div>
+
+            </div>
+
+          </details>
+
+
+
+          <!--
+            CAMPOS REAIS DE FILTRO
+            MANTIDOS OCULTOS
+          -->
+
+          <select
+            id="fCidade"
+            aria-label="Região"
+            hidden
+          >
+
+            <option value="">
+              Região
+            </option>
+
+          </select>
+
+
+          <select
+            id="fCidadeMunicipio"
+            aria-label="Cidade"
+            hidden
+          >
+
+            <option value="">
+              Todas as cidades
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <!-- CONDOMÍNIOS -->
+
+        <div
+          class="
+            search-field
+            filtro-pesquisavel
+          "
+          data-select="fCondominio"
+        >
+
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ▥
+          </span>
+
+
+          <select
+            id="fCondominio"
+            aria-label="Condomínio"
+            hidden
+          >
+
+            <option value="">
+              Todos os condomínios
+            </option>
+
+          </select>
+
+
+          <details class="filtro-dropdown">
+
+            <summary
+              aria-label="Escolher condomínio"
+            >
+              Condomínios
+            </summary>
+
+
+            <div class="filtro-menu">
+
+              <input
+                type="search"
+                autocomplete="off"
+                aria-label="Pesquisar condomínio"
+                placeholder="Buscar condomínio..."
+              >
+
+
+              <div
+                class="filtro-resultados"
+                role="group"
+                aria-label="Condomínios disponíveis"
+              >
+              </div>
+
+            </div>
+
+          </details>
+
+        </div>
+
+
+
+        <!-- BAIRROS -->
+
+        <div
+          class="
+            search-field
+            filtro-pesquisavel
+          "
+          data-select="fBairro"
+        >
+
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ⌑
+          </span>
+
+
+          <select
+            id="fBairro"
+            aria-label="Bairro"
+            hidden
+          >
+
+            <option value="">
+              Todos os bairros
+            </option>
+
+          </select>
+
+
+          <details class="filtro-dropdown">
+
+            <summary
+              aria-label="Escolher bairro"
+            >
+              Bairros
+            </summary>
+
+
+            <div class="filtro-menu">
+
+              <input
+                type="search"
+                autocomplete="off"
+                aria-label="Pesquisar bairro"
+                placeholder="Buscar bairro..."
+              >
+
+
+              <div
+                class="filtro-resultados"
+                role="group"
+                aria-label="Bairros disponíveis"
+              >
+              </div>
+
+            </div>
+
+          </details>
+
+        </div>
+
+
+
+        <!-- TIPO -->
+
+        <div class="search-field search-field-select">
+
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ⌂
+          </span>
+
+
+          <select
+            id="fTipo"
+            aria-label="Tipo"
+          >
+
+            <option value="">
+              Tipo
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <!-- FAIXA DE PREÇO -->
+
+        <div class="search-field search-field-select">
+
+          <span
+            class="search-field-icon"
+            aria-hidden="true"
+          >
+            ◈
+          </span>
+
+
+          <select
+            id="fPreco"
+            aria-label="Faixa de preço"
+          >
+
+            <option value="">
+              Faixa de preço
+            </option>
+
+            <option value="ate-1m">
+              Até R$ 1 milhão
+            </option>
+
+            <option value="1m-3m">
+              R$ 1 a 3 milhões
+            </option>
+
+            <option value="3m-5m">
+              R$ 3 a 5 milhões
+            </option>
+
+            <option value="5m-10m">
+              R$ 5 a 10 milhões
+            </option>
+
+            <option value="acima-10m">
+              Acima de R$ 10 milhões
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <!-- BUSCAR -->
+
+        <button
+          type="submit"
+          class="
+            btn
+            dark-btn
+            search-submit-premium
+          "
+        >
+
+          Buscar
+
+          <span aria-hidden="true">
+            →
+          </span>
+
+        </button>
+
+
+      </form>
 
     </div>
 
+
+
+    <!-- =================================================
+         CONTADOR
+    ================================================= -->
 
     <div class="portfolio-info">
 
@@ -221,12 +591,22 @@
     </div>
 
 
+
+    <!-- =================================================
+         CARDS
+    ================================================= -->
+
     <div
       id="cards"
       class="cards-grid"
     >
     </div>
 
+
+
+    <!-- =================================================
+         SEM RESULTADOS
+    ================================================= -->
 
     <div
       id="vazio"
@@ -254,6 +634,10 @@
 </main>
 
 
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
   id="modal"
@@ -362,6 +746,10 @@
 
 
 
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
+
 <footer>
 
   <div class="container footer">
@@ -401,6 +789,10 @@
 
 
     <div>
+
+      <a href="/avaliacao.html">
+        Avaliação
+      </a>
 
       <a href="/anuncie.html">
         Anuncie conosco
