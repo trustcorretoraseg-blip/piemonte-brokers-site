@@ -1,21 +1,14 @@
 {
   "itens": [
     {
-      "id": "itu-regiao",
-      "nome": "Itu & Região",
-      "descricao": "Condomínios, residências, terrenos e oportunidades selecionadas em Itu e região.",
+"id": "itu-porto-feliz-regiao",
+"nome": "Itu, Porto Feliz e Região",
+      "descricao": "Condomínios, residências, terrenos e oportunidades selecionadas em Itu, Porto Feliz e região.",
       "imagem": "/uploads/WhatsApp Image 2026-08-28 at 20.58.06.jpeg",
-      "cidadeFiltro": "Itu & Região",
+      "cidadeFiltro": "Itu, Porto Feliz e Região",
       "destaque": true
     },
-    {
-      "id": "porto-feliz-regiao",
-      "nome": "Porto Feliz & Região",
-      "descricao": "Imóveis e áreas em Porto Feliz e em seus principais destinos de alto padrão.",
-      "imagem": "/uploads/casa-de-luxo-7-1-1024x576.jpg",
-      "cidadeFiltro": "Porto Feliz & Região",
-      "destaque": true
-    },
+    
     {
       "id": "granja-viana-alphaville",
       "nome": "Granja Viana & Alphaville",
@@ -33,12 +26,12 @@
       "destaque": true
     },
     {
-      "id": "areas-oportunidades",
-      "nome": "Áreas & Oportunidades",
-      "descricao": "Áreas, terrenos, ativos e oportunidades para incorporadores e investidores.",
-      "imagem": "/uploads/WhatsApp Image 2026-08-28 at 21.10.05.jpeg",
-      "cidadeFiltro": "Áreas & Oportunidades",
-      "destaque": true
-    }
+  "id": "salto-indaiatuba",
+  "nome": "Salto e Indaiatuba",
+  "descricao": "Residências, terrenos e oportunidades selecionadas em Salto e Indaiatuba.",
+  "imagem": "/uploads/WhatsApp Image 2026-08-28 at 21.10.05.jpeg",
+  "cidadeFiltro": "Salto e Indaiatuba",
+  "destaque": true
+}
   ]
 }
