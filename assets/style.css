@@ -3778,3 +3778,14 @@ footer{
   }
 
 }
+@media (max-width: 768px) {
+
+  .piemonte-home
+  .hero-content-premium {
+
+    padding-top: 220px !important;
+
+    padding-bottom: 40px !important;
+  }
+
+}
