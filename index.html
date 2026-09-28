@@ -176,452 +176,428 @@
 
   </div>
 
+</section>
 
 
-  <!-- =====================================================
-       NOVA BUSCA PREMIUM
-  ===================================================== -->
 
-  <div class="hero-search-premium">
+<!-- =====================================================
+     BUSCA PREMIUM
+     AGORA FICA FORA DA FOTO
+===================================================== -->
 
-    <div class="container">
+<div
+  class="
+    hero-search-premium
+    hero-search-after-photo
+  "
+>
 
-      <form
-        id="filtros"
-        class="search-box search-box-premium"
+  <div class="container">
+
+    <form
+      id="filtros"
+      class="search-box search-box-premium"
+    >
+
+
+      <!-- FINALIDADE -->
+
+      <div class="search-field search-field-select">
+
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ◇
+        </span>
+
+        <select
+          id="fNegocio"
+          aria-label="Finalidade"
+        >
+
+          <option value="">
+            Finalidade
+          </option>
+
+          <option value="Venda">
+            Venda
+          </option>
+
+          <option value="Locação">
+            Locação
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- CATEGORIA -->
+
+      <div class="search-field search-field-select">
+
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ▦
+        </span>
+
+        <select
+          id="fCategoria"
+          aria-label="Categoria"
+        >
+
+          <option value="">
+            Categoria
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- REGIÃO OU CIDADE -->
+
+      <div
+        class="
+          search-field
+          search-field-location
+        "
       >
 
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ⌖
+        </span>
 
-        <!-- =================================================
-             FINALIDADE
-        ================================================= -->
-
-        <div class="search-field search-field-select">
-
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
-          >
-            ◇
-          </span>
-
-          <select
-            id="fNegocio"
-            aria-label="Finalidade"
-          >
-
-            <option value="">
-              Finalidade
-            </option>
-
-            <option value="Venda">
-              Venda
-            </option>
-
-            <option value="Locação">
-              Locação
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- =================================================
-             CATEGORIA
-        ================================================= -->
-
-        <div class="search-field search-field-select">
-
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
-          >
-            ▦
-          </span>
-
-          <select
-            id="fCategoria"
-            aria-label="Categoria"
-          >
-
-            <option value="">
-              Categoria
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- =================================================
-             REGIÃO OU CIDADE
-        ================================================= -->
-
-        <div
-          class="search-field
-                 search-field-location"
+        <details
+          class="
+            filtro-dropdown
+            localizacao-dropdown
+          "
+          id="localizacaoDropdown"
         >
 
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
+          <summary
+            aria-label="Escolher região ou cidade"
           >
-            ⌖
-          </span>
+            Região ou cidade
+          </summary>
 
-
-          <details
-            class="filtro-dropdown
-                   localizacao-dropdown"
-            id="localizacaoDropdown"
+          <div
+            class="
+              filtro-menu
+              localizacao-menu
+            "
           >
 
-            <summary
-              aria-label="Escolher região ou cidade"
+            <input
+              type="search"
+              autocomplete="off"
+              aria-label="Pesquisar região ou cidade"
+              placeholder="Buscar região ou cidade..."
+              id="localizacaoBusca"
             >
-              Região ou cidade
-            </summary>
 
+
+            <div class="localizacao-grupo">
+
+              <div class="localizacao-titulo">
+                REGIÕES
+              </div>
+
+              <div
+                id="fRegiaoResultados"
+                class="filtro-resultados"
+                role="group"
+                aria-label="Regiões disponíveis"
+              >
+              </div>
+
+            </div>
+
+
+            <div class="localizacao-divisor">
+            </div>
+
+
+            <div class="localizacao-grupo">
+
+              <div class="localizacao-titulo">
+                CIDADES
+              </div>
+
+              <div
+                id="fCidadeResultados"
+                class="filtro-resultados"
+                role="group"
+                aria-label="Cidades disponíveis"
+              >
+              </div>
+
+            </div>
+
+          </div>
+
+        </details>
+
+
+        <select
+          id="fCidade"
+          aria-label="Região"
+          hidden
+        >
+
+          <option value="">
+            Região
+          </option>
+
+        </select>
+
+
+        <select
+          id="fCidadeMunicipio"
+          aria-label="Cidade"
+          hidden
+        >
+
+          <option value="">
+            Todas as cidades
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- CONDOMÍNIOS -->
+
+      <div
+        class="
+          search-field
+          filtro-pesquisavel
+        "
+        data-select="fCondominio"
+      >
+
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ▥
+        </span>
+
+        <select
+          id="fCondominio"
+          aria-label="Condomínio"
+          hidden
+        >
+
+          <option value="">
+            Todos os condomínios
+          </option>
+
+        </select>
+
+
+        <details class="filtro-dropdown">
+
+          <summary
+            aria-label="Escolher condomínio"
+          >
+            Condomínios
+          </summary>
+
+          <div class="filtro-menu">
+
+            <input
+              type="search"
+              autocomplete="off"
+              aria-label="Pesquisar condomínio"
+              placeholder="Buscar condomínio..."
+            >
 
             <div
-              class="filtro-menu
-                     localizacao-menu"
+              class="filtro-resultados"
+              role="group"
+              aria-label="Condomínios disponíveis"
             >
-
-              <input
-                type="search"
-                autocomplete="off"
-                aria-label="Pesquisar região ou cidade"
-                placeholder="Buscar região ou cidade..."
-                id="localizacaoBusca"
-              >
-
-
-              <!-- REGIÕES -->
-
-              <div class="localizacao-grupo">
-
-                <div class="localizacao-titulo">
-                  REGIÕES
-                </div>
-
-
-                <div
-                  id="fRegiaoResultados"
-                  class="filtro-resultados"
-                  role="group"
-                  aria-label="Regiões disponíveis"
-                >
-                </div>
-
-              </div>
-
-
-              <div
-                class="localizacao-divisor"
-              >
-              </div>
-
-
-              <!-- CIDADES -->
-
-              <div class="localizacao-grupo">
-
-                <div class="localizacao-titulo">
-                  CIDADES
-                </div>
-
-
-                <div
-                  id="fCidadeResultados"
-                  class="filtro-resultados"
-                  role="group"
-                  aria-label="Cidades disponíveis"
-                >
-                </div>
-
-              </div>
-
             </div>
 
-          </details>
+          </div>
+
+        </details>
+
+      </div>
 
 
 
-          <!--
-            Estes dois selects continuam existindo
-            para manter compatibilidade com o
-            funcionamento atual do site.
-          -->
+      <!-- BAIRROS -->
 
-          <select
-            id="fCidade"
-            aria-label="Região"
-            hidden
-          >
+      <div
+        class="
+          search-field
+          filtro-pesquisavel
+        "
+        data-select="fBairro"
+      >
 
-            <option value="">
-              Região
-            </option>
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ⌑
+        </span>
 
-          </select>
-
-
-          <select
-            id="fCidadeMunicipio"
-            aria-label="Cidade"
-            hidden
-          >
-
-            <option value="">
-              Todas as cidades
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- =================================================
-             CONDOMÍNIOS
-        ================================================= -->
-
-        <div
-          class="search-field
-                 filtro-pesquisavel"
-          data-select="fCondominio"
+        <select
+          id="fBairro"
+          aria-label="Bairro"
+          hidden
         >
 
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
+          <option value="">
+            Todos os bairros
+          </option>
+
+        </select>
+
+
+        <details class="filtro-dropdown">
+
+          <summary
+            aria-label="Escolher bairro"
           >
-            ▥
-          </span>
+            Bairros
+          </summary>
 
+          <div class="filtro-menu">
 
-          <select
-            id="fCondominio"
-            aria-label="Condomínio"
-            hidden
-          >
-
-            <option value="">
-              Todos os condomínios
-            </option>
-
-          </select>
-
-
-          <details class="filtro-dropdown">
-
-            <summary
-              aria-label="Escolher condomínio"
+            <input
+              type="search"
+              autocomplete="off"
+              aria-label="Pesquisar bairro"
+              placeholder="Buscar bairro..."
             >
-              Condomínios
-            </summary>
 
-
-            <div class="filtro-menu">
-
-              <input
-                type="search"
-                autocomplete="off"
-                aria-label="Pesquisar condomínio"
-                placeholder="Buscar condomínio..."
-              >
-
-
-              <div
-                class="filtro-resultados"
-                role="group"
-                aria-label="Condomínios disponíveis"
-              >
-              </div>
-
+            <div
+              class="filtro-resultados"
+              role="group"
+              aria-label="Bairros disponíveis"
+            >
             </div>
 
-          </details>
+          </div>
 
-        </div>
+        </details>
+
+      </div>
 
 
 
-        <!-- =================================================
-             BAIRROS
-        ================================================= -->
+      <!-- TIPO -->
 
-        <div
-          class="search-field
-                 filtro-pesquisavel"
-          data-select="fBairro"
+      <div class="search-field search-field-select">
+
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ⌂
+        </span>
+
+        <select
+          id="fTipo"
+          aria-label="Tipo"
         >
 
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
-          >
-            ⌑
-          </span>
+          <option value="">
+            Tipo
+          </option>
 
+        </select>
 
-          <select
-            id="fBairro"
-            aria-label="Bairro"
-            hidden
-          >
-
-            <option value="">
-              Todos os bairros
-            </option>
-
-          </select>
-
-
-          <details class="filtro-dropdown">
-
-            <summary
-              aria-label="Escolher bairro"
-            >
-              Bairros
-            </summary>
-
-
-            <div class="filtro-menu">
-
-              <input
-                type="search"
-                autocomplete="off"
-                aria-label="Pesquisar bairro"
-                placeholder="Buscar bairro..."
-              >
-
-
-              <div
-                class="filtro-resultados"
-                role="group"
-                aria-label="Bairros disponíveis"
-              >
-              </div>
-
-            </div>
-
-          </details>
-
-        </div>
+      </div>
 
 
 
-        <!-- =================================================
-             TIPO
-        ================================================= -->
+      <!-- FAIXA DE PREÇO -->
 
-        <div class="search-field search-field-select">
+      <div class="search-field search-field-select">
 
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
-          >
-            ⌂
-          </span>
+        <span
+          class="search-field-icon"
+          aria-hidden="true"
+        >
+          ◈
+        </span>
 
-
-          <select
-            id="fTipo"
-            aria-label="Tipo"
-          >
-
-            <option value="">
-              Tipo
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- =================================================
-             FAIXA DE PREÇO
-        ================================================= -->
-
-        <div class="search-field search-field-select">
-
-          <span
-            class="search-field-icon"
-            aria-hidden="true"
-          >
-            ◈
-          </span>
-
-
-          <select
-            id="fPreco"
-            aria-label="Faixa de preço"
-          >
-
-            <option value="">
-              Faixa de preço
-            </option>
-
-            <option value="ate-1m">
-              Até R$ 1 milhão
-            </option>
-
-            <option value="1m-3m">
-              R$ 1 a 3 milhões
-            </option>
-
-            <option value="3m-5m">
-              R$ 3 a 5 milhões
-            </option>
-
-            <option value="5m-10m">
-              R$ 5 a 10 milhões
-            </option>
-
-            <option value="acima-10m">
-              Acima de R$ 10 milhões
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- =================================================
-             BUSCAR
-        ================================================= -->
-
-        <button
-          type="submit"
-          class="btn
-                 dark-btn
-                 search-submit-premium"
+        <select
+          id="fPreco"
+          aria-label="Faixa de preço"
         >
 
-          Buscar
+          <option value="">
+            Faixa de preço
+          </option>
 
-          <span aria-hidden="true">
-            →
-          </span>
+          <option value="ate-1m">
+            Até R$ 1 milhão
+          </option>
 
-        </button>
+          <option value="1m-3m">
+            R$ 1 a 3 milhões
+          </option>
+
+          <option value="3m-5m">
+            R$ 3 a 5 milhões
+          </option>
+
+          <option value="5m-10m">
+            R$ 5 a 10 milhões
+          </option>
+
+          <option value="acima-10m">
+            Acima de R$ 10 milhões
+          </option>
+
+        </select>
+
+      </div>
 
 
-      </form>
 
-    </div>
+      <!-- BUSCAR -->
+
+      <button
+        type="submit"
+        class="
+          btn
+          dark-btn
+          search-submit-premium
+        "
+      >
+
+        Buscar
+
+        <span aria-hidden="true">
+          →
+        </span>
+
+      </button>
+
+
+    </form>
 
   </div>
 
-
-</section>
+</div>
 
 
 
@@ -721,12 +697,10 @@
       background: #fff;
     }
 
-
     .regioes-home-redesign .section-head {
       align-items: end;
       margin-bottom: 28px;
     }
-
 
     .regioes-home-redesign .section-head h2 {
       margin: 6px 0 7px;
@@ -735,7 +709,6 @@
       font-weight: 400;
     }
 
-
     .regioes-home-subtitle {
       margin: 0;
       color: var(--muted);
@@ -743,19 +716,16 @@
       line-height: 1.55;
     }
 
-
     .regioes-home-redesign .section-head .text-link {
       margin-top: 0;
       white-space: nowrap;
     }
-
 
     .regioes-feature-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
-
 
     .regioes-feature-card {
       position: relative;
@@ -765,7 +735,6 @@
       background: #0b2a2b;
       isolation: isolate;
     }
-
 
     .regioes-feature-card img {
       position: absolute;
@@ -777,13 +746,11 @@
       z-index: -2;
     }
 
-
     .regioes-feature-card::after {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-
       background:
         linear-gradient(
           to top,
@@ -794,11 +761,9 @@
         );
     }
 
-
     .regioes-feature-card:hover img {
       transform: scale(1.035);
     }
-
 
     .regioes-feature-copy {
       position: absolute;
@@ -807,7 +772,6 @@
       bottom: 14px;
       color: #fff;
     }
-
 
     .regioes-feature-copy h3 {
       margin: 0 0 6px;
@@ -818,7 +782,6 @@
       font-weight: 400;
     }
 
-
     .regioes-feature-copy p {
       margin: 0;
       color: rgba(255,255,255,.84);
@@ -826,29 +789,21 @@
       line-height: 1.35;
     }
 
-
     .regioes-feature-arrow {
       position: absolute;
       right: 14px;
       bottom: 16px;
-
       width: 38px;
       height: 38px;
-
       display: grid;
       place-items: center;
-
       border: 1px solid var(--gold);
       border-radius: 50%;
-
       color: var(--gold);
-
       font-size: 21px;
       line-height: 1;
-
       background: rgba(4, 28, 38, .42);
     }
-
 
     .outras-oportunidades-home {
       display: grid;
@@ -857,17 +812,13 @@
         1px
         minmax(0,1fr)
         auto;
-
       align-items: center;
       gap: 24px;
-
       margin-top: 16px;
       padding: 20px 24px;
-
       background: #103452;
       color: #fff;
     }
-
 
     .outras-oportunidades-icon {
       color: #d2ad62;
@@ -875,62 +826,47 @@
       line-height: 1;
     }
 
-
     .outras-oportunidades-divider {
       width: 1px;
       height: 46px;
-
       background:
         rgba(210,173,98,.78);
     }
 
-
     .outras-oportunidades-copy h3 {
       margin: 0 0 4px;
-
       color: #fff;
-
       font-family:
         Georgia,
         "Times New Roman",
         serif;
-
       font-size: 20px;
       line-height: 1.15;
       font-weight: 400;
     }
 
-
     .outras-oportunidades-copy p {
       margin: 0;
-
       color:
         rgba(255,255,255,.72);
-
       font-size: 13px;
       line-height: 1.45;
     }
 
-
     .outras-oportunidades-home .btn {
       min-height: 44px;
       padding: 0 22px;
-
       border:
         1px solid #d2ad62;
-
       color: #fff;
       background: transparent;
-
       white-space: nowrap;
     }
-
 
     .outras-oportunidades-home .btn:hover {
       background: #d2ad62;
       color: #102638;
     }
-
 
     @media (max-width: 980px) {
 
@@ -939,14 +875,12 @@
           repeat(2, 1fr);
       }
 
-
       .outras-oportunidades-home {
         grid-template-columns:
           auto
           1px
           minmax(0,1fr);
       }
-
 
       .outras-oportunidades-home .btn {
         grid-column: 3;
@@ -955,34 +889,28 @@
 
     }
 
-
     @media (max-width: 680px) {
 
       .regioes-home-redesign {
         padding: 52px 0 44px;
       }
 
-
       .regioes-feature-grid {
         grid-template-columns: 1fr;
       }
 
-
       .regioes-feature-card {
         min-height: 240px;
       }
-
 
       .outras-oportunidades-home {
         grid-template-columns:
           auto
           1px
           1fr;
-
         gap: 16px;
         padding: 18px;
       }
-
 
       .outras-oportunidades-home .btn {
         grid-column: 1 / -1;
@@ -1005,18 +933,15 @@
           REGIÕES
         </p>
 
-
         <h2>
           Atuação estratégica em mercados selecionados.
         </h2>
-
 
         <p class="regioes-home-subtitle">
           Imóveis, áreas e oportunidades com curadoria e visão estratégica.
         </p>
 
       </div>
-
 
       <a
         href="/regioes.html"
@@ -1180,13 +1105,11 @@
         ⌖
       </div>
 
-
       <div
         class="outras-oportunidades-divider"
         aria-hidden="true"
       >
       </div>
-
 
       <div class="outras-oportunidades-copy">
 
@@ -1199,7 +1122,6 @@
         </p>
 
       </div>
-
 
       <a
         class="btn"
@@ -1218,118 +1140,10 @@
 
 
 <!-- =====================================================
-     ÁREAS & OPORTUNIDADES — HOME
+     ÁREAS & OPORTUNIDADES
 ===================================================== -->
 
 <section class="areas-feature-compact">
-
-  <style>
-
-    .areas-feature-compact {
-      padding: 52px 0;
-      background: #f0f0ee;
-    }
-
-
-    .areas-feature-compact-grid {
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 46px;
-      align-items: center;
-    }
-
-
-    .areas-feature-compact-image {
-      height: 285px;
-      overflow: hidden;
-      background: #d8d4ca;
-    }
-
-
-    .areas-feature-compact-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .6s ease;
-    }
-
-
-    .areas-feature-compact-grid:hover
-    .areas-feature-compact-image img {
-      transform: scale(1.02);
-    }
-
-
-    .areas-feature-compact-content .eyebrow {
-      color: #b88932;
-      margin-bottom: 10px;
-    }
-
-
-    .areas-feature-compact-content h2 {
-      margin: 0 0 15px;
-      max-width: 520px;
-
-      color: var(--ink);
-
-      font-size: 28px;
-      line-height: 1.15;
-      font-weight: 400;
-    }
-
-
-    .areas-feature-compact-content p {
-      max-width: 570px;
-      margin: 0 0 16px;
-
-      color: var(--muted);
-
-      font-size: 15px;
-      line-height: 1.62;
-    }
-
-
-    .areas-feature-compact-content .text-link {
-      margin-top: 5px;
-      color: #b88932;
-    }
-
-
-    @media (max-width: 850px) {
-
-      .areas-feature-compact-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-
-      .areas-feature-compact-image {
-        height: 310px;
-      }
-
-    }
-
-
-    @media (max-width: 550px) {
-
-      .areas-feature-compact {
-        padding: 42px 0;
-      }
-
-
-      .areas-feature-compact-image {
-        height: 240px;
-      }
-
-
-      .areas-feature-compact-content h2 {
-        font-size: 25px;
-      }
-
-    }
-
-  </style>
-
 
   <div class="container">
 
@@ -1353,18 +1167,15 @@
           ÁREAS &amp; OPORTUNIDADES
         </p>
 
-
         <h2>
           Terrenos, glebas e ativos estratégicos.
         </h2>
-
 
         <p>
           Selecionamos áreas para desenvolvimento residencial, comercial, industrial,
           logístico e oportunidades imobiliárias de diferentes perfis, sempre com análise
           criteriosa e foco em valor de longo prazo.
         </p>
-
 
         <a
           href="/areas.html"
@@ -1385,185 +1196,10 @@
 
 
 <!-- =====================================================
-     AVALIAÇÃO, PERÍCIA E PRECIFICAÇÃO
+     AVALIAÇÃO
 ===================================================== -->
 
 <section class="section avaliacao-feature">
-
-  <style>
-
-    .avaliacao-feature {
-      background: #f4f1e9;
-    }
-
-
-    .avaliacao-feature-grid {
-      display: grid;
-      grid-template-columns: .92fr 1.08fr;
-      gap: 0;
-
-      background: #ffffff;
-
-      border:
-        1px solid rgba(23,55,47,.10);
-
-      box-shadow:
-        0 18px 45px rgba(23,55,47,.06);
-    }
-
-
-    .avaliacao-feature-kicker {
-      padding: 66px 62px;
-
-      background: #17372f;
-      color: #fff;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      min-height: 430px;
-    }
-
-
-    .avaliacao-feature-kicker .eyebrow {
-      color: #d2ad62;
-    }
-
-
-    .avaliacao-feature-kicker h2 {
-      margin: 12px 0 22px;
-      max-width: 520px;
-
-      font-size:
-        clamp(34px, 4vw, 52px);
-
-      line-height: 1.06;
-      font-weight: 400;
-
-      letter-spacing: -.025em;
-
-      color: #fff;
-    }
-
-
-    .avaliacao-feature-kicker p {
-      max-width: 520px;
-      margin: 0;
-
-      color:
-        rgba(255,255,255,.76);
-
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-
-    .avaliacao-feature-content {
-      padding: 66px 62px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-
-    .avaliacao-feature-content h3 {
-      margin: 0 0 18px;
-
-      color: #17372f;
-
-      font-size: 28px;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-
-    .avaliacao-feature-content p {
-      margin: 0 0 16px;
-
-      color: #626861;
-
-      line-height: 1.75;
-    }
-
-
-    .avaliacao-points {
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 12px 18px;
-
-      margin:
-        10px 0 26px;
-    }
-
-
-    .avaliacao-points span {
-      padding-top: 12px;
-
-      border-top:
-        1px solid rgba(23,55,47,.14);
-
-      color: #17372f;
-
-      font-size: 14px;
-    }
-
-
-    .avaliacao-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-
-      margin-top: 4px;
-    }
-
-
-    @media (max-width: 850px) {
-
-      .avaliacao-feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .avaliacao-feature-kicker,
-      .avaliacao-feature-content {
-        padding: 46px 34px;
-      }
-
-
-      .avaliacao-feature-kicker {
-        min-height: auto;
-      }
-
-    }
-
-
-    @media (max-width: 550px) {
-
-      .avaliacao-points {
-        grid-template-columns: 1fr;
-      }
-
-
-      .avaliacao-feature-kicker,
-      .avaliacao-feature-content {
-        padding: 38px 24px;
-      }
-
-
-      .avaliacao-feature-kicker h2 {
-        font-size: 33px;
-      }
-
-    }
-
-  </style>
-
-
 
   <div class="container">
 
@@ -1576,11 +1212,9 @@
           AVALIAÇÃO IMOBILIÁRIA
         </p>
 
-
         <h2>
           Valor de mercado com análise, método e contexto.
         </h2>
-
 
         <p>
           Avaliação e perícia imobiliária para apoiar decisões
@@ -1590,13 +1224,11 @@
       </div>
 
 
-
       <div class="avaliacao-feature-content">
 
         <h3>
           Uma leitura técnica e estratégica do ativo.
         </h3>
-
 
         <p>
           Analisamos características do imóvel, localização,
@@ -1606,30 +1238,25 @@
         </p>
 
 
-
         <div class="avaliacao-points">
 
           <span>
             Venda e aquisição
           </span>
 
-
           <span>
             Locação e revisão de preço
           </span>
 
-
           <span>
             Patrimônio e inventário
           </span>
-
 
           <span>
             Ativos residenciais, rurais e comerciais
           </span>
 
         </div>
-
 
 
         <div class="avaliacao-actions">
@@ -1640,7 +1267,6 @@
           >
             Conheça o serviço
           </a>
-
 
           <a
             href="https://wa.me/5511933602204?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Piemonte%20Brokers%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20avalia%C3%A7%C3%A3o%2C%20per%C3%ADcia%20ou%20precifica%C3%A7%C3%A3o%20de%20um%20im%C3%B3vel."
@@ -1664,9 +1290,6 @@
 
 
 
-
-
-
 <!-- =====================================================
      SOBRE
 ===================================================== -->
@@ -1674,7 +1297,6 @@
 <section class="section dark-section">
 
   <div class="container split">
-
 
     <div>
 
@@ -1697,7 +1319,6 @@
         com atendimento próximo, apresentação profissional
         e seleção criteriosa de oportunidades.
       </p>
-
 
       <a
         href="/sobre.html"
@@ -1722,7 +1343,6 @@
 
   <div class="container split">
 
-
     <div>
 
       <p class="eyebrow dark">
@@ -1744,13 +1364,11 @@
         terrenos e áreas selecionadas.
       </p>
 
-
       <p>
         Nossa atuação busca conectar cada oportunidade
         ao público adequado, com estratégia comercial
         e atendimento personalizado.
       </p>
-
 
       <a
         href="/anuncie.html"
@@ -1775,7 +1393,6 @@
 
   <div class="container split">
 
-
     <div>
 
       <p class="eyebrow dark">
@@ -1797,13 +1414,11 @@
         do mercado imobiliário.
       </p>
 
-
       <p>
         Acreditamos em parcerias estruturadas,
         transparência nas negociações
         e construção de relações de longo prazo.
       </p>
-
 
       <a
         href="/parcerias.html"
@@ -1828,7 +1443,6 @@
 
   <div class="container split">
 
-
     <div>
 
       <p class="eyebrow dark">
@@ -1851,13 +1465,11 @@
         com uma experiência de alto nível.
       </p>
 
-
       <p>
         Corretores, profissionais comerciais
         e talentos de outras áreas podem
         apresentar seu perfil para nossa equipe.
       </p>
-
 
       <a
         href="/trabalhe-conosco.html"
@@ -1882,7 +1494,6 @@
 
   <div class="container split">
 
-
     <div>
 
       <p class="eyebrow">
@@ -1905,10 +1516,8 @@
         uma negociação imobiliária.
       </p>
 
-
       <div id="contatoLinks">
       </div>
-
 
       <a
         href="/contato.html"
@@ -1940,13 +1549,11 @@
   hidden
 >
 
-
   <div class="modal-overlay">
   </div>
 
 
   <div class="modal-content">
-
 
     <button
       type="button"
@@ -1971,21 +1578,17 @@
 
     <div class="modal-body">
 
-
       <span
         id="modalCategoria"
         class="eyebrow dark"
       >
       </span>
 
-
       <h2 id="modalTitulo">
       </h2>
 
-
       <p id="modalLocal">
       </p>
-
 
       <div
         id="modalSpecs"
@@ -1993,13 +1596,11 @@
       >
       </div>
 
-
       <div
         id="modalDescricao"
         class="modal-descricao"
       >
       </div>
-
 
       <div
         id="modalGaleria"
@@ -2009,7 +1610,6 @@
 
 
       <div class="modal-footer">
-
 
         <div>
 
@@ -2025,7 +1625,6 @@
 
         </div>
 
-
         <a
           href="/contato.html"
           class="btn-primary"
@@ -2033,9 +1632,7 @@
           Tenho interesse
         </a>
 
-
       </div>
-
 
     </div>
 
@@ -2053,7 +1650,6 @@
 
   <div class="container footer">
 
-
     <div>
 
       <img
@@ -2062,7 +1658,6 @@
       >
 
     </div>
-
 
 
     <div>
@@ -2084,7 +1679,6 @@
       </a>
 
     </div>
-
 
 
     <div>
@@ -2114,7 +1708,6 @@
 
     </div>
 
-
   </div>
 
 
@@ -2123,7 +1716,6 @@
   </div>
 
 </footer>
-
 
 
 <script src="/assets/script.js"></script>
