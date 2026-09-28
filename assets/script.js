@@ -1,6 +1,7 @@
 let SITE = {};
 let PORTFOLIO = [];
 let REGIOES = [];
+let GRUPO_REGIAO_ATIVO = "";
 
 /* =========================================================
    PAGINAÇÃO DO PORTFÓLIO
@@ -988,8 +989,16 @@ function aplicarFiltroDaURL() {
   const negocio =
     params.get("negocio");
 
+  const grupoRegiao =
+    params.get("grupoRegiao");
+
   let aplicouFiltro =
     false;
+
+  if (grupoRegiao) {
+    GRUPO_REGIAO_ATIVO = normalizarTexto(grupoRegiao);
+    aplicouFiltro = true;
+  }
 
 
   if (regiao) {
@@ -1846,6 +1855,9 @@ function filtrar() {
     $("#fCidade")
       ?.value || "";
 
+  const grupoRegiao =
+    GRUPO_REGIAO_ATIVO;
+
   const tipo =
     $("#fTipo")
       ?.value || "";
@@ -1898,6 +1910,24 @@ function filtrar() {
             item.cidade
           );
 
+        let atendeGrupoRegiao = true;
+
+        if (grupoRegiao === "itu-porto-feliz") {
+          atendeGrupoRegiao =
+            (
+              regiaoPrincipalItem === "itu & regiao" ||
+              regiaoPrincipalItem === "porto feliz & regiao"
+            ) &&
+            cidadeItem !== "salto" &&
+            cidadeItem !== "indaiatuba";
+        }
+
+        if (grupoRegiao === "salto-indaiatuba") {
+          atendeGrupoRegiao =
+            cidadeItem === "salto" ||
+            cidadeItem === "indaiatuba";
+        }
+
         const tipoItem =
           normalizarTexto(
             item.tipo
@@ -1917,6 +1947,10 @@ function filtrar() {
             !negocioNormalizado ||
             negocioItem.includes(negocioNormalizado)
           )
+
+          &&
+
+          atendeGrupoRegiao
 
           &&
 
@@ -1981,6 +2015,7 @@ function ativarFiltros() {
       evento => {
 
         evento.preventDefault();
+        GRUPO_REGIAO_ATIVO = "";
 
         filtrar();
       }
@@ -2008,6 +2043,7 @@ function ativarFiltros() {
           elemento.addEventListener(
             "change",
             () => {
+              GRUPO_REGIAO_ATIVO = "";
               if (seletor === "#fCidadeMunicipio") atualizarCondominiosPorCidade();
               filtrar();
             }
