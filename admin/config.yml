@@ -172,7 +172,6 @@ collections:
               - label: "Categoria"
                 name: "categoria"
                 widget: "select"
-
                 options:
                   - "Imóvel"
                   - "Área"
@@ -182,7 +181,6 @@ collections:
                 widget: "select"
                 required: false
                 default: "Disponível"
-
                 options:
                   - "Disponível"
                   - "Reservado"
@@ -199,12 +197,71 @@ collections:
                   - "Sim"
                 hint: "Selecione Sim para incluir o imóvel no XML do Chaves na Mão. Não altera a publicação no site Piemonte Brokers."
 
+
+              # -------------------------------------------------
+              # CHAVES NA MÃO — CAMPOS EXCLUSIVOS DA INTEGRAÇÃO
+              # Estes campos NÃO alteram a exibição no site.
+              # São utilizados somente no XML do Chaves na Mão.
+              # -------------------------------------------------
+
+              - label: "Bairro — Chaves na Mão"
+                name: "bairroChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "EXCLUSIVO CHAVES NA MÃO. Informe o bairro oficial do imóvel. Não altera o bairro exibido no site Piemonte Brokers."
+
+              - label: "Condomínio — Chaves na Mão"
+                name: "condominioChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "EXCLUSIVO CHAVES NA MÃO. Informe o nome do condomínio quando houver. Não altera o condomínio exibido no site Piemonte Brokers."
+
+              - label: "Tipo do imóvel — Chaves na Mão"
+                name: "tipoChavesNaMao"
+                widget: "select"
+                required: false
+                hint: "EXCLUSIVO CHAVES NA MÃO. Escolha a categoria utilizada pelo portal. Não altera o tipo exibido no site Piemonte Brokers."
+                options:
+                  - "Casa / Sobrado"
+                  - "Casa / Sobrado em Condomínio"
+                  - "Apartamento"
+                  - "Cobertura"
+                  - "Flat"
+                  - "Kitnet / Studio"
+                  - "Loft"
+                  - "Terreno / Lote"
+                  - "Terreno em Condomínio"
+                  - "Sítio / Chácara"
+                  - "Fazenda"
+                  - "Galpão / Depósito"
+                  - "Conjunto Comercial / Sala"
+                  - "Ponto Comercial"
+                  - "Prédio"
+                  - "Terreno Comercial"
+                  - "Casa / Sobrado Comercial"
+
+              - label: "Título — Chaves na Mão"
+                name: "tituloChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "EXCLUSIVO CHAVES NA MÃO. Se preenchido, este título será enviado apenas ao portal. O título do site Piemonte Brokers permanece igual."
+
+              - label: "Vídeo YouTube — Chaves na Mão"
+                name: "videoYoutubeChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "EXCLUSIVO CHAVES NA MÃO. Cole o link normal do vídeo no YouTube. Não altera os vídeos atuais do site."
+
+
+              # -------------------------------------------------
+              # NEGÓCIO
+              # -------------------------------------------------
+
               - label: "Negócio"
                 name: "negocio"
                 widget: "select"
                 required: false
                 default: "Venda"
-
                 options:
                   - "Venda"
                   - "Locação"
@@ -271,6 +328,7 @@ collections:
                 widget: "text"
                 required: false
                 hint: "Notas de organização da equipe. Não serão exibidas nos anúncios, mas estarão no JSON público; não inclua dados sigilosos."
+
 
               # -------------------------------------------------
               # TIPO E VALORES
@@ -391,7 +449,8 @@ collections:
 
 
               # -------------------------------------------------
-              # VÍDEOS — upload direto do computador (publicação no GitHub)
+              # VÍDEOS — upload direto do computador
+              # Mantido exatamente como já estava
               # -------------------------------------------------
 
               - label: "Vídeos do imóvel"
@@ -400,7 +459,9 @@ collections:
                 required: false
                 summary: "{{fields.titulo}}"
                 hint: "Adicione um vídeo por item, diretamente do computador. Prefira MP4 (H.264), arquivos curtos e compactados, até 20 MB por vídeo. O GitHub não aceita arquivos com 100 MB ou mais."
+
                 fields:
+
                   - label: "Título do vídeo"
                     name: "titulo"
                     widget: "string"
@@ -412,6 +473,7 @@ collections:
                     required: true
                     media_folder: "/uploads/videos"
                     public_folder: "/uploads/videos"
+
                     media_library:
                       config:
                         multiple: false
