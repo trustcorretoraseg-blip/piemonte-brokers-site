@@ -128,8 +128,23 @@ const url = v => {
 
 function location(p) {
 
+  /*
+    PRIORIDADE:
+    1. Endereço exclusivo do Chaves na Mão (chavesEndereco)
+    2. Campos antigos, apenas para compatibilidade
+  */
+
+  const enderecoChaves =
+    p.chavesEndereco && typeof p.chavesEndereco === 'object'
+      ? p.chavesEndereco
+      : {};
+
   const city =
-    String(p.cidade || '').trim();
+    String(
+      enderecoChaves.cidade ||
+      p.cidade ||
+      ''
+    ).trim();
 
   if (
     !city ||
@@ -141,6 +156,7 @@ function location(p) {
 
   const uf =
     String(
+      enderecoChaves.uf ||
       p.uf ||
       p.estado ||
       'SP'
@@ -152,14 +168,9 @@ function location(p) {
     return null;
   }
 
-  /*
-    PRIORIDADE:
-    1. Bairro exclusivo do Chaves na Mão
-    2. Bairro antigo, para compatibilidade
-  */
-
   const bairro =
     String(
+      enderecoChaves.bairro ||
       p.bairroChavesNaMao ||
       p.bairro ||
       ''
@@ -172,9 +183,14 @@ function location(p) {
   return {
     city,
     uf,
-    bairro
+    bairro,
+    cep: String(enderecoChaves.cep || '').trim(),
+    endereco: String(enderecoChaves.logradouro || '').trim(),
+    numero: String(enderecoChaves.numero || '').trim(),
+    complemento: String(enderecoChaves.complemento || '').trim()
   };
 }
+
 
 
 /* =========================================================
@@ -536,6 +552,74 @@ function prices(p) {
 
 
 /* =========================================================
+   ITENS EXCLUSIVOS DO CHAVES NA MÃO
+========================================================= */
+
+function normalizeList(value) {
+
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map(v => {
+
+      if (typeof v === 'string') {
+        return v.trim();
+      }
+
+      if (v && typeof v === 'object') {
+        return String(v.item || v.value || '').trim();
+      }
+
+      return '';
+
+    })
+    .filter(Boolean);
+}
+
+
+const MAP_PRIVATIVA = {
+  'Ar-condicionado': 'Ar Condicionado',
+  'Área gourmet': 'Espaço gourmet',
+  'Armários planejados': 'Armário(s) planejado(s)',
+  'Banheira / Hidromassagem': 'Hidromassagem',
+  'Cozinha planejada': 'Cozinha com armário(s)',
+  'Dependência de empregada': 'Dependência de empregados',
+  'Piscina privativa': 'Piscina',
+  'Sacada / Varanda': 'Varanda'
+};
+
+
+const MAP_COMUM = {
+  'Churrasqueira': 'Churrasqueira coletiva',
+  'Estacionamento para visitantes': 'Vaga(s) para visitantes',
+  'Pet place': 'Área para pets',
+  'Portaria 24 horas': 'Portaria 24h',
+  'Segurança 24 horas': 'Câmeras de segurança'
+};
+
+
+function xmlArea(tagName, selected, extras, map = {}) {
+
+  const items = [
+    ...normalizeList(selected),
+    ...normalizeList(extras)
+  ]
+    .map(item => map[item] || item)
+    .filter(Boolean);
+
+  const unique = [...new Set(items)];
+
+  return (
+    `<${tagName}>` +
+    unique.map(item => tag('item', item)).join('') +
+    `</${tagName}>`
+  );
+}
+
+
+/* =========================================================
    CAMPOS DO XML
 ========================================================= */
 
@@ -762,7 +846,7 @@ function entry(p) {
 
 
     destaque:
-      p.destaque
+      String(p.chavesDestaque) === '1'
         ? '1'
         : '0',
 
@@ -894,24 +978,25 @@ function entry(p) {
 
 
     /*
-      ENDEREÇO OCULTO
-      continua como já estava
+      ENDEREÇO EXCLUSIVO DO CHAVES NA MÃO
+      O portal recebe os dados, mas a tag esconder_endereco_imovel
+      continua em 1 para não exibir publicamente o endereço completo.
     */
 
     cep:
-      '',
+      loc.cep,
 
 
     endereco:
-      '',
+      loc.endereco,
 
 
     numero:
-      '',
+      loc.numero,
 
 
     complemento:
-      '',
+      loc.complemento,
 
 
     descritivo:
@@ -1006,9 +1091,19 @@ function entry(p) {
       video
     ) +
 
-    '<area_comum></area_comum>' +
+    xmlArea(
+      'area_comum',
+      p.chavesItensCondominio,
+      p.chavesOutrosItensCondominio,
+      MAP_COMUM
+    ) +
 
-    '<area_privativa></area_privativa>' +
+    xmlArea(
+      'area_privativa',
+      p.chavesItensImovel,
+      p.chavesOutrosItensImovel,
+      MAP_PRIVATIVA
+    ) +
 
     tag(
       'aceita_troca',
@@ -1272,6 +1367,10 @@ exports._test = {
 
   descricaoChavesNaMao,
 
-  tituloChavesNaMao
+  tituloChavesNaMao,
+
+  normalizeList,
+
+  xmlArea
 
 };
