@@ -201,8 +201,47 @@ collections:
 
               # -------------------------------------------------
               # CHAVES NA MÃO — CAMPOS EXCLUSIVOS DO XML
-              # Não são utilizados pelo site Piemonte Brokers.
+              # Não alteram o cadastro nem a exibição do site Piemonte.
               # -------------------------------------------------
+
+              - label: "Chaves na Mão — Título do anúncio"
+                name: "tituloChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "Opcional. Se vazio, o XML usa o título normal do imóvel."
+
+              - label: "Chaves na Mão — Tipo do imóvel"
+                name: "tipoChavesNaMao"
+                widget: "select"
+                required: false
+                options:
+                  - "Casa / Sobrado"
+                  - "Casa / Sobrado em Condomínio"
+                  - "Apartamento"
+                  - "Cobertura"
+                  - "Terreno / Lote"
+                  - "Terreno em Condomínio"
+                  - "Sítio / Chácara"
+                  - "Fazenda"
+                  - "Galpão / Depósito"
+                  - "Conjunto Comercial / Sala"
+                  - "Ponto Comercial"
+                  - "Prédio"
+                  - "Terreno Comercial"
+                  - "Casa / Sobrado Comercial"
+                hint: "Exclusivo do XML. Se vazio, o sistema tenta usar o Tipo já cadastrado no site."
+
+              - label: "Chaves na Mão — Condomínio"
+                name: "condominioChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "Nome do condomínio para a integração. Não altera o campo Condomínio do site."
+
+              - label: "Chaves na Mão — Vídeo YouTube"
+                name: "videoYoutubeChavesNaMao"
+                widget: "string"
+                required: false
+                hint: "Cole a URL do vídeo no YouTube. Exclusivo do XML."
 
               - label: "Chaves na Mão — Destaque"
                 name: "chavesDestaque"
@@ -212,7 +251,7 @@ collections:
                 options:
                   - "0"
                   - "1"
-                hint: "1 = Sim / 0 = Não. Exclusivo do XML do Chaves na Mão."
+                hint: "1 = Sim / 0 = Não. Não interfere no destaque da Piemonte."
 
               - label: "Chaves na Mão — Logradouro"
                 name: "chavesLogradouro"
@@ -306,6 +345,15 @@ collections:
                   - "Varanda gourmet"
                   - "Vista panorâmica"
 
+              - label: "Chaves na Mão — Outros itens do imóvel"
+                name: "chavesOutrosItensImovel"
+                widget: "list"
+                required: false
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
+
               - label: "Chaves na Mão — Itens do condomínio"
                 name: "chavesItensCondominio"
                 widget: "select"
@@ -334,6 +382,15 @@ collections:
                   - "Salão de jogos"
                   - "Sauna"
                   - "Segurança 24 horas"
+
+              - label: "Chaves na Mão — Outros itens do condomínio"
+                name: "chavesOutrosItensCondominio"
+                widget: "list"
+                required: false
+                field:
+                  label: "Item"
+                  name: "item"
+                  widget: "string"
 
               - label: "Negócio"
                 name: "negocio"
