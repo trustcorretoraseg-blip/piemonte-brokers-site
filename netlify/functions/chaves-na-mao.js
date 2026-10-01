@@ -130,8 +130,9 @@ function location(p) {
 
   /*
     PRIORIDADE:
-    1. Endereço exclusivo do Chaves na Mão (chavesEndereco)
-    2. Campos antigos, apenas para compatibilidade
+    1. Campos simples exclusivos do Chaves na Mão
+    2. Estrutura antiga chavesEndereco, para compatibilidade
+    3. Campos normais do site, como fallback
   */
 
   const enderecoChaves =
@@ -141,6 +142,7 @@ function location(p) {
 
   const city =
     String(
+      p.chavesCidade ||
       enderecoChaves.cidade ||
       p.cidade ||
       ''
@@ -156,6 +158,7 @@ function location(p) {
 
   const uf =
     String(
+      p.chavesUf ||
       enderecoChaves.uf ||
       p.uf ||
       p.estado ||
@@ -170,6 +173,7 @@ function location(p) {
 
   const bairro =
     String(
+      p.chavesBairro ||
       enderecoChaves.bairro ||
       p.bairroChavesNaMao ||
       p.bairro ||
@@ -184,10 +188,10 @@ function location(p) {
     city,
     uf,
     bairro,
-    cep: String(enderecoChaves.cep || '').trim(),
-    endereco: String(enderecoChaves.logradouro || '').trim(),
-    numero: String(enderecoChaves.numero || '').trim(),
-    complemento: String(enderecoChaves.complemento || '').trim()
+    cep: String(p.chavesCep || enderecoChaves.cep || '').trim(),
+    endereco: String(p.chavesLogradouro || enderecoChaves.logradouro || '').trim(),
+    numero: String(p.chavesNumero || enderecoChaves.numero || '').trim(),
+    complemento: String(p.chavesComplemento || enderecoChaves.complemento || '').trim()
   };
 }
 
