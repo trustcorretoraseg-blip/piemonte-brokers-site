@@ -1761,7 +1761,7 @@
       "codigo": "PB0123",
       "categoria": "Imóvel",
       "status": "Disponível",
-      "publicarChavesNaMao": "Não",
+      "publicarChavesNaMao": "Sim",
       "tituloChavesNaMao": "",
       "tipoChavesNaMao": "",
       "condominioChavesNaMao": "",
