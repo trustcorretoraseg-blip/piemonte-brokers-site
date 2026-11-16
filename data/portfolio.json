@@ -397,8 +397,8 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": false,
-      "ordemDestaque": 99,
+      "destaque": true,
+      "ordemDestaque": 1,
       "bairroChavesNaMao": ""
     },
     {
@@ -3334,7 +3334,7 @@
       "tecnologiaConforto": [],
       "mobiliaEletros": [],
       "diferenciais": [],
-      "destaque": true,
+      "destaque": false,
       "ordemDestaque": 1,
       "bairroChavesNaMao": ""
     },
